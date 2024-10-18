@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zongyuan Yang</title>
+  <link rel="icon" href="1.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+      min-height: 100vh;
+    }
+    canvas {
+      width: 100%;
+      height: 50vh;
+      display: block;
+    }
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+    nav ul {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin-left: 16px;
+    }
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: white;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+    }
+    .card {
+      background-color: rgba(31, 41, 55, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid #374151;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .profile-image {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 16px;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-icons a {
+      color: white;
+      border: 1px solid #4B5563;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .social-icons a:hover {
+      background-color: #374151;
+    }
+    h1 {
+      font-size: 2.25rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .text-gray-300 {
+      color: #D1D5DB;
+    }
+    .text-gray-400 {
+      color: #9CA3AF;
+    }
+    .text-sm {
+      font-size: 0.875rem;
+    }
+    ul.list-inside {
+      list-style-position: inside;
+      padding-left: 0;
+    }
+    .space-y-2 > * + * {
+      margin-top: 8px;
+    }
+    .space-y-4 > * + * {
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="container">
+  <header>
+    <h1>ZONGYUAN YANG</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#awards">Awards</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <img src="img/1.png" alt="Zongyuan Yang" class="profile-image">
+        <h2>Zongyuan Yang</h2>
+        <p class="text-gray-300">PhD, LIVIN@BUPT</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Email"><i class="icon-mail"></i></a>
+          <a href="#" aria-label="CV"><i class="icon-file-text"></i></a>
+          <a href="#" aria-label="Publications"><i class="icon-book"></i></a>
+          <a href="#" aria-label="GitHub"><i class="icon-github"></i></a>
+          <a href="#" aria-label="Twitter"><i class="icon-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="home" class="card">
+        <h2>About Me</h2>
+        <p class="text-gray-300">Your brief introduction goes here. Highlight your research interests, academic background, and any other relevant information. Make it engaging and concise to capture the reader's attention.</p>
+      </div>
+
+      <div id="news" class="card">
+        <h2>News</h2>
+        <ul class="list-inside space-y-2 text-gray-300">
+          <li>Recent news item 1</li>
+          <li>Recent news item 2</li>
+          <li>Recent news item 3</li>
+        </ul>
+      </div>
+
+      <div id="publications" class="card">
+        <h2>Publications</h2>
+        <ul class="space-y-4">
+          <li>
+            <h3>Publication Title 1</h3>
+            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+          </li>
+          <li>
+            <h3>Publication Title 2</h3>
+            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+          </li>
+          <li>
+            <h3>Publication Title 3</h3>
+            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="experiences" class="card">
+        <h2>Experiences</h2>
+        <ul class="space-y-4">
+          <li>
+            <h3>Position or Role</h3>
+            <p class="text-sm text-gray-400">Company or Institution, Date Range</p>
+            <p class="text-gray-300">Brief description of your responsibilities and achievements.</p>
+          </li>
+          <li>
+            <h3>Another Position or Role</h3>
+            <p class="text-sm text-gray-400">Company or Institution, Date Range</p>
+            <p class="text-gray-300">Brief description of your responsibilities and achievements.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="awards" class="card">
+        <h2>Awards</h2>
+        <ul class="list-inside space-y-2 text-gray-300">
+          <li>Award 1, Year</li>
+          <li>Award 2, Year</li>
+          <li>Award 3, Year</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Three.js scene setup
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight * 0.5), 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#bg'),
+  });
+
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+  camera.position.setZ(40); // Updated camera position
+
+  // OrbitControls
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+  // Stars
+  function addStar() {
+    const geometry = new THREE.SphereGeometry(0.05, 8, 8);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      metalness: 0.5,
+      roughness: 0.5,
+      emissive: 0xffffff,
+      emissiveIntensity: 0
+    });
+    const star = new THREE.Mesh(geometry, material);
+
+    // Sample position within a sphere
+    const theta = 2 * Math.PI * Math.random();
+    const phi = Math.acos(2 * Math.random() - 1);
+    const radius = 50 * Math.cbrt(Math.random()); // Use cube root for uniform distribution
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi);
+
+    star.position.set(x, y, z);
+
+    // Add a random phase for twinkling effect
+    star.userData = { phase: Math.random() * Math.PI * 2 };
+
+    scene.add(star);
+    return star;
+  }
+
+  const stars = Array(4000).fill().map(addStar);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+  scene.add(ambientLight);
+
+  const pointLight = new THREE.PointLight(0xffffff);
+  pointLight.position.set(-5, -5, -5);
+  scene.add(pointLight);
+
+  // Load GLB models
+  let modelA, modelB, modelC, modelD;
+  const loader = new THREE.GLTFLoader();
+  const dracoLoader = new THREE.DRACOLoader();
+  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+  loader.setDRACOLoader(dracoLoader);
+
+  // Load a.glb
+  loader.load(
+          './mesh/a.glb',
+          function (gltf) {
+            modelA = gltf.scene;
+            modelA.position.set(0, 0, -5);
+            scene.add(modelA);
+          },
+          undefined,
+          function (error) {
+            console.error('An error happened', error);
+          }
+  );
+
+  // Load b.glb
+  loader.load(
+          './mesh/b.glb',
+          function (gltf) {
+            modelB = gltf.scene;
+            modelB.position.set(-10, 0, 10); // Updated modelB position
+            scene.add(modelB);
+          },
+          undefined,
+          function (error) {
+            console.error('An error happened', error);
+          }
+  );
+
+  // Load c.glb
+  loader.load(
+          './mesh/c.glb',
+          function (gltf) {
+            modelC = gltf.scene;
+            modelC.position.set(-6, 10, 5); // Updated modelC position
+            modelC.scale.set(0.3, 0.3, 0.3); // Added scaling for modelC
+            scene.add(modelC);
+          },
+          undefined,
+          function (error) {
+            console.error('An error happened', error);
+          }
+  );
+
+  // Load d.glb
+  loader.load(
+          './mesh/d.glb',
+          function (gltf) {
+            modelD = gltf.scene;
+            modelD.position.set(10, 6, 5); // Updated modelD position
+            modelD.scale.set(0.4, 0.4, 0.4); // Added scaling for modelD
+            scene.add(modelD);
+          },
+          undefined,
+          function (error) {
+            console.error('An error happened', error);
+          }
+  );
+
+  // Add 3D Text
+  const loader2 = new THREE.FontLoader();
+  loader2.load('https://threejs.org/examples/fonts/gentilis_bold.typeface.json', function (font) {
+    const textGeometry = new THREE.TextGeometry('Enjoy Life & Explore Unknown', {
+      font: font,
+      size: 3,
+      height: 0.1,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.03,
+      bevelSize: 0.02,
+      bevelOffset: 0,
+      bevelSegments: 5
+    });
+    const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    textMesh.position.set(-20, 10, -5);
+    scene.add(textMesh);
+  });
+
+  // Animation
+  const clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const time = clock.getElapsedTime();
+    const delta = clock.getDelta();
+
+    if (modelA) {
+      modelA.rotation.y += delta * 0.2;
+      modelA.rotation.x = Math.sin(time * 0.5) * 0.2;
+      modelA.position.y = Math.sin(time) * 0.2;
+    }
+
+    if (modelB) {
+      modelB.rotation.y += delta * 0.3;
+      modelB.rotation.z = Math.cos(time * 0.7) * 0.2;
+      modelB.position.y = Math.cos(time * 1.2) * 0.2;
+    }
+
+    if (modelC) {
+      modelC.rotation.x += delta * 0.25;
+      modelC.rotation.y = Math.sin(time * 0.6) * 0.3;
+      modelC.position.y = Math.sin(time * 0.8) * 0.2;
+    }
+
+    if (modelD) {
+      modelD.rotation.z += delta * 0.15;
+      modelD.rotation.x = Math.cos(time * 0.4) * 0.3;
+      modelD.position.y = Math.cos(time * 1.5) * 0.2;
+    }
+
+    animateStars(time);
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  function animateStars(time) {
+    stars.forEach((star) => {
+      const scale = 0.5 + 0.5 * Math.sin(time * 1.5 + star.userData.phase);
+      star.scale.setScalar(scale);
+      star.material.emissiveIntensity = scale;
+    });
+  }
+
+  animate();
+
+  // Resize handler
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / (window.innerHeight * 0.5);
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+  });
+</script>
+</body>
+</html>
