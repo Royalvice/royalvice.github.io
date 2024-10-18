@@ -15,27 +15,32 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: black;
-      color: white;
-      min-height: 100vh;
+      background-color: black; /* 背景换为纯黑色 */
+      color: #ffffff;
+      line-height: 1.6;
     }
     canvas {
-      width: 100%;
-      height: 50vh;
       display: block;
+      position: relative;
+      width: 100%;
+      height: 30vh; /* 调整为 30% 的视口高度 */
     }
+
     .container {
       position: relative;
       z-index: 10;
       max-width: 1200px;
       margin: 0 auto;
       padding: 16px;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.8); /* 使用背景色 #2d3748 */
+      border-radius: 0.5rem;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 0;
+      background-color: #2d3748; /* 使用深色背景 */
       margin-bottom: 64px;
     }
     nav ul {
@@ -47,12 +52,12 @@
       margin-left: 16px;
     }
     nav ul li a {
-      color: #ccc;
+      color: #a0aec0; /* 设置文字颜色 */
       text-decoration: none;
       transition: color 0.3s;
     }
     nav ul li a:hover {
-      color: white;
+      color: #ffffff;
     }
     .grid {
       display: grid;
@@ -60,49 +65,96 @@
       gap: 32px;
     }
     .card {
-      background-color: rgba(31, 41, 55, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid #374151;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 32px;
+      background-color: #2d3748;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
     }
-    .profile-image {
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .profile {
+      display: flex;
+      flex-direction: column; /* 垂直排列导航栏和内容部分 */
+      align-items: flex-end; /* 左对齐 */
+      margin-bottom: 3rem;
+    }
+
+    .profile-content-wrapper {
+      display: flex;
+      align-items: center; /* 垂直居中对齐图片和内容 */
+      justify-content: flex-start; /* 左对齐图片和内容 */
       width: 100%;
-      border-radius: 50%;
-      margin-bottom: 16px;
     }
+
+    .profile-image {
+      width: 25%; /* 设置图片大小 */
+      border-radius: 50%;
+      margin-right: 2rem; /* 右侧间距使内容和图片分开 */
+    }
+
+    .profile-content {
+      width: 75%; /* 让内容部分占据剩余空间 */
+    }
+
+    .sidebar {
+      margin-bottom: 1rem; /* 导航栏和内容部分之间添加一些间距 */
+    }
+
+    .sidebar nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      gap: 2.3rem; /* 导航项之间的间距 */
+    }
+
+    .sidebar nav ul li {
+      margin-bottom: 0;
+    }
+
+    .sidebar nav ul li a {
+      text-decoration: none;
+      color: #9f7aea;
+      font-size: 1rem;
+      padding: 0.5rem 1rem; /* 添加内边距 */
+      border: 2px solid #9f7aea; /* 添加边框 */
+      border-radius: 12px; /* 设置圆角 */
+      transition: color 0.3s, background-color 0.3s; /* 添加渐变效果 */
+    }
+
+    .sidebar nav ul li a:hover {
+      color: #ffffff;
+      background-color: #9f7aea; /* 鼠标悬停时改变背景颜色 */
+    }
+
+
+
+
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 16px;
     }
     .social-icons a {
-      color: white;
-      border: 1px solid #4B5563;
+      color: #a0aec0;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.3s;
+      transition: color 0.3s, background-color 0.3s;
     }
     .social-icons a:hover {
-      background-color: #374151;
+      color: #ffffff;
     }
     h1 {
       font-size: 2.25rem;
+      color: #9f7aea; /* 紫色标题 */
     }
     h2 {
       font-size: 1.5rem;
       margin-bottom: 16px;
+      color: #9f7aea; /* 标题颜色 */
     }
     .text-gray-300 {
-      color: #D1D5DB;
-    }
-    .text-gray-400 {
-      color: #9CA3AF;
+      color: #a0aec0;
     }
     .text-sm {
       font-size: 0.875rem;
@@ -117,105 +169,160 @@
     .space-y-4 > * + * {
       margin-top: 16px;
     }
+    .button {
+      background-color: #6b46c1;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .button:hover {
+      background-color: #553c9a;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div class="container">
-  <header>
-    <h1>ZONGYUAN YANG</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#experiences">Experiences</a></li>
-        <li><a href="#awards">Awards</a></li>
-      </ul>
-    </nav>
-  </header>
+<!--  <header>-->
+<!--    <nav class="container">-->
+<!--      <h1 style="color: #9f7aea; font-size: 1.5rem;">ZONGYUAN YANG</h1>-->
+<!--      <ul>-->
+<!--        <li><a href="#home">HOME</a></li>-->
+<!--        <li><a href="#news">NEWS</a></li>-->
+<!--        <li><a href="#publications">PUBLICATIONS</a></li>-->
+<!--        <li><a href="#experiences">EXPERIENCES</a></li>-->
+<!--        <li><a href="#awards">AWARDS</a></li>-->
+<!--        <li><a href="#services">SERVICES</a></li>-->
+<!--      </ul>-->
+<!--      <div class="social-icons">-->
+<!--        <a href="#" aria-label="Email">📧</a>-->
+<!--        <a href="#" aria-label="CV">📄</a>-->
+<!--        <a href="#" aria-label="GitHub">🐙</a>-->
+<!--        <a href="#" aria-label="Twitter">🐦</a>-->
+<!--      </div>-->
+<!--    </nav>-->
+<!--  </header>-->
 
-  <div class="grid">
-    <div>
-      <div class="card">
+  <main class="container">
+    <section id="home" class="profile">
+      <!-- 导航栏 -->
+      <div class="sidebar">
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#services">Services</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- 图片和内容部分 -->
+      <div class="profile-content-wrapper">
         <img src="img/1.png" alt="Zongyuan Yang" class="profile-image">
-        <h2>Zongyuan Yang</h2>
-        <p class="text-gray-300">PhD, LIVIN@BUPT</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Email"><i class="icon-mail"></i></a>
-          <a href="#" aria-label="CV"><i class="icon-file-text"></i></a>
-          <a href="#" aria-label="Publications"><i class="icon-book"></i></a>
-          <a href="#" aria-label="GitHub"><i class="icon-github"></i></a>
-          <a href="#" aria-label="Twitter"><i class="icon-twitter"></i></a>
+        <div class="profile-content">
+          <p style="color: #a0aec0; font-weight: bold;">PhD, LIVIN@BUPT</p>
+          <h1>Zongyuan Yang</h1>
+          <p>
+            I'm Zongyuan Yang, a PhD candidate in the School of Computer Science and Engineering at Your University.
+            My research focuses on [Your Research Area]. Prior to this, I received my bachelor degree from [Previous
+            University] in [Year].
+          </p>
+          <div class="buttons">
+            <button class="button">Email</button>
+            <button class="button">CV</button>
+            <button class="button">Google Scholar</button>
+            <button class="button">GitHub</button>
+            <button class="button">Twitter</button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div>
-      <div id="home" class="card">
-        <h2>About Me</h2>
-        <p class="text-gray-300">Your brief introduction goes here. Highlight your research interests, academic background, and any other relevant information. Make it engaging and concise to capture the reader's attention.</p>
-      </div>
 
-      <div id="news" class="card">
-        <h2>News</h2>
-        <ul class="list-inside space-y-2 text-gray-300">
+
+
+
+    <section id="news">
+      <h2>News</h2>
+      <div class="card">
+        <ul>
           <li>Recent news item 1</li>
           <li>Recent news item 2</li>
           <li>Recent news item 3</li>
         </ul>
       </div>
+    </section>
 
-      <div id="publications" class="card">
-        <h2>Publications</h2>
-        <ul class="space-y-4">
+    <section id="publications">
+      <h2>Publications</h2>
+      <div class="card">
+        <ul>
           <li>
             <h3>Publication Title 1</h3>
-            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
           </li>
           <li>
             <h3>Publication Title 2</h3>
-            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
           </li>
           <li>
             <h3>Publication Title 3</h3>
-            <p class="text-sm text-gray-400">Authors, Conference/Journal, Year</p>
+            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
           </li>
         </ul>
       </div>
+    </section>
 
-      <div id="experiences" class="card">
-        <h2>Experiences</h2>
-        <ul class="space-y-4">
+    <section id="experiences">
+      <h2>Experiences</h2>
+      <div class="card">
+        <ul>
           <li>
             <h3>Position or Role</h3>
-            <p class="text-sm text-gray-400">Company or Institution, Date Range</p>
-            <p class="text-gray-300">Brief description of your responsibilities and achievements.</p>
+            <p style="color: #a0aec0;">Company or Institution, Date Range</p>
+            <p>Brief description of your responsibilities and achievements.</p>
           </li>
           <li>
             <h3>Another Position or Role</h3>
-            <p class="text-sm text-gray-400">Company or Institution, Date Range</p>
-            <p class="text-gray-300">Brief description of your responsibilities and achievements.</p>
+            <p style="color: #a0aec0;">Company or Institution, Date Range</p>
+            <p>Brief description of your responsibilities and achievements.</p>
           </li>
         </ul>
       </div>
+    </section>
 
-      <div id="awards" class="card">
-        <h2>Awards</h2>
-        <ul class="list-inside space-y-2 text-gray-300">
+    <section id="awards">
+      <h2>Awards</h2>
+      <div class="card">
+        <ul>
           <li>Award 1, Year</li>
           <li>Award 2, Year</li>
           <li>Award 3, Year</li>
         </ul>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
+
+    <section id="services">
+      <h2>Services</h2>
+      <div class="card">
+        <p>Information about your services or academic contributions goes here.</p>
+      </div>
+    </section>
+  </main>
+</div>>
 
 <script>
   // Three.js scene setup
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight * 0.5), 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / (window.innerHeight * 0.5), 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
   });
@@ -345,8 +452,32 @@
       bevelOffset: 0,
       bevelSegments: 5
     });
-    const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
-    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+    // Gradient Shader Material
+    const gradientMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        color1: { value: new THREE.Color(0x8a2be2) }, // 紫色
+        color2: { value: new THREE.Color(0xda70d6) }  // 淡紫色
+      },
+      vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+      fragmentShader: `
+                uniform vec3 color1;
+                uniform vec3 color2;
+                varying vec2 vUv;
+                void main() {
+                    gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
+                }
+            `,
+      side: THREE.DoubleSide,
+    });
+
+    const textMesh = new THREE.Mesh(textGeometry, gradientMaterial);
     textMesh.position.set(-20, 10, -5);
     scene.add(textMesh);
   });
@@ -400,9 +531,9 @@
 
   // Resize handler
   window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / (window.innerHeight * 0.5);
+    camera.aspect = window.innerWidth / (window.innerHeight * 0.3);
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.3);
   });
 </script>
 </body>
