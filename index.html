@@ -5,540 +5,941 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zongyuan Yang</title>
   <link rel="icon" href="1.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Three.js core -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+  <!-- Bloom post-processing -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: black; /* 背景换为纯黑色 */
-      color: #ffffff;
-      line-height: 1.6;
+    :root {
+      --bg:           #0D1B2A;
+      --card:         #172535;
+      --card-hover:   #1E3347;
+      --text:         #E8E8E0;
+      --subtext:      #8FA3B8;
+      --accent:       #6BA3C6;
+      --accent-light: #A8D5E2;
+      --badge-bg:     #1A3A56;
+      --badge-text:   #7EC8E3;
+      --border:       rgba(107,163,198,0.15);
+      --border-hover: rgba(107,163,198,0.35);
+      --shadow:       0 4px 24px rgba(0,0,0,0.35);
     }
-    canvas {
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'PingFang SC', 'Helvetica Neue', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-light); }
+
+    /* ── Canvas scene ─────────────────────────────── */
+    #canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      overflow: hidden;
+    }
+
+    #bg {
       display: block;
-      position: relative;
       width: 100%;
-      height: 30vh; /* 调整为 30% 的视口高度 */
+      height: 100%;
     }
 
-    .container {
-      position: relative;
-      z-index: 10;
-      max-width: 1200px;
+    #drag-hint {
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      color: var(--subtext);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      opacity: 0.55;
+      transition: opacity 0.6s;
+    }
+    #drag-hint.hidden { opacity: 0; }
+
+    /* ── Page layout ──────────────────────────────── */
+    .page-container {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 16px;
-      background-color: rgba(0, 0, 0, 0.8); /* 使用背景色 #2d3748 */
-      border-radius: 0.5rem;
+      padding: 40px 24px 80px;
     }
-    header {
+
+    section {
+      margin-bottom: 56px;
+    }
+
+    /* ── Fade-in scroll animation ─────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Navigation ───────────────────────────────── */
+    .site-nav {
+      margin-bottom: 40px;
+    }
+    .site-nav ul {
+      list-style: none;
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .site-nav ul li a {
+      display: inline-block;
+      color: var(--subtext);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .site-nav ul li a:hover {
+      color: var(--accent-light);
+      border-color: var(--accent);
+      background: rgba(107,163,198,0.08);
+    }
+
+    /* ── Profile section ──────────────────────────── */
+    .profile-wrap {
+      display: flex;
       align-items: center;
-      padding: 1rem 0;
-      background-color: #2d3748; /* 使用深色背景 */
-      margin-bottom: 64px;
+      gap: 36px;
     }
-    nav ul {
-      display: flex;
-      list-style-type: none;
-      padding: 0;
-    }
-    nav ul li {
-      margin-left: 16px;
-    }
-    nav ul li a {
-      color: #a0aec0; /* 设置文字颜色 */
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #ffffff;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 32px;
-    }
-    .card {
-      background-color: #2d3748;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .profile {
-      display: flex;
-      flex-direction: column; /* 垂直排列导航栏和内容部分 */
-      align-items: flex-end; /* 左对齐 */
-      margin-bottom: 3rem;
-    }
-
-    .profile-content-wrapper {
-      display: flex;
-      align-items: center; /* 垂直居中对齐图片和内容 */
-      justify-content: flex-start; /* 左对齐图片和内容 */
-      width: 100%;
-    }
-
     .profile-image {
-      width: 25%; /* 设置图片大小 */
-      border-radius: 0%;
-      margin-right: 2rem; /* 右侧间距使内容和图片分开 */
+      width: 160px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      filter: drop-shadow(0 4px 16px rgba(107,163,198,0.15));
     }
-
-    .profile-content {
-      width: 75%; /* 让内容部分占据剩余空间 */
-    }
-
-    .sidebar {
-      margin-bottom: 1rem; /* 导航栏和内容部分之间添加一些间距 */
-    }
-
-    .sidebar nav ul {
-      list-style-type: none;
-      padding: 0;
+    .profile-meta {
       display: flex;
-      gap: 2.3rem; /* 导航项之间的间距 */
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
     }
-
-    .sidebar nav ul li {
-      margin-bottom: 0;
+    .profile-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      color: var(--subtext);
     }
-
-    .sidebar nav ul li a {
-      text-decoration: none;
-      color: #9f7aea;
-      font-size: 1rem;
-      padding: 0.5rem 1rem; /* 添加内边距 */
-      border: 2px solid #9f7aea; /* 添加边框 */
-      border-radius: 12px; /* 设置圆角 */
-      transition: color 0.3s, background-color 0.3s; /* 添加渐变效果 */
+    h1.name {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
-
-    .sidebar nav ul li a:hover {
-      color: #ffffff;
-      background-color: #9f7aea; /* 鼠标悬停时改变背景颜色 */
+    .profile-bio {
+      color: var(--subtext);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 20px;
     }
+    .profile-bio strong { color: var(--text); font-weight: 500; }
+    .profile-bio a { color: var(--accent); }
 
-
-
-
-    .social-icons {
+    .btn-row {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .social-icons a {
-      color: #a0aec0;
-      border-radius: 50%;
-      transition: color 0.3s, background-color 0.3s;
-    }
-    .social-icons a:hover {
-      color: #ffffff;
-    }
-    h1 {
-      font-size: 2.25rem;
-      color: #9f7aea; /* 紫色标题 */
-    }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      color: #9f7aea; /* 标题颜色 */
-    }
-    .text-gray-300 {
-      color: #a0aec0;
-    }
-    .text-sm {
-      font-size: 0.875rem;
-    }
-    ul.list-inside {
-      list-style-position: inside;
-      padding-left: 0;
-    }
-    .space-y-2 > * + * {
-      margin-top: 8px;
-    }
-    .space-y-4 > * + * {
-      margin-top: 16px;
-    }
-    .button {
-      background-color: #6b46c1;
-      color: #ffffff;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.25rem;
-      font-weight: bold;
+    .btn {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 6px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      color: var(--accent-light);
+      background: rgba(107,163,198,0.07);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
     }
-    .button:hover {
-      background-color: #553c9a;
-      transform: scale(1.05);
+    .btn:hover {
+      background: rgba(107,163,198,0.18);
+      color: #fff;
+      border-color: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── Section headings ─────────────────────────── */
+    h2.section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── News ─────────────────────────────────────── */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .news-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 14px 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+    .news-item:hover { border-color: var(--border-hover); }
+    .news-date {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 3px;
+      min-width: 70px;
+    }
+    .news-text {
+      font-size: 0.88rem;
+      color: var(--subtext);
+      line-height: 1.65;
+    }
+    .news-text em { font-style: italic; color: var(--text); }
+    .news-text strong { color: var(--accent-light); font-weight: 600; }
+
+    /* ── Publications ─────────────────────────────── */
+    .pub-group { margin-bottom: 32px; }
+    .pub-group-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      margin-bottom: 14px;
+      padding-left: 2px;
+    }
+
+    .pub-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.3s, transform 0.3s;
+      will-change: transform;
+    }
+
+    .pub-thumb {
+      width: 76px;
+      height: 76px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background-size: cover;
+    }
+    /* Per-paper gradient thumbnails */
+    .thumb-ssat    { background: linear-gradient(135deg, #0a2540 0%, #1a6b8a 50%, #2dc8e0 100%); }
+    .thumb-directl { background: linear-gradient(135deg, #0d2b3e 0%, #1a7a9a 60%, #4ecdc4 100%); }
+    .thumb-eye3    { background: linear-gradient(135deg, #0d1f3c 0%, #1a5276 50%, #52be80 100%); }
+    .thumb-elf     { background: linear-gradient(135deg, #1a0d3c 0%, #4a1a7a 50%, #7b68ee 100%); }
+    .thumb-docdiff { background: linear-gradient(135deg, #3d1a00 0%, #b5451b 50%, #e8956d 100%); }
+    .thumb-gdb     { background: linear-gradient(135deg, #1a2a3a 0%, #3d5a6e 50%, #8aa4b8 100%); }
+    .thumb-textdiff{ background: linear-gradient(135deg, #2d1a00 0%, #8b5e3c 50%, #d4a574 100%); }
+    .thumb-ddgnet  { background: linear-gradient(135deg, #0d2b1a 0%, #1a6b3a 50%, #52be80 100%); }
+
+    .pub-info { flex: 1; min-width: 0; }
+
+    .pub-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    .pub-venue-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+    .venue-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--badge-text);
+      background: var(--badge-bg);
+      border: 1px solid rgba(126,200,227,0.25);
+      padding: 2px 9px;
+      border-radius: 12px;
+    }
+    .pub-year {
+      font-size: 0.78rem;
+      color: var(--subtext);
+    }
+
+    .pub-authors {
+      font-size: 0.78rem;
+      color: var(--subtext);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .pub-authors .me { color: var(--text); font-weight: 500; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+
+    .pub-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pub-link {
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--accent);
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .pub-link:hover {
+      border-color: var(--accent);
+      background: rgba(107,163,198,0.1);
+      color: var(--accent-light);
+    }
+
+    /* ── Experiences timeline ─────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 20px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 3px;
+    }
+    .timeline-place {
+      font-size: 0.82rem;
+      color: var(--subtext);
+      margin-bottom: 4px;
+    }
+    .timeline-period {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Placeholder cards ────────────────────────── */
+    .placeholder-card {
+      padding: 20px 24px;
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      color: var(--subtext);
+      font-size: 0.85rem;
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .profile-wrap { flex-direction: column; align-items: flex-start; }
+      .profile-image { width: 120px; }
+      h1.name { font-size: 1.6rem; }
+      .pub-card { flex-direction: column; }
+      .pub-thumb { width: 100%; height: 100px; }
     }
   </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
-<div class="container">
-<!--  <header>-->
-<!--    <nav class="container">-->
-<!--      <h1 style="color: #9f7aea; font-size: 1.5rem;">ZONGYUAN YANG</h1>-->
-<!--      <ul>-->
-<!--        <li><a href="#home">HOME</a></li>-->
-<!--        <li><a href="#news">NEWS</a></li>-->
-<!--        <li><a href="#publications">PUBLICATIONS</a></li>-->
-<!--        <li><a href="#experiences">EXPERIENCES</a></li>-->
-<!--        <li><a href="#awards">AWARDS</a></li>-->
-<!--        <li><a href="#services">SERVICES</a></li>-->
-<!--      </ul>-->
-<!--      <div class="social-icons">-->
-<!--        <a href="#" aria-label="Email">📧</a>-->
-<!--        <a href="#" aria-label="CV">📄</a>-->
-<!--        <a href="#" aria-label="GitHub">🐙</a>-->
-<!--        <a href="#" aria-label="Twitter">🐦</a>-->
-<!--      </div>-->
-<!--    </nav>-->
-<!--  </header>-->
 
-  <main class="container">
-    <section id="home" class="profile">
-      <!-- 导航栏 -->
-      <div class="sidebar">
-        <nav>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#experiences">Experiences</a></li>
-            <li><a href="#awards">Awards</a></li>
-            <li><a href="#services">Services</a></li>
-          </ul>
-        </nav>
+<!-- ── Three.js Scene ──────────────────────────── -->
+<div id="canvas-wrap">
+  <canvas id="bg"></canvas>
+  <div id="drag-hint">⟳ drag to explore</div>
+</div>
+
+<!-- ── Main content ────────────────────────────── -->
+<div class="page-container">
+
+  <!-- HOME / PROFILE -->
+  <section id="home" class="fade-in">
+    <nav class="site-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#services">Services</a></li>
+      </ul>
+    </nav>
+
+    <div class="profile-wrap">
+      <img src="img/1-removebg-preview.png" alt="Zongyuan Yang" class="profile-image">
+      <div class="profile-content">
+        <div class="profile-meta">
+          <span class="profile-tag">PhD · LIVIN@BUPT</span>
+          <a href="https://visitorbadge.io/status?path=https%3A%2F%2Froyalvice.github.io%2F" target="_blank">
+            <img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Froyalvice.github.io%2F&label=HITS&labelColor=%230D1B2A&countColor=%236BA3C6&style=flat-square&labelStyle=upper" alt="Visitor Badge" style="vertical-align:middle;"/>
+          </a>
+        </div>
+        <h1 class="name">Zongyuan Yang</h1>
+        <p class="profile-bio">
+          I am a first-year PhD student at the State Key Laboratory of Networking and Switching Technology,
+          <strong>LIVIN Lab, BUPT</strong>, supervised by
+          <a href="https://teacher.bupt.edu.cn/xiongyongping" target="_blank">Prof. Yongping Xiong</a>.
+          My research focuses on <strong>3D Display</strong>, <strong>Neural Rendering</strong>, and
+          <strong>3D AIGC</strong> — from light field radiance fields to real-time display systems.
+        </p>
+        <div class="btn-row">
+          <a href="mailto:yangzongyuan0@bupt.edu.cn" class="btn">Email</a>
+          <a href="#" class="btn" title="CV coming soon">CV</a>
+          <a href="https://scholar.google.com.hk/citations?user=2IYvwdwAAAAJ&hl=zh-CN" class="btn" target="_blank">Google Scholar</a>
+          <a href="https://github.com/Royalvice" class="btn" target="_blank">GitHub</a>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- 图片和内容部分 -->
-      <div class="profile-content-wrapper">
-        <img src="img/1-removebg-preview.png" alt="Zongyuan Yang" class="profile-image">
-        <div class="profile-content">
-          <div style="display: flex; align-items: center;">
-            <p style="color: #a0aec0; font-weight: bold; margin-right: 10px;">PhD, LIVIN@BUPT</p>
-            <a href="https://visitorbadge.io/status?path=https%3A%2F%2Froyalvice.github.io%2F">
-              <img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Froyalvice.github.io%2F&label=HITS&labelColor=%23000000&countColor=%23ba68c8&style=flat-square&labelStyle=upper" alt="Visitor Badge"/>
-            </a>
+  <!-- NEWS -->
+  <section id="news" class="fade-in">
+    <h2 class="section-title">News</h2>
+    <div class="news-list">
+      <div class="news-item">
+        <span class="news-date">[2026.04]</span>
+        <p class="news-text">
+          One paper <em>SSAT: Real-Time Light-Field Path Tracing for 3D Displays via Sparse Spatial-Angular-Temporal Reconstruction</em>
+          is accepted to <strong>SIGGRAPH 2026</strong> (ACM Technical Papers)!
+        </p>
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2024.12]</span>
+        <p class="news-text">
+          One paper <em>DirectL: Efficient Radiance Fields Rendering for 3D Light Field Displays</em>
+          is accepted to <strong>ACM Transactions on Graphics (TOG)</strong>, presented at SIGGRAPH Asia 2024.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="fade-in">
+    <h2 class="section-title">Publications</h2>
+
+    <div class="pub-group">
+      <p class="pub-group-label">3D Display &amp; Neural Rendering</p>
+
+      <!-- SSAT -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-ssat"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">SSAT: Real-Time Light-Field Path Tracing for 3D Displays via Sparse Spatial-Angular-Temporal Reconstruction</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">SIGGRAPH 2026</span>
+            <span class="pub-year">2026</span>
           </div>
-          <h1>Zongyuan Yang</h1>
-          <p>
-            I am Zongyuan Yang, a first-year PhD student at the State Key Laboratory of Networking and Switching Technology, LIVIN Lab, at Beijing University of Posts and Telecommunications (BUPT), under the supervision of <a href="https://teacher.bupt.edu.cn/xiongyongping">Prof. Yongping Xiong</a>.
-            I have good understanding in <strong> 3D AI-Generated Content (AIGC) </strong>.
-            My research interests include <strong> 3D Generation, Drive, and Display </strong>.
-          </p>
-          <div class="buttons">
-            <a href="mailto:yangzongyuan0@bupt.edu.cn" class="button" target="_blank">Email</a>
-            <button class="button">CV</button>
-            <a href="https://scholar.google.com.hk/citations?user=2IYvwdwAAAAJ&hl=zh-CN" class="button" target="_blank">Google Scholar</a>
-            <a href="https://github.com/Royalvice" class="button" target="_blank">GitHub</a>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="Paper link coming soon">Paper</a>
+            <a class="pub-link" href="#" title="arXiv coming soon">arXiv</a>
           </div>
         </div>
       </div>
-    </section>
 
-
-
-
-
-    <section id="news">
-      <h2>News</h2>
-      <div class="card">
-        <ul>
-          <li>Recent news item 1</li>
-          <li>Recent news item 2</li>
-          <li>Recent news item 3</li>
-        </ul>
+      <!-- DirectL -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-directl"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">DirectL: Efficient Radiance Fields Rendering for 3D Light Field Displays</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">ACM TOG · SIGGRAPH Asia 2024</span>
+            <span class="pub-year">2024</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, Baolin Liu, Yingde Song, Lan Yi, Yongping Xiong, Zhaohe Zhang, Xunbo Yu</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1145/3687897" target="_blank">Paper</a>
+            <a class="pub-link" href="https://arxiv.org/abs/2407.14053" target="_blank">arXiv</a>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <div class="card">
-        <ul>
-          <li>
-            <h3>Publication Title 1</h3>
-            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
-          </li>
-          <li>
-            <h3>Publication Title 2</h3>
-            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
-          </li>
-          <li>
-            <h3>Publication Title 3</h3>
-            <p style="color: #a0aec0;">Authors, Conference/Journal, Year</p>
-          </li>
-        </ul>
+      <!-- EYE3 -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-eye3"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">Turn Anything into Naked-eye 3D</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">ICCV 2025</span>
+            <span class="pub-year">2025</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="coming soon">Paper</a>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section id="experiences">
-      <h2>Experiences</h2>
-      <div class="card">
-        <ul>
-          <li>
-            <h3>Position or Role</h3>
-            <p style="color: #a0aec0;">Company or Institution, Date Range</p>
-            <p>Brief description of your responsibilities and achievements.</p>
-          </li>
-          <li>
-            <h3>Another Position or Role</h3>
-            <p style="color: #a0aec0;">Company or Institution, Date Range</p>
-            <p>Brief description of your responsibilities and achievements.</p>
-          </li>
-        </ul>
+      <!-- ELF -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-elf"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">Edit Anything for Light Field Displays</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">Pattern Recognition · 2026</span>
+            <span class="pub-year">2026</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="coming soon">Paper</a>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="awards">
-      <h2>Awards</h2>
-      <div class="card">
-        <ul>
-          <li>Award 1, Year</li>
-          <li>Award 2, Year</li>
-          <li>Award 3, Year</li>
-        </ul>
-      </div>
-    </section>
+    <div class="pub-group">
+      <p class="pub-group-label">Document Enhancement</p>
 
-    <section id="services">
-      <h2>Services</h2>
-      <div class="card">
-        <p>Information about your services or academic contributions goes here.</p>
+      <!-- DocDiff -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-docdiff"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">DocDiff: Document Enhancement via Residual Diffusion Models</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">ACM MM 2023</span>
+            <span class="pub-year">2023</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, Baolin Liu, Yongping Xiong, Lan Yi, Guibin Wu, Xiaojun Tang, Ziqi Liu, Junjie Zhou, Xing Zhang</p>
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1145/3581783.3611730" target="_blank">Paper</a>
+            <a class="pub-link" href="https://arxiv.org/abs/2305.03892" target="_blank">arXiv</a>
+            <a class="pub-link" href="https://github.com/Royalvice/DocDiff" target="_blank">Code</a>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
-</div>>
+
+      <!-- GDB -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-gdb"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">Gated Convolutions-based Document Binarization</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">Pattern Recognition · 2024</span>
+            <span class="pub-year">2024</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="coming soon">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TextDiff -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-textdiff"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">Enhancing Scene Text Image Super-Resolution with Mask-Guided Residual Diffusion Models</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">2025</span>
+            <span class="pub-year">2025</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="coming soon">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DDG-Net -->
+      <div class="pub-card fade-in">
+        <div class="pub-thumb thumb-ddgnet"></div>
+        <div class="pub-info">
+          <h3 class="pub-title">Discriminability-Driven Graph Network for Weakly-supervised Temporal Action Localization</h3>
+          <div class="pub-venue-row">
+            <span class="venue-badge">ICCV 2023</span>
+            <span class="pub-year">2023</span>
+          </div>
+          <p class="pub-authors"><span class="me">Zongyuan Yang</span>, et al.</p>
+          <div class="pub-links">
+            <a class="pub-link" href="#" title="coming soon">Paper</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section id="experiences" class="fade-in">
+    <h2 class="section-title">Experiences</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-role">Ph.D. Student · LIVIN Lab</div>
+        <div class="timeline-place">State Key Laboratory of Networking and Switching Technology, BUPT</div>
+        <div class="timeline-period">2024 — Present (expected 2028)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-role">M.S. in Information and Communication Engineering</div>
+        <div class="timeline-place">Beijing University of Posts and Telecommunications (BUPT)</div>
+        <div class="timeline-period">2022 — 2024</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-role">B.S. in Information Engineering</div>
+        <div class="timeline-place">Beijing University of Posts and Telecommunications (BUPT)</div>
+        <div class="timeline-period">2018 — 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards" class="fade-in">
+    <h2 class="section-title">Awards</h2>
+    <div class="placeholder-card">
+      <!-- TODO: fill in awards -->
+      Coming soon.
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="fade-in">
+    <h2 class="section-title">Services</h2>
+    <div class="placeholder-card">
+      <!-- TODO: fill in services / reviewer roles -->
+      Coming soon.
+    </div>
+  </section>
+
+</div><!-- /page-container -->
 
 <script>
-  // Three.js scene setup
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / (window.innerHeight * 0.5), 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#bg'),
+// ── Three.js scene ─────────────────────────────────────────────────────────
+const scene = new THREE.Scene();
+const canvasEl = document.querySelector('#bg');
+const canvasWrap = document.querySelector('#canvas-wrap');
+
+const camera = new THREE.PerspectiveCamera(
+  40,
+  window.innerWidth / (window.innerHeight * 0.5),
+  0.1,
+  1000
+);
+camera.position.set(0, 0, 40);
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.9;
+
+// OrbitControls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.enableZoom = false;
+
+let dragStarted = false;
+renderer.domElement.addEventListener('mousedown', () => {
+  if (!dragStarted) {
+    dragStarted = true;
+    document.getElementById('drag-hint').classList.add('hidden');
+  }
+});
+
+// ── Bloom composer ─────────────────────────────────────────────────────────
+const composer = new THREE.EffectComposer(renderer);
+const renderPass = new THREE.RenderPass(scene, camera);
+composer.addPass(renderPass);
+
+const bloomPass = new THREE.UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight * 0.5),
+  0.38,   // strength
+  0.45,   // radius
+  0.82    // threshold
+);
+composer.addPass(bloomPass);
+
+// ── Stars ──────────────────────────────────────────────────────────────────
+function addStar() {
+  const geometry = new THREE.SphereGeometry(0.06, 8, 8);
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xA8D5E2,
+    emissive: 0x6BA3C6,
+    emissiveIntensity: 0.2,
+    metalness: 0.3,
+    roughness: 0.6,
   });
+  const star = new THREE.Mesh(geometry, material);
 
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
-  camera.position.setZ(40); // Updated camera position
+  const theta = 2 * Math.PI * Math.random();
+  const phi   = Math.acos(2 * Math.random() - 1);
+  const r     = 50 * Math.cbrt(Math.random());
+  const x = r * Math.sin(phi) * Math.cos(theta);
+  const y = r * Math.sin(phi) * Math.sin(theta);
+  const z = r * Math.cos(phi);
 
-  // OrbitControls
-  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  star.position.set(x, y, z);
+  star.userData = {
+    phase:  Math.random() * Math.PI * 2,
+    origin: new THREE.Vector3(x, y, z),
+  };
+  scene.add(star);
+  return star;
+}
 
-  // Stars
-  function addStar() {
-    const geometry = new THREE.SphereGeometry(0.05, 8, 8);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      metalness: 0.5,
-      roughness: 0.5,
-      emissive: 0xffffff,
-      emissiveIntensity: 0
-    });
-    const star = new THREE.Mesh(geometry, material);
+const stars = Array(4000).fill(null).map(addStar);
 
-    // Sample position within a sphere
-    const theta = 2 * Math.PI * Math.random();
-    const phi = Math.acos(2 * Math.random() - 1);
-    const radius = 50 * Math.cbrt(Math.random()); // Use cube root for uniform distribution
-    const x = radius * Math.sin(phi) * Math.cos(theta);
-    const y = radius * Math.sin(phi) * Math.sin(theta);
-    const z = radius * Math.cos(phi);
+// ── Lighting ───────────────────────────────────────────────────────────────
+scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+const pointLight = new THREE.PointLight(0x6BA3C6, 1.2);
+pointLight.position.set(-5, 5, 10);
+scene.add(pointLight);
 
-    star.position.set(x, y, z);
+// ── GLB models ────────────────────────────────────────────────────────────
+let modelA, modelB, modelC, modelD;
+const loader = new THREE.GLTFLoader();
+const dracoLoader = new THREE.DRACOLoader();
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
+loader.setDRACOLoader(dracoLoader);
 
-    // Add a random phase for twinkling effect
-    star.userData = { phase: Math.random() * Math.PI * 2 };
+loader.load('./mesh/a.glb', gltf => {
+  modelA = gltf.scene;
+  modelA.position.set(0, 0, -5);
+  scene.add(modelA);
+}, undefined, e => console.error(e));
 
-    scene.add(star);
-    return star;
+loader.load('./mesh/b.glb', gltf => {
+  modelB = gltf.scene;
+  modelB.position.set(-10, 0, 10);
+  scene.add(modelB);
+}, undefined, e => console.error(e));
+
+loader.load('./mesh/c.glb', gltf => {
+  modelC = gltf.scene;
+  modelC.position.set(-6, 10, 5);
+  modelC.scale.setScalar(0.3);
+  scene.add(modelC);
+}, undefined, e => console.error(e));
+
+loader.load('./mesh/d.glb', gltf => {
+  modelD = gltf.scene;
+  modelD.position.set(10, 6, 5);
+  modelD.scale.setScalar(0.4);
+  scene.add(modelD);
+}, undefined, e => console.error(e));
+
+// ── 3D text — moon-white → sky-blue gradient ───────────────────────────────
+const fontLoader = new THREE.FontLoader();
+fontLoader.load('https://threejs.org/examples/fonts/gentilis_bold.typeface.json', font => {
+  const geo = new THREE.TextGeometry('Enjoy Life & Explore Unknown', {
+    font, size: 2.8, height: 0.08,
+    curveSegments: 12, bevelEnabled: true,
+    bevelThickness: 0.03, bevelSize: 0.02, bevelSegments: 5,
+  });
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      c1: { value: new THREE.Color(0xE8E8E0) },
+      c2: { value: new THREE.Color(0x6BA3C6) },
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 c1, c2;
+      varying vec2 vUv;
+      void main() {
+        gl_FragColor = vec4(mix(c1, c2, vUv.y), 1.0);
+      }
+    `,
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.set(-20, 10, -5);
+  scene.add(mesh);
+});
+
+// ── Mouse particle interaction ─────────────────────────────────────────────
+const mouseWorld  = new THREE.Vector3();
+const mouseVec2   = new THREE.Vector2();
+const raycaster   = new THREE.Raycaster();
+const attractPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+let mouseActive   = false;
+
+renderer.domElement.addEventListener('mousemove', e => {
+  const rect = renderer.domElement.getBoundingClientRect();
+  mouseVec2.set(
+    ((e.clientX - rect.left) / rect.width)  * 2 - 1,
+    -((e.clientY - rect.top)  / rect.height) * 2 + 1
+  );
+  raycaster.setFromCamera(mouseVec2, camera);
+  raycaster.ray.intersectPlane(attractPlane, mouseWorld);
+  mouseActive = true;
+});
+renderer.domElement.addEventListener('mouseleave', () => { mouseActive = false; });
+
+// ── Animation loop ─────────────────────────────────────────────────────────
+const clock = new THREE.Clock();
+const ATTRACT_RADIUS = 10;
+
+function animate() {
+  requestAnimationFrame(animate);
+  const time  = clock.getElapsedTime();
+  const delta = clock.getDelta();
+
+  if (modelA) {
+    modelA.rotation.y += delta * 0.2;
+    modelA.rotation.x  = Math.sin(time * 0.5) * 0.2;
+    modelA.position.y  = Math.sin(time) * 0.25;
+  }
+  if (modelB) {
+    modelB.rotation.y += delta * 0.3;
+    modelB.rotation.z  = Math.cos(time * 0.7) * 0.2;
+    modelB.position.y  = Math.cos(time * 1.2) * 0.25;
+  }
+  if (modelC) {
+    modelC.rotation.x += delta * 0.25;
+    modelC.rotation.y  = Math.sin(time * 0.6) * 0.3;
+    modelC.position.y  = Math.sin(time * 0.8) * 0.25;
+  }
+  if (modelD) {
+    modelD.rotation.z += delta * 0.15;
+    modelD.rotation.x  = Math.cos(time * 0.4) * 0.3;
+    modelD.position.y  = Math.cos(time * 1.5) * 0.25;
   }
 
-  const stars = Array(4000).fill().map(addStar);
+  stars.forEach(star => {
+    const origin = star.userData.origin;
+    const phase  = star.userData.phase;
 
-  // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-  scene.add(ambientLight);
+    // Twinkling
+    const scale = 0.5 + 0.5 * Math.sin(time * 1.5 + phase);
+    star.scale.setScalar(scale);
+    star.material.emissiveIntensity = 0.1 + 0.4 * scale;
 
-  const pointLight = new THREE.PointLight(0xffffff);
-  pointLight.position.set(-5, -5, -5);
-  scene.add(pointLight);
-
-  // Load GLB models
-  let modelA, modelB, modelC, modelD;
-  const loader = new THREE.GLTFLoader();
-  const dracoLoader = new THREE.DRACOLoader();
-  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.1/');
-  loader.setDRACOLoader(dracoLoader);
-
-  // Load a.glb
-  loader.load(
-          './mesh/a.glb',
-          function (gltf) {
-            modelA = gltf.scene;
-            modelA.position.set(0, 0, -5);
-            scene.add(modelA);
-          },
-          undefined,
-          function (error) {
-            console.error('An error happened', error);
-          }
-  );
-
-  // Load b.glb
-  loader.load(
-          './mesh/b.glb',
-          function (gltf) {
-            modelB = gltf.scene;
-            modelB.position.set(-10, 0, 10); // Updated modelB position
-            scene.add(modelB);
-          },
-          undefined,
-          function (error) {
-            console.error('An error happened', error);
-          }
-  );
-
-  // Load c.glb
-  loader.load(
-          './mesh/c.glb',
-          function (gltf) {
-            modelC = gltf.scene;
-            modelC.position.set(-6, 10, 5); // Updated modelC position
-            modelC.scale.set(0.3, 0.3, 0.3); // Added scaling for modelC
-            scene.add(modelC);
-          },
-          undefined,
-          function (error) {
-            console.error('An error happened', error);
-          }
-  );
-
-  // Load d.glb
-  loader.load(
-          './mesh/d.glb',
-          function (gltf) {
-            modelD = gltf.scene;
-            modelD.position.set(10, 6, 5); // Updated modelD position
-            modelD.scale.set(0.4, 0.4, 0.4); // Added scaling for modelD
-            scene.add(modelD);
-          },
-          undefined,
-          function (error) {
-            console.error('An error happened', error);
-          }
-  );
-
-  // Add 3D Text
-  const loader2 = new THREE.FontLoader();
-  loader2.load('https://threejs.org/examples/fonts/gentilis_bold.typeface.json', function (font) {
-    const textGeometry = new THREE.TextGeometry('Enjoy Life & Explore Unknown', {
-      font: font,
-      size: 3,
-      height: 0.1,
-      curveSegments: 12,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.02,
-      bevelOffset: 0,
-      bevelSegments: 5
-    });
-
-    // Gradient Shader Material
-    const gradientMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        color1: { value: new THREE.Color(0x8a2be2) }, // 紫色
-        color2: { value: new THREE.Color(0xda70d6) }  // 淡紫色
-      },
-      vertexShader: `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-      fragmentShader: `
-                uniform vec3 color1;
-                uniform vec3 color2;
-                varying vec2 vUv;
-                void main() {
-                    gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-                }
-            `,
-      side: THREE.DoubleSide,
-    });
-
-    const textMesh = new THREE.Mesh(textGeometry, gradientMaterial);
-    textMesh.position.set(-20, 10, -5);
-    scene.add(textMesh);
+    // Particle attraction
+    if (mouseActive) {
+      const d = star.position.distanceTo(mouseWorld);
+      if (d < ATTRACT_RADIUS) {
+        const strength = (1 - d / ATTRACT_RADIUS) * 0.035;
+        star.position.lerp(mouseWorld, strength);
+      } else {
+        star.position.lerp(origin, 0.04);
+      }
+    } else {
+      star.position.lerp(origin, 0.03);
+    }
   });
 
-  // Animation
-  const clock = new THREE.Clock();
-  function animate() {
-    requestAnimationFrame(animate);
-    const time = clock.getElapsedTime();
-    const delta = clock.getDelta();
+  controls.update();
+  composer.render();
+}
 
-    if (modelA) {
-      modelA.rotation.y += delta * 0.2;
-      modelA.rotation.x = Math.sin(time * 0.5) * 0.2;
-      modelA.position.y = Math.sin(time) * 0.2;
-    }
+animate();
 
-    if (modelB) {
-      modelB.rotation.y += delta * 0.3;
-      modelB.rotation.z = Math.cos(time * 0.7) * 0.2;
-      modelB.position.y = Math.cos(time * 1.2) * 0.2;
-    }
+// ── Resize ─────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  const w = window.innerWidth;
+  const h = window.innerHeight * 0.5;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+  composer.setSize(w, h);
+  bloomPass.resolution.set(w, h);
+});
 
-    if (modelC) {
-      modelC.rotation.x += delta * 0.25;
-      modelC.rotation.y = Math.sin(time * 0.6) * 0.3;
-      modelC.position.y = Math.sin(time * 0.8) * 0.2;
-    }
-
-    if (modelD) {
-      modelD.rotation.z += delta * 0.15;
-      modelD.rotation.x = Math.cos(time * 0.4) * 0.3;
-      modelD.position.y = Math.cos(time * 1.5) * 0.2;
-    }
-
-    animateStars(time);
-
-    controls.update();
-    renderer.render(scene, camera);
+// ── Scroll fade-in ─────────────────────────────────────────────────────────
+const io = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.07 }
+);
+document.querySelectorAll('.fade-in').forEach((el, i) => {
+  // Slight stagger for pub cards
+  if (el.classList.contains('pub-card')) {
+    el.style.transitionDelay = ((i % 6) * 0.08) + 's';
   }
+  io.observe(el);
+});
 
-  function animateStars(time) {
-    stars.forEach((star) => {
-      const scale = 0.5 + 0.5 * Math.sin(time * 1.5 + star.userData.phase);
-      star.scale.setScalar(scale);
-      star.material.emissiveIntensity = scale;
-    });
-  }
-
-  animate();
-
-  // Resize handler
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / (window.innerHeight * 0.3);
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight * 0.3);
+// ── Magnetic hover for publication cards ───────────────────────────────────
+document.querySelectorAll('.pub-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r  = card.getBoundingClientRect();
+    const tx = (e.clientX - r.left - r.width  / 2) / 20;
+    const ty = (e.clientY - r.top  - r.height / 2) / 20;
+    card.style.transform    = `perspective(700px) rotateX(${-ty}deg) rotateY(${tx}deg) translateY(-5px)`;
+    card.style.boxShadow    = '0 18px 42px rgba(107,163,198,0.18)';
+    card.style.borderColor  = 'rgba(107,163,198,0.35)';
   });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform   = '';
+    card.style.boxShadow   = '';
+    card.style.borderColor = '';
+  });
+});
 </script>
 </body>
 </html>
