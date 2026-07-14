@@ -1,0 +1,74 @@
+{
+  "version": "v4",
+  "width": 5.55,
+  "height": 4.78,
+  "depth": 1.22,
+  "innerSlotWidth": 2.395,
+  "innerSlotHeight": 2.0100000000000002,
+  "frontY": -0.61,
+  "backY": 0.61,
+  "meshCount": 142,
+  "slotCount": 4,
+  "materials": [
+    "mat_black_lacquer_trim",
+    "mat_blue_crystal",
+    "mat_brass_trim",
+    "mat_card_frame",
+    "mat_cherry_interior",
+    "mat_corner_shadow",
+    "mat_dark_floor",
+    "mat_glass_edge",
+    "mat_glass_pane",
+    "mat_gold_trophy",
+    "mat_legendary_holo",
+    "mat_light_diffuser",
+    "mat_obsidian_plinth",
+    "mat_plaque_lcd",
+    "mat_right_wall_dark",
+    "mat_silver_trophy",
+    "mat_soft_shadow",
+    "mat_walnut_outer"
+  ],
+  "slots": [
+    {
+      "name": "slot-0",
+      "center": [
+        -1.2975,
+        0,
+        1.1050000000000002
+      ],
+      "tier": "legendary-holo"
+    },
+    {
+      "name": "slot-1",
+      "center": [
+        1.2975,
+        0,
+        1.1050000000000002
+      ],
+      "tier": "legendary-holo"
+    },
+    {
+      "name": "slot-2",
+      "center": [
+        -1.2975,
+        0,
+        -1.1050000000000002
+      ],
+      "tier": "blue-crystal"
+    },
+    {
+      "name": "slot-3",
+      "center": [
+        1.2975,
+        0,
+        -1.1050000000000002
+      ],
+      "tier": "silver"
+    }
+  ],
+  "triangles": 37684,
+  "glb": "public/assets/gallery/models/wooden-gallery-cabinet-v4.glb",
+  "glbBytes": 3235272,
+  "passed": true
+}

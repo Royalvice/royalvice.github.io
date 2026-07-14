@@ -1,0 +1,11 @@
+{
+  "id": "wood_table_001",
+  "source": "https://polyhaven.com/a/wood_table_001",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_001/wood_table_001_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_001/wood_table_001_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_001/wood_table_001_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_table_001/wood_table_001_ao_1k.jpg"
+  }
+}

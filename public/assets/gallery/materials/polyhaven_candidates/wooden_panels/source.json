@@ -1,0 +1,11 @@
+{
+  "id": "wooden_panels",
+  "source": "https://polyhaven.com/a/wooden_panels",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_panels/wooden_panels_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_panels/wooden_panels_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_panels/wooden_panels_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wooden_panels/wooden_panels_ao_1k.jpg"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "dark_wood",
+  "source": "https://polyhaven.com/a/dark_wood",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_ao_1k.jpg"
+  }
+}

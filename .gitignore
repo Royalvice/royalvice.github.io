@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+dist/
+
+# Local Vite and test output
+.vite/
+test-results/
+playwright-report/
+blob-report/
+*.log
+
+# Local environment overrides and credentials
+.env
+.env.*
+!.env.example

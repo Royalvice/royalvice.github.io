@@ -1,0 +1,11 @@
+{
+  "id": "laminate_floor_02",
+  "source": "https://polyhaven.com/a/laminate_floor_02",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_ao_1k.jpg"
+  }
+}

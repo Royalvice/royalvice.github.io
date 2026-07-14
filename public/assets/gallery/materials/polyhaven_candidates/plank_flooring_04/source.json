@@ -1,0 +1,11 @@
+{
+  "id": "plank_flooring_04",
+  "source": "https://polyhaven.com/a/plank_flooring_04",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plank_flooring_04/plank_flooring_04_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plank_flooring_04/plank_flooring_04_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plank_flooring_04/plank_flooring_04_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plank_flooring_04/plank_flooring_04_ao_1k.jpg"
+  }
+}

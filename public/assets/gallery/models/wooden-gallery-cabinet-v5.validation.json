@@ -1,0 +1,51 @@
+{
+  "cabinetVersion": "v5",
+  "glb": "/Users/vice/code/html/royalvice.github.io/public/assets/gallery/models/wooden-gallery-cabinet-v5.glb",
+  "glbBytes": 3824716,
+  "lightmap": "/Users/vice/code/html/royalvice.github.io/public/assets/gallery/materials/cabinet_lightmap_v5.png",
+  "lightmapBytes": 355918,
+  "nodeCount": 219,
+  "meshCount": 178,
+  "materialCount": 20,
+  "materials": [
+    "Dots Stroke",
+    "Material",
+    "mat_black_lacquer_trim",
+    "mat_blue_crystal",
+    "mat_brass_trim",
+    "mat_card_frame",
+    "mat_glass_edge",
+    "mat_glass_pane",
+    "mat_gold_trophy",
+    "mat_inner_floor",
+    "mat_legendary_holo",
+    "mat_light_diffuser",
+    "mat_obsidian_plinth",
+    "mat_plaque_lcd",
+    "mat_shadow_groove",
+    "mat_silver_trophy",
+    "mat_soft_shadow",
+    "mat_walnut_outer",
+    "mat_warm_inner_wall",
+    "mat_warm_side_wall"
+  ],
+  "missingNodes": [],
+  "missingMaterials": [],
+  "uv0Failures": [],
+  "uv1Failures": [],
+  "negativeScale": [],
+  "emptyAnchorWarnings": [],
+  "bbox": {
+    "x": 5.550000190734863,
+    "y": 1.3600000143051147,
+    "z": 4.78000020980835,
+    "sorted": [
+      5.550000190734863,
+      4.78000020980835,
+      1.3600000143051147
+    ]
+  },
+  "triangles": 44452,
+  "issues": [],
+  "passed": true
+}

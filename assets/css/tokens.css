@@ -1,0 +1,32 @@
+:root {
+  color-scheme: dark;
+  --ink-950: #06101e;
+  --ink-900: #08172a;
+  --ink-800: #0b2440;
+  --panel-100: #f6fbff;
+  --panel-200: #dff5ff;
+  --panel-300: #bdefff;
+  --blue-500: #0098ff;
+  --blue-700: #005eb8;
+  --red-500: #ff3d4a;
+  --yellow-400: #ffd84d;
+  --gold-300: #ffe68a;
+  --gold-500: #ffb000;
+  --cyan-400: #31f7ff;
+  --magenta-400: #ff4fd8;
+  --green-400: #49ff9a;
+  --text-strong: #f8fcff;
+  --text: #dceeff;
+  --text-soft: #9eb9cf;
+  --text-dark: #101827;
+  --line: rgba(49, 247, 255, 0.34);
+  --line-strong: rgba(49, 247, 255, 0.66);
+  --shadow-hard: 0 0 0 2px #06101e, 0 0 0 5px rgba(49, 247, 255, 0.18);
+  --shadow-neon: 0 0 18px rgba(49, 247, 255, 0.38), 0 0 42px rgba(255, 79, 216, 0.16);
+  --shadow-gold: 0 0 20px rgba(255, 216, 77, 0.54), 0 0 54px rgba(255, 176, 0, 0.2);
+  --pixel-font: "Pixelify Sans", "Jersey 15", monospace;
+  --display-font: "Jersey 15", "Pixelify Sans", monospace;
+  --body-font: "Sora", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono-font: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --step: cubic-bezier(0.2, 0.9, 0.2, 1);
+}

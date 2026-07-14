@@ -1,0 +1,16 @@
+{
+  "id": "european_walnut_veneer_05",
+  "source": "https://polyhaven.com/a/european_walnut_veneer_05",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/european_walnut_veneer_05/european_walnut_veneer_05_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/european_walnut_veneer_05/european_walnut_veneer_05_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/european_walnut_veneer_05/european_walnut_veneer_05_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/european_walnut_veneer_05/european_walnut_veneer_05_ao_1k.jpg"
+  },
+  "productionDefault": true,
+  "usage": "P1 PlayCanvas walnut cabinet material: diffuse, normal, roughness, and AO maps.",
+  "runtimeDiffuse": "diff.jpg",
+  "originalDiffuse": "diff_original.jpg",
+  "derivedDiffuseNote": "diff.jpg is a warm walnut color-corrected derivative of the CC0 Poly Haven diffuse map; normal, roughness, and AO remain direct source maps."
+}

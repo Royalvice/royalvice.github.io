@@ -1,0 +1,41 @@
+{
+  "source": "public/assets/gallery/materials/dark_wood/dark_wood_diff_2k.jpg",
+  "outputs": {
+    "warm_wall_basecolor_v5.jpg": {
+      "path": "public/assets/gallery/materials/warm_cabinet_wood/warm_wall_basecolor_v5.jpg",
+      "bytes": 659257,
+      "avgRgb": [
+        91.2,
+        46.25,
+        20.92
+      ],
+      "avgHue": 0.06,
+      "avgSaturation": 0.7708,
+      "avgValue": 0.3577
+    },
+    "warm_frame_basecolor_v5.jpg": {
+      "path": "public/assets/gallery/materials/warm_cabinet_wood/warm_frame_basecolor_v5.jpg",
+      "bytes": 495021,
+      "avgRgb": [
+        50.33,
+        23.53,
+        9.8
+      ],
+      "avgHue": 0.0565,
+      "avgSaturation": 0.806,
+      "avgValue": 0.1974
+    },
+    "warm_floor_basecolor_v5.jpg": {
+      "path": "public/assets/gallery/materials/warm_cabinet_wood/warm_floor_basecolor_v5.jpg",
+      "bytes": 379083,
+      "avgRgb": [
+        45.2,
+        20.71,
+        10.21
+      ],
+      "avgHue": 0.05,
+      "avgSaturation": 0.7741,
+      "avgValue": 0.1772
+    }
+  }
+}

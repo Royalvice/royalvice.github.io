@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="64" viewBox="0 0 256 64" shape-rendering="crispEdges">
+  <defs>
+    <g id="saucer-a">
+      <rect x="25" y="10" width="14" height="2" fill="#c7d8e4"/>
+      <rect x="21" y="12" width="22" height="2" fill="#8ea9bc"/>
+      <rect x="18" y="14" width="28" height="2" fill="#516d86"/>
+      <rect x="14" y="16" width="36" height="2" fill="#d8e5e9"/>
+      <rect x="9" y="18" width="46" height="3" fill="#8faabd"/>
+      <rect x="5" y="21" width="54" height="3" fill="#425d75"/>
+      <rect x="11" y="24" width="42" height="2" fill="#253c56"/>
+      <rect x="18" y="26" width="28" height="2" fill="#12263e"/>
+      <rect x="27" y="8" width="10" height="2" fill="#e8f2ec"/>
+      <rect x="23" y="10" width="18" height="2" fill="#8fb6ca" opacity=".72"/>
+      <rect x="14" y="19" width="4" height="2" fill="#e7f5ee"/>
+      <rect x="24" y="20" width="4" height="2" fill="#8dffe2"/>
+      <rect x="36" y="20" width="4" height="2" fill="#e7f5ee"/>
+      <rect x="46" y="19" width="4" height="2" fill="#8dffe2"/>
+    </g>
+    <g id="saucer-b">
+      <rect x="25" y="9" width="14" height="2" fill="#d9e7ea"/>
+      <rect x="21" y="11" width="22" height="3" fill="#94b4c5"/>
+      <rect x="18" y="14" width="28" height="2" fill="#506b83"/>
+      <rect x="14" y="16" width="36" height="2" fill="#e1eaeb"/>
+      <rect x="8" y="18" width="48" height="3" fill="#91aebf"/>
+      <rect x="4" y="21" width="56" height="3" fill="#3d5871"/>
+      <rect x="10" y="24" width="44" height="2" fill="#223a54"/>
+      <rect x="18" y="26" width="28" height="2" fill="#10243b"/>
+      <rect x="27" y="7" width="10" height="2" fill="#edf5ed"/>
+      <rect x="23" y="9" width="18" height="2" fill="#a1c8d5" opacity=".78"/>
+      <rect x="13" y="19" width="5" height="2" fill="#8dffe2"/>
+      <rect x="24" y="19" width="5" height="2" fill="#f1f8ef"/>
+      <rect x="36" y="19" width="5" height="2" fill="#8dffe2"/>
+      <rect x="47" y="19" width="5" height="2" fill="#f1f8ef"/>
+    </g>
+  </defs>
+  <g transform="translate(0 0)"><use href="#saucer-a"/></g>
+  <g transform="translate(64 0)"><use href="#saucer-b"/></g>
+  <g transform="translate(128 0)"><use href="#saucer-a"/><rect x="25" y="20" width="14" height="2" fill="#dffff4"/></g>
+  <g transform="translate(192 0)"><use href="#saucer-b"/><rect x="20" y="20" width="24" height="2" fill="#9effdf"/></g>
+  <g transform="translate(0 32)"><use href="#saucer-a"/><rect x="10" y="22" width="44" height="2" fill="#56738a"/></g>
+  <g transform="translate(64 32)"><use href="#saucer-b"/><rect x="15" y="20" width="34" height="2" fill="#dff7ef"/></g>
+  <g transform="translate(128 32)"><use href="#saucer-a"/><rect x="28" y="6" width="8" height="2" fill="#f3f4dd"/></g>
+  <g transform="translate(192 32)"><use href="#saucer-b"/><rect x="24" y="19" width="16" height="3" fill="#b1ffe6"/></g>
+</svg>

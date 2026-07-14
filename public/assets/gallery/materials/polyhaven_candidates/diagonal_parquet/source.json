@@ -1,0 +1,11 @@
+{
+  "id": "diagonal_parquet",
+  "source": "https://polyhaven.com/a/diagonal_parquet",
+  "license": "CC0",
+  "urls": {
+    "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/diagonal_parquet/diagonal_parquet_diff_1k.jpg",
+    "normal": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/diagonal_parquet/diagonal_parquet_nor_gl_1k.jpg",
+    "rough": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/diagonal_parquet/diagonal_parquet_rough_1k.jpg",
+    "ao": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/diagonal_parquet/diagonal_parquet_ao_1k.jpg"
+  }
+}

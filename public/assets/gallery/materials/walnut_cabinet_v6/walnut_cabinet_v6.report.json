@@ -1,0 +1,92 @@
+{
+  "version": "v6",
+  "source": "public/assets/gallery/materials/polyhaven_candidates/european_walnut_veneer_05/diff_original.jpg",
+  "license": "CC0 / Public Domain via Poly Haven European Walnut Veneer 05",
+  "purpose": "Chroma-stable premium walnut cabinet runtime albedo set.",
+  "outputs": {
+    "walnut_wall_basecolor_v6.jpg": {
+      "meanRgb": [
+        121.05,
+        89.17,
+        70.0
+      ],
+      "meanHsv": [
+        0.0626,
+        0.4219,
+        0.4747
+      ],
+      "grayishRatio": 0.0
+    },
+    "walnut_side_basecolor_v6.jpg": {
+      "meanRgb": [
+        107.19,
+        74.02,
+        55.0
+      ],
+      "meanHsv": [
+        0.0607,
+        0.4871,
+        0.4203
+      ],
+      "grayishRatio": 0.0
+    },
+    "walnut_frame_basecolor_v6.jpg": {
+      "meanRgb": [
+        94.94,
+        63.81,
+        46.43
+      ],
+      "meanHsv": [
+        0.0597,
+        0.5112,
+        0.3723
+      ],
+      "grayishRatio": 0.0
+    },
+    "walnut_floor_basecolor_v6.jpg": {
+      "meanRgb": [
+        105.0,
+        74.2,
+        55.72
+      ],
+      "meanHsv": [
+        0.0625,
+        0.4695,
+        0.4118
+      ],
+      "grayishRatio": 0.0
+    },
+    "walnut_normal_v6.jpg": {
+      "copiedFrom": "public/assets/gallery/materials/polyhaven_candidates/european_walnut_veneer_05/normal.jpg"
+    },
+    "walnut_ao_v6.jpg": {
+      "copiedFrom": "public/assets/gallery/materials/polyhaven_candidates/european_walnut_veneer_05/ao.jpg"
+    },
+    "walnut_roughness_v6.jpg": {
+      "meanRgb": [
+        126.04,
+        126.04,
+        126.04
+      ],
+      "meanHsv": [
+        0.0,
+        0.0,
+        0.4943
+      ],
+      "grayishRatio": 1.0
+    },
+    "walnut_floor_roughness_v6.jpg": {
+      "meanRgb": [
+        75.48,
+        75.48,
+        75.48
+      ],
+      "meanHsv": [
+        0.0,
+        0.0,
+        0.296
+      ],
+      "grayishRatio": 1.0
+    }
+  }
+}

@@ -1,0 +1,613 @@
+/* =========================================================
+   PROFILE OVERHAUL v4 — Full Redesign
+   ========================================================= */
+
+/* ── Prevent Height Clipping on the Profile Cabinet ────── */
+.profile-terminal--minimal {
+  grid-template-rows: var(--p1-nav-height) auto 1fr var(--p1-news-height) !important;
+  height: auto !important;
+  min-height: 100% !important;
+}
+
+.profile-terminal--minimal .minimal-profile-core.profile-identity-row,
+.profile-terminal--minimal .profile-identity-row {
+  display: grid !important;
+  grid-template-columns: 120px minmax(0, 1fr) !important;
+  align-items: stretch !important; /* Stretch left column to match bio height */
+  gap: 16px !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* ── Left Column (Avatar, Name, Socials aligned vertically) ─ */
+.profile-left-column {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important; /* Start layout at top */
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2px; /* Fine-tune bottom alignment with Current Endeavors */
+}
+
+/* Avatar Group (Avatar + Name) at the top */
+.profile-left-column .minimal-portrait {
+  flex-shrink: 0;
+  width: 90px !important;
+  height: 90px !important;
+  margin-inline: auto !important;
+}
+
+.profile-left-column .minimal-portrait::before,
+.profile-left-column .minimal-portrait::after {
+  display: none !important;
+}
+
+.profile-left-column .minimal-profile-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center !important;
+  margin-top: 8px;
+  flex-grow: 0; /* Keep grouped with avatar at top */
+}
+
+.profile-left-column .minimal-profile-copy h1 {
+  font-size: 1.05rem !important; /* Smaller size to prevent wrapping */
+  text-align: center !important;
+  margin-inline: auto !important;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  color: #eeddff;
+}
+
+.profile-left-column .minimal-profile-copy p.profile-direction-line {
+  display: none !important; /* Hide redundant line since it is now in the main card */
+}
+
+/* Social icons at the bottom */
+.profile-left-column .profile-social-row {
+  justify-content: center !important;
+  width: 100%;
+  margin-top: auto !important; /* Force socials to align at the bottom */
+  padding-top: 10px;
+  gap: 8px !important;
+}
+
+.profile-left-column .profile-social-chip {
+  padding: 4px !important;
+}
+.profile-left-column .profile-social-chip span {
+  display: none !important; /* Hide text to save space in narrow sidebar */
+}
+
+.profile-left-column .minimal-profile-copy::before,
+.profile-left-column .minimal-profile-copy::after,
+.minimal-profile-core.profile-identity-row::after,
+.minimal-profile-core.profile-identity-row::before {
+  display: none !important;
+}
+
+.minimal-profile-core.profile-identity-row {
+  border: none !important;
+}
+
+/* ── Bio Container ─────────────────────────────────────── */
+.profile-bio-container {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Spark Canvas ──────────────────────────────────────── */
+.spark-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Bio Root ──────────────────────────────────────────── */
+.profile-bio {
+  font-family: 'Satisfy', 'Caveat', cursive !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+.profile-bio * {
+  font-family: 'Satisfy', 'Caveat', cursive !important;
+}
+
+/* ── Block Reveal Animation ────────────────────────────── */
+.rune-block {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.rune-block.block-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Word Reveal (intro) ───────────────────────────────── */
+.rune-word {
+  display: inline;
+  opacity: 0;
+  transition: none;
+}
+.rune-word.revealed {
+  animation: wordBrand 0.5s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+}
+@keyframes wordBrand {
+  0%   { opacity: 0; filter: blur(4px); color: #fff; text-shadow: 0 0 20px #ff6600, 0 0 40px #ffaa00; }
+  30%  { opacity: 1; filter: blur(1px); color: #ffe8cc; text-shadow: 0 0 8px #ff5500; }
+  100% { opacity: 1; filter: none; color: #f0d89a; text-shadow: 0 0 4px rgba(255,210,60,0.2); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 1 — INTRO
+   ═══════════════════════════════════════════════════════ */
+.bio-intro-text {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: #f0d89a;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* ═══════════════════════════════════════════════════════
+   COMMON BIO CARD STYLE (with top-left stamp)
+   ═══════════════════════════════════════════════════════ */
+.bio-card {
+  position: relative;
+  width: 100%;
+  padding: 22px 10px 10px 10px;
+  background: linear-gradient(135deg, rgba(20,15,5,0.72), rgba(35,24,6,0.65));
+  border: 1px solid rgba(255,200,80,0.22);
+  border-radius: 8px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.card-stamp {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  font-size: 0.52rem;
+  font-family: 'JetBrains Mono', monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 210, 80, 0.45);
+  border: 1px solid rgba(255, 210, 80, 0.25);
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 2 — RESEARCH CARD
+   ═══════════════════════════════════════════════════════ */
+.bio-research-card {
+  width: 100%;
+}
+
+.research-card-title {
+  font-size: 0.88rem;
+  color: #ffe680;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(255,220,100,0.15);
+}
+
+.research-card-body {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.research-card-left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.research-card-right {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Contributions List inside Main Card */
+.r-contrib-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.r-contrib-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffca44, #d4a020);
+  box-shadow: 0 0 6px rgba(255,200,60,0.8);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.r-contrib-text {
+  font-size: 0.74rem;
+  color: #dfc88a;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Skills Pills styled for vertical layout on right */
+.skill-pill {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-family: 'Satisfy', cursive !important;
+  letter-spacing: 0.01em;
+  cursor: default;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  justify-content: center; /* Center to save space */
+  text-align: center;
+  width: 100%;
+}
+.skill-pill:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.skill-dl {
+  background: linear-gradient(135deg, rgba(60,5,5,0.85), rgba(100,12,12,0.8));
+  border: 1px solid rgba(200,50,50,0.4);
+  color: #ff8585;
+  box-shadow: 0 0 8px rgba(180,30,30,0.15), inset 0 0 8px rgba(0,0,0,0.4);
+}
+.skill-dl:hover { box-shadow: 0 4px 16px rgba(200,40,40,0.35); }
+
+.skill-ah {
+  background: linear-gradient(135deg, rgba(3,10,30,0.85), rgba(8,25,70,0.8));
+  border: 1px solid rgba(50,140,255,0.4);
+  color: #7ad0ff;
+  box-shadow: 0 0 8px rgba(30,100,240,0.15), inset 0 0 8px rgba(0,0,0,0.4);
+}
+.skill-ah:hover { box-shadow: 0 4px 16px rgba(40,120,255,0.35); }
+
+.skill-cg {
+  background: linear-gradient(135deg, rgba(26,15,0,0.85), rgba(60,38,5,0.8));
+  border: 1px solid rgba(200,155,40,0.4);
+  color: #ffd870;
+  box-shadow: 0 0 8px rgba(180,130,20,0.15), inset 0 0 8px rgba(0,0,0,0.4);
+}
+.skill-cg:hover { box-shadow: 0 4px 16px rgba(200,150,30,0.35); }
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 4 — SIGGRAPH LASER CARD
+   ═══════════════════════════════════════════════════════ */
+.bio-siggraph {
+  width: 100%;
+}
+
+.siggraph-card {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.siggraph-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 45px rgba(180,100,255,0.6), 0 0 20px rgba(0,255,255,0.3);
+}
+
+/* High-precision holographic laser border */
+.siggraph-card::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #ff00ff, #00ffff, #ffff00, #00ff00, #ff00ff, #00ffff);
+  background-size: 400% 400%;
+  animation: borderLaserSweep 4s linear infinite;
+  z-index: 0;
+}
+
+.siggraph-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: linear-gradient(135deg, #09001f, #130038, #1b004c);
+  border-radius: 7px;
+  padding: 8px 14px;
+  margin: 1.5px;
+}
+
+/* Holographic dynamic laser sweep effect */
+.siggraph-prismatic {
+  position: absolute;
+  inset: 1px;
+  border-radius: 7px;
+  background: linear-gradient(
+    115deg,
+    transparent 10%,
+    rgba(255, 0, 128, 0.25) 30%,
+    rgba(0, 255, 255, 0.35) 48%,
+    rgba(255, 255, 0, 0.25) 66%,
+    transparent 90%
+  );
+  background-size: 200% 200%;
+  animation: laserSweep 2.2s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+}
+
+@keyframes laserSweep {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 200% 200%; }
+}
+
+.siggraph-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at 20% 50%, rgba(180,100,255,0.2) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.siggraph-left {
+  display: flex;
+  align-items: center;
+  padding-right: 12px;
+  position: relative;
+  z-index: 3;
+}
+
+.siggraph-count {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #eed5ff;
+  text-shadow: 0 0 16px rgba(210,150,255,0.95), 0 0 32px rgba(160,90,255,0.6);
+  font-family: 'JetBrains Mono', monospace !important;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.siggraph-divider {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, transparent, rgba(200,150,255,0.45) 20%, rgba(200,150,255,0.45) 80%, transparent);
+  margin-right: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.siggraph-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  position: relative;
+  z-index: 3;
+}
+
+.siggraph-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #eeddff;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px rgba(200,150,255,0.6);
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.siggraph-sub {
+  font-size: 0.58rem;
+  color: rgba(215,190,255,0.65);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* ── Laser dynamic border animations ── */
+@keyframes borderLaserSweep {
+  0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+  100% { background-position: 100% 50%; filter: hue-rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 5 — INTERESTS CARD (Large card style)
+   ═══════════════════════════════════════════════════════ */
+.bio-interests-card {
+  width: 100%;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+
+.icard {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: linear-gradient(135deg, rgba(16,12,3,0.85), rgba(30,20,4,0.78));
+  border: 1px solid rgba(200,160,55,0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,220,100,0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.icard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,200,80,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.icard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,200,80,0.4);
+  box-shadow: 0 4px 16px rgba(180,130,20,0.2), inset 0 1px 0 rgba(255,220,100,0.08);
+}
+.icard:hover::before { opacity: 1; }
+
+.icard-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.icard-name {
+  font-size: 0.68rem;
+  color: rgba(220,185,105,0.85);
+  font-family: 'Satisfy', cursive !important;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 6 — CURRENT ENDEAVORS
+   ═══════════════════════════════════════════════════════ */
+.bio-endeavors {
+  width: 100%;
+}
+
+.endeavors-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,200,80,0.1);
+}
+
+.endeavors-accent {
+  display: block;
+  width: 3px;
+  height: 1.3em;
+  background: linear-gradient(to bottom, #ffca44, rgba(255,180,30,0.2));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.endeavors-text {
+  font-size: 0.88rem;
+  color: rgba(215,180,95,0.62);
+  font-style: italic;
+  font-family: 'Satisfy', cursive !important;
+  line-height: 1.4;
+}
+
+/* ── Misc Overrides ────────────────────────────────────── */
+.middle-void-space {
+  min-height: clamp(80px, 10vh, 160px);
+  background: transparent;
+  width: 100%;
+}
+
+/* ── TUI Terminal ──────────────────────────────────────── */
+.profile-news-terminal--matrix {
+  position: relative;
+  background: #03080e !important;
+  border: 4px solid #1a2a3a !important;
+  box-shadow: inset 0 0 32px rgba(0,0,0,0.9), inset 0 0 10px rgba(49,247,255,0.15), 0 0 20px rgba(0,0,0,0.5) !important;
+  padding: 18px 24px !important;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.profile-news-terminal--matrix::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tui-scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.35) 50%),
+    linear-gradient(90deg, rgba(255,0,0,0.04), rgba(0,255,0,0.02), rgba(0,0,255,0.04));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0.7;
+}
+
+.tui-inner-glow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 60px rgba(49,247,255,0.08);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.tui-content {
+  position: relative;
+  z-index: 2;
+}
+
+.tui-content, .tui-content * {
+  font-family: var(--mono-font) !important;
+  color: #31f7ff !important;
+  text-shadow: 0 0 4px rgba(49,247,255,0.4), 0 0 10px rgba(49,247,255,0.2);
+}
+
+.tui-cursor-line {
+  margin-top: 10px;
+  display: block;
+}
+
+.tui-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.1em;
+  background-color: #31f7ff;
+  box-shadow: 0 0 12px #31f7ff, 0 0 24px rgba(49,247,255,0.6);
+  animation: cursor-blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

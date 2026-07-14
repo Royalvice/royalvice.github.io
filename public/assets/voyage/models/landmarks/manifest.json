@@ -1,0 +1,42 @@
+{
+  "version": "20260713-trellis2-512-v1",
+  "service": "game-service / Trellis2",
+  "parameters": {
+    "resolution": "512",
+    "decimation_target": 100000,
+    "texture_size": 1024,
+    "include_mp4": true
+  },
+  "assets": {
+    "docdiff": {
+      "job_id": "trellis2-00022226bb4e4aab",
+      "source": "02-landmark-docdiff-paper-flat-B.png",
+      "glb": "docdiff.glb",
+      "sha256": "2102bd043e1e2760e30b49eee8ccd6878ac657a36ea6fab8bba714e3b4cc22af"
+    },
+    "directl": {
+      "job_id": "trellis2-f46222add2cf404a",
+      "source": "07-landmark-directl-A.png",
+      "glb": "directl.glb",
+      "sha256": "cc3210931b53eb962c1bc7cf7ad17a65d6dcf6495da0769884fe3ac8ada8b8b1"
+    },
+    "neural": {
+      "job_id": "trellis2-a7d9da516b2d4511",
+      "source": "08-landmark-neural-B.png",
+      "glb": "neural.glb",
+      "sha256": "aac55c3f18e727d62376ee7a3edbbd57f6e309e03de90618980c9ee9b0bbd864"
+    },
+    "eva01": {
+      "job_id": "trellis2-1a82618ceff949de",
+      "source": "09-landmark-eva01-B.png",
+      "glb": "eva01.glb",
+      "sha256": "2747d0673107e5c7c332dc915fb12d5ac8138e0a5f9ef9aede4dae67207d7c4f"
+    },
+    "world": {
+      "job_id": "trellis2-015c2a8a6883417f",
+      "source": "10-landmark-world-A.png",
+      "glb": "world.glb",
+      "sha256": "c2e25be8c741642363c572afcefd8fd07b346cd0c09ff537a21af5daa14abcc9"
+    }
+  }
+}
