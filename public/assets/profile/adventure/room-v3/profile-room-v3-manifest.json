@@ -1,0 +1,969 @@
+{
+  "version": "2026-07-17.profile-room-grounded-v4.1",
+  "generatedAt": "2026-07-17T15:20:45.177009+00:00",
+  "actors": {
+    "nobita": {
+      "movement": {
+        "url": "/assets/profile/adventure/room-v3/actors/nobita-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "approvedFrames": 9,
+        "sha256": "6039cb015bba8d16a195094b373b28464dded6f3c42103ea5daa87ad73d0d200",
+        "bytes": 64812,
+        "sources": [
+          {
+            "frame": "down-0",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 1
+          },
+          {
+            "frame": "down-1",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 2
+          },
+          {
+            "frame": "down-2",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 3
+          },
+          {
+            "frame": "side-0",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 2
+          },
+          {
+            "frame": "side-1",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 3
+          },
+          {
+            "frame": "side-2",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 5
+          },
+          {
+            "frame": "up-0",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 7
+          },
+          {
+            "frame": "up-1",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 8
+          },
+          {
+            "frame": "up-2",
+            "candidate": "nobita-movement-r1.png",
+            "cell": 9
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v3/actors/nobita-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "9b2a5b447f30589571c1d4dd0bf93531d93f7b78fb82f0063a351821eb03802f",
+        "bytes": 82514,
+        "sources": [
+          {
+            "frame": "think-a",
+            "candidate": "nobita-life-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "think-b",
+            "candidate": "nobita-life-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "drink-a",
+            "candidate": "nobita-life-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "drink-b",
+            "candidate": "nobita-life-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "sit-game-a",
+            "candidate": "nobita-life-r2.png",
+            "cell": 4
+          },
+          {
+            "frame": "sit-game-b",
+            "candidate": "nobita-life-r2.png",
+            "cell": 5
+          },
+          {
+            "frame": "portal-enter",
+            "candidate": "nobita-life-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "portal-return",
+            "candidate": "nobita-life-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "room-reaction",
+            "candidate": "nobita-life-r2.png",
+            "cell": 9
+          }
+        ]
+      }
+    },
+    "doraemon": {
+      "movement": {
+        "url": "/assets/profile/adventure/room-v3/actors/doraemon-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "approvedFrames": 9,
+        "sha256": "15de1ebc0f9eb20d390c3cbb94935ae1c938679d0f28ef7485d9c97304c5586e",
+        "bytes": 66684,
+        "sources": [
+          {
+            "frame": "down-0",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "down-1",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "down-2",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "side-0",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "side-1",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 6
+          },
+          {
+            "frame": "side-2",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "up-0",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "up-1",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "up-2",
+            "candidate": "doraemon-movement-r2.png",
+            "cell": 9
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v3/actors/doraemon-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "faf39ee662d7770a40453e1b55907e35dfaf8f76deb201e1fb37f7e8076aeeb1",
+        "bytes": 103918,
+        "sources": [
+          {
+            "frame": "think-a",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "think-b",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "drink-a",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "drink-b",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 6
+          },
+          {
+            "frame": "sit-game-a",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 5
+          },
+          {
+            "frame": "sit-game-b",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "portal-enter",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "portal-return",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "room-reaction",
+            "candidate": "doraemon-life-r2.png",
+            "cell": 9
+          }
+        ]
+      }
+    },
+    "shizuka": {
+      "movement": {
+        "url": "/assets/profile/adventure/room-v3/actors/shizuka-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "approvedFrames": 9,
+        "sha256": "366f9471ffa7edf327f3e7af20c135cce1189372014bd58c2d23d191c75a1191",
+        "bytes": 61126,
+        "sources": [
+          {
+            "frame": "down-0",
+            "candidate": "old-shizuka",
+            "cell": 1
+          },
+          {
+            "frame": "down-1",
+            "candidate": "old-shizuka",
+            "cell": 2
+          },
+          {
+            "frame": "down-2",
+            "candidate": "old-shizuka",
+            "cell": 3
+          },
+          {
+            "frame": "side-0",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "side-1",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "side-2",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 5
+          },
+          {
+            "frame": "up-0",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "up-1",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "up-2",
+            "candidate": "shizuka-movement-r2.png",
+            "cell": 9
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v3/actors/shizuka-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "071a6712eec196b6b4d0d9a9526645006520477072b279c4f5f5c12bfa0b4cab",
+        "bytes": 64316,
+        "sources": [
+          {
+            "frame": "think-a",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "think-b",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "drink-a",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "drink-b",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "sit-game-a",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 4
+          },
+          {
+            "frame": "sit-game-b",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "portal-enter",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 6
+          },
+          {
+            "frame": "portal-return",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "room-reaction",
+            "candidate": "shizuka-life-r2.png",
+            "cell": 9
+          }
+        ]
+      }
+    },
+    "gian": {
+      "movement": {
+        "url": "/assets/profile/adventure/room-v3/actors/gian-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "approvedFrames": 9,
+        "sha256": "f0dd85f2b70e9286c9755826e0bdb19415e781caa5084aef7a0ee658b1cb445f",
+        "bytes": 73668,
+        "sources": [
+          {
+            "frame": "down-0",
+            "candidate": "gian-movement-r2.png",
+            "cell": 1
+          },
+          {
+            "frame": "down-1",
+            "candidate": "gian-movement-r2.png",
+            "cell": 2
+          },
+          {
+            "frame": "down-2",
+            "candidate": "gian-movement-r2.png",
+            "cell": 3
+          },
+          {
+            "frame": "side-0",
+            "candidate": "gian-movement-r2.png",
+            "cell": 4
+          },
+          {
+            "frame": "side-1",
+            "candidate": "gian-movement-r2.png",
+            "cell": 5
+          },
+          {
+            "frame": "side-2",
+            "candidate": "gian-movement-r2.png",
+            "cell": 6
+          },
+          {
+            "frame": "up-0",
+            "candidate": "gian-movement-r2.png",
+            "cell": 7
+          },
+          {
+            "frame": "up-1",
+            "candidate": "gian-movement-r2.png",
+            "cell": 8
+          },
+          {
+            "frame": "up-2",
+            "candidate": "gian-movement-r2.png",
+            "cell": 9
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v3/actors/gian-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "2d1a0c824b6c31815f46da2edfd9aeae9813570e7b8e32c3d1777ec08835c1a0",
+        "bytes": 62658,
+        "sources": [
+          {
+            "frame": "think-a",
+            "candidate": "gian-life-r1.png",
+            "cell": 1
+          },
+          {
+            "frame": "think-b",
+            "candidate": "gian-life-r1.png",
+            "cell": 1
+          },
+          {
+            "frame": "drink-a",
+            "candidate": "gian-life-r1.png",
+            "cell": 2
+          },
+          {
+            "frame": "drink-b",
+            "candidate": "gian-life-r1.png",
+            "cell": 3
+          },
+          {
+            "frame": "sit-game-a",
+            "candidate": "gian-life-r1.png",
+            "cell": 4
+          },
+          {
+            "frame": "sit-game-b",
+            "candidate": "gian-life-r1.png",
+            "cell": 5
+          },
+          {
+            "frame": "portal-enter",
+            "candidate": "gian-life-r1.png",
+            "cell": 8
+          },
+          {
+            "frame": "portal-return",
+            "candidate": "gian-life-r1.png",
+            "cell": 9
+          },
+          {
+            "frame": "room-reaction",
+            "candidate": "gian-life-r1.png",
+            "cell": 9
+          }
+        ]
+      }
+    },
+    "suneo": {
+      "movement": {
+        "url": "/assets/profile/adventure/room-v3/actors/suneo-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "approvedFrames": 9,
+        "sha256": "f2d17af4572cbd1a2a11b4eab7e7e4a22799890c9cff7f04c4b7252fabdab6be",
+        "bytes": 71402,
+        "sources": [
+          {
+            "frame": "down-0",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 1
+          },
+          {
+            "frame": "down-1",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 2
+          },
+          {
+            "frame": "down-2",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 3
+          },
+          {
+            "frame": "side-0",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 4
+          },
+          {
+            "frame": "side-1",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 5
+          },
+          {
+            "frame": "side-2",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 6
+          },
+          {
+            "frame": "up-0",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 8
+          },
+          {
+            "frame": "up-1",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 9
+          },
+          {
+            "frame": "up-2",
+            "candidate": "suneo-movement-r1.png",
+            "cell": 8
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v3/actors/suneo-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "049af703a7a082625917e10a76c91a0828473fbe62a53c9da3ae4637e8c1777c",
+        "bytes": 98508,
+        "sources": [
+          {
+            "frame": "think-a",
+            "candidate": "suneo-life-r1.png",
+            "cell": 1
+          },
+          {
+            "frame": "think-b",
+            "candidate": "suneo-life-r1.png",
+            "cell": 2
+          },
+          {
+            "frame": "drink-a",
+            "candidate": "suneo-life-r1.png",
+            "cell": 3
+          },
+          {
+            "frame": "drink-b",
+            "candidate": "suneo-life-r1.png",
+            "cell": 5
+          },
+          {
+            "frame": "sit-game-a",
+            "candidate": "suneo-life-r1.png",
+            "cell": 4
+          },
+          {
+            "frame": "sit-game-b",
+            "candidate": "suneo-life-r1.png",
+            "cell": 7
+          },
+          {
+            "frame": "portal-enter",
+            "candidate": "suneo-life-r1.png",
+            "cell": 8
+          },
+          {
+            "frame": "portal-return",
+            "candidate": "suneo-life-r1.png",
+            "cell": 6
+          },
+          {
+            "frame": "room-reaction",
+            "candidate": "suneo-life-r1.png",
+            "cell": 9
+          }
+        ]
+      }
+    }
+  },
+  "furniture": {
+    "url": "/assets/profile/adventure/room-v3/furniture/furniture-grounded-v4-3x3.webp",
+    "size": [
+      384,
+      384
+    ],
+    "frameSize": [
+      128,
+      128
+    ],
+    "frameOrder": [
+      "chandelier",
+      "blackboard",
+      "eraser",
+      "secondary-desk",
+      "chair",
+      "sofa",
+      "water-cooler",
+      "tv-cabinet",
+      "ps5"
+    ],
+    "sha256": "522951d925e568b1e6b2b19d8de17bdb3f7dfc85dd1a4e0eb9cf3850c600ce71",
+    "bytes": 43044,
+    "layoutVersion": "grounded-v4",
+    "sprites": {
+      "chandelier": {
+        "alphaBbox": [
+          20,
+          10,
+          108,
+          121
+        ]
+      },
+      "blackboard": {
+        "alphaBbox": [
+          6,
+          33,
+          121,
+          96
+        ]
+      },
+      "eraser": {
+        "alphaBbox": [
+          35,
+          54,
+          95,
+          73
+        ]
+      },
+      "secondary-desk": {
+        "alphaBbox": [
+          7,
+          46,
+          122,
+          121
+        ]
+      },
+      "chair": {
+        "alphaBbox": [
+          27,
+          14,
+          101,
+          120
+        ]
+      },
+      "sofa": {
+        "alphaBbox": [
+          6,
+          37,
+          122,
+          121
+        ]
+      },
+      "water-cooler": {
+        "alphaBbox": [
+          39,
+          10,
+          88,
+          122
+        ]
+      },
+      "tv-cabinet": {
+        "alphaBbox": [
+          6,
+          31,
+          122,
+          121
+        ],
+        "screenRectPixels": [
+          39,
+          43,
+          87,
+          75
+        ],
+        "screenRectNormalized": [
+          0.304688,
+          0.335938,
+          0.375,
+          0.25
+        ],
+        "childAnchors": {
+          "ps5": [
+            0.73,
+            0.61
+          ]
+        }
+      },
+      "ps5": {
+        "alphaBbox": [
+          44,
+          22,
+          91,
+          119
+        ]
+      }
+    },
+    "selectedCandidates": {
+      "blackboard": "blackboard-b.png",
+      "secondary-desk": "desk-a.png",
+      "chair": "chair-b.png",
+      "sofa": "sofa-d.png",
+      "tv-cabinet": "tv-cabinet-a.png"
+    }
+  },
+  "door": {
+    "url": "/assets/profile/adventure/room-v3/props/anywhere-door-2x1.webp",
+    "size": [
+      256,
+      128
+    ],
+    "frameSize": [
+      128,
+      128
+    ],
+    "frameOrder": [
+      "closed",
+      "open"
+    ],
+    "sha256": "b197d405fc9db993c1feb886e85803a4b8c35bdf2a71eb0fc05f134477e75b48",
+    "bytes": 16138
+  },
+  "lamps": {
+    "url": "/assets/profile/adventure/room-v3/props/bulkhead-wall-lamp-v4-4x1.webp",
+    "size": [
+      256,
+      96
+    ],
+    "frameSize": [
+      64,
+      96
+    ],
+    "frameOrder": [
+      "low",
+      "left",
+      "high",
+      "right"
+    ],
+    "sha256": "08d02be16564322a05572b12a7d3b0e52efaad9620571feb8c29277ddd14e5f9",
+    "bytes": 4996,
+    "layoutVersion": "grounded-v4",
+    "selectedCandidate": "bulkhead-lamp-a.png"
+  },
+  "posters": {
+    "spiritedAway": {
+      "url": "/assets/profile/adventure/room-v3/posters/spirited-away-pixel.webp",
+      "size": [
+        48,
+        64
+      ],
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png",
+      "accessedAt": "2026-07-17",
+      "sourceFile": "artifacts/profile-room-v3-review/2026-07-17-living-r1/poster-sources/spirited-away-original.png",
+      "sourceSha256": "97a5f78bae3db8303c582301cec9e9af6d62d63d1fb6fc278d20175c28a0c7e3",
+      "crop": {
+        "mode": "ImageOps.fit",
+        "target": [
+          48,
+          64
+        ],
+        "centering": [
+          0.5,
+          0.48
+        ]
+      },
+      "sha256": "032a2d387d84be6e1e00cac6dd8a97a25b102c7ddcb19c6159488c9ff114a20b",
+      "bytes": 2180
+    },
+    "onePieceEastBlue": {
+      "url": "/assets/profile/adventure/room-v3/posters/one-piece-east-blue-pixel.webp",
+      "size": [
+        48,
+        64
+      ],
+      "sourceUrl": "https://image.tmdb.org/t/p/original/mRy1D3wVL1AjR1Czp2WY90CCzPY.jpg",
+      "accessedAt": "2026-07-17",
+      "sourceFile": "artifacts/profile-room-v3-review/2026-07-17-living-r1/poster-sources/one-piece-east-blue-tmdb.jpg",
+      "sourceSha256": "5fa82786d0f905b6816701d7f51b61f96db922b21f16039934ed947222e4fcda",
+      "crop": {
+        "mode": "ImageOps.fit",
+        "target": [
+          48,
+          64
+        ],
+        "centering": [
+          0.5,
+          0.45
+        ]
+      },
+      "sha256": "80d998b7dfad344acf0261e9d8bc73bded8ef7410fcdf4206376d8941681e029",
+      "bytes": 2024
+    }
+  },
+  "fallbacks": {
+    "desktop": {
+      "url": "/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-desktop.webp",
+      "size": [
+        640,
+        320
+      ],
+      "sha256": "cf1aa9ac95106260ddfc87315fbe4ed9dd1c5cc2fc4f6d1a47182274ca54817e",
+      "bytes": 34022
+    },
+    "mobile": {
+      "url": "/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-mobile.webp",
+      "size": [
+        320,
+        352
+      ],
+      "sha256": "4c2d5b71b72c07f34e3adbcaac06b62660dd33035f74c3a5fb592d03a1453efa",
+      "bytes": 22946
+    }
+  },
+  "layoutVersion": "grounded-v4"
+}

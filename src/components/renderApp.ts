@@ -4,6 +4,8 @@ import huggingFaceSvg from "simple-icons/icons/huggingface.svg?raw";
 import type { AppState } from "../app/state";
 import type { LinkItem, Project, ProjectId, SectionId, SiteContent, VoyageNode } from "../content/site";
 import type { SceneRenderer, TransitionAwareSceneRenderer } from "../scenes/SceneRenderer";
+import type { PlayCanvasGallery } from "../gallery/PlayCanvasGallery";
+import type { ProfileAdventureDirector } from "../profile/ProfileAdventureDirector";
 import { TerminalController } from "./TerminalController";
 
 type InitOptions = {
@@ -11,6 +13,10 @@ type InitOptions = {
   state: AppState;
   onSectionChange: (section: SectionId) => void;
 };
+
+const SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT = 3;
+const SIGGRAPH_REEL_CYCLES = 7;
+const SIGGRAPH_REEL_DIGITS = 10;
 
 type CoinBurstPose = {
   startX: number;
@@ -83,11 +89,11 @@ function sailboatMarkup(className = "research-boat", preset: "sunset" | "horizon
 
 function landmarkMarkup(kind: VoyageNode["landmark"]): string {
   const posters: Record<VoyageNode["landmark"], string> = {
-    dock: "/assets/voyage/landmarks/posters/docdiff.jpg",
-    lighthouse: "/assets/voyage/landmarks/posters/directl.jpg",
-    reef: "/assets/voyage/landmarks/posters/neural.jpg",
-    harbor: "/assets/voyage/landmarks/posters/eva01.jpg",
-    gate: "/assets/voyage/landmarks/posters/world.jpg"
+    dock: "/assets/voyage/landmarks/posters/v2/dock-cutout.webp",
+    lighthouse: "/assets/voyage/landmarks/posters/v2/lighthouse-cutout.webp",
+    reef: "/assets/voyage/landmarks/posters/v2/prism-cutout.webp",
+    harbor: "/assets/voyage/landmarks/posters/v2/harbor-cutout.webp",
+    gate: "/assets/voyage/landmarks/posters/v2/gate-cutout.webp"
   };
   return `<div class="landmark-model" data-landmark-model="${kind}" aria-hidden="true"><img class="landmark-poster" src="${posters[kind]}" alt="" loading="lazy" decoding="async" /></div>`;
 }
@@ -106,10 +112,19 @@ function renderGalleryPoster(projects: Project[]): string {
   `;
 }
 
+function renderProfileRoomFallback(): string {
+  return `
+    <picture class="profile-room-fallback" aria-hidden="true">
+      <source media="(max-width: 760px)" srcset="/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-mobile.webp" />
+      <img src="/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-desktop.webp" alt="" decoding="async" />
+    </picture>
+  `;
+}
+
 function renderProfile(content: SiteContent): string {
   const p = content.profile;
   const brandIcons: Record<string, string> = { github: githubSvg, scholar: scholarSvg, huggingface: huggingFaceSvg };
-  const reelDigits = Array.from({ length: 8 }, () => Array.from({ length: 10 }, (_, digit) => digit)).flat();
+  const reelDigits = Array.from({ length: SIGGRAPH_REEL_CYCLES + 1 }, () => Array.from({ length: SIGGRAPH_REEL_DIGITS }, (_, digit) => digit)).flat();
   const telemetryColumns = [
     "SIG<br>0x7F<br>GPU<br>0110<br>TOG",
     "MLLM<br>1011<br>EVA<br>0x2A<br>ICCV",
@@ -167,12 +182,12 @@ function renderProfile(content: SiteContent): string {
                 </section>
               </div>
             </section>
-            <div class="siggraph-machine" data-siggraph-machine data-result="rolling" aria-label="Two SIGGRAPH first-author papers holographic counter">
+            <div class="siggraph-machine" data-siggraph-machine data-result="rolling" aria-label="Three SIGGRAPH first-author papers holographic counter">
               <span class="siggraph-hologram" aria-hidden="true"></span>
               <div class="siggraph-counter" aria-hidden="true">
                 <span class="siggraph-multiplier">×</span>
                 <span class="siggraph-reel">
-                  <span class="siggraph-reel-track" data-siggraph-track data-target-digit="2">
+                  <span class="siggraph-reel-track" data-siggraph-track data-target-digit="${SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT}">
                     ${reelDigits.map((digit) => `<b>${digit}</b>`).join("")}
                   </span>
                 </span>
@@ -181,7 +196,7 @@ function renderProfile(content: SiteContent): string {
                 <b>SIGGRAPH</b>
                 <span>First-Author Papers</span>
               </div>
-              <button class="siggraph-lever" type="button" aria-label="Pull lever to resolve the SIGGRAPH counter at two">
+              <button class="siggraph-lever" type="button" aria-label="Pull lever to resolve the SIGGRAPH counter at three">
                 <span class="lever-knob"></span><i></i><small>Pull</small>
               </button>
             </div>
@@ -241,7 +256,7 @@ function renderProfile(content: SiteContent): string {
           </article>
         </section>
 
-        <div class="future-slot" data-future-slot aria-hidden="true"></div>
+        <div class="future-slot" data-future-slot>${renderProfileRoomFallback()}</div>
 
         <section class="terminal-shell profile-reveal" style="--reveal-index:2" aria-label="Live research news terminal" data-paused="false">
           <div class="terminal-atmosphere" aria-hidden="true">
@@ -281,7 +296,7 @@ function renderProfile(content: SiteContent): string {
       </div>
 
       <section class="gallery-stage profile-reveal" style="--reveal-index:1" aria-label="Selected research cabinet">
-        <div class="gallery-stage-head"><span>Selected Works / 04</span><b>Realtime PBR Cabinet</b></div>
+        <div class="gallery-stage-head"><span>Selected Works / 04</span><b>Realtime PBR Cabinet · Portal Linked</b></div>
         <div class="gallery-mount" id="hero-exhibits">${renderGalleryPoster(content.projects)}</div>
       </section>
     </section>
@@ -297,9 +312,9 @@ function renderMedia(project: Project): string {
 
 function renderEvidenceCard(project: Project): string {
   return `
-    <article class="evidence-card" data-project-card="${project.id}">
-      <div class="evidence-topline"><span>${escapeHtml(project.venue)}</span><b>${project.id === "ssat" || project.id === "directl" ? "Legendary" : "Rare"}</b></div>
-      <figure>${renderMedia(project)}</figure>
+    <article class="evidence-card" data-project-card="${project.id}" hidden>
+      <div class="evidence-topline"><span>${escapeHtml(project.venue)}</span><b>Frame / ${escapeHtml(project.id)}</b></div>
+      <figure class="evidence-media-matte" data-evidence-media>${renderMedia(project)}</figure>
       <div class="evidence-copy">
         <div><h3>${escapeHtml(project.title)}</h3><p>${escapeHtml(project.summary)}</p></div>
         <nav aria-label="${escapeHtml(project.title)} links">${linksMarkup(project.links)}</nav>
@@ -309,74 +324,90 @@ function renderEvidenceCard(project: Project): string {
 }
 
 function renderVoyage(content: SiteContent): string {
-  const featured = ["ssat", "directl", "eva01"].map((id) => content.projects.find((project) => project.id === id)!).filter(Boolean);
   const current = content.voyage.nodes.find((node) => node.status === "current")!;
+  const currentLog = content.voyage.logs[current.id];
   return `
     <section class="scene voyage-scene" id="voyage" aria-labelledby="voyage-title" data-section="voyage">
-      <div class="voyage-board">
-        <header class="voyage-header scene-reveal">
-          <div><span>Capability Stack</span><h2 id="voyage-title">Neural Graphics <i>→</i> 3D MLLM <i>→</i> Game World Model</h2></div>
-          <div class="voyage-progress"><span>PhD Voyage</span><strong>03 / 04</strong><i><b></b></i></div>
-        </header>
-        <div class="voyage-layout">
-          <div class="voyage-main">
-            <section class="ocean-map scene-reveal" aria-label="Interactive research voyage map">
-              <canvas class="pixel-ocean" data-ocean="sunset" aria-hidden="true"></canvas>
-              <canvas class="landmark-scene-canvas" data-landmark-scene aria-hidden="true"></canvas>
-              <div class="ocean-grain" aria-hidden="true"></div>
-              <svg class="voyage-route" viewBox="0 0 1000 440" preserveAspectRatio="none" aria-hidden="true">
-                <path class="route-depth" d="M65 315 C210 190 340 330 510 270 C650 218 755 230 945 120" />
-                <path class="route-wake" d="M65 315 C210 190 340 330 510 270 C650 218 755 230 945 120" />
-                <path class="route-future" d="M755 230 C835 195 890 160 945 120" />
-              </svg>
-              <div class="voyage-nodes" role="listbox" aria-label="Research voyage nodes">
-                ${content.voyage.nodes.map((node, index) => `
-                  <button class="voyage-node node-${node.status}" style="--node-x:${node.x}%;--node-y:${node.y}%" data-voyage-node="${node.id}" data-node-index="${index}" role="option" aria-selected="${node.id === current.id}">
-                    ${landmarkMarkup(node.landmark)}
-                    <span><b>${escapeHtml(node.title)}</b><small>${escapeHtml(node.subtitle)}</small></span>
-                  </button>
-                `).join("")}
-              </div>
-              <div class="boat-position" style="--boat-x:${content.voyage.nodes[0].x}%;--boat-y:${content.voyage.nodes[0].y}%" data-voyage-boat>
-                ${sailboatMarkup()}
-                <span>Current Stage 03 / 04</span>
-              </div>
-            </section>
-            <section class="evidence-deck scene-reveal" aria-label="Featured research evidence">
-              ${featured.map(renderEvidenceCard).join("")}
-            </section>
-          </div>
+      <picture class="voyage-fallback-art" aria-hidden="true">
+        <source media="(max-width: 760px)" srcset="/assets/voyage/voyage-fallback-mobile.webp" />
+        <img src="/assets/voyage/voyage-fallback-desktop.webp" alt="" loading="lazy" decoding="async" />
+      </picture>
+      <canvas class="voyage-scene-canvas" data-voyage-scene aria-label="Cinematic pixel voyage from the Document Dock to the OASIS Gate"></canvas>
+      <div class="voyage-vignette" aria-hidden="true"></div>
 
-          <aside class="voyage-side scene-reveal">
-            <article class="captains-log" data-captains-log>
-              <div class="panel-heading"><span>Captain’s Log</span><b>Current</b></div>
-              <div class="captain-status"><i></i><span>${escapeHtml(current.status)}</span></div>
-              <h3>${escapeHtml(current.title)}</h3>
-              <strong>${escapeHtml(current.subtitle)}</strong>
-              <p>${escapeHtml(current.log)}</p>
-              <small>${escapeHtml(current.venue)}</small>
-              <div class="captain-actions" data-captain-actions></div>
-            </article>
-            <div class="support-drawers">
-              <section class="support-drawer is-open">
-                <button type="button" aria-expanded="true"><span>Awards</span><b>${content.awards.length.toString().padStart(2, "0")}</b></button>
-                <div class="drawer-content">
-                  ${content.awards.map((award) => `<article><b>${escapeHtml(award.title)}</b><p>${escapeHtml(award.text)}</p></article>`).join("")}
-                </div>
-              </section>
-              <section class="support-drawer">
-                <button type="button" aria-expanded="false"><span>Services</span><b>${content.services.length.toString().padStart(2, "0")}</b></button>
-                <div class="drawer-content">${content.services.length ? content.services.map((item) => `<article><b>${escapeHtml(item.tag)}</b><p>${escapeHtml(item.text)}</p></article>`).join("") : `<p class="drawer-empty">No verified entries yet.</p>`}</div>
-              </section>
-              <section class="support-drawer">
-                <button type="button" aria-expanded="false"><span>Archive</span><b>${content.archive.length.toString().padStart(2, "0")}</b></button>
-                <div class="drawer-content archive-list">
-                  ${content.archive.map((item) => `<article><b>${escapeHtml(item.title)}</b><p>${escapeHtml(item.venue)}</p></article>`).join("")}
-                </div>
-              </section>
-            </div>
-          </aside>
+      <header class="voyage-header scene-reveal">
+        <div class="voyage-title-lockup">
+          <span>Act II · Research Voyage</span>
+          <h2 id="voyage-title">THE LUMINOUS WAKE</h2>
+          <p>Neural Graphics <i>→</i> Native 3D <i>→</i> Interactive World Models</p>
         </div>
+        <div class="voyage-progress" aria-label="Current research stage 03 of 04">
+          <span>Current Berth</span><strong>03 / 04</strong><i><b></b></i>
+        </div>
+        <button class="voyage-skip" type="button" data-voyage-skip>Skip cinematic <span>↗</span></button>
+      </header>
+
+      <div class="voyage-nodes" role="listbox" aria-label="Research voyage chapters">
+        ${content.voyage.nodes.map((node, index) => `
+          <button class="voyage-node node-${node.status}" style="--node-x:${node.x}%;--node-y:${node.y}%" data-voyage-node="${node.id}" data-node-index="${index}" data-asset-state="poster" role="option" aria-selected="${node.id === current.id}" aria-label="${String(index).padStart(2, "0")} ${escapeHtml(node.title)}: ${escapeHtml(node.subtitle)}">
+            ${landmarkMarkup(node.landmark)}
+            <span class="voyage-beacon" aria-hidden="true"><i></i><b>${String(index).padStart(2, "0")}</b></span>
+            <span class="voyage-node-copy"><b>${escapeHtml(node.title)}</b><small>${escapeHtml(node.subtitle)}</small></span>
+          </button>
+        `).join("")}
+      </div>
+
+      <ol class="voyage-index" aria-hidden="true">
+        ${content.voyage.nodes.map((node, index) => `<li class="${node.id === current.id ? "is-current" : ""}"><b>${String(index).padStart(2, "0")}</b><span>${escapeHtml(node.id === "directl" ? "LIGHTFIELD" : node.id === "neural" ? "PRISM" : node.id === "eva01" ? "NATIVE" : node.id === "world" ? "OASIS" : "DOCK")}</span></li>`).join("")}
+      </ol>
+
+      <div class="voyage-right-rail" data-voyage-right-rail>
+        <aside class="captains-log" data-captains-log aria-label="Captain’s research log">
+          <span class="journal-binding" aria-hidden="true"></span>
+          <div class="journal-heading"><span>Captain’s Log</span><b data-log-entry>Entry ${escapeHtml(currentLog.entry)}</b></div>
+          <div class="journal-status"><i></i><span data-log-status>Current berth · EVA01</span></div>
+          <h3 data-log-title>${escapeHtml(currentLog.title)}</h3>
+          <strong data-log-subtitle>${escapeHtml(currentLog.subtitle)}</strong>
+          <dl class="journal-instruments">
+            <div><dt>Watch</dt><dd data-log-watch>${escapeHtml(currentLog.watch)}</dd></div>
+            <div><dt>Bearing</dt><dd data-log-bearing>${escapeHtml(currentLog.bearing)}</dd></div>
+            <div><dt>Sea state</dt><dd data-log-sea>${escapeHtml(currentLog.seaState)}</dd></div>
+            <div><dt>Date</dt><dd data-log-date>${escapeHtml(currentLog.date)}</dd></div>
+          </dl>
+          <div class="journal-copy" data-log-copy>
+            ${currentLog.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+          </div>
+          <nav class="captain-actions" data-captain-actions aria-label="Selected log links"></nav>
+          <div class="journal-controls">
+            <button type="button" data-evidence-toggle aria-expanded="false" aria-controls="voyage-evidence">Open evidence <span>↓</span></button>
+          </div>
+          <div class="journal-stamps" aria-label="Research distinctions">
+            ${content.awards.map((award, index) => `<span title="${escapeHtml(award.text)}"><b>${String(index + 1).padStart(2, "0")}</b>${escapeHtml(award.title)}</span>`).join("")}
+          </div>
+        </aside>
+
+        <section class="evidence-viewer" id="voyage-evidence" data-evidence-panel aria-label="Selected chapter evidence" aria-hidden="true" tabindex="-1">
+          <header class="evidence-viewer-header">
+            <div><span>Evidence monitor</span><b data-evidence-title>${escapeHtml(currentLog.title)}</b></div>
+            <div class="evidence-viewer-tools">
+              <span data-evidence-count>01 / 01</span>
+              <button type="button" data-evidence-close aria-label="Close evidence viewer">Close <i aria-hidden="true">×</i></button>
+            </div>
+          </header>
+          <div class="evidence-stage" aria-live="polite">
+            ${content.projects.map(renderEvidenceCard).join("")}
+            <article class="evidence-card evidence-future" data-evidence-future hidden>
+              <div class="evidence-topline"><span>Uncharted waters</span><b>Frame / 04</b></div>
+              <figure class="evidence-media-matte"><div class="evidence-aperture" aria-hidden="true"><i></i></div></figure>
+              <div class="evidence-copy"><div><h3>OASIS</h3><p>The next evidence is an interactive world that continues beyond the final frame.</p></div><nav><a class="project-link" href="#horizon">Enter Horizon</a></nav></div>
+            </article>
+          </div>
+          <nav class="evidence-pager" aria-label="Evidence frames">
+            <button type="button" data-evidence-prev aria-label="Previous evidence frame">← Prev</button>
+            <span>Complete frame · Original aspect</span>
+            <button type="button" data-evidence-next aria-label="Next evidence frame">Next →</button>
+          </nav>
+        </section>
       </div>
     </section>
   `;
@@ -387,7 +418,7 @@ function renderHorizon(content: SiteContent): string {
     <section class="scene horizon-scene" id="horizon" aria-labelledby="horizon-title" data-section="horizon">
       <picture class="horizon-fallback" aria-hidden="true">
         <source media="(max-width: 760px)" srcset="/assets/horizon/horizon-fallback-mobile.webp" />
-        <img src="/assets/horizon/horizon-fallback-desktop.webp" alt="" decoding="async" />
+        <img src="/assets/horizon/horizon-fallback-desktop.webp" alt="" loading="lazy" decoding="async" />
       </picture>
       <canvas class="horizon-canvas" data-horizon-scene aria-hidden="true"></canvas>
       <header class="horizon-heading"><span>03 / HORIZON</span><h2 id="horizon-title">${escapeHtml(content.ending.kicker)}</h2></header>
@@ -411,7 +442,6 @@ export function renderApplication(content: SiteContent): string {
       <div class="nav-signal"><i></i><span>Signal Online</span></div>
     </nav>
     <main>${renderProfile(content)}${renderVoyage(content)}${renderHorizon(content)}</main>
-    <div class="journey-bridge-boat" data-journey-bridge aria-hidden="true"><i></i></div>
   `;
 }
 
@@ -559,8 +589,8 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
   const startIdle = (): void => {
     reelAnimation?.cancel();
     if (reducedMotion) {
-      setPosition(2);
-      machine.dataset.result = "2";
+      setPosition(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
+      machine.dataset.result = String(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
       machine.classList.add("is-settled");
       return;
     }
@@ -580,11 +610,11 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
     if (machine.classList.contains("is-resolving")) return;
     timers.forEach((timer) => window.clearTimeout(timer));
     timers.clear();
-    const wasSettled = machine.dataset.result === "2";
+    const wasSettled = machine.dataset.result === String(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
     let startY = cancelReelAtCurrentPosition();
     if (wasSettled) {
-      setPosition(2);
-      startY = -2 * cellHeight();
+      setPosition(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
+      startY = -SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT * cellHeight();
     }
     pullCount += 1;
     machine.dataset.pullCount = String(pullCount);
@@ -597,8 +627,8 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
     lever.disabled = true;
 
     if (reducedMotion) {
-      setPosition(2);
-      machine.dataset.result = "2";
+      setPosition(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
+      machine.dataset.result = String(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
       machine.classList.remove("is-resolving", "is-pulling");
       machine.classList.add("is-settled", "is-payout");
       playCoinBurst();
@@ -607,7 +637,7 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
       return;
     }
 
-    const finalIndex = 72;
+    const finalIndex = SIGGRAPH_REEL_CYCLES * SIGGRAPH_REEL_DIGITS + SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT;
     const finalY = -finalIndex * cellHeight();
     reelAnimation = track.animate(
       [
@@ -616,7 +646,8 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
       ],
       { duration: 2050, easing: "cubic-bezier(.1,.72,.14,1)", fill: "forwards" }
     );
-    reelAnimation.finished.then(() => {
+    const settle = (): void => {
+      if (!machine.classList.contains("is-resolving")) return;
       track.style.transform = `translate3d(0, ${finalY}px, 0)`;
       reelAnimation?.cancel();
       reelAnimation = track.animate(
@@ -627,13 +658,18 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
         ],
         { duration: 180, easing: "ease-out", fill: "forwards" }
       );
-      machine.dataset.result = "2";
+      machine.dataset.result = String(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
       machine.classList.remove("is-resolving", "is-pulling");
       machine.classList.add("is-settled", "is-payout");
       playCoinBurst();
       lever.disabled = false;
       later(() => machine.classList.remove("is-payout"), 1350);
-    }).catch(() => undefined);
+    };
+    reelAnimation.finished.then(settle).catch(() => undefined);
+    // Background tabs, overloaded GPU processes, and headless compositors can
+    // leave Web Animations' `finished` promise pending indefinitely. The
+    // semantic counter must still resolve after the authored reel duration.
+    later(settle, 2_500);
   };
 
   lever.addEventListener("click", pull);
@@ -646,66 +682,210 @@ function initializeSiggraphMachine(reducedMotion: boolean): () => void {
   };
 }
 
-function initializeVoyage(content: SiteContent, state: AppState): void {
-  const nodes = [...document.querySelectorAll<HTMLButtonElement>("[data-voyage-node]")];
-  const boat = document.querySelector<HTMLElement>("[data-voyage-boat]");
-  const log = document.querySelector<HTMLElement>("[data-captains-log]");
-  if (!boat || !log) return;
-  let userHasSelectedNode = false;
+type VoyageRendererBridge = {
+  selectNode(node: VoyageNode["id"]): void;
+  skipIntro(): void;
+  setEvidenceOpen(open: boolean): void;
+  setEvidenceIndex(index: number): void;
+};
 
-  const selectNode = (node: VoyageNode, focus = false): void => {
+type VoyageUiController = {
+  attachRenderer(renderer: VoyageRendererBridge): void;
+  selectFromRenderer(node: VoyageNode["id"]): void;
+  setEvidenceFromRenderer(open: boolean): void;
+  destroy(): void;
+};
+
+function initializeVoyage(content: SiteContent, state: AppState): VoyageUiController | null {
+  const section = document.getElementById("voyage");
+  const nodes = [...document.querySelectorAll<HTMLButtonElement>("[data-voyage-node]")];
+  const log = document.querySelector<HTMLElement>("[data-captains-log]");
+  const evidence = document.querySelector<HTMLElement>("[data-evidence-panel]");
+  const evidenceToggle = document.querySelector<HTMLButtonElement>("[data-evidence-toggle]");
+  const evidenceClose = document.querySelector<HTMLButtonElement>("[data-evidence-close]");
+  const evidencePrev = document.querySelector<HTMLButtonElement>("[data-evidence-prev]");
+  const evidenceNext = document.querySelector<HTMLButtonElement>("[data-evidence-next]");
+  const evidenceCount = document.querySelector<HTMLElement>("[data-evidence-count]");
+  const evidenceCards = [...document.querySelectorAll<HTMLElement>("[data-project-card],[data-evidence-future]")];
+  const skipButton = document.querySelector<HTMLButtonElement>("[data-voyage-skip]");
+  if (!section || !log || !evidence || !evidenceToggle) return null;
+  let renderer: VoyageRendererBridge | null = null;
+  let selectedNode = content.voyage.nodes.find((node) => node.status === "current")!;
+  let evidenceOpen = false;
+  let evidenceIndex = 0;
+
+  const eligibleEvidenceCards = (): HTMLElement[] => evidenceCards.filter((card) => card.dataset.evidenceEligible === "true");
+
+  const setEvidenceIndex = (index: number, notifyRenderer = true): void => {
+    const eligible = eligibleEvidenceCards();
+    evidenceIndex = Math.max(0, Math.min(Math.max(0, eligible.length - 1), Math.floor(index)));
+    evidenceCards.forEach((card) => { card.hidden = card !== eligible[evidenceIndex]; });
+    const total = Math.max(1, eligible.length);
+    if (evidenceCount) evidenceCount.textContent = `${String(evidenceIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+    const atStart = evidenceIndex <= 0;
+    const atEnd = evidenceIndex >= total - 1;
+    if (evidencePrev) {
+      evidencePrev.disabled = atStart;
+      evidencePrev.tabIndex = atStart ? -1 : 0;
+    }
+    if (evidenceNext) {
+      evidenceNext.disabled = atEnd;
+      evidenceNext.tabIndex = atEnd ? -1 : 0;
+    }
+    if (notifyRenderer) renderer?.setEvidenceIndex(evidenceIndex);
+  };
+
+  const setEvidenceOpen = (open: boolean, notifyRenderer = true): void => {
+    evidenceOpen = open;
+    section.classList.toggle("is-evidence-open", open);
+    evidence.setAttribute("aria-hidden", String(!open));
+    evidenceToggle.setAttribute("aria-expanded", String(open));
+    evidenceToggle.firstChild!.textContent = open ? "Close evidence " : "Open evidence ";
+    if (notifyRenderer) renderer?.setEvidenceOpen(open);
+  };
+
+  const renderLog = (node: VoyageNode): void => {
+    const entry = content.voyage.logs[node.id];
+    log.querySelector<HTMLElement>("[data-log-entry]")!.textContent = `Entry ${entry.entry}`;
+    log.querySelector<HTMLElement>("[data-log-status]")!.textContent = node.status === "current" ? "Current berth · EVA01" : node.status === "future" ? "Uncharted bearing" : "Recorded passage";
+    log.querySelector<HTMLElement>("[data-log-title]")!.textContent = entry.title;
+    log.querySelector<HTMLElement>("[data-log-subtitle]")!.textContent = entry.subtitle;
+    log.querySelector<HTMLElement>("[data-log-watch]")!.textContent = entry.watch;
+    log.querySelector<HTMLElement>("[data-log-bearing]")!.textContent = entry.bearing;
+    log.querySelector<HTMLElement>("[data-log-sea]")!.textContent = entry.seaState;
+    log.querySelector<HTMLElement>("[data-log-date]")!.textContent = entry.date;
+    log.querySelector<HTMLElement>("[data-log-copy]")!.innerHTML = entry.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
+    const projects = entry.projectIds.map((id) => content.projects.find((project) => project.id === id)).filter((project): project is Project => Boolean(project));
+    const actions = log.querySelector<HTMLElement>("[data-captain-actions]")!;
+    actions.innerHTML = node.id === "world"
+      ? `<a href="#horizon">Enter Horizon <span>→</span></a>`
+      : projects.flatMap((project) => project.links.filter((link) => link.href).slice(0, 2).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noreferrer">${escapeHtml(project.title)} · ${escapeHtml(link.label)} <span>↗</span></a>`)).join("");
+    document.querySelectorAll<HTMLElement>("[data-project-card]").forEach((card) => {
+      card.dataset.evidenceEligible = String(entry.projectIds.includes(card.dataset.projectCard as ProjectId));
+    });
+    const future = document.querySelector<HTMLElement>("[data-evidence-future]");
+    if (future) future.dataset.evidenceEligible = String(node.id === "world");
+    document.querySelector<HTMLElement>("[data-evidence-title]")!.textContent = entry.title;
+    setEvidenceIndex(0);
+  };
+
+  const selectNode = (node: VoyageNode, options: { focus?: boolean; user?: boolean; notifyRenderer?: boolean } = {}): void => {
+    const selectingCurrentOpen = options.user && selectedNode.id === node.id && evidenceOpen;
     state.selectedVoyageNode = node.id;
+    selectedNode = node;
     nodes.forEach((button) => {
       const selected = button.dataset.voyageNode === node.id;
       button.setAttribute("aria-selected", String(selected));
-      if (selected && focus) button.focus();
+      if (selected && options.focus) button.focus();
     });
-    boat.style.setProperty("--boat-x", `${node.id === "world" ? 84 : Math.min(90, node.x + 8)}%`);
-    boat.style.setProperty("--boat-y", `${node.id === "world" ? 42 : Math.min(82, node.y + 4)}%`);
-    boat.style.setProperty("--boat-duration", `${Math.max(450, Math.min(900, Math.abs(node.progress - .75) * 1500))}ms`);
-    log.querySelector(".panel-heading b")!.textContent = node.status === "future" ? "Next Quest" : node.status;
-    log.querySelector(".captain-status span")!.textContent = node.status;
-    log.querySelector("h3")!.textContent = node.title;
-    log.querySelector("strong")!.textContent = node.subtitle;
-    log.querySelector("p")!.textContent = node.log;
-    log.querySelector("small")!.textContent = node.venue;
-    const actions = log.querySelector<HTMLElement>("[data-captain-actions]")!;
-    actions.innerHTML = node.id === "world" ? `<a href="#horizon">Enter Horizon <span>→</span></a>` : "";
-    document.querySelectorAll<HTMLElement>("[data-project-card]").forEach((card) => {
-      card.classList.toggle("is-selected", node.projectIds.includes(card.dataset.projectCard as ProjectId));
+    document.querySelectorAll<HTMLElement>(".voyage-index li").forEach((item, index) => {
+      item.classList.toggle("is-current", content.voyage.nodes[index]?.id === node.id);
     });
+    renderLog(node);
+    if (options.user) setEvidenceOpen(!selectingCurrentOpen, options.notifyRenderer !== false);
+    if (options.notifyRenderer !== false) renderer?.selectNode(node.id);
   };
 
   nodes.forEach((button, index) => {
     const node = content.voyage.nodes[index];
     button.addEventListener("click", () => {
-      userHasSelectedNode = true;
-      selectNode(node);
+      renderer?.skipIntro();
+      selectNode(node, { user: true });
     });
     button.addEventListener("keydown", (event) => {
       if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
       event.preventDefault();
-      userHasSelectedNode = true;
+      renderer?.skipIntro();
       const delta = event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 1;
       const next = (index + delta + nodes.length) % nodes.length;
-      selectNode(content.voyage.nodes[next], true);
+      selectNode(content.voyage.nodes[next], { focus: true, user: true });
     });
   });
 
-  const current = content.voyage.nodes.find((node) => node.status === "current")!;
-  selectNode(current);
-  const section = document.getElementById("voyage");
-  if (section && !state.reducedMotion) {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      section.classList.add("has-entered");
-      window.setTimeout(() => {
-        if (!userHasSelectedNode) selectNode(current);
-      }, 80);
-      observer.disconnect();
-    }, { threshold: .3 });
-    observer.observe(section);
-  }
+  const skipFromPointer = (event: PointerEvent): void => {
+    if (event.isPrimary && event.button === 0) renderer?.skipIntro();
+  };
+  const skipFromKeyboard = (event: KeyboardEvent): void => {
+    if (!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) renderer?.skipIntro();
+  };
+  const onEscape = (event: KeyboardEvent): void => {
+    if (event.key !== "Escape" || !evidenceOpen) return;
+    setEvidenceOpen(false);
+    evidenceToggle.focus();
+  };
+  const onEvidenceIndexRequest = (event: Event): void => {
+    const detail = (event as CustomEvent<{ index?: number }>).detail;
+    if (typeof detail?.index === "number") setEvidenceIndex(detail.index, false);
+  };
+  const showPreviousEvidence = (): void => setEvidenceIndex(evidenceIndex - 1);
+  const showNextEvidence = (): void => setEvidenceIndex(evidenceIndex + 1);
+  section.addEventListener("pointerdown", skipFromPointer, { passive: true });
+  section.addEventListener("keydown", skipFromKeyboard);
+  section.addEventListener("voyage:evidence-index", onEvidenceIndexRequest);
+  document.addEventListener("keydown", onEscape);
+  skipButton?.addEventListener("click", () => renderer?.skipIntro());
+  evidenceToggle.addEventListener("click", () => setEvidenceOpen(!evidenceOpen));
+  evidenceClose?.addEventListener("click", () => {
+    setEvidenceOpen(false);
+    evidenceToggle.focus();
+  });
+  evidencePrev?.addEventListener("click", showPreviousEvidence);
+  evidenceNext?.addEventListener("click", showNextEvidence);
+  evidenceCards.forEach((card) => {
+    const media = card.querySelector<HTMLImageElement | HTMLVideoElement>("img,video");
+    if (!media) {
+      card.classList.add("is-media-ready");
+      return;
+    }
+    const markReady = (): void => card.classList.add("is-media-ready");
+    const markFailed = (): void => {
+      card.classList.remove("is-media-ready");
+      card.classList.add("is-media-failed");
+      const matte = card.querySelector<HTMLElement>("[data-evidence-media],.evidence-media-matte");
+      if (matte) {
+        matte.dataset.mediaFallback = "Preview unavailable · use the project links below";
+        matte.setAttribute("role", "img");
+        matte.setAttribute("aria-label", "Evidence preview unavailable. Project links remain available below.");
+      }
+    };
+    if (media instanceof HTMLImageElement) {
+      if (media.complete) {
+        if (media.naturalWidth > 0) markReady(); else markFailed();
+      } else media.addEventListener("load", markReady, { once: true });
+      media.addEventListener("error", markFailed, { once: true });
+    } else {
+      if (media.readyState >= HTMLMediaElement.HAVE_METADATA) markReady();
+      else media.addEventListener("loadedmetadata", markReady, { once: true });
+      media.addEventListener("error", markFailed, { once: true });
+      media.querySelector("source")?.addEventListener("error", markFailed, { once: true });
+    }
+  });
+  selectNode(selectedNode, { notifyRenderer: false });
+  setEvidenceOpen(false, false);
+
+  return {
+    attachRenderer(instance) {
+      renderer = instance;
+      renderer.selectNode(selectedNode.id);
+      renderer.setEvidenceOpen(evidenceOpen);
+      renderer.setEvidenceIndex(evidenceIndex);
+    },
+    selectFromRenderer(nodeId) {
+      const node = content.voyage.nodes.find((candidate) => candidate.id === nodeId);
+      if (node) selectNode(node, { notifyRenderer: false });
+    },
+    setEvidenceFromRenderer(open) {
+      setEvidenceOpen(open, false);
+    },
+    destroy() {
+      section.removeEventListener("pointerdown", skipFromPointer);
+      section.removeEventListener("keydown", skipFromKeyboard);
+      section.removeEventListener("voyage:evidence-index", onEvidenceIndexRequest);
+      document.removeEventListener("keydown", onEscape);
+      evidencePrev?.removeEventListener("click", showPreviousEvidence);
+      evidenceNext?.removeEventListener("click", showNextEvidence);
+    }
+  };
 }
 
 export async function initializeApplication({ content, state, onSectionChange }: InitOptions): Promise<void> {
@@ -720,7 +900,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
   terminal?.start();
   const destroySiggraphMachine = initializeSiggraphMachine(state.reducedMotion);
   initializeDrawers();
-  initializeVoyage(content, state);
+  const voyageUi = initializeVoyage(content, state);
 
   const renderers = new Map<SectionId, SceneRenderer[]>();
   const registerRenderer = (section: SectionId, renderer: SceneRenderer): void => {
@@ -728,26 +908,18 @@ export async function initializeApplication({ content, state, onSectionChange }:
     sectionRenderers.push(renderer);
     renderers.set(section, sectionRenderers);
   };
-  let voyageOceanRenderer: TransitionAwareSceneRenderer | null = null;
-  let horizonRenderer: (TransitionAwareSceneRenderer & { setBridgeActive(active: boolean): void }) | null = null;
-  const { PixelOceanRenderer } = await import("../ocean/PixelOceanRenderer");
-  document.querySelectorAll<HTMLCanvasElement>('[data-ocean="sunset"]').forEach((canvas) => {
-    try {
-      const renderer = new PixelOceanRenderer(canvas);
-      renderer.setQuality(state.qualityTier);
-      renderer.start();
-      if (state.reducedMotion) window.setTimeout(() => renderer.pause(), 120);
-      voyageOceanRenderer = renderer;
-      registerRenderer("voyage", renderer);
-    } catch (error) {
-      canvas.closest<HTMLElement>(".scene")?.classList.add("ocean-fallback");
-      console.warn("Pixel ocean fallback active", error);
-    }
-  });
+  let voyageRenderer: TransitionAwareSceneRenderer | null = null;
+  let horizonRenderer: TransitionAwareSceneRenderer | null = null;
+  let voyageAssetsReady: Promise<void> | null = null;
+  let horizonPrewarmRequested = false;
+  let horizonPrewarmIdleHandle: number | null = null;
+  let horizonPrewarmTimer = 0;
 
   const horizonCanvas = document.querySelector<HTMLCanvasElement>("[data-horizon-scene]");
-  if (horizonCanvas) {
-    void import("../horizon/HorizonSceneRenderer").then(async ({ HorizonSceneRenderer }) => {
+  let horizonInitialization: Promise<void> | null = null;
+  const ensureHorizonRenderer = (): void => {
+    if (!horizonCanvas || horizonInitialization) return;
+    horizonInitialization = import("../horizon/HorizonSceneRenderer").then(async ({ HorizonSceneRenderer }) => {
       const renderer = new HorizonSceneRenderer(horizonCanvas, {
         reducedMotion: state.reducedMotion,
         qualityTier: state.qualityTier,
@@ -759,20 +931,25 @@ export async function initializeApplication({ content, state, onSectionChange }:
       horizonRenderer = renderer;
       registerRenderer("horizon", renderer);
       renderer.setTransitionProgress(state.reducedMotion ? 1 : state.journeyTransition);
-      if (state.activeSection !== "horizon" || !state.documentVisible) renderer.pause();
+      if (state.activeSection === "horizon" && state.documentVisible && !state.reducedMotion) renderer.resume(); else renderer.pause();
     }).catch((error) => {
       horizonCanvas.closest<HTMLElement>(".horizon-scene")?.classList.add("horizon-fallback-active");
       console.warn("Horizon scene fallback active", error);
     });
-  }
+  };
 
-  let gallery: { pause?: () => void; resume?: () => void; destroy: () => void } | null = null;
+  let gallery: PlayCanvasGallery | null = null;
+  let profileAdventure: ProfileAdventureDirector | null = null;
+  let galleryInitialization: Promise<void> = Promise.resolve();
+  const adventureRoot = document.querySelector<HTMLElement>("[data-future-slot]");
   const galleryRoot = document.getElementById("hero-exhibits");
   if (galleryRoot) {
-    // Gallery loading is intentionally detached from the navigation/scene
-    // lifecycle. Its large cabinet and texture bundle must not delay Voyage
-    // boat/landmark initialization when a visitor scrolls quickly.
-    void (async () => { try {
+    // Navigation and pause/resume lifecycles stay independent, but the first
+    // PlayCanvas shader compilation is serialized. PlayCanvas shares shader
+    // include/cache state across applications; compiling the cabinet and
+    // Voyage worlds concurrently can cross-contaminate StandardMaterial
+    // programs on Chromium even though the scenes themselves are separate.
+    galleryInitialization = (async () => { try {
       await new Promise<void>((resolve) => {
         if ("requestIdleCallback" in window) {
           (window as Window & { requestIdleCallback: (callback: () => void, options?: { timeout: number }) => void }).requestIdleCallback(resolve, { timeout: 600 });
@@ -791,52 +968,128 @@ export async function initializeApplication({ content, state, onSectionChange }:
     } })();
   }
 
-  const boatInitializers = new Map<SectionId, Promise<void>>();
-  let landmarkInitialization: Promise<void> | null = null;
-  const ensureLandmarkRenderers = (): void => {
-    if (landmarkInitialization || window.matchMedia("(max-width: 760px)").matches) return;
-    landmarkInitialization = import("../voyage/LandmarkModelRenderer").then(async ({ LandmarkModelRenderer }) => {
-      const canvas = document.querySelector<HTMLCanvasElement>("[data-landmark-scene]");
-      if (!canvas) return;
-      const renderer = new LandmarkModelRenderer(canvas, content.voyage.nodes);
+  // The room is already represented by the authored static poster. Hydrate
+  // its Canvas2D simulation in an independent idle slice: it must remain
+  // available even when the optional PlayCanvas cabinet is slow or falls
+  // back. The room only decodes images and does not share WebGL shader state.
+  let profileAdventureInitialization: Promise<void> | null = null;
+  const ensureProfileAdventure = (): void => {
+    if (!adventureRoot || profileAdventureInitialization) return;
+    profileAdventureInitialization = (async () => {
+      await new Promise<void>((resolve) => {
+        const idleWindow = window as Window & {
+          requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+        };
+        if (idleWindow.requestIdleCallback) {
+          idleWindow.requestIdleCallback(resolve, { timeout: 1_400 });
+        } else window.setTimeout(resolve, 120);
+      });
+      const { ProfileAdventureDirector } = await import("../profile/ProfileAdventureDirector");
+      const director = new ProfileAdventureDirector(adventureRoot, { reducedMotion: state.reducedMotion });
+      await director.init();
+      profileAdventure = director;
+      adventureRoot.classList.add("is-ready");
+      if (state.activeSection === "profile" && state.documentVisible && !state.reducedMotion) director.resume();
+      else director.pause();
+    })().catch((error) => {
+      adventureRoot.innerHTML = renderProfileRoomFallback();
+      adventureRoot.classList.add("is-fallback");
+      console.warn("Profile sprite room fallback active", error);
+    }).finally(() => {
+      // The cabinet's generated trophies are decorative upgrades over the
+      // already-visible authored meshes. Release their idle warmup only after
+      // this heavier sprite room has either initialized or chosen its poster.
+      galleryRoot?.dispatchEvent(new CustomEvent("gallery:companion-ready"));
+    });
+  };
+  ensureProfileAdventure();
+
+  let voyageInitialization: Promise<void> | null = null;
+  const ensureVoyageRenderer = (): void => {
+    if (voyageInitialization) return;
+    const canvas = document.querySelector<HTMLCanvasElement>("[data-voyage-scene]");
+    if (!canvas) return;
+    voyageInitialization = galleryInitialization.then(() => import("../voyage/VoyageSceneRenderer")).then(async ({ VoyageSceneRenderer }) => {
+      const renderer = new VoyageSceneRenderer(canvas, {
+        nodes: content.voyage.nodes,
+        reducedMotion: state.reducedMotion,
+        qualityTier: state.qualityTier,
+        onSelectNode: (node) => voyageUi?.selectFromRenderer(node),
+        onEvidenceOpenChange: (open) => voyageUi?.setEvidenceFromRenderer(open)
+      });
       renderer.setQuality(state.qualityTier);
       await renderer.init();
+      voyageRenderer = renderer;
+      voyageAssetsReady = renderer.whenAssetsReady();
+      voyageUi?.attachRenderer(renderer);
       registerRenderer("voyage", renderer);
-      if (state.activeSection !== "voyage" || !state.documentVisible) renderer.pause();
-    }).catch((error) => console.warn("Voyage landmark mesh fallback active", error));
+      renderer.setTransitionProgress(state.reducedMotion ? 0 : state.journeyTransition);
+      if (state.activeSection === "voyage" && state.documentVisible && !state.reducedMotion) renderer.resume();
+      else renderer.pause();
+    }).catch((error) => {
+      canvas.closest<HTMLElement>(".voyage-scene")?.classList.add("voyage-fallback-active");
+      console.warn("THE LUMINOUS WAKE WebGL fallback active", error);
+    });
   };
-  const ensureBoatRenderer = (section: SectionId): void => {
-    if (section !== "voyage") return;
-    if (window.matchMedia("(max-width: 760px)").matches) return;
-    if (boatInitializers.has(section)) return;
-    ensureLandmarkRenderers();
-    const canvas = document.querySelector<HTMLCanvasElement>('[data-boat-model="sunset"]');
-    if (!canvas) return;
 
-    const initialization = import("../voyage/BoatModelRenderer")
-      .then(async ({ BoatModelRenderer }) => {
-        const renderer = new BoatModelRenderer(canvas, "sunset");
-        renderer.setQuality(state.qualityTier);
-        await renderer.init();
-        registerRenderer(section, renderer);
-        if (state.activeSection === section && state.documentVisible) renderer.resume();
-        else renderer.pause();
-      })
-      .catch((error) => {
-        const host = canvas.closest<HTMLElement>(".research-boat");
-        host?.classList.remove("is-model-loading", "is-model-ready");
-        host?.classList.add("is-model-fallback");
-        console.warn("Generated voyage boat fallback active", error);
+  const scheduleHorizonPrewarm = (): void => {
+    if (horizonPrewarmRequested || horizonInitialization || !horizonCanvas) return;
+    horizonPrewarmRequested = true;
+    const startAtIdle = (): void => {
+      if (horizonInitialization || !horizonCanvas) return;
+      if (state.activeSection === "horizon") {
+        ensureHorizonRenderer();
+        return;
+      }
+      const run = (): void => {
+        horizonPrewarmIdleHandle = null;
+        horizonPrewarmTimer = 0;
+        ensureHorizonRenderer();
+      };
+      const idleWindow = window as Window & {
+        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      };
+      if (idleWindow.requestIdleCallback) {
+        horizonPrewarmIdleHandle = idleWindow.requestIdleCallback(run, { timeout: 900 });
+      } else {
+        horizonPrewarmTimer = window.setTimeout(run, 160);
+      }
+    };
+
+    // Do not overlap Horizon's shader/texture setup with Voyage's six streamed
+    // GLB installs. A direct navigation to Horizon is still immediate above;
+    // this path is only the invisible prewarm performed near the boundary.
+    if (voyageAssetsReady) {
+      void voyageAssetsReady.finally(startAtIdle);
+      return;
+    }
+    if (voyageInitialization) {
+      void voyageInitialization.finally(() => {
+        if (voyageAssetsReady) void voyageAssetsReady.finally(startAtIdle);
+        else startAtIdle();
       });
-    boatInitializers.set(section, initialization);
+      return;
+    }
+    startAtIdle();
   };
 
-  const sections = [...document.querySelectorAll<HTMLElement>("[data-section]")];
+  const sections = [...document.querySelectorAll<HTMLElement>("main > .scene[data-section]")];
   const navLinks = [...document.querySelectorAll<HTMLAnchorElement>("[data-nav-section]")];
   const chapterNav = document.querySelector<HTMLElement>(".chapter-nav");
-  const bridge = document.querySelector<HTMLElement>("[data-journey-bridge]");
-  const voyageBoat = document.querySelector<HTMLElement>("[data-voyage-boat] .research-boat") ?? document.querySelector<HTMLElement>("[data-voyage-boat]");
+  const voyageSection = document.getElementById("voyage");
   const horizonSection = document.getElementById("horizon");
+  const horizonPrewarmObserver = horizonSection ? new IntersectionObserver((entries, observer) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    scheduleHorizonPrewarm();
+    observer.disconnect();
+  }, { rootMargin: "24% 0px", threshold: .01 }) : null;
+  if (horizonSection) horizonPrewarmObserver?.observe(horizonSection);
+  const voyagePrewarmObserver = voyageSection ? new IntersectionObserver((entries, observer) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    ensureVoyageRenderer();
+    observer.disconnect();
+  }, { rootMargin: "0px", threshold: .01 }) : null;
+  if (voyageSection) voyagePrewarmObserver?.observe(voyageSection);
   let transitionRaf = 0;
   let navigationTimer = 0;
 
@@ -864,39 +1117,12 @@ export async function initializeApplication({ content, state, onSectionChange }:
       : Math.min(1, Math.max(0, rawProgress));
     state.journeyTransition = progress;
     document.documentElement.style.setProperty("--journey-progress", progress.toFixed(4));
-    voyageOceanRenderer?.setTransitionProgress(progress);
-    horizonRenderer?.setTransitionProgress(progress);
+    // Reduced-motion scenes are independent static keyframes: Voyage keeps
+    // its authored final palette while Horizon keeps its fully entered frame.
+    // Do not let a late layout shift cross-fade either static renderer.
+    voyageRenderer?.setTransitionProgress(state.reducedMotion ? 0 : progress);
+    horizonRenderer?.setTransitionProgress(state.reducedMotion ? 1 : progress);
 
-    const crossing = !state.reducedMotion && progress > .08 && progress < .92 && Boolean(bridge && voyageBoat);
-    document.documentElement.classList.toggle("is-journey-crossing", crossing);
-    horizonRenderer?.setBridgeActive(crossing);
-    if (crossing && state.documentVisible) {
-      voyageOceanRenderer?.resume();
-      horizonRenderer?.resume();
-    }
-    if (!bridge || !voyageBoat) return;
-    bridge.classList.toggle("is-active", crossing);
-    if (!crossing) return;
-
-    const source = voyageBoat.getBoundingClientRect();
-    const local = Math.min(1, Math.max(0, (progress - .08) / .84));
-    const eased = local * local * (3 - 2 * local);
-    const sourceX = source.left + source.width * .5;
-    const sourceY = source.top + source.height * .5;
-    const targetX = horizonRect.left + horizonRect.width * .61;
-    const targetY = horizonRect.top + horizonRect.height * .66;
-    const targetWidth = Math.max(74, horizonRect.height * .138);
-    const width = source.width + (targetWidth - source.width) * eased;
-    const x = sourceX + (targetX - sourceX) * eased;
-    const y = sourceY + (targetY - sourceY) * eased;
-    const frame = Math.floor((performance.now() / 400) % 12);
-    const column = frame % 4;
-    const row = Math.floor(frame / 4);
-    bridge.style.setProperty("--bridge-x", `${x}px`);
-    bridge.style.setProperty("--bridge-y", `${y}px`);
-    bridge.style.setProperty("--bridge-width", `${width}px`);
-    bridge.style.setProperty("--bridge-frame-x", `${column * 33.3333}%`);
-    bridge.style.setProperty("--bridge-frame-y", `${row * 50}%`);
   };
 
   const requestTransitionUpdate = (): void => {
@@ -934,16 +1160,20 @@ export async function initializeApplication({ content, state, onSectionChange }:
     });
     renderers.forEach((sectionRenderers, section) => {
       if (state.reducedMotion) return;
-      const transitionKeepsSceneAlive = state.journeyTransition > .08
-        && state.journeyTransition < .92
-        && (section === "voyage" || section === "horizon");
       sectionRenderers.forEach((renderer) => {
-        if (section === active || transitionKeepsSceneAlive) renderer.resume(); else renderer.pause();
+        if (section === active) renderer.resume(); else renderer.pause();
       });
     });
-    ensureBoatRenderer(active);
+    if (active === "voyage") ensureVoyageRenderer();
+    if (active === "horizon") ensureHorizonRenderer();
     scheduleNavigationSettle();
-    if (active === "profile") gallery?.resume?.(); else gallery?.pause?.();
+    if (active === "profile") {
+      gallery?.resume();
+      profileAdventure?.resume();
+    } else {
+      gallery?.pause();
+      profileAdventure?.pause();
+    }
     document.querySelectorAll<HTMLVideoElement>("[data-section-video]").forEach((video) => {
       if (video.dataset.sectionVideo === active && !state.reducedMotion) video.play().catch(() => undefined);
       else video.pause();
@@ -956,10 +1186,12 @@ export async function initializeApplication({ content, state, onSectionChange }:
     if (document.hidden) {
       renderers.forEach((sectionRenderers) => sectionRenderers.forEach((renderer) => renderer.pause()));
       gallery?.pause?.();
+      profileAdventure?.pause();
       document.querySelectorAll("video").forEach((video) => video.pause());
     } else if (!state.reducedMotion) {
       renderers.get(state.activeSection)?.forEach((renderer) => renderer.resume());
       if (state.activeSection === "profile") gallery?.resume?.();
+      if (state.activeSection === "profile") profileAdventure?.resume();
     }
   });
 
@@ -982,13 +1214,22 @@ export async function initializeApplication({ content, state, onSectionChange }:
     if (event.key === "Escape") {
       document.querySelectorAll(".gallery-ui-card.is-active").forEach((card) => card.classList.remove("is-active"));
       state.selectedProject = null;
+      if (state.activeSection === "profile") profileAdventure?.cancelManualActions();
     }
   });
 
   window.addEventListener("beforeunload", () => {
     terminal?.destroy();
     destroySiggraphMachine();
+    voyageUi?.destroy();
+    horizonPrewarmObserver?.disconnect();
+    voyagePrewarmObserver?.disconnect();
+    if (horizonPrewarmIdleHandle !== null) {
+      (window as Window & { cancelIdleCallback?: (handle: number) => void }).cancelIdleCallback?.(horizonPrewarmIdleHandle);
+    }
+    window.clearTimeout(horizonPrewarmTimer);
     gallery?.destroy();
+    profileAdventure?.destroy();
     cancelAnimationFrame(transitionRaf);
     window.clearTimeout(navigationTimer);
     renderers.forEach((sectionRenderers) => sectionRenderers.forEach((renderer) => renderer.destroy()));

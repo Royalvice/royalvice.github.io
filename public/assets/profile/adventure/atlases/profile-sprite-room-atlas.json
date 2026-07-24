@@ -1,0 +1,307 @@
+{
+  "version": "2026-07-17.profile-sprite-room.v2",
+  "generatedAt": "2026-07-17T03:09:02.894707+00:00",
+  "sheetSize": [
+    384,
+    384
+  ],
+  "frameSize": [
+    128,
+    128
+  ],
+  "columns": 3,
+  "rows": 3,
+  "frameOrder": [
+    "idle",
+    "walk-contact",
+    "walk-passing",
+    "walk-opposite-contact",
+    "interaction-a",
+    "interaction-b",
+    "portal-reaction",
+    "celebration",
+    "character-signature"
+  ],
+  "actors": {
+    "doraemon": {
+      "url": "/assets/profile/adventure/sprites-v2/doraemon-3x3.webp",
+      "approvedFrames": 9,
+      "pivot": [
+        0.5,
+        0.90625
+      ],
+      "sha256": "4fda7ec8491c21fb049e7ab5cc9b61c161b3cd277a763b24368783f915738459",
+      "sources": [
+        {
+          "frame": "idle",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 1
+        },
+        {
+          "frame": "walk-contact",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 2
+        },
+        {
+          "frame": "walk-passing",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 3
+        },
+        {
+          "frame": "walk-opposite-contact",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 4
+        },
+        {
+          "frame": "interaction-a",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 5
+        },
+        {
+          "frame": "interaction-b",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 6
+        },
+        {
+          "frame": "portal-reaction",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 7
+        },
+        {
+          "frame": "celebration",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 8
+        },
+        {
+          "frame": "character-signature",
+          "candidate": "doraemon-sheet-r2.png",
+          "cell": 9
+        }
+      ]
+    },
+    "nobita": {
+      "url": "/assets/profile/adventure/sprites-v2/nobita-3x3.webp",
+      "approvedFrames": 9,
+      "pivot": [
+        0.5,
+        0.90625
+      ],
+      "sha256": "8358832df28390fdaa9eda01ed5153a706ed191d98449abd3fd574bcbe3f1c62",
+      "sources": [
+        {
+          "frame": "idle",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 1
+        },
+        {
+          "frame": "walk-contact",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 2
+        },
+        {
+          "frame": "walk-passing",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 3
+        },
+        {
+          "frame": "walk-opposite-contact",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 4
+        },
+        {
+          "frame": "interaction-a",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 5
+        },
+        {
+          "frame": "interaction-b",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 6
+        },
+        {
+          "frame": "portal-reaction",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 7
+        },
+        {
+          "frame": "celebration",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 8
+        },
+        {
+          "frame": "character-signature",
+          "candidate": "nobita-sheet-r2.png",
+          "cell": 9
+        }
+      ]
+    },
+    "shizuka": {
+      "url": "/assets/profile/adventure/sprites-v2/shizuka-3x3.webp",
+      "approvedFrames": 9,
+      "pivot": [
+        0.5,
+        0.90625
+      ],
+      "sha256": "69ec56208a10a59f5f7bad7fc852465b8a0a8f44ef3e37eddec9d49f45f48b89",
+      "sources": [
+        {
+          "frame": "idle",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 1
+        },
+        {
+          "frame": "walk-contact",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 2
+        },
+        {
+          "frame": "walk-passing",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 3
+        },
+        {
+          "frame": "walk-opposite-contact",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 4
+        },
+        {
+          "frame": "interaction-a",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 5
+        },
+        {
+          "frame": "interaction-b",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 6
+        },
+        {
+          "frame": "portal-reaction",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 7
+        },
+        {
+          "frame": "celebration",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 8
+        },
+        {
+          "frame": "character-signature",
+          "candidate": "shizuka-sheet-r1.png",
+          "cell": 9
+        }
+      ]
+    },
+    "gian": {
+      "url": "/assets/profile/adventure/sprites-v2/gian-3x3.webp",
+      "approvedFrames": 9,
+      "pivot": [
+        0.5,
+        0.90625
+      ],
+      "sha256": "d1a4161d336ab4975c1b938962cd3a49b73febbd648c2c97ecd660441817196e",
+      "sources": [
+        {
+          "frame": "idle",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 1
+        },
+        {
+          "frame": "walk-contact",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 2
+        },
+        {
+          "frame": "walk-passing",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 3
+        },
+        {
+          "frame": "walk-opposite-contact",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 4
+        },
+        {
+          "frame": "interaction-a",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 5
+        },
+        {
+          "frame": "interaction-b",
+          "candidate": "gian-sheet-r1.png",
+          "cell": 6
+        },
+        {
+          "frame": "portal-reaction",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 7
+        },
+        {
+          "frame": "celebration",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 8
+        },
+        {
+          "frame": "character-signature",
+          "candidate": "gian-sheet-r2.png",
+          "cell": 9
+        }
+      ]
+    },
+    "suneo": {
+      "url": "/assets/profile/adventure/sprites-v2/suneo-3x3.webp",
+      "approvedFrames": 9,
+      "pivot": [
+        0.5,
+        0.90625
+      ],
+      "sha256": "1025e004819e3b80b4be670f6a98864d17de848ec3a76a8095c6946101d55960",
+      "sources": [
+        {
+          "frame": "idle",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 1
+        },
+        {
+          "frame": "walk-contact",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 2
+        },
+        {
+          "frame": "walk-passing",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 3
+        },
+        {
+          "frame": "walk-opposite-contact",
+          "candidate": "suneo-sheet-r2.png",
+          "cell": 8
+        },
+        {
+          "frame": "interaction-a",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 5
+        },
+        {
+          "frame": "interaction-b",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 6
+        },
+        {
+          "frame": "portal-reaction",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 7
+        },
+        {
+          "frame": "celebration",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 8
+        },
+        {
+          "frame": "character-signature",
+          "candidate": "suneo-sheet-r4.png",
+          "cell": 9
+        }
+      ]
+    }
+  }
+}

@@ -91,12 +91,19 @@ type HeroVideoRuntime = {
   video: HTMLVideoElement;
   ready: boolean;
   failed: boolean;
+  lastUploadedMediaTime: number;
 };
 
 type HeroColorProbe = {
   sourceMean: [number, number, number];
   renderedMean: [number, number, number];
   delta: number;
+};
+
+type GeneratedTrophyAsset = {
+  label: "v2" | "v3-lod";
+  url: string;
+  timeoutMs?: number;
 };
 
 const ASSET_VERSION = "20260701-walnut-cabinet-v6k-walnut-metal-floor";
@@ -106,14 +113,36 @@ const AREA_LUTS_URL = "/assets/gallery/materials/area-light-luts.json";
 const WALNUT_V6_DIR = "/assets/gallery/materials/walnut_cabinet_v6";
 const CABINET_LIGHTMAP_URL = `/assets/gallery/materials/cabinet_lightmap_v6.png?v=${ASSET_VERSION}`;
 const DEFAULT_WOOD_CANDIDATE = "walnut_cabinet_v6";
-const GENERATED_TROPHY_VERSION = "20260712-trellis2-1024-v1";
-const GENERATED_TROPHY_URLS = [
-  `/assets/gallery/models/generated/trophy-ssat-v1.glb?v=${GENERATED_TROPHY_VERSION}`,
-  `/assets/gallery/models/generated/trophy-directl-v1.glb?v=${GENERATED_TROPHY_VERSION}`,
-  `/assets/gallery/models/generated/trophy-eva01-v1.glb?v=${GENERATED_TROPHY_VERSION}`,
-  `/assets/gallery/models/generated/trophy-docdiff-v1.glb?v=${GENERATED_TROPHY_VERSION}`
-] as const;
-
+const GENERATED_TROPHY_V2_VERSION = "20260722-perf-v2";
+const GENERATED_TROPHY_V3_VERSION = "20260722-perf-v3-lod";
+const BACKGROUND_TROPHY_WARMUP_DELAY_MS = 12_000;
+const BACKGROUND_TROPHY_IDLE_TIMEOUT_MS = 4_000;
+// A lower-poly v3 is an acceleration path, never a visual dependency. Each
+// slot keeps its authored v2 model as an in-order network/runtime fallback.
+const GENERATED_TROPHY_SOURCES: ReadonlyArray<ReadonlyArray<GeneratedTrophyAsset>> = [
+  [
+    {
+      label: "v3-lod",
+      url: `/assets/gallery/models/generated/trophy-ssat-v3-lod.glb?v=${GENERATED_TROPHY_V3_VERSION}`,
+      // PlayCanvas retries failed container requests internally. Bound only
+      // the optional LOD so a CDN/cache miss cannot postpone the visible v2.
+      timeoutMs: 8_000
+    },
+    { label: "v2", url: `/assets/gallery/models/generated/trophy-ssat-v2-perf.glb?v=${GENERATED_TROPHY_V2_VERSION}` }
+  ],
+  [
+    { label: "v3-lod", url: `/assets/gallery/models/generated/trophy-directl-v3-lod.glb?v=${GENERATED_TROPHY_V3_VERSION}`, timeoutMs: 8_000 },
+    { label: "v2", url: `/assets/gallery/models/generated/trophy-directl-v2-perf.glb?v=${GENERATED_TROPHY_V2_VERSION}` }
+  ],
+  [
+    { label: "v3-lod", url: `/assets/gallery/models/generated/trophy-eva01-v3-lod.glb?v=${GENERATED_TROPHY_V3_VERSION}`, timeoutMs: 8_000 },
+    { label: "v2", url: `/assets/gallery/models/generated/trophy-eva01-v2-perf.glb?v=${GENERATED_TROPHY_V2_VERSION}` }
+  ],
+  [
+    { label: "v3-lod", url: `/assets/gallery/models/generated/trophy-docdiff-v3-lod.glb?v=${GENERATED_TROPHY_V3_VERSION}`, timeoutMs: 8_000 },
+    { label: "v2", url: `/assets/gallery/models/generated/trophy-docdiff-v2-perf.glb?v=${GENERATED_TROPHY_V2_VERSION}` }
+  ]
+];
 const CABINET_VERSION = "v6";
 const CABINET_WIDTH = 5.55;
 const CABINET_HEIGHT = 4.78;
@@ -207,6 +236,15 @@ function makeMaterial(options: MaterialOptions): pc.StandardMaterial {
 
 function getWoodCandidateId(): string {
   return DEFAULT_WOOD_CANDIDATE;
+}
+
+/**
+ * Color probes are a calibration diagnostic, not a visual dependency. Reading
+ * pixels back from a canvas stalls the GPU command queue, so production keeps
+ * the probe dormant unless a developer explicitly requests it in the URL.
+ */
+function isColorProbeRequested(): boolean {
+  return new URLSearchParams(window.location.search).has("gallery-color-probe");
 }
 
 function addVerticalQuad(parent: pc.Entity, device: pc.GraphicsDevice, name: string, material: pc.Material, options: {
@@ -398,19 +436,31 @@ export class PlayCanvasGallery {
   private heroColorProbe: Record<string, HeroColorProbe> = {};
   private trophyMeshes: Record<string, boolean> = {};
   private generatedTrophyModels: Record<string, boolean> = {};
+  private generatedTrophySources: Record<string, GeneratedTrophyAsset["label"]> = {};
   private heroVideoStates: Record<string, { url: string; ready: boolean; failed: boolean }> = {};
   private heroVideos: HeroVideoRuntime[] = [];
   private matrixPlaques: MatrixPlaqueRuntime[] = [];
   private plaqueUpdateAccumulator = 0;
   private videoUpdateAccumulator = 0;
   private colorProbeAccumulator = 0;
+  private lightingAccumulator = 0;
   private frameSamples: number[] = [];
   private time = 0;
   private woodCandidate = getWoodCandidateId();
   private paused = false;
   private spotlightSceneWeight = 0;
-  private lastLightingUpdateMs = performance.now();
-
+  private generatedTrophyQueue: number[] = [];
+  private generatedTrophySettled = new Set<number>();
+  private generatedTrophyLoadingIndex: number | null = null;
+  private generatedTrophyIdleHandle: number | null = null;
+  private generatedTrophyTimer = 0;
+  private generatedTrophyInteractionStarted = false;
+  private profileCompanionReady = false;
+  private destroyed = false;
+  private staticCabinetBatchGroupId: number | null = null;
+  private staticCabinetBatchSourceMeshes = 0;
+  private staticCabinetBatchCount = 0;
+  private readonly colorProbeEnabled = isColorProbeRequested();
   constructor(private root: HTMLElement, private projects: GalleryProject[]) {
     this.root.innerHTML = this.renderShell();
     const canvas = this.root.querySelector<HTMLCanvasElement>(".playcanvas-gallery-canvas");
@@ -426,6 +476,7 @@ export class PlayCanvasGallery {
   }
 
   async init(): Promise<void> {
+    this.root.addEventListener("gallery:companion-ready", this.onProfileCompanionReady);
     this.configureApp();
     this.createCamera();
 
@@ -437,16 +488,31 @@ export class PlayCanvasGallery {
     this.installDebugHook();
 
     this.app.on("update", (dt: number) => this.update(dt));
+    // The cabinet is a mostly static PBR scene. Its only continuous visual
+    // inputs are the 24 fps video card, 13 fps matrix plaques, and transient
+    // hover lighting. Rendering every browser tick does not add information,
+    // but it does re-run TAA, SSAO and bloom needlessly.
+    this.app.autoRender = false;
     this.app.start();
-    void this.loadGeneratedTrophyModels();
+    this.applySpotlightLighting(0, true);
+    this.app.renderNextFrame = true;
+    this.scheduleGeneratedTrophyLoading();
     this.resize();
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.root);
   }
 
   destroy(): void {
+    this.destroyed = true;
+    this.cancelGeneratedTrophyScheduling();
+    this.root.removeEventListener("gallery:companion-ready", this.onProfileCompanionReady);
     this.resizeObserver?.disconnect();
     this.cameraFrame?.destroy();
+    this.heroVideos.forEach((runtime) => {
+      runtime.video.pause();
+      runtime.video.removeAttribute("src");
+      runtime.video.load();
+    });
     delete window.__galleryDebug;
     this.app.destroy();
   }
@@ -456,18 +522,32 @@ export class PlayCanvasGallery {
     this.paused = true;
     this.app.autoRender = false;
     this.heroVideos.forEach((runtime) => runtime.video.pause());
+    this.cancelGeneratedTrophyScheduling();
   }
 
   resume(): void {
     if (!this.paused) return;
     this.paused = false;
-    this.lastLightingUpdateMs = performance.now();
-    this.app.autoRender = true;
+    this.lightingAccumulator = 0;
+    this.app.autoRender = false;
     this.app.renderNextFrame = true;
     this.heroVideos.forEach((runtime) => {
       if (!runtime.failed) runtime.video.play().catch(() => undefined);
     });
+    this.scheduleGeneratedTrophyLoading();
   }
+
+  getRootElement(): HTMLElement {
+    return this.root;
+  }
+
+
+
+
+
+
+
+
 
   private renderShell(): string {
     const cards = this.projects.slice(0, 4).map((project, index) => {
@@ -685,13 +765,59 @@ export class PlayCanvasGallery {
         spotlightWeight: 0
       });
     }
+
+    this.createStaticCabinetBatch(cabinet);
+  }
+
+  /**
+   * The authored cabinet deliberately keeps every rail, groove and frame as a
+   * separate mesh so it remains editable in DCC tools. At runtime those
+   * pieces never move. Static batching preserves their exact materials,
+   * lighting, shadows and lightmaps, while replacing hundreds of CPU draw
+   * submissions with material-sized batches. Interactive glass, plaques,
+   * diffuser brightness and trophies intentionally stay outside the batch.
+   */
+  private createStaticCabinetBatch(cabinet: pc.Entity): void {
+    const batcher = this.app.batcher;
+    if (!batcher || this.staticCabinetBatchGroupId !== null) return;
+
+    const group = batcher.addGroup("wooden-gallery-static-cabinet", false, 32, undefined, [pc.LAYERID_WORLD]);
+    let sourceMeshes = 0;
+    cabinet.forEach((node) => {
+      const entity = node as pc.Entity;
+      const render = entity.render;
+      if (!render || !this.isStaticCabinetBatchCandidate(entity.name)) return;
+      render.isStatic = true;
+      render.batchGroupId = group.id;
+      sourceMeshes += render.meshInstances.length;
+    });
+
+    if (!sourceMeshes) {
+      batcher.removeGroup(group.id);
+      return;
+    }
+
+    batcher.generate([group.id]);
+    const getBatches = (batcher as unknown as { getBatches: (id: number) => unknown[] }).getBatches;
+    this.staticCabinetBatchGroupId = group.id;
+    this.staticCabinetBatchSourceMeshes = sourceMeshes;
+    this.staticCabinetBatchCount = typeof getBatches === "function" ? getBatches.call(batcher, group.id).length : 0;
+  }
+
+  private isStaticCabinetBatchCandidate(name: string): boolean {
+    // Transparent panes need painter's ordering. The animated/interactive
+    // parts below own per-slot material state or are swapped asynchronously.
+    return !name.includes("glass")
+      && !name.includes(".light-diffuser")
+      && !name.includes(".plaque-screen")
+      && !name.includes(".trophy-");
   }
 
   private installGeneratedTrophy(
     trophyRoot: pc.Entity,
     resource: pc.ContainerResource,
     projectId: string
-  ): void {
+  ): boolean {
     try {
       const legacyRenderers: pc.RenderComponent[] = [];
       const collectLegacyRenderers = (entity: pc.Entity): void => {
@@ -737,26 +863,132 @@ export class PlayCanvasGallery {
       legacyRenderers.forEach((render) => { render.enabled = false; });
       generated.enabled = true;
       this.generatedTrophyModels[projectId] = true;
+      return true;
     } catch (error) {
       this.generatedTrophyModels[projectId] = false;
       console.warn(`Generated trophy fallback active for ${projectId}`, error);
+      return false;
     }
   }
 
-  private async loadGeneratedTrophyModels(): Promise<void> {
-    await Promise.all(GENERATED_TROPHY_URLS.map(async (url, index) => {
-      const slot = this.slots[index];
-      const project = this.projects[index];
-      if (!slot || !project) return;
-      try {
-        const resource = await this.loadContainer(url);
-        this.installGeneratedTrophy(slot.trophy, resource, project.id);
-        this.app.renderNextFrame = true;
-      } catch (error) {
-        this.generatedTrophyModels[project.id] = false;
-        console.warn(`Generated trophy fallback active for ${project.id}`, error);
+  private scheduleGeneratedTrophyLoading(priorityIndex?: number): void {
+    if (this.destroyed) return;
+
+    if (priorityIndex !== undefined) {
+      this.generatedTrophyInteractionStarted = true;
+      const project = this.projects[priorityIndex];
+      if (!project || this.generatedTrophyModels[project.id] || this.generatedTrophySettled.has(priorityIndex) || this.generatedTrophyLoadingIndex === priorityIndex) return;
+      this.generatedTrophyQueue = [
+        priorityIndex,
+        ...this.generatedTrophyQueue.filter((index) => index !== priorityIndex)
+      ];
+      this.cancelGeneratedTrophyScheduling();
+    }
+
+    // The profile room hydrates after the cabinet. Let it complete its image
+    // decoding before non-critical trophy upgrades compete for the same main
+    // thread/GPU queue. Direct user focus always bypasses this gate.
+    if (priorityIndex === undefined && !this.generatedTrophyInteractionStarted && !this.profileCompanionReady) return;
+
+    if (!this.generatedTrophyQueue.length) {
+      this.generatedTrophyQueue = this.projects
+        .slice(0, GENERATED_TROPHY_SOURCES.length)
+        .map((project, index) => this.generatedTrophyModels[project.id] || this.generatedTrophySettled.has(index) ? -1 : index)
+        .filter((index) => index >= 0);
+    }
+
+    if (this.paused || this.generatedTrophyLoadingIndex !== null || !this.generatedTrophyQueue.length) return;
+
+    if (priorityIndex !== undefined) {
+      this.requestGeneratedTrophyIdleSlot(650);
+      return;
+    }
+
+    if (this.generatedTrophyTimer || this.generatedTrophyIdleHandle !== null) return;
+    this.generatedTrophyTimer = window.setTimeout(() => {
+      this.generatedTrophyTimer = 0;
+      this.requestGeneratedTrophyIdleSlot(
+        this.generatedTrophyInteractionStarted ? 1_200 : BACKGROUND_TROPHY_IDLE_TIMEOUT_MS
+      );
+    }, this.generatedTrophyInteractionStarted ? 1_800 : BACKGROUND_TROPHY_WARMUP_DELAY_MS);
+  }
+
+  private requestGeneratedTrophyIdleSlot(timeout: number): void {
+    if (this.destroyed || this.paused || this.generatedTrophyLoadingIndex !== null || !this.generatedTrophyQueue.length) return;
+    const run = (): void => {
+      this.generatedTrophyIdleHandle = null;
+      if (this.destroyed || this.paused) return;
+      void this.loadNextGeneratedTrophy();
+    };
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    if (idleWindow.requestIdleCallback) {
+      this.generatedTrophyIdleHandle = idleWindow.requestIdleCallback(run, { timeout });
+    } else {
+      this.generatedTrophyTimer = window.setTimeout(() => {
+        this.generatedTrophyTimer = 0;
+        run();
+      }, Math.min(timeout, 120));
+    }
+  }
+
+  private onProfileCompanionReady = (): void => {
+    this.profileCompanionReady = true;
+    if (!this.paused) this.scheduleGeneratedTrophyLoading();
+  };
+
+  private cancelGeneratedTrophyScheduling(): void {
+    if (this.generatedTrophyTimer) {
+      window.clearTimeout(this.generatedTrophyTimer);
+      this.generatedTrophyTimer = 0;
+    }
+    if (this.generatedTrophyIdleHandle !== null) {
+      const idleWindow = window as Window & { cancelIdleCallback?: (handle: number) => void };
+      idleWindow.cancelIdleCallback?.(this.generatedTrophyIdleHandle);
+      this.generatedTrophyIdleHandle = null;
+    }
+  }
+
+  private async loadNextGeneratedTrophy(): Promise<void> {
+    const index = this.generatedTrophyQueue.shift();
+    if (index === undefined) return;
+    const slot = this.slots[index];
+    const project = this.projects[index];
+    const sources = GENERATED_TROPHY_SOURCES[index];
+    if (!slot || !project || !sources?.length || this.generatedTrophyModels[project.id]) {
+      this.scheduleGeneratedTrophyLoading();
+      return;
+    }
+
+    this.generatedTrophyLoadingIndex = index;
+    try {
+      let installed = false;
+      let lastError: unknown;
+      for (const source of sources) {
+        try {
+          const resource = await this.loadContainer(source.url, source.timeoutMs);
+          if (this.destroyed) break;
+          if (this.installGeneratedTrophy(slot.trophy, resource, project.id)) {
+            this.generatedTrophySources[project.id] = source.label;
+            this.app.renderNextFrame = true;
+            installed = true;
+            break;
+          }
+        } catch (error) {
+          lastError = error;
+        }
       }
-    }));
+      if (!installed && !this.destroyed) {
+        this.generatedTrophyModels[project.id] = false;
+        console.warn(`Generated trophy fallback active for ${project.id}`, lastError);
+      }
+    } finally {
+      this.generatedTrophySettled.add(index);
+      this.generatedTrophyLoadingIndex = null;
+      if (!this.paused && !this.destroyed) this.scheduleGeneratedTrophyLoading();
+    }
   }
 
   private createCabinetMaterials(wood: WoodTextureSet): Record<string, pc.StandardMaterial> {
@@ -1078,19 +1310,13 @@ export class PlayCanvasGallery {
     const canvas = document.createElement("canvas");
     canvas.width = 1280;
     canvas.height = 720;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error(`Failed to create hero media canvas for ${project.id}`);
     drawHeroMediaSurface(ctx, project, source);
 
-    const sourceMean = sampleImageMean(source, canvas.width, canvas.height);
-    const renderedMean = sampleCanvasMean(ctx, 0, 0, canvas.width, canvas.height);
     const texture = makeCanvasTexture(this.app.graphicsDevice, `${project.id}.generated-hero-media`, canvas);
     this.generatedHeroMedia[project.id] = true;
-    this.heroColorProbe[project.id] = {
-      sourceMean,
-      renderedMean,
-      delta: colorDelta(sourceMean, renderedMean)
-    };
+    this.captureHeroColorProbe(project, source, ctx);
     return texture;
   }
 
@@ -1222,7 +1448,7 @@ export class PlayCanvasGallery {
     const canvas = document.createElement("canvas");
     canvas.width = 1280;
     canvas.height = 720;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error(`Failed to create video hero media canvas for ${project.id}`);
 
     const video = document.createElement("video");
@@ -1255,7 +1481,8 @@ export class PlayCanvasGallery {
       project,
       video,
       ready: false,
-      failed: false
+      failed: false,
+      lastUploadedMediaTime: -1
     };
     this.heroVideos.push(runtime);
     this.heroVideoStates[project.id] = { url: project.heroVideo, ready: false, failed: false };
@@ -1264,17 +1491,12 @@ export class PlayCanvasGallery {
       if (runtime.ready || runtime.failed || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
       drawHeroMediaSurface(ctx, project, video);
       texture.setSource(canvas);
+      runtime.lastUploadedMediaTime = video.currentTime;
       heroMaterial.diffuseMap = texture;
       heroMaterial.emissiveMap = texture;
       heroMaterial.emissiveIntensity = HERO_VIDEO_EMISSIVE;
       heroMaterial.update();
-      const sourceMean = sampleImageMean(video, canvas.width, canvas.height);
-      const renderedMean = sampleCanvasMean(ctx, 0, 0, canvas.width, canvas.height);
-      this.heroColorProbe[project.id] = {
-        sourceMean,
-        renderedMean,
-        delta: colorDelta(sourceMean, renderedMean)
-      };
+      this.captureHeroColorProbe(project, video, ctx);
       runtime.ready = true;
       this.heroVideoStates[project.id] = { url: project.heroVideo ?? "", ready: true, failed: false };
       video.play().catch(() => {
@@ -1481,6 +1703,7 @@ export class PlayCanvasGallery {
       const index = Number(card.dataset.index ?? 0);
       card.addEventListener("pointerenter", () => {
         this.beginSpotlightFocus(index);
+        this.root.dispatchEvent(new CustomEvent("gallery:user-control", { detail: { index, source: "pointer" } }));
       });
       card.addEventListener("pointerleave", () => {
         if (this.hoverIndex === index) this.hoverIndex = null;
@@ -1488,6 +1711,7 @@ export class PlayCanvasGallery {
       });
       card.addEventListener("focus", () => {
         this.beginSpotlightFocus(index);
+        this.root.dispatchEvent(new CustomEvent("gallery:user-control", { detail: { index, source: "keyboard" } }));
       });
       card.addEventListener("blur", () => {
         if (this.hoverIndex === index) this.hoverIndex = null;
@@ -1496,6 +1720,8 @@ export class PlayCanvasGallery {
       card.addEventListener("click", (event) => {
         if ((event.target as HTMLElement).closest("a")) return;
         this.activeIndex = index;
+        this.scheduleGeneratedTrophyLoading(index);
+        this.root.dispatchEvent(new CustomEvent("gallery:user-control", { detail: { index, source: "click" } }));
         this.updateCardState();
       });
       card.addEventListener("keydown", (event) => {
@@ -1517,6 +1743,7 @@ export class PlayCanvasGallery {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           this.activeIndex = index;
+          this.scheduleGeneratedTrophyLoading(index);
           this.updateCardState();
         }
       });
@@ -1526,6 +1753,7 @@ export class PlayCanvasGallery {
 
   private beginSpotlightFocus(index: number): void {
     this.hoverIndex = index;
+    this.scheduleGeneratedTrophyLoading(index);
     const slot = this.slots[index];
     if (slot?.trophySpotlight.light) {
       slot.spotlightWeight = Math.max(slot.spotlightWeight, 0.42);
@@ -1549,15 +1777,14 @@ export class PlayCanvasGallery {
 
   private update(dt: number): void {
     if (this.paused) return;
-    const lightingNowMs = performance.now();
-    const lightingDt = Math.min(0.5, Math.max(0, (lightingNowMs - this.lastLightingUpdateMs) / 1000));
-    this.lastLightingUpdateMs = lightingNowMs;
     this.time += dt;
     this.plaqueUpdateAccumulator += dt;
     this.videoUpdateAccumulator += dt;
-    this.colorProbeAccumulator += dt;
+    if (this.colorProbeEnabled) this.colorProbeAccumulator += dt;
+    this.lightingAccumulator += dt;
     this.frameSamples.push(dt);
     if (this.frameSamples.length > 60) this.frameSamples.shift();
+    let needsRender = false;
 
     if (this.plaqueUpdateAccumulator > 0.075) {
       this.plaqueUpdateAccumulator = 0;
@@ -1565,36 +1792,59 @@ export class PlayCanvasGallery {
         this.drawMatrixPlaque(plaque, this.time);
         plaque.texture.setSource(plaque.canvas);
       }
+      needsRender = true;
     }
 
     const shouldUpdateVideo = this.videoUpdateAccumulator > 1 / 24;
-    const shouldProbeColor = this.colorProbeAccumulator > 1.5;
+    const shouldProbeColor = this.colorProbeEnabled && this.colorProbeAccumulator > 1.5;
     if (shouldUpdateVideo) this.videoUpdateAccumulator = 0;
     if (shouldProbeColor) this.colorProbeAccumulator = 0;
 
     for (const heroVideo of this.heroVideos) {
       if (heroVideo.ready && !heroVideo.failed && heroVideo.video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        if (shouldUpdateVideo) {
+        const mediaTime = heroVideo.video.currentTime;
+        if (shouldUpdateVideo && Math.abs(mediaTime - heroVideo.lastUploadedMediaTime) > 0.0001) {
           drawHeroMediaSurface(heroVideo.ctx, heroVideo.project, heroVideo.video);
           heroVideo.texture.setSource(heroVideo.canvas);
+          heroVideo.lastUploadedMediaTime = mediaTime;
+          needsRender = true;
         }
         if (shouldProbeColor) {
-          const sourceMean = sampleImageMean(heroVideo.video, heroVideo.canvas.width, heroVideo.canvas.height);
-          const renderedMean = sampleCanvasMean(heroVideo.ctx, 0, 0, heroVideo.canvas.width, heroVideo.canvas.height);
-          this.heroColorProbe[heroVideo.project.id] = {
-            sourceMean,
-            renderedMean,
-            delta: colorDelta(sourceMean, renderedMean)
-          };
+          this.captureHeroColorProbe(heroVideo.project, heroVideo.video, heroVideo.ctx);
         }
       }
     }
 
+    const hasActiveLighting = this.hoverIndex !== null
+      || this.spotlightSceneWeight > 0.001
+      || this.slots.some((slot) => slot.spotlightWeight > 0.001);
+    if (hasActiveLighting && this.lightingAccumulator >= 1 / 30) {
+      const lightingDt = Math.min(0.15, Math.max(0, this.lightingAccumulator));
+      this.lightingAccumulator = 0;
+      this.applySpotlightLighting(lightingDt);
+      needsRender = true;
+    }
+    if (needsRender) this.app.renderNextFrame = true;
+  }
+
+  private captureHeroColorProbe(project: GalleryProject, source: CanvasImageSource, ctx: CanvasRenderingContext2D): void {
+    if (!this.colorProbeEnabled) return;
+    const sourceMean = sampleImageMean(source, ctx.canvas.width, ctx.canvas.height);
+    const renderedMean = sampleCanvasMean(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height);
+    this.heroColorProbe[project.id] = {
+      sourceMean,
+      renderedMean,
+      delta: colorDelta(sourceMean, renderedMean)
+    };
+  }
+
+  private applySpotlightLighting(lightingDt: number, force = false): void {
     const hasSpotlightFocus = this.hoverIndex !== null;
     let maxSpotlightWeight = 0;
     for (const slot of this.slots) {
-      const isFocusedTrophy = slot.index === this.hoverIndex;
-      const focusTarget = isFocusedTrophy ? 1 : 0;
+      const userFocusedTrophy = slot.index === this.hoverIndex;
+      const isFocusedTrophy = userFocusedTrophy;
+      const focusTarget = userFocusedTrophy ? 1 : 0;
       const focusRate = isFocusedTrophy ? 3.2 : hasSpotlightFocus ? 9 : 4.2;
       const focusAlpha = 1 - Math.exp(-lightingDt * focusRate);
       slot.spotlightWeight = pc.math.lerp(slot.spotlightWeight, focusTarget, focusAlpha);
@@ -1606,6 +1856,15 @@ export class PlayCanvasGallery {
     const sceneFocusRate = hasSpotlightFocus ? 2.1 : 5;
     const sceneFocusAlpha = 1 - Math.exp(-lightingDt * sceneFocusRate);
     this.spotlightSceneWeight = pc.math.lerp(this.spotlightSceneWeight, sceneFocusTarget, sceneFocusAlpha);
+    if (!hasSpotlightFocus) {
+      this.slots.forEach((slot) => {
+        if (slot.spotlightWeight < 0.002) slot.spotlightWeight = 0;
+      });
+      if (this.spotlightSceneWeight < 0.002) this.spotlightSceneWeight = 0;
+      maxSpotlightWeight = Math.max(...this.slots.map((slot) => slot.spotlightWeight), 0);
+    }
+    const hasVisibleLightingTransition = hasSpotlightFocus || maxSpotlightWeight > 0 || this.spotlightSceneWeight > 0;
+    if (!force && !hasVisibleLightingTransition) return;
     const appliedSceneWeight = hasSpotlightFocus
       ? this.spotlightSceneWeight
       : Math.max(this.spotlightSceneWeight, maxSpotlightWeight * 0.94);
@@ -1641,13 +1900,22 @@ export class PlayCanvasGallery {
           slot.trophySpotlight.enabled = false;
         }
       }
-      slot.diffuserMaterial.emissiveIntensity = 0.82 * pc.math.lerp(1, 0.012, appliedSceneWeight);
-      slot.diffuserMaterial.update();
+      const diffuserIntensity = 0.82 * pc.math.lerp(1, 0.012, appliedSceneWeight);
+      if (Math.abs(slot.diffuserMaterial.emissiveIntensity - diffuserIntensity) > 0.0005) {
+        slot.diffuserMaterial.emissiveIntensity = diffuserIntensity;
+        slot.diffuserMaterial.update();
+      }
       const mediaDim = pc.math.lerp(1, 0.34, appliedSceneWeight);
-      slot.heroMaterial.emissiveIntensity = (slot.project.heroVideo ? HERO_VIDEO_EMISSIVE : HERO_IMAGE_EMISSIVE) * mediaDim;
-      slot.heroMaterial.update();
-      slot.plaqueMaterial.emissiveIntensity = 0.16 * pc.math.lerp(1, 0.28, appliedSceneWeight);
-      slot.plaqueMaterial.update();
+      const heroIntensity = (slot.project.heroVideo ? HERO_VIDEO_EMISSIVE : HERO_IMAGE_EMISSIVE) * mediaDim;
+      if (Math.abs(slot.heroMaterial.emissiveIntensity - heroIntensity) > 0.0005) {
+        slot.heroMaterial.emissiveIntensity = heroIntensity;
+        slot.heroMaterial.update();
+      }
+      const plaqueIntensity = 0.16 * pc.math.lerp(1, 0.28, appliedSceneWeight);
+      if (Math.abs(slot.plaqueMaterial.emissiveIntensity - plaqueIntensity) > 0.0005) {
+        slot.plaqueMaterial.emissiveIntensity = plaqueIntensity;
+        slot.plaqueMaterial.update();
+      }
       slot.trophy.setLocalEulerAngles(0, Math.sin(this.time * 0.72 + slot.index) * 1.15 * slot.spotlightWeight, 0);
     }
   }
@@ -1672,6 +1940,16 @@ export class PlayCanvasGallery {
         heroVideos: this.heroVideoStates,
         trophyMeshes: this.trophyMeshes,
         generatedTrophyModels: this.generatedTrophyModels,
+        generatedTrophySources: this.generatedTrophySources,
+        generatedTrophyInteractionStarted: this.generatedTrophyInteractionStarted,
+        profileCompanionReady: this.profileCompanionReady,
+        generatedTrophyQueue: this.generatedTrophyQueue.map((index) => this.projects[index]?.id ?? String(index)),
+        generatedTrophyLoading: this.generatedTrophyLoadingIndex === null ? null : this.projects[this.generatedTrophyLoadingIndex]?.id ?? null,
+        staticCabinetBatch: {
+          groupId: this.staticCabinetBatchGroupId,
+          sourceMeshes: this.staticCabinetBatchSourceMeshes,
+          batches: this.staticCabinetBatchCount
+        },
         canvasCount: document.querySelectorAll("canvas").length,
         webglContexts: window.__webglContexts ?? null,
         drawCalls: stats.drawCalls?.total ?? stats.drawCalls?.forward ?? null,
@@ -1763,8 +2041,8 @@ export class PlayCanvasGallery {
     };
   }
 
-  private loadContainer(url: string): Promise<pc.ContainerResource> {
-    return new Promise((resolve, reject) => {
+  private loadContainer(url: string, timeoutMs?: number): Promise<pc.ContainerResource> {
+    const load = new Promise<pc.ContainerResource>((resolve, reject) => {
       this.app.assets.loadFromUrl(url, "container", (error, asset) => {
         if (error || !asset?.resource) {
           reject(error ?? new Error(`Failed to load container: ${url}`));
@@ -1772,6 +2050,23 @@ export class PlayCanvasGallery {
         }
         resolve(asset.resource as pc.ContainerResource);
       });
+    });
+    if (!timeoutMs) return load;
+
+    return new Promise((resolve, reject) => {
+      const timer = window.setTimeout(() => {
+        reject(new Error(`Timed out after ${timeoutMs}ms loading optional container: ${url}`));
+      }, timeoutMs);
+      load.then(
+        (resource) => {
+          window.clearTimeout(timer);
+          resolve(resource);
+        },
+        (error) => {
+          window.clearTimeout(timer);
+          reject(error);
+        }
+      );
     });
   }
 

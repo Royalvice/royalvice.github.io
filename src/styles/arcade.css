@@ -170,7 +170,7 @@ html[data-section="horizon"] .nav-track i { width: 100%; }
   display: grid;
   grid-template-columns: minmax(600px, 40%) minmax(0, 60%);
   gap: 12px;
-  min-height: max(100svh, 920px);
+  min-height: max(100svh, 980px);
   background:
     radial-gradient(ellipse at 32% 20%, rgba(216,163,70,.075), transparent 28rem),
     radial-gradient(ellipse at 82% 44%, rgba(120,68,29,.16), transparent 40rem),
@@ -188,7 +188,7 @@ html[data-section="horizon"] .nav-track i { width: 100%; }
 
 .profile-console {
   display: grid;
-  grid-template-rows: minmax(340px, 30%) minmax(180px, 1fr) minmax(270px, 30%);
+  grid-template-rows: minmax(340px, 30%) minmax(304px, 1fr) minmax(270px, 30%);
   gap: 10px;
   padding: 14px;
   min-height: calc(100svh - var(--nav-height) - 40px);
@@ -426,8 +426,100 @@ html[data-section="horizon"] .nav-track i { width: 100%; }
 @keyframes burner-spark { 0%{transform:translate(0,3px) scale(.4);opacity:0} 14%{opacity:.9} 62%{opacity:.7} 100%{transform:translate(calc((var(--spark) - 5) * 1.4px),-32px) scale(.1);opacity:0} }
 @keyframes steam-rise { 0%{opacity:0;transform:translate(0,7px) scale(.55,.45)} 18%{opacity:.22} 48%{opacity:.34} 100%{opacity:0;transform:translate(calc((var(--steam) - 3) * 2px),-39px) scale(1.8,.95)} }
 
-.future-slot { position:relative; min-height:0; overflow:hidden; background:radial-gradient(ellipse at 92% 45%,rgba(183,112,45,.055),transparent 42%),repeating-linear-gradient(0deg,transparent 0 7px,rgba(191,151,84,.012) 7px 8px); }
-.future-slot::after { content:""; position:absolute; left:8%; right:6%; top:50%; height:1px; background:linear-gradient(90deg,transparent,rgba(199,146,69,.08),transparent); }
+.future-slot {
+  position:relative;
+  min-height:304px;
+  overflow:hidden;
+  border:1px solid rgba(195,146,76,.15);
+  background:#06100e;
+  box-shadow:inset 0 0 34px rgba(0,0,0,.62);
+}
+.future-slot::before {
+  content:"";
+  position:absolute;
+  z-index:5;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(3,9,7,.72),transparent 12% 80%,rgba(46,17,12,.42)),
+    repeating-linear-gradient(180deg,transparent 0 3px,rgba(223,192,131,.018) 3px 4px);
+  box-shadow:inset 0 0 0 1px rgba(231,188,111,.04),inset 0 -18px 25px rgba(0,0,0,.46);
+}
+.future-slot::after {
+  content:"";
+  position:absolute;
+  z-index:6;
+  left:7%;
+  right:5%;
+  bottom:12px;
+  height:1px;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(223,177,101,.23) 18% 78%,transparent);
+}
+.profile-room-fallback { position:absolute; z-index:1; inset:0; display:block; background:#040908; }
+.profile-room-fallback img { display:block; width:100%; height:100%; object-fit:contain; image-rendering:pixelated; image-rendering:crisp-edges; }
+.profile-adventure-stage { position:absolute; inset:0; isolation:isolate; overflow:hidden; background:#040908; }
+.profile-adventure-heading {
+  position:absolute;
+  z-index:12;
+  top:10px;
+  left:12px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  column-gap:10px;
+  align-items:end;
+  color:#b89b70;
+  font:600 6px/1.2 var(--mono);
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  pointer-events:none;
+}
+.profile-adventure-heading span { color:#6e9f93; }
+.profile-adventure-heading h3 { grid-column:1/-1; margin:4px 0 0; color:#f0d69d; font:700 clamp(14px,1.05vw,19px)/.95 var(--display); letter-spacing:.06em; text-shadow:2px 2px #140a06; }
+.profile-adventure-heading small { position:absolute; top:2px; left:calc(100% + 13px); width:max-content; color:#6b756b; font:500 5px/1 var(--mono); }
+.profile-sprite-canvas { position:absolute; z-index:1; inset:0; width:100%; height:100%; image-rendering:pixelated; image-rendering:crisp-edges; }
+.profile-actor-controls { position:absolute; z-index:14; inset:0; pointer-events:none; }
+.profile-actor-controls button,
+.profile-door-control {
+  position:absolute;
+  pointer-events:auto;
+  width:48px;
+  height:64px;
+  margin:0;
+  padding:0;
+  border:0;
+  color:transparent;
+  background:transparent;
+  cursor:pointer;
+  transform:translateX(-50%);
+}
+.profile-actor-controls button:focus-visible,
+.profile-door-control:focus-visible { outline:0; }
+.profile-adventure-replay:focus-visible { outline:2px solid #f0c66e; outline-offset:2px; }
+.profile-actor-controls button span { position:absolute; left:50%; bottom:-8px; transform:translateX(-50%); padding:2px 4px; color:#8fa89d; background:rgba(2,8,7,.82); font:500 5px/1 var(--mono); letter-spacing:.09em; opacity:0; transition:opacity .14s ease-out; }
+.profile-actor-controls button:hover span,.profile-actor-controls button:focus-visible span { opacity:1; }
+.profile-door-control { z-index:15; width:54px; height:78px; }
+.profile-door-control span { position:absolute; left:50%; bottom:-3px; transform:translateX(-50%); color:#e78abb; font:600 5px/1 var(--mono); letter-spacing:.16em; opacity:calc(.38 + var(--portal-strength,0) * .62); }
+.profile-adventure-replay {
+  position:absolute;
+  z-index:18;
+  right:10px;
+  top:10px;
+  height:24px;
+  padding:0 8px;
+  border:1px solid rgba(210,161,84,.29);
+  color:#bba479;
+  background:rgba(5,12,9,.78);
+  font:600 6px/1 var(--mono);
+  letter-spacing:.12em;
+  cursor:pointer;
+}
+.profile-adventure-replay:hover { color:#f3dda6; border-color:rgba(246,199,115,.58); background:#13201a; }
+.profile-adventure-replay i { color:#5fe3c5; font-style:normal; }
+.profile-adventure-caption { position:absolute; z-index:12; right:10px; bottom:7px; display:flex; gap:9px; margin:0; color:#74877f; font:500 5px/1 var(--mono); letter-spacing:.12em; pointer-events:none; }
+.profile-adventure-caption span { color:#d38ab2; }
+.profile-adventure-caption b { color:#b79665; }
+.profile-room-inventory { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
 /* Read-only research console */
 .terminal-shell {
@@ -574,110 +666,128 @@ a.terminal-line:hover .terminal-open b,a.terminal-line:focus-visible .terminal-o
 .gallery-links .is-disabled { opacity:.4; cursor:not-allowed; }
 .gallery-calibration-credit { position:absolute; z-index:5; right:8px; bottom:3px; margin:0; color:rgba(216,199,168,.25); font:400 5px/1 var(--mono); pointer-events:none; }
 
-/* Voyage board */
-.voyage-scene { min-height:max(100svh,960px); background:radial-gradient(circle at 72% 12%,rgba(216,163,70,.1),transparent 30rem),linear-gradient(180deg,#071520,#06101a); }
-.voyage-board { height:calc(100svh - var(--nav-height) - 40px); min-height:880px; display:grid; grid-template-rows:86px 1fr; gap:9px; padding:10px; border:1px solid rgba(199,146,69,.42); background:linear-gradient(135deg,rgba(25,17,11,.94),rgba(7,13,15,.96)); box-shadow:inset 0 0 38px rgba(0,0,0,.42),0 24px 60px rgba(0,0,0,.25); }
-.voyage-header { display:grid; grid-template-columns:1fr 260px; align-items:center; gap:20px; padding:9px 15px; border:1px solid rgba(199,146,69,.24); background:linear-gradient(90deg,rgba(5,26,22,.88),rgba(28,18,10,.8)); }
-.voyage-header > div:first-child > span { color:var(--crt); font:600 8px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; }
-.voyage-header h2 { margin:6px 0 0; color:#f0e0b6; font:400 clamp(24px,2vw,39px)/.95 var(--display); letter-spacing:.01em; }
-.voyage-header h2 i { color:var(--brass); font-style:normal; }
-.voyage-progress { display:grid; grid-template-columns:1fr auto; align-items:center; gap:6px 12px; }
-.voyage-progress > span { color:#a99777; font:600 8px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; }
-.voyage-progress > strong { color:#f6deb0; font:600 18px/1 var(--mono); }
-.voyage-progress > i { grid-column:1/-1; height:5px; overflow:hidden; border:1px solid rgba(199,146,69,.25); background:#07110f; }
-.voyage-progress > i b { display:block; width:75%; height:100%; background:linear-gradient(90deg,var(--brass),var(--crt)); box-shadow:0 0 8px rgba(98,255,131,.38); }
-.voyage-layout { min-height:0; display:grid; grid-template-columns:minmax(0,74fr) minmax(280px,26fr); gap:9px; }
-.voyage-main { min-height:0; display:grid; grid-template-rows:minmax(0,65fr) minmax(230px,35fr); gap:9px; }
-.ocean-map { position:relative; min-height:0; overflow:hidden; border:1px solid rgba(199,146,69,.38); background:radial-gradient(circle at 72% 25%,rgba(216,163,70,.18),transparent 18rem),linear-gradient(#0a4b56,#062332); image-rendering:pixelated; }
-.pixel-ocean { position:absolute; inset:0; width:100%; height:100%; max-width:none; image-rendering:pixelated; }
-.ocean-grain { position:absolute; inset:0; pointer-events:none; opacity:.32; background:repeating-linear-gradient(132deg,transparent 0 15px,rgba(220,238,220,.025) 15px 16px),radial-gradient(circle at 73% 23%,rgba(255,203,92,.17),transparent 27%); mix-blend-mode:screen; }
-.voyage-route { position:absolute; z-index:2; inset:9% 4% 17%; width:92%; height:74%; overflow:visible; }
-.voyage-route path { fill:none; stroke-linecap:round; }
-.route-depth { stroke:rgba(0,0,0,.52); stroke-width:15; }
-.route-wake { stroke:#efcf79; stroke-width:6; stroke-dasharray:12 13; filter:drop-shadow(0 0 7px rgba(245,196,83,.5)); animation:wake-flow 1.8s linear infinite; }
-.route-future { stroke:rgba(98,255,131,.24); stroke-width:3; stroke-dasharray:3 13; filter:drop-shadow(0 0 4px rgba(98,255,131,.25)); }
-@keyframes wake-flow { to{stroke-dashoffset:-25} }
-.voyage-nodes { position:absolute; z-index:5; inset:0; }
-.voyage-node { position:absolute; left:var(--node-x); top:var(--node-y); transform:translate(-50%,-50%); width:128px; padding:0; border:0; background:transparent; cursor:pointer; text-align:left; }
-.landmark-model { position:relative; width:64px; height:50px; margin:0 auto -5px; }
-.landmark-model .landmark-poster { width:100%; height:100%; object-fit:contain; opacity:1; filter:saturate(.9) contrast(1.04); transition:opacity .2s ease; }
-.landmark-scene-canvas { position:absolute; z-index:5; inset:0; width:100%; height:100%; max-width:none; opacity:0; pointer-events:none; image-rendering:pixelated; transition:opacity .25s ease; }
-.ocean-map.landmarks-model-ready .landmark-scene-canvas { opacity:1; }
-.ocean-map.landmarks-model-ready .landmark-poster { opacity:0; }
-.voyage-node > span { display:grid; gap:2px; padding:5px 7px; border:1px solid rgba(42,25,13,.7); background:linear-gradient(135deg,rgba(244,218,160,.94),rgba(187,128,51,.9)); box-shadow:3px 4px 0 rgba(0,0,0,.38); color:#241509; }
-.voyage-node b { font:600 10px/1 var(--pixel); }
-.voyage-node small { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font:500 7px/1 var(--mono); opacity:.72; }
-.voyage-node[aria-selected="true"] .landmark-model { transform:translateY(-2px) scale(1.03); }
-.voyage-node[aria-selected="true"] > span { border-color:var(--crt); box-shadow:3px 4px 0 rgba(0,0,0,.38),0 0 10px rgba(98,255,131,.32); }
-.node-future > span { color:#d9eadb; background:linear-gradient(135deg,rgba(14,38,29,.9),rgba(10,19,17,.92)); border-color:rgba(98,255,131,.35); }
+/* Voyage — THE LUMINOUS WAKE, a floating research archipelago. */
+.voyage-scene { min-height:max(100svh,820px); padding:0; background:#083943; --voyage-intro:0; }
+.voyage-scene::before { content:""; position:absolute; z-index:4; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(2,7,11,.61),transparent 20%,transparent 74%,rgba(1,6,10,.68)); }
+.voyage-fallback-art,.voyage-scene-canvas,.voyage-vignette { position:absolute; inset:0; width:100%; height:100%; max-width:none; }
+.voyage-fallback-art { z-index:0; margin:0; background:radial-gradient(ellipse at 38% 39%,rgba(255,218,150,.18),transparent 18%),radial-gradient(ellipse at 72% 27%,rgba(78,255,174,.12),transparent 10%),linear-gradient(132deg,#174b4b 0,#0b5963 35%,#0a4855 68%,#062d38 100%); }
+.voyage-fallback-art img { width:100%; height:100%; object-fit:cover; image-rendering:pixelated; }
+.voyage-scene-canvas { z-index:1; opacity:0; image-rendering:pixelated; transition:opacity .32s linear; }
+.voyage-scene.is-voyage-ready .voyage-scene-canvas { opacity:1; }
+.voyage-scene.is-voyage-ready .voyage-fallback-art { opacity:0; transition:opacity .32s linear; }
+.voyage-scene.voyage-fallback-active .voyage-fallback-art { opacity:1; }
+.voyage-scene.voyage-fallback-active .landmark-model { opacity:0; }
+.voyage-scene.voyage-fallback-active .voyage-skip { display:none; }
+.voyage-scene.voyage-fallback-active .captains-log { opacity:1; transform:none; }
+.voyage-vignette { z-index:3; pointer-events:none; box-shadow:inset 0 0 12vw rgba(0,0,0,.56),inset 0 -12vh 13vh rgba(0,0,0,.31); background:linear-gradient(90deg,rgba(2,7,10,.10),transparent 13% 77%,rgba(2,7,10,.22)); }
 
-.boat-position { position:absolute; z-index:8; left:var(--boat-x); top:var(--boat-y); width:100px; transform:translate(-50%,-60%); transition:left var(--boat-duration,1.4s) var(--ease),top var(--boat-duration,1.4s) var(--ease); pointer-events:none; }
-.boat-position > span { display:block; width:max-content; max-width:130px; margin:-6px auto 0; padding:3px 7px; color:#2a170a; border:1px solid #301b0b; background:linear-gradient(135deg,#f3dc9e,#c88b35); box-shadow:2px 3px 0 rgba(0,0,0,.4); font:600 7px/1 var(--mono); text-transform:uppercase; }
-.research-boat { position:relative; width:100%; aspect-ratio:132/96; transform-origin:50% 80%; animation:boat-bob 3.8s ease-in-out infinite; }
-.research-boat svg { position:relative; z-index:1; width:100%; overflow:visible; opacity:1; filter:drop-shadow(4px 7px 3px rgba(0,0,0,.36)); transition:opacity .32s ease; }
-.research-boat-canvas { position:absolute; z-index:2; left:-23%; top:-17%; width:146%; height:136%; max-width:none; opacity:0; pointer-events:none; filter:drop-shadow(4px 7px 3px rgba(0,0,0,.32)); transition:opacity .42s ease; }
-.research-boat.is-model-loading > svg { opacity:0; }
-.research-boat.is-model-ready .research-boat-canvas { opacity:1; }
-.research-boat.is-model-ready > svg { opacity:0; }
-.research-boat.is-model-fallback > svg { opacity:1; }
-.research-boat.is-model-fallback .research-boat-canvas { display:none; }
-.research-boat-horizon .research-boat-canvas { left:-27%; top:-19%; width:154%; height:142%; filter:drop-shadow(3px 5px 3px rgba(0,0,0,.4)); }
-.boat-shadow { fill:rgba(0,10,15,.35); }
-.boat-mast { fill:#d5aa60; }
-.boat-sail-main { fill:#eee1bd; stroke:#5c351d; stroke-width:2; }
-.boat-sail-back { fill:#d8c38f; stroke:#5c351d; stroke-width:2; }
-.boat-sail-stitch { fill:rgba(199,146,69,.18); }
-.boat-hull-brass { fill:#c79245; stroke:#2b1408; stroke-width:2; }
-.boat-hull { fill:#4b2717; }
-.boat-window { fill:#e6bd70; }
-.boat-signal { fill:#62ff83; filter:drop-shadow(0 0 3px #62ff83); }
-.boat-reflection { display:block; width:72%; height:7px; margin:-9px auto 0; background:radial-gradient(ellipse,rgba(221,179,87,.25),rgba(8,37,48,.04) 65%,transparent 72%); filter:blur(2px); }
-@keyframes boat-bob { 50%{transform:translateY(3px) rotate(-.6deg)} }
+.voyage-header { position:absolute; z-index:10; left:clamp(30px,4vw,74px); right:clamp(500px,29vw,570px); top:clamp(84px,10vh,116px); display:block; pointer-events:none; }
+.voyage-title-lockup > span { color:rgba(121,235,197,.76); font:600 8px/1 var(--mono); letter-spacing:.24em; text-transform:uppercase; }
+.voyage-title-lockup h2 { margin:10px 0 5px; color:#f0dfb7; font:400 clamp(38px,4.15vw,78px)/.77 var(--display); letter-spacing:.055em; text-shadow:0 7px 28px rgba(0,0,0,.46); }
+.voyage-title-lockup p { margin:0; color:rgba(219,218,191,.72); font:500 clamp(8px,.65vw,11px)/1.4 var(--mono); letter-spacing:.055em; }
+.voyage-title-lockup p i { color:#d5a24e; font-style:normal; }
+.voyage-progress { position:absolute; left:0; top:calc(100% + 17px); width:190px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:7px 12px; padding-bottom:4px; }
+.voyage-progress > span { color:#ae9c7b; font:600 7px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; }
+.voyage-progress > strong { color:#ecd6a7; font:600 16px/1 var(--mono); }
+.voyage-progress > i { grid-column:1/-1; height:3px; overflow:hidden; background:rgba(3,11,14,.8); border:1px solid rgba(199,146,69,.28); }
+.voyage-progress > i b { display:block; width:75%; height:100%; background:linear-gradient(90deg,#bb7438,#e5c777 78%,#86f2a1); }
+.voyage-skip { position:absolute; left:207px; top:calc(100% + 15px); pointer-events:auto; cursor:pointer; padding:7px 9px; border:1px solid rgba(213,176,108,.28); background:rgba(14,17,14,.74); color:#b9aa8d; font:600 7px/1 var(--mono); letter-spacing:.13em; text-transform:uppercase; transition:color .2s,border-color .2s,opacity .25s; }
+.voyage-skip:hover,.voyage-skip:focus-visible { color:#f0dfb7; border-color:rgba(229,199,119,.66); }
+.voyage-scene[data-intro-phase="interactive"] .voyage-skip { opacity:0; pointer-events:none; }
 
-.evidence-deck { min-height:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
-.evidence-card { min-width:0; overflow:hidden; display:grid; grid-template-rows:24px minmax(90px,1fr) auto; padding:7px; border:1px solid rgba(199,146,69,.42); background:linear-gradient(145deg,#7f542c,#4b2b17 70%,#28150b); box-shadow:inset 0 1px rgba(255,236,189,.12),4px 5px 0 rgba(0,0,0,.35); transition:transform .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease); }
-.evidence-card:hover,.evidence-card:focus-within,.evidence-card.is-selected { transform:translateY(-3px); border-color:var(--brass-light); box-shadow:inset 0 1px rgba(255,236,189,.16),4px 7px 0 rgba(0,0,0,.4),0 0 12px rgba(216,163,70,.14); }
-.evidence-topline { display:flex; justify-content:space-between; gap:8px; color:#ead8ae; font:600 6px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
-.evidence-topline span { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-.evidence-topline b { color:#241509; }
-.evidence-card figure { min-height:0; margin:0; overflow:hidden; display:grid; place-items:center; border:1px solid rgba(20,11,6,.72); background:#090907; }
-.evidence-card figure img,.evidence-card figure video { width:100%; height:100%; object-fit:contain; transition:transform .22s var(--ease); }
-.evidence-card:hover figure img,.evidence-card:hover figure video { transform:scale(1.015); }
-.evidence-copy { min-width:0; display:grid; grid-template-columns:1fr auto; align-items:end; gap:8px; padding-top:6px; }
-.evidence-copy h3 { margin:0 0 2px; color:#160c07; font:600 15px/1 var(--pixel); }
-.evidence-copy p { margin:0; display:-webkit-box; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; color:#2e1d11; font:500 clamp(6px,.42vw,8px)/1.25 var(--body); }
+.voyage-nodes { position:absolute; z-index:8; inset:0; transition:opacity .6s var(--ease); }
+.voyage-node { position:absolute; left:var(--node-x); top:var(--node-y); width:clamp(112px,8.8vw,158px); min-height:50px; padding:0; transform:translate(-50%,-50%); border:0; background:transparent; cursor:pointer; text-align:center; color:#e5d4aa; }
+.landmark-model { position:absolute; left:50%; bottom:50%; width:clamp(74px,6.7vw,124px); height:clamp(58px,5.5vw,98px); transform:translate(-50%,-11px); opacity:.88; pointer-events:none; transition:opacity .25s,transform .25s; }
+.landmark-model .landmark-poster { width:100%; height:100%; object-fit:contain; mix-blend-mode:screen; filter:saturate(.72) contrast(1.18) brightness(.5); -webkit-mask-image:radial-gradient(ellipse 66% 68% at 50% 51%,#000 50%,transparent 100%); mask-image:radial-gradient(ellipse 66% 68% at 50% 51%,#000 50%,transparent 100%); }
+.voyage-node.is-model-ready .landmark-model { opacity:0; }
+.voyage-node.is-poster-fallback .landmark-model { opacity:.96; }
+.voyage-node.is-world-poster-ready .landmark-model { opacity:0; }
+.voyage-beacon { position:relative; width:24px; height:24px; display:grid; place-items:center; margin:auto; color:#d8b56c; border:1px solid rgba(218,178,102,.5); background:rgba(5,19,22,.92); box-shadow:0 4px 12px rgba(0,0,0,.42); transform:rotate(45deg); transition:transform .24s var(--ease),border-color .24s,background .24s; }
+.voyage-beacon i { position:absolute; inset:5px; border:1px solid rgba(216,181,108,.28); }
+.voyage-beacon b { font:600 7px/1 var(--mono); transform:rotate(-45deg); }
+.voyage-node-copy { display:grid; gap:4px; margin-top:8px; padding:6px 8px; background:linear-gradient(90deg,transparent,rgba(3,14,17,.91) 14% 86%,transparent); text-shadow:0 2px 5px #000; transition:opacity .2s,transform .24s; }
+.voyage-node-copy b { font:500 clamp(12px,.95vw,18px)/.95 var(--display); letter-spacing:.035em; }
+.voyage-node-copy small { overflow:hidden; color:#9f9d8d; font:500 5.5px/1 var(--mono); letter-spacing:.08em; text-overflow:ellipsis; white-space:nowrap; text-transform:uppercase; }
+.voyage-node:hover .voyage-beacon,.voyage-node:focus-visible .voyage-beacon,.voyage-node[aria-selected="true"] .voyage-beacon { transform:rotate(45deg) scale(1.13); border-color:#d9c47f; background:#1d2a20; box-shadow:0 0 0 3px rgba(221,188,110,.08),0 5px 14px rgba(0,0,0,.5); }
+.voyage-node:focus-visible { outline:1px solid rgba(218,196,135,.82); outline-offset:7px; }
+.voyage-node[aria-selected="true"] .voyage-node-copy { color:#fff0c4; transform:translateY(-2px); }
+.voyage-node.node-future .voyage-beacon { color:#74ef9b; border-color:rgba(98,255,131,.58); background:#09251c; }
+.voyage-node.node-future .voyage-beacon::after { content:""; position:absolute; inset:-8px; border:1px solid rgba(72,255,126,.42); opacity:var(--oasis-ghost,0); box-shadow:0 0 9px rgba(28,255,94,.48),inset 0 0 8px rgba(34,255,105,.22); pointer-events:none; }
+.voyage-node.node-future .voyage-node-copy { position:relative; color:#bce8c7; isolation:isolate; }
+.voyage-node.node-future .voyage-node-copy::before { content:""; position:absolute; z-index:-1; inset:-5px 4px; background:radial-gradient(ellipse at center,rgba(21,255,92,.18),rgba(8,78,39,.07) 48%,transparent 75%); opacity:var(--oasis-ghost,0); pointer-events:none; }
+.voyage-scene[data-intro-phase="dissolve"] .voyage-nodes { opacity:.14; }
+.voyage-scene[data-intro-phase="route-survey"] .voyage-nodes { opacity:.58; }
+.voyage-scene[data-intro-phase="harbor-reveal"] .voyage-nodes,.voyage-scene[data-intro-phase="interactive"] .voyage-nodes { opacity:1; }
+
+.voyage-index { position:absolute; z-index:9; left:clamp(30px,4vw,74px); right:clamp(500px,29vw,570px); bottom:clamp(25px,4.3vh,48px); display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:0; margin:0; padding:0; list-style:none; transition:opacity .3s; }
+.voyage-index::before { content:""; position:absolute; left:0; right:0; top:11px; height:1px; background:linear-gradient(90deg,rgba(204,149,69,.14),rgba(230,196,118,.52),rgba(98,255,131,.24)); }
+.voyage-index li { position:relative; display:grid; grid-template-columns:22px 1fr; align-items:center; gap:6px; color:#6f786f; font:600 6px/1 var(--mono); letter-spacing:.08em; }
+.voyage-index li b { z-index:1; display:grid; place-items:center; width:22px; height:22px; background:#071316; border:1px solid rgba(199,146,69,.28); color:#a99a7b; }
+.voyage-index li.is-current { color:#dccb9e; }
+.voyage-index li.is-current b { color:#f0dcaa; border-color:#d3aa5f; box-shadow:0 0 9px rgba(216,163,70,.22); }
+.voyage-index li:last-child b { color:#76e895; border-color:rgba(98,255,131,.42); }
+
+.voyage-right-rail { position:absolute; z-index:12; top:clamp(142px,17vh,184px); right:clamp(28px,3vw,56px); bottom:clamp(28px,4vh,48px); width:clamp(390px,24vw,470px); min-height:0; display:grid; grid-template-rows:minmax(0,1fr) auto; gap:12px; pointer-events:none; }
+.captains-log { position:relative; min-width:0; min-height:0; overflow:auto; padding:20px 20px 18px 27px; pointer-events:auto; color:#cfc4aa; border:1px solid rgba(165,120,69,.54); border-radius:1px 5px 2px 3px; background:linear-gradient(107deg,rgba(24,17,13,.985),rgba(9,16,15,.985)),repeating-linear-gradient(180deg,transparent 0 27px,rgba(197,156,91,.055) 27px 28px); box-shadow:inset 0 0 35px rgba(0,0,0,.42),-13px 18px 35px rgba(0,0,0,.38),3px 4px 0 rgba(41,22,10,.55); opacity:0; transform:translateX(13px) rotate(.16deg); transition:opacity .55s var(--ease),transform .55s var(--ease); scrollbar-width:thin; scrollbar-color:rgba(176,128,66,.36) transparent; }
+.captains-log::before { content:""; position:absolute; inset:6px; pointer-events:none; border:1px solid rgba(199,146,69,.10); clip-path:polygon(0 0,97% 0,100% 5%,100% 94%,97% 100%,2% 100%,0 96%); }
+.journal-binding { position:absolute; left:10px; top:19px; bottom:19px; width:3px; background:repeating-linear-gradient(180deg,#6c3c20 0 12px,#b2773e 12px 14px,#27140c 14px 24px); box-shadow:1px 0 rgba(228,177,91,.18); }
+.journal-heading { position:relative; display:flex; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid rgba(199,146,69,.24); color:#c7ae78; font:600 7px/1 var(--mono); letter-spacing:.18em; text-transform:uppercase; }
+.journal-heading b { color:#8ab896; }
+.journal-status { display:flex; align-items:center; gap:7px; margin-top:12px; color:#73bd86; font:600 7px/1 var(--mono); letter-spacing:.11em; text-transform:uppercase; }
+.journal-status i { width:5px; height:5px; transform:rotate(45deg); background:#62d982; box-shadow:0 0 7px rgba(98,255,131,.38); }
+.captains-log h3 { margin:9px 0 3px; color:#f0dbae; font:400 clamp(27px,2vw,40px)/.86 var(--display); letter-spacing:.025em; }
+.captains-log > strong { display:block; color:#ba9861; font:600 7px/1.3 var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+.journal-instruments { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 12px; margin:14px 0 11px; padding:9px 0; border-block:1px solid rgba(199,146,69,.14); }
+.journal-instruments div { min-width:0; }
+.journal-instruments dt { color:#776e5c; font:600 6px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+.journal-instruments dd { margin:4px 0 0; overflow:hidden; color:#bfb092; font:500 7px/1 var(--mono); text-overflow:ellipsis; white-space:nowrap; }
+.journal-copy { min-height:55px; color:#cbbd9d; font:400 16px/1.38 var(--hand); letter-spacing:.015em; }
+.journal-copy p { margin:0 0 8px; }
+.captain-actions { display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
+.captain-actions a { display:inline-flex; align-items:center; gap:8px; padding:6px 8px; color:#d9ceb2; border:1px solid rgba(185,139,76,.34); background:#111a15; font:600 6px/1 var(--mono); letter-spacing:.06em; text-transform:uppercase; }
+.captain-actions a:hover,.captain-actions a:focus-visible { color:#8ef0a5; border-color:rgba(98,255,131,.52); }
+.journal-controls { margin-top:11px; }
+.journal-controls button { width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 10px; cursor:pointer; color:#dfceaa; border:1px solid rgba(213,170,95,.42); background:linear-gradient(90deg,rgba(95,55,27,.42),rgba(16,29,23,.56)); font:600 7px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; }
+.journal-controls button:hover,.journal-controls button:focus-visible { border-color:#d8b46c; background:rgba(107,68,33,.38); }
+.journal-stamps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; margin-top:11px; }
+.journal-stamps span { min-height:36px; display:grid; place-items:center; align-content:center; gap:2px; padding:4px 3px; color:#8f6741; border:1px double rgba(147,86,45,.62); transform:rotate(-1deg); text-align:center; font:600 5px/1.1 var(--mono); text-transform:uppercase; }
+.journal-stamps span:nth-child(even) { transform:rotate(1.5deg); }
+.journal-stamps b { color:#b37b46; font-size:7px; }
+.voyage-scene.is-journal-ready .captains-log { opacity:1; transform:translateX(0) rotate(.16deg); }
+
+.evidence-viewer { position:relative; height:0; min-height:0; display:grid; grid-template-rows:34px minmax(0,1fr) 28px; padding:0 10px; pointer-events:none; visibility:hidden; opacity:0; transform:translateY(10px); color:#cfc3a7; border:1px solid rgba(178,131,70,.62); background:linear-gradient(180deg,rgba(23,16,12,.99),rgba(5,16,17,.99)); box-shadow:0 15px 38px rgba(0,0,0,.48),inset 0 1px rgba(248,216,160,.08); transition:height .28s var(--ease),opacity .24s ease-out,transform .28s ease-out,visibility 0s linear .28s; }
+.voyage-scene.is-evidence-open .evidence-viewer { height:clamp(230px,30vh,310px); pointer-events:auto; visibility:visible; opacity:1; transform:none; transition-delay:0s; }
+.evidence-viewer-header { min-width:0; display:flex; align-items:center; justify-content:space-between; gap:10px; border-bottom:1px solid rgba(199,146,69,.2); }
+.evidence-viewer-header > div:first-child { min-width:0; display:flex; align-items:baseline; gap:8px; }
+.evidence-viewer-header span { color:#8a7c65; font:600 5.5px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+.evidence-viewer-header b { overflow:hidden; color:#d9c49b; font:500 13px/1 var(--display); letter-spacing:.04em; text-overflow:ellipsis; white-space:nowrap; }
+.evidence-viewer-tools { flex:none; display:flex; align-items:center; gap:7px; }
+.evidence-viewer-tools button { display:inline-flex; align-items:center; gap:5px; cursor:pointer; border:0; background:transparent; color:#a99778; font:600 5.5px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.evidence-viewer-tools button:hover,.evidence-viewer-tools button:focus-visible { color:#f0ddb1; }
+.evidence-viewer-tools i { font-style:normal; font-size:11px; }
+.evidence-stage { min-width:0; min-height:0; padding:7px 0 5px; }
+.evidence-card { width:100%; height:100%; min-width:0; min-height:0; display:grid; grid-template-rows:17px minmax(72px,1fr) auto; padding:5px; border:1px solid rgba(199,146,69,.28); background:#080b0b; box-shadow:inset 0 0 22px rgba(0,0,0,.5); }
+.evidence-card[hidden] { display:none; }
+.evidence-topline { min-width:0; display:flex; justify-content:space-between; color:#a99b80; font:600 5.5px/1 var(--mono); letter-spacing:.09em; text-transform:uppercase; }
+.evidence-topline b { color:#6f9d7b; }
+.evidence-media-matte { position:relative; min-width:0; min-height:0; margin:0; overflow:clip; display:grid; place-items:center; border:1px solid rgba(199,146,69,.16); background:repeating-linear-gradient(135deg,#040707 0 8px,#060a09 8px 16px); }
+.evidence-media-matte img,.evidence-media-matte video { position:absolute; inset:0; display:block; width:100%; height:100%; max-width:none; max-height:none; object-fit:contain; object-position:center; opacity:0; filter:brightness(.82) saturate(.78) contrast(1.06); transition:opacity .22s ease-out; }
+.evidence-card.is-media-ready .evidence-media-matte img,.evidence-card.is-media-ready .evidence-media-matte video { opacity:1; }
+.evidence-card.is-media-failed .evidence-media-matte::after { content:attr(data-media-fallback); max-width:30ch; padding:9px 12px; color:#9f947d; border:1px solid rgba(199,146,69,.24); background:rgba(5,12,12,.86); font:600 6px/1.5 var(--mono); letter-spacing:.09em; text-align:center; text-transform:uppercase; }
+.evidence-copy { min-width:0; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:8px; padding:7px 4px 2px; }
+.evidence-copy h3 { margin:0 0 3px; color:#e1cca1; font:500 clamp(17px,1.2vw,23px)/.9 var(--display); }
+.evidence-copy p { display:-webkit-box; max-width:44ch; margin:0; overflow:hidden; color:#908875; font:500 7px/1.35 var(--body); -webkit-box-orient:vertical; -webkit-line-clamp:2; line-clamp:2; }
 .evidence-copy nav { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:3px; }
-.project-link { display:inline-flex; align-items:center; gap:3px; padding:3px 5px; color:#e9d9b2; border:1px solid rgba(230,189,112,.38); background:#182317; font:600 6px/1 var(--mono); text-transform:uppercase; }
-.project-link:hover { color:var(--crt); border-color:var(--crt); }
-.project-link.is-disabled { opacity:.42; }
-
-.voyage-side { min-height:0; overflow:hidden; display:grid; grid-template-rows:minmax(250px,42%) 1fr; gap:9px; }
-.captains-log,.support-drawers { border:1px solid rgba(199,146,69,.34); background:linear-gradient(155deg,rgba(26,17,11,.96),rgba(6,11,11,.98)); box-shadow:inset 0 0 24px rgba(0,0,0,.34); }
-.captains-log { position:relative; display:grid; align-content:start; padding:13px; overflow:hidden; }
-.captains-log::after { content:""; position:absolute; right:-20%; bottom:-40%; width:180px; height:180px; border:1px solid rgba(98,255,131,.06); transform:rotate(45deg); }
-.panel-heading { display:flex; justify-content:space-between; padding-bottom:9px; border-bottom:1px solid rgba(199,146,69,.18); color:#cdb786; font:600 8px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
-.panel-heading b { color:var(--crt); }
-.captain-status { display:flex; align-items:center; gap:6px; margin-top:13px; color:#79cb89; font:600 7px/1 var(--mono); text-transform:uppercase; }
-.captain-status i { width:6px; height:6px; border-radius:50%; background:var(--crt); box-shadow:0 0 8px rgba(98,255,131,.52); }
-.captains-log h3 { margin:8px 0 1px; color:#f1dfb3; font:400 clamp(25px,1.85vw,36px)/.95 var(--display); }
-.captains-log > strong { color:var(--brass-light); font:600 8px/1.2 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
-.captains-log > p { max-width:34ch; margin:14px 0 10px; color:#aaa086; font:400 clamp(8px,.58vw,11px)/1.5 var(--body); }
-.captains-log > small { color:#716958; font:500 7px/1 var(--mono); letter-spacing:.1em; text-transform:uppercase; }
-.captain-actions { margin-top:14px; }
-.captain-actions a { display:inline-flex; align-items:center; gap:12px; padding:8px 10px; color:#e6ffe9; border:1px solid rgba(98,255,131,.45); background:rgba(23,65,33,.32); font:600 8px/1 var(--mono); letter-spacing:.1em; text-transform:uppercase; }
-.captain-actions a:hover { background:rgba(98,255,131,.14); }
-.support-drawers { min-height:0; display:flex; flex-direction:column; overflow:hidden; }
-.support-drawer { min-height:39px; border-bottom:1px solid rgba(199,146,69,.18); }
-.support-drawer > button { width:100%; height:39px; display:flex; justify-content:space-between; align-items:center; padding:0 12px; cursor:pointer; border:0; background:rgba(35,22,13,.28); color:#b8aa8d; font:600 8px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
-.support-drawer > button b { color:var(--crt); }
-.support-drawer > button:hover { color:#f1dfb3; background:rgba(199,146,69,.08); }
-.drawer-content { display:none; padding:8px; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
-.support-drawer.is-open { flex:1; min-height:0; overflow:auto; }
-.support-drawer.is-open .drawer-content { display:grid; }
-.drawer-content article { min-width:0; padding:8px; border:1px solid rgba(199,146,69,.18); background:rgba(199,146,69,.045); }
-.drawer-content article b { display:block; color:#d7c49b; font:600 7px/1.2 var(--body); }
-.drawer-content article p,.drawer-empty { margin:4px 0 0; color:#7f7768; font:400 6px/1.35 var(--body); }
-.archive-list article { display:flex; justify-content:space-between; gap:7px; }
+.evidence-pager { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:7px; border-top:1px solid rgba(199,146,69,.15); }
+.evidence-pager span { overflow:hidden; color:#5f7168; font:600 5px/1 var(--mono); letter-spacing:.11em; text-align:center; text-overflow:ellipsis; white-space:nowrap; text-transform:uppercase; }
+.evidence-pager button { cursor:pointer; padding:4px 2px; border:0; background:transparent; color:#b6a17e; font:600 5.5px/1 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.evidence-pager button:hover,.evidence-pager button:focus-visible { color:#86e99f; }
+.evidence-pager button:disabled { opacity:.28; cursor:default; }
+.project-link { display:inline-flex; align-items:center; gap:3px; padding:5px 7px; color:#d9ccb0; border:1px solid rgba(202,159,90,.36); background:#142119; font:600 6px/1 var(--mono); text-transform:uppercase; }
+.project-link:hover,.project-link:focus-visible { color:var(--crt); border-color:var(--crt); }
+.project-link.is-disabled { opacity:.4; }
+.evidence-aperture { position:relative; width:60%; height:75%; border:8px solid #152322; background:#06120d; box-shadow:inset 0 0 0 3px #273333; }
+.evidence-aperture i { position:absolute; left:50%; top:6%; bottom:6%; width:5px; transform:translateX(-50%); background:#62d982; box-shadow:0 0 13px rgba(98,255,131,.48); }
 
 /* Horizon — one restrained, full-frame Moonlit OASIS crossing. */
 .horizon-scene { min-height:max(100svh,780px); padding:0; background:#050a1d; }
@@ -705,10 +815,6 @@ a.terminal-line:hover .terminal-open b,a.terminal-line:focus-visible .terminal-o
 .horizon-chapters i { width:1px; height:24px; background:linear-gradient(180deg,transparent,rgba(199,146,69,.74),transparent); }
 .horizon-chapters h3 { margin:0; overflow:hidden; color:rgba(224,212,184,.86); font:400 clamp(17px,1.45vw,26px)/1 var(--display); letter-spacing:.07em; white-space:nowrap; text-overflow:ellipsis; }
 
-.journey-bridge-boat { --bridge-x:50vw; --bridge-y:60vh; --bridge-width:92px; position:fixed; z-index:90; left:var(--bridge-x); top:var(--bridge-y); width:var(--bridge-width); aspect-ratio:4/3; opacity:0; visibility:hidden; pointer-events:none; transform:translate(-50%,-50%); filter:drop-shadow(0 4px 4px rgba(0,0,0,.34)); }
-.journey-bridge-boat.is-active { opacity:1; visibility:visible; }
-.journey-bridge-boat i { position:absolute; inset:0; background-image:url('/assets/horizon/research-boat-night-atlas.webp'); background-size:400% 300%; background-position:var(--bridge-frame-x) var(--bridge-frame-y); background-repeat:no-repeat; image-rendering:pixelated; }
-html.is-journey-crossing [data-voyage-boat] .research-boat { opacity:0; }
 
 html[data-section="horizon"].horizon-ui-settled .chapter-nav { opacity:.36; }
 html[data-section="horizon"].horizon-ui-settled .chapter-nav:hover,
@@ -723,7 +829,8 @@ html[data-section="horizon"].horizon-ui-settled .chapter-nav:focus-within { opac
   .profile-console { padding:10px; }
   .profile-top { gap:8px; }
   .profile-dossier { padding-inline:9px; }
-  .voyage-layout { grid-template-columns:minmax(0,72fr) minmax(260px,28fr); }
+  .voyage-header,.voyage-index { right:430px; }
+  .voyage-right-rail { right:24px; width:380px; }
 }
 
 @media (max-width: 1180px) {
@@ -731,18 +838,13 @@ html[data-section="horizon"].horizon-ui-settled .chapter-nav:focus-within { opac
   .nav-brand small,.nav-signal span { display:none; }
   .chapter-link { min-width:115px; padding-inline:10px; }
   .profile-scene { grid-template-columns:1fr; height:auto; }
-  .profile-console { min-height:880px; }
+  .profile-console { min-height:940px; }
   .gallery-stage { min-height:740px; }
-  .voyage-board { height:auto; min-height:980px; }
-  .voyage-layout { grid-template-columns:1fr; }
-  .voyage-main { min-height:740px; }
-  .voyage-side { grid-template-columns:1fr 1fr; grid-template-rows:310px; min-height:310px; }
-  .support-drawers { min-height:310px; }
-}
-
-@media (max-width: 760px) {
-  .research-boat-canvas { display:none; }
-  .research-boat.is-model-ready > svg { opacity:1; }
+  .voyage-header { right:375px; }
+  .voyage-title-lockup h2 { font-size:49px; }
+  .voyage-index { right:375px; }
+  .voyage-right-rail { right:18px; width:342px; }
+  .captains-log { padding-inline:25px 18px; }
 }
 
 @media (max-width: 760px) {
@@ -757,7 +859,7 @@ html[data-section="horizon"].horizon-ui-settled .chapter-nav:focus-within { opac
   .chapter-link > b { font-size:8px; letter-spacing:.08em; }
   .scene { min-height:0; padding-top:62px; overflow:hidden; }
   .profile-scene { display:block; min-height:0; background:#07100d; }
-  .profile-console { min-height:0; grid-template-rows:auto 60px 330px; padding:9px; }
+  .profile-console { min-height:0; grid-template-rows:auto 352px 330px; padding:9px; }
   .profile-top { min-height:0; grid-template-columns:1fr; }
   .profile-summary { min-height:410px; grid-template-rows:175px auto auto 1fr 42px; }
   .avatar-spotlight { width:175px; height:175px; }
@@ -784,27 +886,58 @@ html[data-section="horizon"].horizon-ui-settled .chapter-nav:focus-within { opac
   .interest-rail { grid-template-columns:repeat(2,1fr); }
   .interest-label { grid-column:1/-1; }
   .interest-item { height:28px; }
-  .future-slot { min-height:60px; }
+  .future-slot { min-height:352px; }
+  .profile-adventure-heading h3 { font-size:15px; }
+  .profile-adventure-heading small { display:none; }
+  .profile-adventure-replay { top:auto; bottom:8px; right:8px; }
+  .profile-adventure-caption { left:9px; right:auto; }
+  .profile-door-control { width:50px; height:70px; }
   .terminal-shell { min-height:330px; grid-template-rows:26px 30px minmax(0,1fr) 22px; }
   .gallery-stage { min-height:620px; margin-top:10px; }
   .gallery-action-panel p { max-width:100%; }
-  .voyage-scene { min-height:0; }
-  .voyage-board { min-height:0; height:auto; padding:7px; grid-template-rows:auto auto; }
-  .voyage-header { grid-template-columns:1fr; }
-  .voyage-header h2 { font-size:28px; line-height:.95; }
-  .voyage-progress { max-width:260px; }
-  .voyage-main { min-height:0; grid-template-rows:560px auto; }
-  .voyage-node { width:94px; }
-  .voyage-node > span { padding:4px; }
-  .voyage-node b { font-size:8px; }
-  .voyage-node small { font-size:5px; }
-  .boat-position { width:76px; }
-  .evidence-deck { grid-template-columns:1fr; }
-  .evidence-card { min-height:310px; grid-template-rows:24px 190px auto; }
-  .evidence-copy h3 { font-size:20px; }
-  .evidence-copy p { font-size:9px; }
-  .voyage-side { grid-template-columns:1fr; grid-template-rows:auto 330px; min-height:0; }
-  .captains-log { min-height:300px; }
+  .voyage-scene { min-height:max(100svh,780px); padding:0; }
+  .voyage-header { left:18px; right:18px; top:76px; grid-template-columns:1fr; gap:11px; }
+  .voyage-title-lockup > span { font-size:6px; letter-spacing:.17em; }
+  .voyage-title-lockup h2 { margin-top:8px; font-size:38px; line-height:.8; letter-spacing:.035em; }
+  .voyage-title-lockup p { max-width:34ch; font-size:6px; line-height:1.55; }
+  .voyage-progress { position:relative; left:auto; top:auto; width:170px; margin:11px 0 0 auto; }
+  .voyage-progress > span { font-size:6px; }
+  .voyage-progress > strong { font-size:12px; }
+  .voyage-skip { right:auto; left:184px; top:auto; bottom:0; font-size:5px; }
+  .voyage-node { width:96px; }
+  .landmark-model { width:76px; height:62px; }
+  .voyage-beacon { width:21px; height:21px; }
+  .voyage-node-copy { margin-top:7px; padding:5px 4px; }
+  .voyage-node-copy b { font-size:11px; }
+  .voyage-node-copy small { font-size:4.5px; }
+  .voyage-fallback-active [data-voyage-node="docdiff"] { --node-x:23% !important; --node-y:56% !important; }
+  .voyage-fallback-active [data-voyage-node="neural"] { --node-x:70% !important; --node-y:48% !important; }
+  .voyage-fallback-active [data-voyage-node="directl"] { --node-x:28% !important; --node-y:40% !important; }
+  .voyage-fallback-active [data-voyage-node="eva01"] { --node-x:66% !important; --node-y:34% !important; }
+  .voyage-fallback-active [data-voyage-node="world"] { --node-x:23% !important; --node-y:27% !important; }
+  .voyage-index { left:13px; right:13px; top:auto; bottom:calc(34svh + 24px); }
+  .voyage-index li { grid-template-columns:18px 1fr; gap:3px; font-size:4px; }
+  .voyage-index li b { width:18px; height:18px; font-size:5px; }
+  .voyage-index::before { top:9px; }
+  .voyage-right-rail { z-index:30; top:auto; left:10px; right:10px; bottom:12px; width:auto; height:34svh; min-height:230px; display:block; }
+  .captains-log { position:absolute; inset:0; min-height:0; max-height:none; padding:17px 15px 14px 24px; transition:opacity .26s ease-out,transform .26s ease-out,visibility 0s linear 0s; }
+  .captains-log h3 { font-size:27px; }
+  .journal-instruments { gap:6px; }
+  .journal-copy { min-height:0; font-size:15px; }
+  .journal-stamps { display:none; }
+  .voyage-scene.is-evidence-open .voyage-right-rail { height:min(58svh,540px); }
+  .voyage-scene.is-evidence-open .captains-log { opacity:0; visibility:hidden; pointer-events:none; transform:translateY(8px); transition-delay:0s,.0s,.26s; }
+  .voyage-scene.is-evidence-open .voyage-index { opacity:0; pointer-events:none; }
+  .evidence-viewer { position:absolute; inset:auto 0 0; width:100%; padding-inline:8px; }
+  .voyage-scene.is-evidence-open .evidence-viewer { height:100%; }
+  .evidence-viewer-header > div:first-child { display:grid; gap:3px; }
+  .evidence-viewer-header b { font-size:12px; }
+  .evidence-card { min-width:0; min-height:0; grid-template-rows:18px minmax(140px,1fr) auto; }
+  .evidence-copy { grid-template-columns:1fr; gap:6px; padding:7px 3px 3px; }
+  .evidence-copy h3 { font-size:19px; }
+  .evidence-copy p { font-size:7px; -webkit-line-clamp:2; line-clamp:2; }
+  .evidence-copy nav { justify-content:flex-start; }
+  .evidence-pager span { font-size:4.5px; }
   .horizon-scene { min-height:max(100svh,780px); }
   .horizon-heading { left:24px; top:112px; }
   .horizon-heading > span { font-size:6px; }
@@ -813,23 +946,28 @@ html[data-section="horizon"].horizon-ui-settled .chapter-nav:focus-within { opac
   .horizon-chapters li { min-height:27px; grid-template-columns:22px 1px 1fr; gap:10px; padding-top:7px; border-top:1px solid rgba(199,146,69,.18); }
   .horizon-chapters i { height:16px; }
   .horizon-chapters h3 { font-size:18px; }
-  .journey-bridge-boat { filter:drop-shadow(0 3px 3px rgba(0,0,0,.28)); }
 }
 
 @media (max-height: 850px) and (min-width: 1181px) {
   .profile-scene { min-height:980px; }
-  .voyage-scene { min-height:980px; }
-  .voyage-board { height:900px; }
+  .voyage-scene { min-height:max(100svh,720px); }
+  .voyage-right-rail { top:120px; bottom:24px; }
+  .captains-log { padding-top:16px; padding-bottom:14px; }
+  .journal-instruments { margin-block:10px 8px; padding-block:7px; }
+  .journal-copy { font-size:14px; line-height:1.32; }
+  .journal-stamps { margin-top:8px; }
+  .journal-stamps span { min-height:30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
   *,*::before,*::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
   .profile-reveal,.scene-reveal { opacity:1; transform:none; }
-  .terminal-output-cursor i,.terminal-telemetry-rain span,.route-wake,.research-boat,.siggraph-machine::before,.siggraph-hologram::before,.godot-edge-flame,.godot-sparks i { animation:none !important; }
+  .terminal-output-cursor i,.terminal-telemetry-rain span,.siggraph-machine::before,.siggraph-hologram::before,.godot-edge-flame,.godot-sparks i { animation:none !important; }
+  .voyage-skip { display:none; }
+  .captains-log { opacity:1 !important; transform:none !important; }
   .horizon-heading,.horizon-chapters { opacity:1 !important; transform:none !important; animation:none !important; }
   .horizon-chapters { opacity:.66 !important; }
-  .journey-bridge-boat { display:none !important; }
   .terminal-telemetry-rain span { transform:translateY(180px); }
   .terminal-telemetry-rain span:nth-child(2n) { transform:translateY(125px); }
   .terminal-telemetry-rain span:nth-child(3n) { transform:translateY(225px); }

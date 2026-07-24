@@ -6,7 +6,15 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyOutDir: true,
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("/node_modules/playcanvas/")) return "playcanvas-runtime";
+          return undefined;
+        }
+      }
+    }
   },
   server: {
     host: "127.0.0.1"

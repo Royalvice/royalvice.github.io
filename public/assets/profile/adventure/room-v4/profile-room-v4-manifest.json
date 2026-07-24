@@ -1,0 +1,4095 @@
+{
+  "version": "2026-07-24.profile-room-v4.all-actors-three-frame",
+  "generatedAt": "2026-07-24T08:01:51.066277+00:00",
+  "generationMethod": "per-frame-t2i-i2i",
+  "reviewRun": "2026-07-18-strict-v4",
+  "viewAngle": "70-degree-high-three-quarter-overhead",
+  "actors": {
+    "nobita": {
+      "base": {
+        "url": "/assets/profile/adventure/room-v4/actors/nobita-base-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "idle",
+          "walk-contact",
+          "walk-passing",
+          "walk-opposite-contact",
+          "interaction-a",
+          "interaction-b",
+          "portal-reaction",
+          "celebration",
+          "character-signature"
+        ],
+        "approvedFrames": 9,
+        "sha256": "5421ad0d6c1c27a9c70fda6074f009144341fdb340be493dff0114583cf9f219",
+        "bytes": 64392,
+        "sources": [
+          {
+            "frame": "idle",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/idle/nobita-base-idle-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/idle.png",
+            "sha256": "ae3384951d9eeed743cacf8fcd7df19699850abcf1697533586e3494e204b88d",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "walk-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/walk-contact/nobita-base-walk-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/walk-contact.png",
+            "sha256": "9b67a2b78a1fcee06a14575e954fa57fc5fe7c59684bae6205e361b93b8f661e",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "walk-passing",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/walk-passing/nobita-base-walk-passing-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/walk-passing.png",
+            "sha256": "06da84b9263ddaf70801ce8f298d3533f18ba5f51f5397c0f1503f319562c7c5",
+            "alphaBbox": [
+              40,
+              8,
+              88,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "walk-opposite-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/walk-opposite-contact/nobita-base-walk-opposite-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/walk-opposite-contact.png",
+            "sha256": "9199c18cea99b594ce5dbb3647e394a42af92f244825b11def62da6498553c54",
+            "alphaBbox": [
+              40,
+              8,
+              87,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "interaction-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/interaction-a/nobita-base-interaction-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/interaction-a.png",
+            "sha256": "9ed3cf419fc9618938014649041cb3f253665cdf032a536d7ec63908007bf7d0",
+            "alphaBbox": [
+              34,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "interaction-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/interaction-b/nobita-base-interaction-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/interaction-b.png",
+            "sha256": "a5521e75fa8c36791cfac5fae7d09d32c85f4fc29476f47dbc29b209e6c7a41e",
+            "alphaBbox": [
+              37,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "portal-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/portal-reaction/nobita-base-portal-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/portal-reaction.png",
+            "sha256": "b787ece4723cb6eb8d57416cc385b5490ccbd26e715d59a8cc38a3b819f2e098",
+            "alphaBbox": [
+              33,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "celebration",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/celebration/nobita-base-celebration-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/celebration.png",
+            "sha256": "5a2371045235051ce4f9d5963b3de672e4c17047af6e6232be4ffaa6a51303a6",
+            "alphaBbox": [
+              26,
+              8,
+              102,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "character-signature",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/base/character-signature/nobita-base-character-signature-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/base/character-signature.png",
+            "sha256": "1b1dc47f000f361032bc0f8bdca490822f15b152609ee631e15a941620d5cfc9",
+            "alphaBbox": [
+              34,
+              8,
+              94,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          }
+        ]
+      },
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/nobita-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 3,
+        "runtimeFrameIndices": [
+          0,
+          1,
+          2
+        ],
+        "approvedFrames": 9,
+        "compatibilityDuplicateCells": [],
+        "sha256": "02cf5e43cfeb7189165db4c19e20c9d9d2d2b64f666c286d2ebf3ab6a8364e3d",
+        "bytes": 58206,
+        "sources": [
+          {
+            "frame": "down-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-0.png",
+            "sha256": "b006f6327ccfe9f7d3ebd11f1eeb7c1e2f182a095d048e469a27496d66daedb1",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "down-1",
+            "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-1.png",
+            "sha256": "820466cc8753fe662c8c9ebbd896f6bd352d694f94537cd118116e9883968a1e",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "down-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-2.png",
+            "sha256": "668b3d0fa7b5376f0360f68348ca097e4de73e0bd349a17d48738463d2bed5fd",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "side-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-0.png",
+            "sha256": "f59347c3dd6e4de6db1cd2698326e4907475723ba4516c34881113ec0f78496c",
+            "alphaBbox": [
+              38,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "side-1",
+            "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-1.png",
+            "sha256": "ad3de4e614088913fc74d05c25f8000de85ed9cb890276e39bde8ba1bddca05f",
+            "alphaBbox": [
+              39,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "side-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-2.png",
+            "sha256": "ac568cffe87fb83b42201157bf933dd3fa7f46e95634aafd53997f32792a860d",
+            "alphaBbox": [
+              38,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "up-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-0.png",
+            "sha256": "c2bdc2a7db43439ca98eacae2080d6b4564fde43496dc2a766d141a8aed782e7",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "up-1",
+            "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-1.png",
+            "sha256": "ceb1c19e991138773e2e8b577cf3706f3aa32a18a56693adaba6d9d2009d2809",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          },
+          {
+            "frame": "up-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-2.png",
+            "sha256": "ce8e989a4c846259d131eaf112800a88ffec760110b156e07883bde769030f21",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "A/C 为用户确认的相反步态，方向参考图作为中立 B 帧；运行时使用索引 0、1、2。"
+            }
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v4/actors/nobita-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "97ff79f31eef987f71adee78732e2890a2f29cba7af07e38f74390c68b4c7bb3",
+        "bytes": 63716,
+        "sources": [
+          {
+            "frame": "think-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/think-a/nobita-life-think-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/think-a.png",
+            "sha256": "e87ffb5fd59c3698f77cd107508dfd21cd1c2f025764d3576a484a3cf558d14b",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "think-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/think-b/nobita-life-think-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/think-b.png",
+            "sha256": "557afb6f69cb06da8a64b3c3e0e0b703e1292c04f73d199d56921f5d557ec357",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "drink-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/drink-a/nobita-life-drink-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/drink-a.png",
+            "sha256": "043c0e11ca6b5b37de08af8f78fb3ffabc71ae6f8029d0bed13da1dcc0248ccc",
+            "alphaBbox": [
+              41,
+              8,
+              87,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "drink-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/drink-b/nobita-life-drink-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/drink-b.png",
+            "sha256": "ad5f604f3afb9dc4a97450ed8c7a0a8973bf2e8a1c5cb44b058724d01a6a2fb4",
+            "alphaBbox": [
+              41,
+              8,
+              87,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "sit-game-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/sit-game-a/nobita-life-sit-game-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/sit-game-a.png",
+            "sha256": "4c943a85b2e79a14159c82e6aca64ddc0ee9420af1706e438653ed791efef2c3",
+            "alphaBbox": [
+              34,
+              8,
+              94,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "sit-game-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/sit-game-b/nobita-life-sit-game-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/sit-game-b.png",
+            "sha256": "9860cb09d8dd46a02e1fa3cfb1ebc06d02dbef8b03f259867ffbe33ed7fc0243",
+            "alphaBbox": [
+              37,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "portal-enter",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/portal-enter/nobita-life-portal-enter-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/portal-enter.png",
+            "sha256": "d7fe8f0212928818c4a0fee87c6420cfdb42e843fc80d052cbffbc4aec4e15fc",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "portal-return",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/portal-return/nobita-life-portal-return-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/portal-return.png",
+            "sha256": "e42e4f48b7eb998f0d4d45051e79f8ddc5ae6d531beb87888e3a6123d6b24ccd",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          },
+          {
+            "frame": "room-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/nobita/life/room-reaction/nobita-life-room-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/nobita/life/room-reaction.png",
+            "sha256": "748e2a5ca9ed4290b03ee3e2673ade432ad5948a8cace88b8c02b680c6164f72",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "眼镜、黑发、黄上衣、蓝短裤在三套序列中稳定；down/side/up 脚步和 think/drink/sit/竹蜻蜓动作可读。"
+            }
+          }
+        ]
+      }
+    },
+    "doraemon": {
+      "base": {
+        "url": "/assets/profile/adventure/room-v4/actors/doraemon-base-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "idle",
+          "walk-contact",
+          "walk-passing",
+          "walk-opposite-contact",
+          "interaction-a",
+          "interaction-b",
+          "portal-reaction",
+          "celebration",
+          "character-signature"
+        ],
+        "approvedFrames": 9,
+        "sha256": "c7f071bc0b97f5c587d19bbef538ef049f746808a28ca279331dab9acd525085",
+        "bytes": 89806,
+        "sources": [
+          {
+            "frame": "idle",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/idle/doraemon-base-idle-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/idle.png",
+            "sha256": "3599747d0cd72317336bef46e40c6229a59ee219fac77201cf225cd3b1fc532a",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "walk-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/walk-contact/doraemon-base-walk-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/walk-contact.png",
+            "sha256": "15fd46deba35389864af131671f4f7554183b216b8250df61081837ca25ee6d3",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "walk-passing",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/walk-passing/doraemon-base-walk-passing-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/walk-passing.png",
+            "sha256": "5a60d0d6d3ad4a878b95b0ad564602f454e632973c7e21a379763b7bbbbb7f13",
+            "alphaBbox": [
+              29,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "walk-opposite-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/walk-opposite-contact/doraemon-base-walk-opposite-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/walk-opposite-contact.png",
+            "sha256": "fabcc972e2fea731df618be9d8360531e9332e50bcd455c04ec560a32d82e681",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "interaction-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/interaction-a/doraemon-base-interaction-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/interaction-a.png",
+            "sha256": "acc3e5d884f03bede2f8178bf941d633e354251ab108b36799adf10f23874ce1",
+            "alphaBbox": [
+              25,
+              8,
+              103,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "interaction-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/interaction-b/doraemon-base-interaction-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/interaction-b.png",
+            "sha256": "3daa9f02f30e8cf321aa3151f901cd59ffe5d158ee5b0f8b9211215d5b334617",
+            "alphaBbox": [
+              27,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "portal-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/portal-reaction/doraemon-base-portal-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/portal-reaction.png",
+            "sha256": "e5fae64c645eb7d6458f23765d5cb229692a50cc2866c56ce2cac3251d9d34ac",
+            "alphaBbox": [
+              26,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "celebration",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/celebration/doraemon-base-celebration-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/celebration.png",
+            "sha256": "e4eba99d449bddf105c67b0405d3d830d5efdade1beb4f38b20040fd4545747a",
+            "alphaBbox": [
+              16,
+              8,
+              112,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "character-signature",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/base/character-signature/doraemon-base-character-signature-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/base/character-signature.png",
+            "sha256": "842ffe5634453762ecc1cd203017a15a8456100cd1e974c24e4bcb18e92c442d",
+            "alphaBbox": [
+              27,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          }
+        ]
+      },
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/doraemon-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 3,
+        "runtimeFrameIndices": [
+          0,
+          1,
+          2
+        ],
+        "approvedFrames": 9,
+        "compatibilityDuplicateCells": [],
+        "sha256": "19bc4b95dd0892aa8a03346699754469ded555afb14929be46c060dba6b2e78b",
+        "bytes": 81892,
+        "sources": [
+          {
+            "frame": "down-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-a/candidate-02.png",
+            "sourceSha256": "38d91617415d6be772a67763ff51165d52bc055a4430c35f76ac7e5547256b1c",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-0.png",
+            "sha256": "77a3fb20dbb50c550d03dd968883aa084b2d3e4ff9b211fbd5908fb5531186e1",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              27,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 2,
+            "seed": 100001,
+            "jobId": "flux2-4c2bb5f29be343e5",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+            "sourceSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-1.png",
+            "sha256": "c36fd5f645d7bf1f3823c5007069a74ac9ca1fb1c89aed9bfd0797555bfe6802",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-c/candidate-04.png",
+            "sourceSha256": "75108fdac747d9913e3921667c616b1510673c04e58ca8bda78bd8ddb5e73a18",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-2.png",
+            "sha256": "b681baad96857d4e98104a8d5eb0f7797ffd352efad64879e338bc649f612563",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              24,
+              8,
+              103,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 4,
+            "seed": 100103,
+            "jobId": "flux2-45373c24012f4c29",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+            "sourceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-0.png",
+            "sha256": "e8fbc85e29c82ab21a6c81249770f57880eb8f3b7c63790e9cc6d8b7819041fc",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              29,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 2,
+            "seed": 100201,
+            "jobId": "flux2-1b1da2f1703e4c5a",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+            "sourceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-1.png",
+            "sha256": "cc5d21f1a49faa3fdf7474063a3f704bfeaaf347c0a82d079be74bed5e734bde",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              29,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-05.png",
+            "sourceSha256": "b7461ef08cea7ccee8ba550ee19d11724539c61ccc102c61934efeb80b9bffe7",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-2.png",
+            "sha256": "2d8abe0a7a3e09212df4e95ab2430322e5460374dd70cbe97431e1c64c4c1f93",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 5,
+            "seed": 100904,
+            "jobId": "flux2-8373198b19f340fd",
+            "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-a/candidate-01.png",
+            "sourceSha256": "fbe51d8889b2b71d9303cc514520e795775682d47df2b4b4546de0364003ed5f",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-0.png",
+            "sha256": "ec95e535592d3aab20f16f9ff2f6f204db5b54406e1df608045c6022addccf2d",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              31,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 1,
+            "seed": 100400,
+            "jobId": "flux2-1dea4fb9cfc14449",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+            "sourceSha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-1.png",
+            "sha256": "71a00fe3b170fb3c9b0bc2d45c8daf36cadfc0a3609f77f1611063bf47bc77f4",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              31,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-c/candidate-02.png",
+            "sourceSha256": "2ca6b444ca193869d367760b53871f55f50329f08185355e0bc6570192af928d",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-2.png",
+            "sha256": "b5bedc786ae80b90a11c4d4db218a8b160c9311308faa8f9de0d50ba04145ce8",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              31,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 2,
+            "seed": 100501,
+            "jobId": "flux2-56e1c51130c04756",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v4/actors/doraemon-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "b4a3e74fb155f2c886aaa68a815a2c43c71832b3de08f6d7b48b62219b7b37cd",
+        "bytes": 88684,
+        "sources": [
+          {
+            "frame": "think-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/think-a/doraemon-life-think-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/think-a.png",
+            "sha256": "b85aace6728dde0f6fd1f49e8374da54bacaf448508892608717cd48ed5732a6",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "think-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/think-b/doraemon-life-think-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/think-b.png",
+            "sha256": "e4951e53fb9597a021eccf92307ccfbf782265eeded7495bdee37a97675297e9",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "drink-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/drink-a/doraemon-life-drink-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/drink-a.png",
+            "sha256": "95e65d3ebe8a7da4086c2639ca15ec42e12eef9a6580f4b70b3fbed030e3dbb1",
+            "alphaBbox": [
+              27,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "drink-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/drink-b/doraemon-life-drink-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/drink-b.png",
+            "sha256": "73a763ffb8375446c238ade0c495b339561a2e02fc1aeaeade4544f0765e1f25",
+            "alphaBbox": [
+              27,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "sit-game-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/sit-game-a/doraemon-life-sit-game-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/sit-game-a.png",
+            "sha256": "f727ad599d014129d6ebc04b988b158c252c3cce117c1352e001d70028a17125",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "sit-game-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/sit-game-b/doraemon-life-sit-game-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/sit-game-b.png",
+            "sha256": "d65fa498025152f9a714238edbf1cf3c3d6942fc4259575baeebb79e692678ab",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "portal-enter",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/portal-enter/doraemon-life-portal-enter-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/portal-enter.png",
+            "sha256": "e358b511698f985bbd3b89a4a99d140d46536d95de782c31feeefd6080d92fd1",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "portal-return",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/portal-return/doraemon-life-portal-return-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/portal-return.png",
+            "sha256": "1d21a3eff8dacc42a9f255060ac10806a06014575dd7da84ee8a863316e2a080",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          },
+          {
+            "frame": "room-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/doraemon/life/room-reaction/doraemon-life-room-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/doraemon/life/room-reaction.png",
+            "sha256": "2cb8e84bf496de67413cfceca6a58f1d8a4f26a1267233956e7d4c24ca234483",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "无耳朵蓝白圆体、红鼻、金铃和口袋在所有帧稳定；三方向背面与喝水、坐姿动作连续。"
+            }
+          }
+        ]
+      }
+    },
+    "shizuka": {
+      "base": {
+        "url": "/assets/profile/adventure/room-v4/actors/shizuka-base-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "idle",
+          "walk-contact",
+          "walk-passing",
+          "walk-opposite-contact",
+          "interaction-a",
+          "interaction-b",
+          "portal-reaction",
+          "celebration",
+          "character-signature"
+        ],
+        "approvedFrames": 9,
+        "sha256": "eb2832685a7d05b4ef9f24997aba290c3fe73901e9c8d0a574466961c34df911",
+        "bytes": 72302,
+        "sources": [
+          {
+            "frame": "idle",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/idle/shizuka-base-idle-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/idle.png",
+            "sha256": "3d45fff5e9e92dacffb3b5e3478125940ccf46318380332739113988be35eab3",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "walk-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/walk-contact/shizuka-base-walk-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/walk-contact.png",
+            "sha256": "440bbbc59468d5cdb0d04bc28643e026798d70710d6bd64b8b60134b966b4980",
+            "alphaBbox": [
+              37,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "walk-passing",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/walk-passing/shizuka-base-walk-passing-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/walk-passing.png",
+            "sha256": "daef4f347a33b56654ffe803a79a246a5143d8fe10e0809442683fec83703457",
+            "alphaBbox": [
+              36,
+              8,
+              92,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "walk-opposite-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/walk-opposite-contact/shizuka-base-walk-opposite-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/walk-opposite-contact.png",
+            "sha256": "3d558fc304b1e186995cf37582960f2ce659b9e81e2fbaf6826b632e8a563cc0",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "interaction-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/interaction-a/shizuka-base-interaction-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/interaction-a.png",
+            "sha256": "c27251d062332e6c4ae336bab7a6c44dc5cbdfbb3b37fa62bababe9cae46e457",
+            "alphaBbox": [
+              31,
+              8,
+              96,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "interaction-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/interaction-b/shizuka-base-interaction-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/interaction-b.png",
+            "sha256": "7755554c8763f1828c4fcb4d6b414ddd5716f1fe6aa61054b626e9ae86045eae",
+            "alphaBbox": [
+              34,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "portal-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/portal-reaction/shizuka-base-portal-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/portal-reaction.png",
+            "sha256": "7f6b6cb3931315cd008572a7fc17641363a7a5ac2eb59a3563ea396f63229222",
+            "alphaBbox": [
+              31,
+              8,
+              96,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "celebration",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/celebration/shizuka-base-celebration-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/celebration.png",
+            "sha256": "fe905751432d7407ad44a914a3c374db4d4a0dcaac4c4528d5a7dc27dea275df",
+            "alphaBbox": [
+              26,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "character-signature",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/base/character-signature/shizuka-base-character-signature-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/base/character-signature.png",
+            "sha256": "a4f4edda41699d0fc3497edabae4ef40abcb59586f1cc9f333a18c6f524bca86",
+            "alphaBbox": [
+              33,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          }
+        ]
+      },
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/shizuka-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 3,
+        "runtimeFrameIndices": [
+          0,
+          1,
+          2
+        ],
+        "approvedFrames": 9,
+        "compatibilityDuplicateCells": [],
+        "sha256": "c546e5258785193eedeb6af1041568c1be9b3099df3b71cdb15a65ffee743bcb",
+        "bytes": 60640,
+        "sources": [
+          {
+            "frame": "down-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-a/candidate-01.png",
+            "sourceSha256": "27e506e992f24a360be32ac653fd9bbe7597b6b5cae0d5aaf7a7efe2af6ce44f",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-0.png",
+            "sha256": "50365aa48360ebad85f45e491a920987644da9e6ea34f53ec403f50eb36cf577",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              42,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 1,
+            "seed": 110000,
+            "jobId": "flux2-5cec9edc0fcb4b9b",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+            "sourceSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-1.png",
+            "sha256": "e790741ce6319f0225cdf7710807d8de689a18496f396a6ca843ca6ada91241f",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              43,
+              8,
+              85,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-c/candidate-03.png",
+            "sourceSha256": "27ebccae0f3faa7ee3eb513fb0f51cdf7755ec814de9c049c75f4f2d3d143f70",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-2.png",
+            "sha256": "450a0c098f851f818a79e9dc0062a5b66ea9b2cc0adf1342f47ed3732abb6612",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              41,
+              8,
+              87,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 3,
+            "seed": 110102,
+            "jobId": "flux2-bfa72ac6971240bf",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-a/candidate-01.png",
+            "sourceSha256": "2bd9bf23cb31265aec3356be6e1b3f10c513343e61fb573244d41cf964964304",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-0.png",
+            "sha256": "5f9ea210a6e7ac8d041dabe4c4acf1c982e5871ddd84454d85968d35c2254d77",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              37,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 1,
+            "seed": 110200,
+            "jobId": "flux2-b37b30caab2847bf",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+            "sourceSha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-1.png",
+            "sha256": "06f1b25bd3a9ae60a3c1828d905c694171f9e7b8578f89fdc3df8fcbd9d16255",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              45,
+              8,
+              83,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-c/candidate-14.png",
+            "sourceSha256": "1f6223950dd374fd2d9c5fbbc5a0a4e92d1cf34a0485c5c8e00123f99ea0dad2",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-2.png",
+            "sha256": "b1798fd18674fcdf1319a5052a2d3d9e8cf0b6268b3e614b0e3a7fea97c82dde",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              39,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 14,
+            "seed": 110313,
+            "jobId": "flux2-e33919cfc2b4402b",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-a/candidate-03.png",
+            "sourceSha256": "7c0d41b81a1a6512f35929e6c2ba4b99eda42ccadaa38a0b181fd2c3d2b17dcd",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-0.png",
+            "sha256": "6c79b4364fc96c18b5f8dbb3d39967a2e0982e2db76b59d0f963587c1a0400ee",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              41,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 3,
+            "seed": 110402,
+            "jobId": "flux2-439c32fb055f41d9",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+            "sourceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-1.png",
+            "sha256": "1e7dde859344e1bccbf31a1747627675d15ff826b7172ab0d8f2253cf77a0928",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              43,
+              8,
+              85,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-08.png",
+            "sourceSha256": "29431a7fcb2f16f47c2fdd6bcc26e5a081cda8cfdbff8da8aedb5f7ba4e3de33",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-2.png",
+            "sha256": "dfa9578ba148c2ffa209edc4cb14a0f4ef93285abd18e734c2ba7f5add6edba3",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              42,
+              8,
+              86,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 8,
+            "seed": 110507,
+            "jobId": "flux2-5a0ad3a91ffe4ddf",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v4/actors/shizuka-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "9e36f228fc9dbd8bb7836d191e6173c122971711724a8316196ebc3d99e91231",
+        "bytes": 71554,
+        "sources": [
+          {
+            "frame": "think-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/think-a/shizuka-life-think-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/think-a.png",
+            "sha256": "6b2b5d6f0ba43a2d8a646cc98c5c4734fb56fab109cdf0c91406ba0ba60756a0",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "think-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/think-b/shizuka-life-think-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/think-b.png",
+            "sha256": "cfdffcae9608a89cc015e3ef0483acc8c48cf221449d029fd1c411f4c38c6148",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "drink-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/drink-a/shizuka-life-drink-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/drink-a.png",
+            "sha256": "d79dce47bfa32f090296e57f84da463c6f6e2258da86fd882cb7fb7de32b5367",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "drink-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/drink-b/shizuka-life-drink-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/drink-b.png",
+            "sha256": "a3590393c81cb9331d987498b85fe87a4d678a8df5453b21f05b8263d47dbecf",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "sit-game-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/sit-game-a/shizuka-life-sit-game-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/sit-game-a.png",
+            "sha256": "eabeef6f543c823869bfa9189a01c5f0c2a5f79d57e91cb8701ee7008f9fe103",
+            "alphaBbox": [
+              30,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "sit-game-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/sit-game-b/shizuka-life-sit-game-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/sit-game-b.png",
+            "sha256": "ee3b0f975a5fad6bb84426cdb4a4c3367be439f0688b4d09c51bb64cea8e34bc",
+            "alphaBbox": [
+              30,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "portal-enter",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/portal-enter/shizuka-life-portal-enter-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/portal-enter.png",
+            "sha256": "35122e4e607aed6e9e45d0be197979df1ce1af88bf63609d27e89ad4d9da038a",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "portal-return",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/portal-return/shizuka-life-portal-return-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/portal-return.png",
+            "sha256": "b725010760704a735c7e8aecce59bd8233a5eaa0d888523fbb004ab95efeae8e",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          },
+          {
+            "frame": "room-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/shizuka/life/room-reaction/shizuka-life-room-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/shizuka/life/room-reaction.png",
+            "sha256": "bddebab49d918ea3a0614b5966a30581b12902dfd0880f7dc3817fa01837614c",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "双低辫、粉白服装和红鞋稳定；步态、思考、喝水和坐姿的脚底 pivot 一致。"
+            }
+          }
+        ]
+      }
+    },
+    "gian": {
+      "base": {
+        "url": "/assets/profile/adventure/room-v4/actors/gian-base-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "idle",
+          "walk-contact",
+          "walk-passing",
+          "walk-opposite-contact",
+          "interaction-a",
+          "interaction-b",
+          "portal-reaction",
+          "celebration",
+          "character-signature"
+        ],
+        "approvedFrames": 9,
+        "sha256": "41bef6cdfa1442219a3896742e3716d9bd5ac2208db4efe96be2b3dcc6d54155",
+        "bytes": 77198,
+        "sources": [
+          {
+            "frame": "idle",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/idle/gian-base-idle-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/idle.png",
+            "sha256": "c4833f54eaca8f4f47572a66610d2cb678a4b7735a8db3260379f6d6f72acc05",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "walk-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/walk-contact/gian-base-walk-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/walk-contact.png",
+            "sha256": "50ba72d2c5fe925f24eb6c6d66f4f70ba4e9b6176bc12703963eb7f56cc97a53",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "walk-passing",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/walk-passing/gian-base-walk-passing-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/walk-passing.png",
+            "sha256": "c7dcf594d1945460ad3a82323dd4d7fd3f2533c74b0d08f9b385de43a912357e",
+            "alphaBbox": [
+              28,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "walk-opposite-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/walk-opposite-contact/gian-base-walk-opposite-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/walk-opposite-contact.png",
+            "sha256": "5f465a834136bb116b71ebf5141546256167b93dd1a7b9ddad460c9903b3eec4",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "interaction-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/interaction-a/gian-base-interaction-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/interaction-a.png",
+            "sha256": "bab7f222669b27c7929b34c492acf3953f40fd3066b4e767d185d653d54ef48a",
+            "alphaBbox": [
+              23,
+              8,
+              105,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "interaction-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/interaction-b/gian-base-interaction-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/interaction-b.png",
+            "sha256": "b696916bfdef80f9408d96d484b10da1c617ae3cc234e16351e2371f924b3661",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "portal-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/portal-reaction/gian-base-portal-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/portal-reaction.png",
+            "sha256": "8b8db9837d2d8c48b17d18cc2c34354e87c5fce6eb7234e0659970d4d59b1ab6",
+            "alphaBbox": [
+              25,
+              8,
+              103,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "celebration",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/celebration/gian-base-celebration-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/celebration.png",
+            "sha256": "18ff0b67cf72d07bf3481452b4239ef644cdb0f9e225cede187fbc907f3d758e",
+            "alphaBbox": [
+              19,
+              8,
+              109,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "character-signature",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/base/character-signature/gian-base-character-signature-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/base/character-signature.png",
+            "sha256": "3767780b4eb7c51397968a315d2d0dc434b1b9e74dc2b9404ea236b27b22a3fa",
+            "alphaBbox": [
+              27,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          }
+        ]
+      },
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/gian-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 3,
+        "runtimeFrameIndices": [
+          0,
+          1,
+          2
+        ],
+        "approvedFrames": 9,
+        "compatibilityDuplicateCells": [],
+        "sha256": "d99fcc2597a7cf40cd38b5987f09b61b7243db66b7c8b8365b5d00948d465d62",
+        "bytes": 68880,
+        "sources": [
+          {
+            "frame": "down-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/down/frame-a/candidate-01.png",
+            "sourceSha256": "4fd6b754d6a6695974949fb90654d48e09cf1415c6dbdf5c5d1fdf5c0af8b66f",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-0.png",
+            "sha256": "5a62f222355d762b2df06e2ab18196fd0be28a3620dbb3600e5a1957c73c6f56",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              30,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 1,
+            "seed": 120000,
+            "jobId": "flux2-62b64db38de14093",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+            "sourceSha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-1.png",
+            "sha256": "71bb6dea89eb5fa6786242c45f448be6953fca08b760973c70e4f80aabad4aef",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/down/frame-c/candidate-04.png",
+            "sourceSha256": "26c114c3d77c5e0ce10f430813de87a97f790ceb4aaa7adb940744d6363e53c3",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-2.png",
+            "sha256": "28c304cb74cb4b50101306768cbea067edb1dd1746abd5a8d130d0eed397f651",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              29,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 4,
+            "seed": 120103,
+            "jobId": "flux2-987621bf5b38499e",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+            "sourceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-0.png",
+            "sha256": "2420343ac623f646466186caeb5b004b295bde910ece8a80aa5605bf7864e8f6",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              36,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 2,
+            "seed": 120201,
+            "jobId": "flux2-1b77fa00a33242a7",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-left-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-left-reference.png",
+            "sourceSha256": "e09b0057e075a2a792422cabff8d20a03e655b8a9e77b30e16254e63880a5acf",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-1.png",
+            "sha256": "8f7a95323388ca5a236392ae61326d3bf6a61567133db4a7ebeccdfd37d4b69f",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              40,
+              8,
+              88,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+            "sourceSha256": "5039b04cb880131b1613d792e8a9b80667e8b866222ae9302c4ef50f2f5e7088",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-2.png",
+            "sha256": "f79c6d552e651eee8c320d171b411168200b0591fd35b4d302be5d4a3cdc7c5d",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              39,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 1,
+            "seed": 120900,
+            "jobId": "flux2-e19b21ebda0a455a",
+            "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-02.png",
+            "sourceSha256": "7a7655cd4bd484729a6e21db6b3408d6d81091dd6dd165710fafd662c94b0d72",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-0.png",
+            "sha256": "97d0796c1a4c4be5955fb85c200b293e4988b16705baef6f96cbbb4f2b2392f6",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 2,
+            "seed": 120401,
+            "jobId": "flux2-359061ddd4fe4850",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+            "sourceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-1.png",
+            "sha256": "d82e0c4e42a615b91948b2d67f1527c7f997422743437e9d9ff7994c9453571e",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-c/candidate-04.png",
+            "sourceSha256": "32c6bef835256813fac175c00e8db28b066fbf3820858737614c38d86c729cc6",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-2.png",
+            "sha256": "a04b6b787f2b1e6582cb8c79dd3ddeb1ea202dbb4b63e687e9c90ea3bb7a9443",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              33,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 4,
+            "seed": 120503,
+            "jobId": "flux2-a8c3f664928e4100",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v4/actors/gian-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "3b25ad0e07ef7476a0adf4a414e3afb9667fa4269fc35ce7a31ed75591596ff3",
+        "bytes": 76802,
+        "sources": [
+          {
+            "frame": "think-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/think-a/gian-life-think-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/think-a.png",
+            "sha256": "aed63b363443e1e3cc467f829cc2b436c2c8aec6ab25e392fcae77e9da5d2236",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "think-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/think-b/gian-life-think-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/think-b.png",
+            "sha256": "070df2c5d07191c43e852fbc4dd965747bbfe657b3c6a9399eaecbde97bac8da",
+            "alphaBbox": [
+              28,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "drink-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/drink-a/gian-life-drink-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/drink-a.png",
+            "sha256": "7c6ae56879bdfde94ccae39ed37af81a593d83072b2855b6105f56f00f69f5ae",
+            "alphaBbox": [
+              29,
+              8,
+              99,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "drink-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/drink-b/gian-life-drink-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/drink-b.png",
+            "sha256": "058a0c0118f42c16044f53d93965087ae513076945ff3e9b590578b610a6e0e0",
+            "alphaBbox": [
+              30,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "sit-game-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/sit-game-a/gian-life-sit-game-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/sit-game-a.png",
+            "sha256": "3e9ea0bc8d12cf2d57a61b2ba31c0f4cc4269997721815db988546d22ba5634d",
+            "alphaBbox": [
+              26,
+              8,
+              101,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "sit-game-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/sit-game-b/gian-life-sit-game-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/sit-game-b.png",
+            "sha256": "ce5e0193fc236b29202ac572503a22cb7c6dace68e55cfe491ee1f4ed1c868d9",
+            "alphaBbox": [
+              30,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "portal-enter",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/portal-enter/gian-life-portal-enter-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/portal-enter.png",
+            "sha256": "5d031a387463273b71bc5940bd9b15aa3122a9948af9f7e913e59ce07911863d",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "portal-return",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/portal-return/gian-life-portal-return-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/portal-return.png",
+            "sha256": "b995ba3678e3749507c93dd47d8e3c76be08ab4de9c73c81c717d10f577ef52f",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          },
+          {
+            "frame": "room-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/gian/life/room-reaction/gian-life-room-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/gian/life/room-reaction.png",
+            "sha256": "be45bc3549fe8312fe41b4dab1e17ed25a591ddccb50c593c0aa06c2730c2ec9",
+            "alphaBbox": [
+              29,
+              8,
+              98,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "宽肩宽躯干、方下颌、橙黑条纹和蓝下装稳定；动作没有漂移为成年瘦长体型。"
+            }
+          }
+        ]
+      }
+    },
+    "suneo": {
+      "base": {
+        "url": "/assets/profile/adventure/room-v4/actors/suneo-base-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "idle",
+          "walk-contact",
+          "walk-passing",
+          "walk-opposite-contact",
+          "interaction-a",
+          "interaction-b",
+          "portal-reaction",
+          "celebration",
+          "character-signature"
+        ],
+        "approvedFrames": 9,
+        "sha256": "9e1f2158df0f571f5b06f0fbbbcf485f1b22633bd754d26132be253aa21bf4da",
+        "bytes": 66200,
+        "sources": [
+          {
+            "frame": "idle",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/idle/suneo-base-idle-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/idle.png",
+            "sha256": "5d3e88583d360d5fb1e3797af4081e06d829e68e6b4b989de8f4d0503ba1bc55",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "walk-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/walk-contact/suneo-base-walk-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/walk-contact.png",
+            "sha256": "3a15be6ca958d555c4eeb2dea87d835d6d5becaf954f6ba796da07777e1f2a39",
+            "alphaBbox": [
+              32,
+              8,
+              96,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "walk-passing",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/walk-passing/suneo-base-walk-passing-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/walk-passing.png",
+            "sha256": "07bf785dd8379a3e58ae3108cb3df4d962bf45c2cafc255411e28f6867f0c156",
+            "alphaBbox": [
+              31,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "walk-opposite-contact",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/walk-opposite-contact/suneo-base-walk-opposite-contact-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/walk-opposite-contact.png",
+            "sha256": "0ff94987f9800ea5de8dc3ec0cc73e10b7efd2b07825b851075c9bb68a1902a2",
+            "alphaBbox": [
+              31,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "interaction-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/interaction-a/suneo-base-interaction-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/interaction-a.png",
+            "sha256": "704fea3fac96cec74d662bf5eab3decfe18e81628587bd37a5f41269c2f1e767",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "interaction-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/interaction-b/suneo-base-interaction-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/interaction-b.png",
+            "sha256": "dbb0c3bed6a898e629a9235d15c9a8155da9b201d68c6a5e435ba83a4aac7435",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "portal-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/portal-reaction/suneo-base-portal-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/portal-reaction.png",
+            "sha256": "a8936f73f6d99e59f38fd982710d0d1799e06dbfa0d310c7a1106780055f1628",
+            "alphaBbox": [
+              30,
+              8,
+              97,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "celebration",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/celebration/suneo-base-celebration-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/celebration.png",
+            "sha256": "74093b2a4e3eafdf70ae3d8e682608d3b00bc6260c8ef065d60d784dcd4875c3",
+            "alphaBbox": [
+              27,
+              8,
+              100,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "character-signature",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/base/character-signature/suneo-base-character-signature-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/base/character-signature.png",
+            "sha256": "652b243d3d57778bb643d6951ea7901ce7025df7175d5d4c99f0f453afbd3012",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          }
+        ]
+      },
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/suneo-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 3,
+        "runtimeFrameIndices": [
+          0,
+          1,
+          2
+        ],
+        "approvedFrames": 9,
+        "compatibilityDuplicateCells": [],
+        "sha256": "e4801be1cbc2e8ddb2fa49163e43e466d01d002ad15ec250db2c33c51dcd2d2d",
+        "bytes": 64594,
+        "sources": [
+          {
+            "frame": "down-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-01.png",
+            "sourceSha256": "74e61bb82d7db7ca6a12d1ae4edb2235622f8a4200a6ab2356a182c13a15c27d",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-0.png",
+            "sha256": "11629e0d6ce6387f1339a400ead23275f82e101c5fa6c7703dfdb1e7a9172b2b",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              35,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 1,
+            "seed": 130000,
+            "jobId": "flux2-8a48efcdc3194b8c",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+            "sourceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-1.png",
+            "sha256": "1ebef3b424172a8cf3671d439e9972c70976016aa4e0e17e3db1d86094ff37ff",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "down-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-c/candidate-04.png",
+            "sourceSha256": "31aa281b64fbd8614db7eb8d0e9cde5a61287829aca52d95b76067bf61507f77",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-2.png",
+            "sha256": "486b167c0acd491f62cf864f490597cc3aa7ac07c5cdcdec00575aae42351bcf",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              35,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 4,
+            "seed": 130103,
+            "jobId": "flux2-e35e7675bacc4333",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+            "sourceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-0.png",
+            "sha256": "76737d5d31d83ed1cb8f334835eaedd012eb8ec9e014178bc7571c8505aaff00",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              36,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 4,
+            "seed": 130203,
+            "jobId": "flux2-fdc57fdc947c467b",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-left-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-left-reference.png",
+            "sourceSha256": "3e05bff91431d7ff00ffb72d4763b178f4dcde8bff122ed9e8674789e6ca200a",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-1.png",
+            "sha256": "dd0e261addd56c3d2de9a666f7bec038f2f87f4a852e1f34a17796a1a0acaad9",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              36,
+              8,
+              92,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "side-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+            "sourceSha256": "cb4fee629ee7ae6dfee8544111d5e5f946538d942104ae3b8923b3428a73c898",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-2.png",
+            "sha256": "83e2f2bf4a156817965cca42026e8a1d417d2c323f6ea298492ac238afb10149",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              36,
+              8,
+              93,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "candidate": 1,
+            "seed": 130900,
+            "jobId": "flux2-5eb50bd215794f17",
+            "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-0",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/up/frame-a/candidate-03.png",
+            "sourceSha256": "dcd976af9ef5b1fb8e487e07ed427a5b2407bed4fe0d58cc786acfb2439bb959",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-0.png",
+            "sha256": "272b86e7a4f0782387ab8a2407e4db204c307bce2fb3649c7a350a2264f710e0",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              35,
+              8,
+              92,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 3,
+            "seed": 130402,
+            "jobId": "flux2-f13bebccaa6d4e3e",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-1",
+            "role": "B-reference",
+            "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+            "sourceSha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-1.png",
+            "sha256": "90234407bca763cc7869dd1d6712581d0ae7a141d83a77b644fd6dde8a17d29d",
+            "alphaMethod": "source-alpha",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": null,
+            "seed": null,
+            "jobId": null,
+            "reference": null,
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          },
+          {
+            "frame": "up-2",
+            "role": "selected-i2i",
+            "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/up/frame-c/candidate-01.png",
+            "sourceSha256": "577ab8a13deb56728e94bae73d3d3bbd0c65b2dabf7e230ba4a3853635e0b02f",
+            "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-2.png",
+            "sha256": "18090c64511835446e74bdfc44b6ad8e1c32cb0076b9809c31ec63fbbcbcfbc9",
+            "alphaMethod": "closed-black-background",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "candidate": 1,
+            "seed": 130500,
+            "jobId": "flux2-46df16c557a84304",
+            "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+            "review": {
+              "identity": true,
+              "upright": true,
+              "visualGaitDifference": true,
+              "alpha": true
+            }
+          }
+        ]
+      },
+      "life": {
+        "url": "/assets/profile/adventure/room-v4/actors/suneo-life-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "think-a",
+          "think-b",
+          "drink-a",
+          "drink-b",
+          "sit-game-a",
+          "sit-game-b",
+          "portal-enter",
+          "portal-return",
+          "room-reaction"
+        ],
+        "approvedFrames": 9,
+        "sha256": "e6706aa27923146d995a1ad7faabc8e33eed4bf89a0846f092bdaea2e80bea2f",
+        "bytes": 64452,
+        "sources": [
+          {
+            "frame": "think-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/think-a/suneo-life-think-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/think-a.png",
+            "sha256": "d2cd524c5d392ed5f732e53e25d011c6b9217d66cf74ba81b497d28bf5746d4e",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "think-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/think-b/suneo-life-think-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/think-b.png",
+            "sha256": "4ab23c970046a20aa18ca77bf2b453f2e0a190d19b6ed5593d556210fcd73987",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "drink-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/drink-a/suneo-life-drink-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/drink-a.png",
+            "sha256": "1805767563fbeb80821bd829e5ebd5e001908c8c9218ab8022a9f7ef72cf55e6",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "drink-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/drink-b/suneo-life-drink-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/drink-b.png",
+            "sha256": "42dab120225dc917cf5d8bcb695a9a6d2b2357b4e232996eae1f4b49832bec18",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "sit-game-a",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/sit-game-a/suneo-life-sit-game-a-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/sit-game-a.png",
+            "sha256": "402b5b507c0b41e3c9b57cc817f70fc5a2087803c761da3a8704afd637293e41",
+            "alphaBbox": [
+              32,
+              8,
+              96,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "sit-game-b",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/sit-game-b/suneo-life-sit-game-b-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/sit-game-b.png",
+            "sha256": "34709005c5aca2a8f08a7f22dd165db8c49191dcee7bd99ff608f0f6527d8c95",
+            "alphaBbox": [
+              32,
+              8,
+              96,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "portal-enter",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/portal-enter/suneo-life-portal-enter-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/portal-enter.png",
+            "sha256": "21e625304cc1c691a383bdd30e67c653538e5c5285c9192516c17e0a79c70c5a",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "portal-return",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/portal-return/suneo-life-portal-return-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/portal-return.png",
+            "sha256": "fca0a67190fa55154cf6ca8448dd6bdd47c454d4c8d892182f935e7eb7992996",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          },
+          {
+            "frame": "room-reaction",
+            "source": "artifacts/profile-sprite-review/2026-07-18-strict-v4/candidates/suneo/life/room-reaction/suneo-life-room-reaction-r1-1.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-18-strict-v4/processed/suneo/life/room-reaction.png",
+            "sha256": "dfa9ff1c73fd8530aaef6613ea689a2de3b7f3dad6fcfa3c8b02762fd81ec571",
+            "alphaBbox": [
+              32,
+              8,
+              95,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "横向双尖发、尖嘴侧脸、绿格纹和橙棕短裤稳定；重新处理后无洋红背景、肤色完整。"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "furniture": {
+    "url": "/assets/profile/adventure/room-v3/furniture/furniture-grounded-v4-3x3.webp",
+    "size": [
+      384,
+      384
+    ],
+    "frameSize": [
+      128,
+      128
+    ],
+    "frameOrder": [
+      "chandelier",
+      "blackboard",
+      "eraser",
+      "secondary-desk",
+      "chair",
+      "sofa",
+      "water-cooler",
+      "tv-cabinet",
+      "ps5"
+    ],
+    "sha256": "522951d925e568b1e6b2b19d8de17bdb3f7dfc85dd1a4e0eb9cf3850c600ce71",
+    "bytes": 43044,
+    "layoutVersion": "grounded-v4",
+    "sprites": {
+      "chandelier": {
+        "alphaBbox": [
+          20,
+          10,
+          108,
+          121
+        ]
+      },
+      "blackboard": {
+        "alphaBbox": [
+          6,
+          33,
+          121,
+          96
+        ]
+      },
+      "eraser": {
+        "alphaBbox": [
+          35,
+          54,
+          95,
+          73
+        ]
+      },
+      "secondary-desk": {
+        "alphaBbox": [
+          7,
+          46,
+          122,
+          121
+        ]
+      },
+      "chair": {
+        "alphaBbox": [
+          27,
+          14,
+          101,
+          120
+        ]
+      },
+      "sofa": {
+        "alphaBbox": [
+          6,
+          37,
+          122,
+          121
+        ]
+      },
+      "water-cooler": {
+        "alphaBbox": [
+          39,
+          10,
+          88,
+          122
+        ]
+      },
+      "tv-cabinet": {
+        "alphaBbox": [
+          6,
+          31,
+          122,
+          121
+        ],
+        "screenRectPixels": [
+          39,
+          43,
+          87,
+          75
+        ],
+        "screenRectNormalized": [
+          0.304688,
+          0.335938,
+          0.375,
+          0.25
+        ],
+        "childAnchors": {
+          "ps5": [
+            0.73,
+            0.61
+          ]
+        }
+      },
+      "ps5": {
+        "alphaBbox": [
+          44,
+          22,
+          91,
+          119
+        ]
+      }
+    },
+    "selectedCandidates": {
+      "blackboard": "blackboard-b.png",
+      "secondary-desk": "desk-a.png",
+      "chair": "chair-b.png",
+      "sofa": "sofa-d.png",
+      "tv-cabinet": "tv-cabinet-a.png"
+    }
+  },
+  "door": {
+    "url": "/assets/profile/adventure/room-v3/props/anywhere-door-2x1.webp",
+    "size": [
+      256,
+      128
+    ],
+    "frameSize": [
+      128,
+      128
+    ],
+    "frameOrder": [
+      "closed",
+      "open"
+    ],
+    "sha256": "b197d405fc9db993c1feb886e85803a4b8c35bdf2a71eb0fc05f134477e75b48",
+    "bytes": 16138
+  },
+  "lamps": {
+    "url": "/assets/profile/adventure/room-v3/props/bulkhead-wall-lamp-v4-4x1.webp",
+    "size": [
+      256,
+      96
+    ],
+    "frameSize": [
+      64,
+      96
+    ],
+    "frameOrder": [
+      "low",
+      "left",
+      "high",
+      "right"
+    ],
+    "sha256": "08d02be16564322a05572b12a7d3b0e52efaad9620571feb8c29277ddd14e5f9",
+    "bytes": 4996,
+    "layoutVersion": "grounded-v4",
+    "selectedCandidate": "bulkhead-lamp-a.png"
+  },
+  "posters": {
+    "spiritedAway": {
+      "url": "/assets/profile/adventure/room-v3/posters/spirited-away-pixel.webp",
+      "size": [
+        48,
+        64
+      ],
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png",
+      "accessedAt": "2026-07-17",
+      "sourceFile": "artifacts/profile-room-v3-review/2026-07-17-living-r1/poster-sources/spirited-away-original.png",
+      "sourceSha256": "97a5f78bae3db8303c582301cec9e9af6d62d63d1fb6fc278d20175c28a0c7e3",
+      "crop": {
+        "mode": "ImageOps.fit",
+        "target": [
+          48,
+          64
+        ],
+        "centering": [
+          0.5,
+          0.48
+        ]
+      },
+      "sha256": "032a2d387d84be6e1e00cac6dd8a97a25b102c7ddcb19c6159488c9ff114a20b",
+      "bytes": 2180
+    },
+    "onePieceEastBlue": {
+      "url": "/assets/profile/adventure/room-v3/posters/one-piece-east-blue-pixel.webp",
+      "size": [
+        48,
+        64
+      ],
+      "sourceUrl": "https://image.tmdb.org/t/p/original/mRy1D3wVL1AjR1Czp2WY90CCzPY.jpg",
+      "accessedAt": "2026-07-17",
+      "sourceFile": "artifacts/profile-room-v3-review/2026-07-17-living-r1/poster-sources/one-piece-east-blue-tmdb.jpg",
+      "sourceSha256": "5fa82786d0f905b6816701d7f51b61f96db922b21f16039934ed947222e4fcda",
+      "crop": {
+        "mode": "ImageOps.fit",
+        "target": [
+          48,
+          64
+        ],
+        "centering": [
+          0.5,
+          0.45
+        ]
+      },
+      "sha256": "80d998b7dfad344acf0261e9d8bc73bded8ef7410fcdf4206376d8941681e029",
+      "bytes": 2024
+    }
+  },
+  "fallbacks": {
+    "desktop": {
+      "url": "/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-desktop.webp",
+      "size": [
+        640,
+        320
+      ],
+      "sha256": "cf1aa9ac95106260ddfc87315fbe4ed9dd1c5cc2fc4f6d1a47182274ca54817e",
+      "bytes": 34022
+    },
+    "mobile": {
+      "url": "/assets/profile/adventure/room-v3/posters/profile-room-v3-fallback-mobile.webp",
+      "size": [
+        320,
+        352
+      ],
+      "sha256": "4c2d5b71b72c07f34e3adbcaac06b62660dd33035f74c3a5fb592d03a1453efa",
+      "bytes": 22946
+    }
+  },
+  "patches": [
+    {
+      "id": "2026-07-23-nobita-profile-install-r1",
+      "actor": "nobita",
+      "kind": "movement",
+      "frameCount": 2,
+      "sourceRun": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1"
+    },
+    {
+      "id": "2026-07-23-nobita-profile-three-frame-install-r1",
+      "actor": "nobita",
+      "kind": "movement",
+      "frameCount": 3,
+      "sourceRun": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1",
+      "directionalReferenceRoot": "artifacts/profile-sprite-review/final-directional-references/nobita"
+    },
+    {
+      "id": "2026-07-24-profile-walk-abc-all-actors-r1",
+      "actors": [
+        "doraemon",
+        "shizuka",
+        "gian",
+        "suneo"
+      ],
+      "kind": "movement",
+      "frameCountPerActor": 9,
+      "acceptance": "visual-gait-priority"
+    }
+  ]
+}

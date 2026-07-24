@@ -1,0 +1,10 @@
+{
+  "version": "2026-07-14-luminous-wake-v2",
+  "assets": {
+    "dock": "dock.glb?v=20260714-v2",
+    "reef": "prism.glb?v=20260714-v2",
+    "lighthouse": "lighthouse.glb?v=20260714-v2",
+    "harbor": "harbor.glb?v=20260714-v2",
+    "gate": "gate.glb?v=20260714-v2"
+  }
+}

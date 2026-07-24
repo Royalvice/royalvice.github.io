@@ -1,0 +1,10 @@
+{
+  "version": "2026-07-22-webgl-lod-v3",
+  "assets": {
+    "dock": "dock.glb?v=20260722-webgl-lod-v3",
+    "reef": "prism.glb?v=20260722-webgl-lod-v3",
+    "lighthouse": "lighthouse.glb?v=20260722-webgl-lod-v3",
+    "harbor": "harbor.glb?v=20260722-webgl-lod-v3",
+    "gate": "gate.glb?v=20260722-webgl-lod-v3"
+  }
+}
