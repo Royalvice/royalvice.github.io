@@ -125,8 +125,30 @@ async function fetchVisitorSnapshot() {
     if (/Attention Required|Cloudflare|unable to access/i.test(body)) return fallback;
     const today = body.match(/Today(?:&#x27;|')s Visitors<\/dt>[\s\S]{0,240}?<span[^>]*>([0-9][0-9,]*)<\/span>/i)?.[1];
     const total = body.match(/Total Visitors<\/dt>[\s\S]{0,240}?<span[^>]*>([0-9][0-9,]*)<\/span>/i)?.[1];
-    if (!today || !total) return fallback;
-    return { today, total, source: "visitorbadge-status" };
+    if (today && total && (Number(today.replaceAll(",", "")) > 0 || Number(total.replaceAll(",", "")) > 0)) {
+      return { today, total, source: "visitorbadge-status" };
+    }
+  } catch {}
+
+  // visitorbadge.io's status page currently reports 0/0 for the historical
+  // URL-shaped key even though the production combined badge retains its
+  // accumulated counter. The user explicitly chose the production counter
+  // semantics for local and CI exports, so make exactly one badge request and
+  // freeze that returned n/m pair for every frame in this export.
+  try {
+    const response = await fetch("https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Froyalvice.github.io%2F&label=VISITORS&labelColor=%23060d09&countColor=%231b6e3a&style=flat-square&labelStyle=upper", {
+      headers: {
+        "user-agent": "Royalvice-Profile-GIF-Exporter/1.0",
+        "accept-language": "en-US"
+      },
+      signal: AbortSignal.timeout(12_000)
+    });
+    if (!response.ok) return fallback;
+    const body = await response.text();
+    const match = body.match(/aria-label="VISITORS:\s*([0-9][0-9,]*)\s*\/\s*([0-9][0-9,]*)"/i);
+    return match
+      ? { today: match[1], total: match[2], source: "visitorbadge-combined" }
+      : fallback;
   } catch {
     return fallback;
   }
