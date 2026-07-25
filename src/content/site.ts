@@ -32,7 +32,7 @@ export interface Project {
 export interface NewsItem {
   id: string;
   date: string;
-  type: "PAPER" | "CODE";
+  domain: "neural-graphics" | "agent-harness" | "mllm" | "game-world-model" | null;
   text: string;
   url?: string;
 }
@@ -107,7 +107,7 @@ export const projects: Project[] = [
   {
     id: "directl",
     title: "DirectL",
-    venue: "ACM TOG / SIGGRAPH Asia 2024",
+    venue: "ACM TOG · SIGGRAPH Asia 2024",
     direction: "Radiance Field Rendering",
     summary: "Efficient radiance-field rendering for 3D light-field displays.",
     media: {
@@ -128,7 +128,7 @@ export const projects: Project[] = [
   {
     id: "eva01",
     title: "EVA01",
-    venue: "SIGGRAPH Asia 2026 (TOG)",
+    venue: "ACM TOG · SIGGRAPH Asia 2026",
     direction: "3D Understanding, Generation, Editing",
     summary: "Unified native 3D understanding and generation with mesh tokens.",
     media: { type: "image", src: "/assets/gallery/hero/eva01_teaser.webp", alt: "EVA01 native 3D teaser" },
@@ -184,13 +184,13 @@ export const siteContent: SiteContent = {
   },
   projects,
   news: [
-    { id: "thoth-010", date: "2026.07", type: "CODE", text: "Thoth v0.1.0 shipped: agent harness with Clarify & Loop." },
-    { id: "eva01", date: "2026.07", type: "PAPER", text: "EVA01 accepted to SIGGRAPH Asia 2026 (TOG): native 3D MLLM online." },
-    { id: "eccv-2026", date: "2026.06", type: "PAPER", text: "ECCV 2026 paper accepted: CV lane unlocked." },
-    { id: "siggraph-2026", date: "2026.04", type: "PAPER", text: "SIGGRAPH 2026 paper accepted: real-time neural graphics." },
-    { id: "iccv-2025", date: "2025.05", type: "PAPER", text: "ICCV 2025 paper accepted: CV lane clear." },
-    { id: "tog-2024", date: "2024.10", type: "PAPER", text: "TOG paper at SIGGRAPH Asia 2024: real-time neural graphics.", url: "https://arxiv.org/abs/2407.14053" },
-    { id: "docdiff-2023", date: "2023.05", type: "CODE", text: "DocDiff shipped and accepted to ACM MM 2023.", url: "https://github.com/Royalvice/DocDiff" }
+    { id: "thoth-010", date: "2026.07", domain: "agent-harness", text: "Thoth v0.1.0 — Released with Clarify & Loop." },
+    { id: "eva01", date: "2026.07", domain: "mllm", text: "EVA01 — Accepted to ACM TOG; presented at SIGGRAPH Asia 2026." },
+    { id: "eccv-2026", date: "2026.06", domain: null, text: "One paper — Accepted to ECCV 2026." },
+    { id: "siggraph-2026", date: "2026.04", domain: "neural-graphics", text: "SSAT — Accepted to SIGGRAPH 2026." },
+    { id: "iccv-2025", date: "2025.05", domain: null, text: "EYE3 — Accepted to ICCV 2025." },
+    { id: "directl-2024", date: "2024.10", domain: "neural-graphics", text: "DirectL — Accepted to ACM TOG; presented at SIGGRAPH Asia 2024.", url: "https://arxiv.org/abs/2407.14053" },
+    { id: "docdiff-2023", date: "2023.05", domain: null, text: "DocDiff — Accepted to ACM MM 2023.", url: "https://github.com/Royalvice/DocDiff" }
   ],
   voyage: {
     progress: 0.75,

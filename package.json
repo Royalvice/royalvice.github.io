@@ -7,6 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
+    "export:profile-gifs": "node tools/profile-gif-export/export.mjs",
+    "verify:profile-gifs": "node tools/profile-gif-export/verify.mjs",
     "assets:horizon": "node tools/bake-horizon-assets.mjs",
     "test:e2e": "playwright test tests/arcade.spec.mjs",
     "test:visual": "playwright test tests/visual.spec.mjs"

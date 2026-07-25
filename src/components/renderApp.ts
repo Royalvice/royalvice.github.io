@@ -104,7 +104,7 @@ function renderGalleryPoster(projects: Project[]): string {
       ${projects.map((project) => `
         <article class="poster-slot poster-${project.id}">
           <img src="${escapeHtml(project.heroTexture)}" alt="${escapeHtml(project.media.alt)}" />
-          <span>${escapeHtml(project.title)}</span>
+          <span><b>${escapeHtml(project.title)}</b><small>${escapeHtml(project.venue)}</small></span>
         </article>
       `).join("")}
       <div class="gallery-loading-copy"><span></span> INITIALIZING PLAYCANVAS CABINET</div>
@@ -147,11 +147,19 @@ function renderProfile(content: SiteContent): string {
             </div>
             <h1 id="profile-title">${escapeHtml(p.name)}</h1>
             <p class="profile-signature">Happy Wife! Happy Life!</p>
-            <ol class="research-route" aria-label="Research route">
-              <li class="is-complete"><span></span><b>Neural Graphics</b></li>
-              <li class="is-current" aria-current="step"><span></span><b>3D MLLM</b></li>
-              <li class="is-future"><span></span><b>Game World Model</b></li>
-            </ol>
+            <div class="profile-telemetry-row">
+              <ol class="research-route" aria-label="Research route">
+                <li class="is-complete"><span></span><b>Neural Graphics</b></li>
+                <li class="is-current" aria-current="step"><span></span><b>3D MLLM</b></li>
+                <li class="is-future"><span></span><b>Game World Model</b></li>
+              </ol>
+              <a class="visitor-telemetry" data-visitor-telemetry data-state="preview" href="https://visitorbadge.io/status?path=https%3A%2F%2Froyalvice.github.io%2F" target="_blank" rel="noreferrer" aria-label="View today's and total visitor counts for royalvice.github.io">
+                <span class="visitor-heading"><i class="visitor-signal" aria-hidden="true"></i><b>LIVE COUNT</b></span>
+                <span class="visitor-preview" data-visitor-fallback>-- / ----</span>
+                <img data-visitor-image referrerpolicy="no-referrer" alt="Today's visitors followed by total visitors for royalvice.github.io" hidden />
+                <small>TODAY / TOTAL</small>
+              </a>
+            </div>
             <nav class="social-dock" aria-label="Research profiles">
               ${p.social.map((social) => `
                 <a href="${escapeHtml(social.href)}" target="_blank" rel="noreferrer" aria-label="${escapeHtml(social.label)}" title="${escapeHtml(social.label)}">
@@ -277,6 +285,12 @@ function renderProfile(content: SiteContent): string {
               </button>
             </div>
           </header>
+          <div class="terminal-domain-bar" aria-label="Research signal domains">
+            <span class="terminal-domain-badge domain-neural-graphics is-online" data-terminal-domain="neural-graphics" data-active="true"><i aria-hidden="true">◇</i><b>Neural Graphics</b></span>
+            <span class="terminal-domain-badge domain-agent-harness is-online" data-terminal-domain="agent-harness" data-active="true"><i aria-hidden="true">⌘</i><b>Agent Harness</b></span>
+            <span class="terminal-domain-badge domain-mllm is-online" data-terminal-domain="mllm" data-active="true"><i aria-hidden="true">◫</i><b>MLLM</b></span>
+            <span class="terminal-domain-badge domain-game-world-model is-offline" data-terminal-domain="game-world-model" data-active="false"><i aria-hidden="true">▦</i><b>Game World Model</b></span>
+          </div>
           <div class="terminal-command">
             <span class="terminal-user">zongyuan@oasis</span>
             <span class="terminal-path">~/research</span>
@@ -286,7 +300,9 @@ function renderProfile(content: SiteContent): string {
           <div class="terminal-columns" aria-hidden="true"><span>DATE</span><span>STREAM</span><span>EVENT</span></div>
           <div class="terminal-viewport">
             <div class="terminal-lines" data-terminal-lines role="log" aria-live="off" tabindex="0"></div>
-            <div class="terminal-output-cursor" aria-hidden="true"><i></i><span>awaiting record</span></div>
+            <div class="terminal-output-cursor terminal-cycle-boundary" aria-hidden="true">
+              <i></i><b>END OF NEWS</b><code>LOOP ↻</code><i></i>
+            </div>
           </div>
           <footer class="terminal-status">
             <span><i aria-hidden="true"></i><b data-terminal-footer>follow mode · waiting for append</b></span>
@@ -742,6 +758,12 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
     evidenceToggle.setAttribute("aria-expanded", String(open));
     evidenceToggle.firstChild!.textContent = open ? "Close evidence " : "Open evidence ";
     if (notifyRenderer) renderer?.setEvidenceOpen(open);
+    if (open) {
+      // Opening either evidence layout can cause the activating button to
+      // become the browser's scroll anchor while the rail changes height.
+      // Re-anchor the authored scene so the complete viewer stays visible.
+      requestAnimationFrame(() => window.scrollTo({ top: section.offsetTop, behavior: "auto" }));
+    }
   };
 
   const renderLog = (node: VoyageNode): void => {
@@ -893,6 +915,24 @@ export async function initializeApplication({ content, state, onSectionChange }:
   document.documentElement.dataset.section = "profile";
   if (state.reducedMotion) {
     document.querySelectorAll<SVGSVGElement>(".godot-flame-filter").forEach((svg) => svg.pauseAnimations());
+  }
+
+  const visitorTelemetry = document.querySelector<HTMLElement>("[data-visitor-telemetry]");
+  const visitorImage = visitorTelemetry?.querySelector<HTMLImageElement>("[data-visitor-image]");
+  const visitorFallback = visitorTelemetry?.querySelector<HTMLElement>("[data-visitor-fallback]");
+  if (visitorTelemetry && visitorImage && visitorFallback) {
+    visitorImage.addEventListener("load", () => {
+      visitorTelemetry.dataset.state = "live";
+      visitorImage.hidden = false;
+      visitorFallback.hidden = true;
+    }, { once: true });
+    visitorImage.addEventListener("error", () => {
+      visitorTelemetry.dataset.state = "offline";
+      visitorImage.hidden = true;
+      visitorFallback.hidden = false;
+      visitorFallback.textContent = "SIGNAL OFFLINE";
+    }, { once: true });
+    visitorImage.src = "https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Froyalvice.github.io%2F&label=VISITORS&labelColor=%23060d09&countColor=%231b6e3a&style=flat-square&labelStyle=upper";
   }
 
   const terminalRoot = document.querySelector<HTMLElement>(".terminal-shell");

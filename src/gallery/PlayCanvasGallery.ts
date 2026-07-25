@@ -147,8 +147,6 @@ const CABINET_VERSION = "v6";
 const CABINET_WIDTH = 5.55;
 const CABINET_HEIGHT = 4.78;
 const CABINET_FRONT_Z = 0.67;
-const SLOT_WIDTH = 2.395;
-const SLOT_HEIGHT = 2.01;
 const DESKTOP_CAMERA_Z = 7.35;
 
 const TROPHY_FLOOR_Y = -0.905;
@@ -167,25 +165,11 @@ const HERO_VIDEO_EMISSIVE = 0.16;
 const MOBILE_CAMERA_Z = 4.45;
 const DESKTOP_OVERSCAN = 0.948;
 const MOBILE_OVERSCAN = 1.03;
-const SLOT_CENTERS = [
-  new pc.Vec3(-1.2975, 1.105, 0),
-  new pc.Vec3(1.2975, 1.105, 0),
-  new pc.Vec3(-1.2975, -1.105, 0),
-  new pc.Vec3(1.2975, -1.105, 0)
-];
-
 const tierColors: Record<GalleryProject["trophyTier"], pc.Color> = {
   "legendary-holo": new pc.Color(0.96, 0.82, 1.0),
   gold: new pc.Color(1.0, 0.72, 0.26),
   silver: new pc.Color(0.86, 0.9, 0.96),
   "blue-crystal": new pc.Color(0.35, 0.84, 1.0)
-};
-
-const tierLabels: Record<GalleryProject["trophyTier"], string> = {
-  "legendary-holo": "LEGENDARY",
-  gold: "GOLD",
-  silver: "SILVER",
-  "blue-crystal": "CRYSTAL"
 };
 
 function setTextureSampling(texture: pc.Texture, repeat: boolean): pc.Texture {
@@ -473,6 +457,10 @@ export class PlayCanvasGallery {
         powerPreference: "high-performance"
       }
     });
+    // HTML project controls are the accessible, authoritative interaction
+    // layer. Bind them as soon as the shell exists so keyboard selection does
+    // not wait for optional GLB, video, HDRI or shader initialization.
+    this.bindOverlayEvents();
   }
 
   async init(): Promise<void> {
@@ -484,7 +472,6 @@ export class PlayCanvasGallery {
     this.applyEnvironment(assets);
     this.createSceneBackdrop();
     this.instantiateCabinet(assets);
-    this.bindOverlayEvents();
     this.installDebugHook();
 
     this.app.on("update", (dt: number) => this.update(dt));
@@ -560,7 +547,7 @@ export class PlayCanvasGallery {
 
       return `
         <article class="gallery-ui-card" data-project="${project.id}" data-index="${index}" tabindex="0" role="button" aria-label="${project.title} project display case">
-          <span class="gallery-hotspot-label">${project.title}</span>
+          <span class="gallery-hotspot-label"><i aria-hidden="true"></i><span><b>${project.title}</b><small>${project.venue}</small></span></span>
           <div class="gallery-action-panel">
             <p>${project.summary}</p>
             <nav class="gallery-links" aria-label="${project.title} links">${links}</nav>
@@ -1322,10 +1309,11 @@ export class PlayCanvasGallery {
 
   private drawMatrixPlaque(plaque: MatrixPlaqueRuntime, time: number): void {
     const { canvas, ctx, project, seed } = plaque;
-    const tier = tierColors[project.trophyTier];
-    const accent = `rgb(${Math.round(tier.r * 255)}, ${Math.round(tier.g * 255)}, ${Math.round(tier.b * 255)})`;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionTime = reducedMotion ? 0 : time;
+    const pulse = reducedMotion ? 0.72 : 0.62 + Math.sin(motionTime * 2.15 + seed) * 0.12;
     const matrixGreen = "rgb(112, 255, 114)";
-    const glyphs = "010110ROVICEAI3DMLLM";
+    const glyphs = "010110ROYALVICEAI3DMLLMTOGSIGGRAPH";
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#010604";
@@ -1341,7 +1329,7 @@ export class PlayCanvasGallery {
     ctx.font = "700 13px ui-monospace, SFMono-Regular, Menlo, monospace";
     for (let y = 30; y < canvas.height - 24; y += 24) {
       const speed = 18 + ((Math.floor(y) + seed) % 23);
-      const offset = (time * speed + seed * 9 + y * 1.7) % 180;
+      const offset = (motionTime * speed + seed * 9 + y * 1.7) % 180;
       for (let x = -120; x < canvas.width + 80; x += 18) {
         const px = x + offset;
         if (px < 14 || px > canvas.width - 14) continue;
@@ -1361,27 +1349,44 @@ export class PlayCanvasGallery {
       ctx.fillRect(0, y, canvas.width, 1);
     }
 
-    ctx.strokeStyle = "rgba(125, 255, 104, 0.64)";
+    ctx.strokeStyle = `rgba(125, 255, 104, ${pulse})`;
     ctx.lineWidth = 2;
     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
     ctx.strokeStyle = "rgba(12, 96, 26, 0.62)";
     ctx.lineWidth = 1;
     ctx.strokeRect(24, 24, canvas.width - 48, canvas.height - 48);
 
-    ctx.fillStyle = accent;
-    ctx.fillRect(30, 30, 7, 118);
+    ctx.fillStyle = `rgba(94, 255, 112, ${pulse + 0.12})`;
+    ctx.fillRect(30, 30, 7, 252);
+    ctx.fillStyle = "rgba(116,255,127,.72)";
+    ctx.font = "700 18px ui-monospace, SFMono-Regular, Menlo, monospace";
+    ctx.letterSpacing = "2px";
+    ctx.fillText("LIVE RESEARCH NODE", 56, 64);
     ctx.fillStyle = "rgba(152,255,137,0.95)";
     ctx.shadowColor = "rgba(85,255,96,0.62)";
     ctx.shadowBlur = 10;
     setFittedMonoFont(ctx, project.title.toUpperCase(), 900, 76, 40, canvas.width - 150);
-    ctx.fillText(project.title.toUpperCase(), 54, 116);
+    const glitch = !reducedMotion && Math.floor(motionTime * 7 + seed) % 41 === 0;
+    if (glitch) {
+      ctx.fillStyle = "rgba(190,255,197,.28)";
+      ctx.fillText(project.title.toUpperCase(), 62, 150);
+    }
+    ctx.fillStyle = "rgba(152,255,137,0.96)";
+    ctx.fillText(project.title.toUpperCase(), 54, 150);
     ctx.shadowBlur = 0;
-    ctx.fillStyle = "rgba(154, 255, 132, 0.82)";
-    setFittedMonoFont(ctx, project.venue.toUpperCase(), 700, 28, 17, canvas.width - 150);
-    ctx.fillText(project.venue.toUpperCase(), 56, 178);
+    ctx.fillStyle = "rgba(154, 255, 132, 0.88)";
+    setFittedMonoFont(ctx, project.venue.toUpperCase(), 750, 34, 20, canvas.width - 150);
+    ctx.fillText(project.venue.toUpperCase(), 56, 218);
     ctx.fillStyle = matrixGreen;
-    setFittedMonoFont(ctx, tierLabels[project.trophyTier], 800, 26, 16, canvas.width - 150);
-    ctx.fillText(tierLabels[project.trophyTier], 56, 228);
+    ctx.font = "700 18px ui-monospace, SFMono-Regular, Menlo, monospace";
+    ctx.fillText(`SIGNAL ${String(seed % 100).padStart(2, "0")}  /  LINK STABLE`, 56, 270);
+    const scanY = reducedMotion ? 314 : 292 + ((motionTime * 62 + seed) % 72);
+    const scan = ctx.createLinearGradient(0, scanY - 10, 0, scanY + 10);
+    scan.addColorStop(0, "rgba(70,255,91,0)");
+    scan.addColorStop(.5, "rgba(105,255,121,.18)");
+    scan.addColorStop(1, "rgba(70,255,91,0)");
+    ctx.fillStyle = scan;
+    ctx.fillRect(24, scanY - 10, canvas.width - 48, 20);
   }
 
   private createPlaqueTexture(project: GalleryProject, index: number): MatrixPlaqueRuntime {
@@ -2107,15 +2112,22 @@ export class PlayCanvasGallery {
 
   private applyResponsiveLayout(aspect: number): void {
     if (!this.camera?.camera) return;
-    this.root.querySelector(".playcanvas-gallery")?.classList.toggle("is-mobile-gallery", this.isMobile);
+    const shell = this.root.querySelector<HTMLElement>(".playcanvas-gallery");
+    shell?.classList.toggle("is-mobile-gallery", this.isMobile);
 
-    const target = this.isMobile ? SLOT_CENTERS[0] : new pc.Vec3(0, 0.02, 0);
-    const targetWidth = this.isMobile ? SLOT_WIDTH : CABINET_WIDTH;
-    const targetHeight = this.isMobile ? SLOT_HEIGHT : CABINET_HEIGHT;
+    const target = new pc.Vec3(0, 0.02, 0);
+    const targetWidth = CABINET_WIDTH;
+    const targetHeight = CABINET_HEIGHT;
     const cameraZ = this.isMobile ? MOBILE_CAMERA_Z : DESKTOP_CAMERA_Z;
     const overscan = this.isMobile ? MOBILE_OVERSCAN : DESKTOP_OVERSCAN;
     const halfHeightFromWidth = targetWidth / Math.max(aspect, 0.2) * 0.5;
     const halfHeight = Math.max(targetHeight * 0.5, halfHeightFromWidth) * overscan;
+    const visibleWidth = halfHeight * 2 * Math.max(aspect, 0.2);
+    const visibleHeight = halfHeight * 2;
+    const insetX = Math.max(0, (1 - targetWidth / visibleWidth) * 50);
+    const insetY = Math.max(0, (1 - targetHeight / visibleHeight) * 50);
+    shell?.style.setProperty("--gallery-cabinet-inset-x", `${insetX.toFixed(3)}%`);
+    shell?.style.setProperty("--gallery-cabinet-inset-y", `${insetY.toFixed(3)}%`);
     const distanceToFront = cameraZ - CABINET_FRONT_Z;
     this.camera.camera.fov = pc.math.RAD_TO_DEG * 2 * Math.atan(halfHeight / distanceToFront);
     this.camera.setPosition(target.x, target.y + (this.isMobile ? 0.02 : 0.08), cameraZ);

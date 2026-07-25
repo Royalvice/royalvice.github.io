@@ -9,6 +9,7 @@ const manualContextTests = new Set([
   "Horizon keeps the sea live when the optional UFO atlas cannot load",
   "Horizon keeps a visible fallback when WebGL2 is unavailable",
   "mobile Horizon uses an aspect-correct internal canvas and includes the boat",
+  "mobile gallery keeps all four project targets aligned and inside the viewport",
   "reduced motion exposes the static final state"
 ]);
 
@@ -16,6 +17,13 @@ test.beforeEach(async ({ page }, testInfo) => {
   // Tests that create their own context perform their own navigation. Keeping
   // this auto page blank avoids running an unused second pair of WebGL scenes.
   if (manualContextTests.has(testInfo.title)) return;
+  // The real badge is intentionally loaded on localhost, but automated test
+  // refreshes must not inflate the public counter.
+  await page.route("https://api.visitorbadge.io/api/combined?*", (route) => route.fulfill({
+    status: 200,
+    contentType: "image/svg+xml",
+    body: '<svg xmlns="http://www.w3.org/2000/svg" width="134" height="20" role="img"><rect width="134" height="20" fill="#060d09"/><rect x="61" width="73" height="20" fill="#1b6e3a"/><text x="6" y="14" fill="#9df5aa" font-size="9">VISITORS</text><text x="67" y="14" fill="#fff" font-size="9">7 / 1,713</text></svg>'
+  }));
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await page.getByRole("heading", { name: "Zongyuan Yang" }).waitFor();
 });
@@ -29,6 +37,33 @@ test("profile content is readable without hover and layout has no horizontal ove
   await expect(page.locator(".terminal-line")).toHaveCount(7);
   const sizes = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
   expect(sizes.scroll).toBe(sizes.width);
+});
+
+test("visitor telemetry uses the historical counter path and combined today-total count", async ({ page }) => {
+  const badge = page.locator("[data-visitor-telemetry]");
+  await expect(badge).toBeVisible();
+  await expect(badge).toHaveAttribute("href", "https://visitorbadge.io/status?path=https%3A%2F%2Froyalvice.github.io%2F");
+  await expect(badge).toHaveAttribute("data-state", "live");
+  await expect(badge).toContainText("TODAY / TOTAL");
+  await expect(page.locator("[data-visitor-fallback]")).toBeHidden();
+  await expect(page.locator("[data-visitor-image]")).toHaveAttribute("src", /api\/combined\?path=https%3A%2F%2Froyalvice\.github\.io%2F/);
+  await expect(page.locator("[data-visitor-image]")).toHaveAttribute("referrerpolicy", "no-referrer");
+  await expect(page.locator("[data-visitor-image]")).toBeVisible();
+  const telemetryGeometry = await page.evaluate(() => {
+    const route = document.querySelector(".research-route")?.getBoundingClientRect();
+    const telemetry = document.querySelector("[data-visitor-telemetry]")?.getBoundingClientRect();
+    return route && telemetry ? {
+      routeRight: route.right,
+      telemetryLeft: telemetry.left,
+      verticalDelta: Math.abs(route.top - telemetry.top)
+    } : null;
+  });
+  expect(telemetryGeometry).not.toBeNull();
+  expect(telemetryGeometry.telemetryLeft).toBeGreaterThanOrEqual(telemetryGeometry.routeRight);
+  expect(telemetryGeometry.verticalDelta).toBeLessThan(12);
+  await page.locator("[data-visitor-image]").dispatchEvent("error");
+  await expect(badge).toHaveAttribute("data-state", "offline");
+  await expect(page.locator("[data-visitor-fallback]")).toHaveText("SIGNAL OFFLINE");
 });
 
 test("Godot heat stage fills the temperature rail before flame surge and steam", async ({ page }) => {
@@ -67,17 +102,71 @@ test("SIGGRAPH lever resolves the rolling holographic counter at three and can r
   await expect(machine).toHaveAttribute("data-result", "3", { timeout: 12_000 });
 });
 
-test("terminal uses only PAPER and CODE categories with semantic keyword highlighting", async ({ page }) => {
-  const types = await page.locator(".terminal-type").allTextContents();
-  expect(new Set(types)).toEqual(new Set(["paper", "code"]));
+test("terminal uses research-domain signals and unified news sentences", async ({ page }) => {
+  await expect(page.locator(".terminal-type")).toHaveCount(0);
+  const domainBadges = await page.locator("[data-terminal-domain]").evaluateAll((items) => items.map((item) => ({
+    domain: item.getAttribute("data-terminal-domain"),
+    active: item.getAttribute("data-active")
+  })));
+  expect(domainBadges).toEqual([
+    { domain: "neural-graphics", active: "true" },
+    { domain: "agent-harness", active: "true" },
+    { domain: "mllm", active: "true" },
+    { domain: "game-world-model", active: "false" }
+  ]);
+  expect(await page.locator(".terminal-line").evaluateAll((items) => Object.fromEntries(items.map((item) => [
+    item.getAttribute("data-news-id"), item.querySelector("[data-news-domain]")?.getAttribute("data-news-domain")
+  ])))).toEqual({
+    "thoth-010": "agent-harness",
+    eva01: "mllm",
+    "eccv-2026": "unclassified",
+    "siggraph-2026": "neural-graphics",
+    "iccv-2025": "unclassified",
+    "directl-2024": "neural-graphics",
+    "docdiff-2023": "unclassified"
+  });
+  await expect(page.locator("[data-news-id=directl-2024] .terminal-message")).toHaveText("DirectL — Accepted to ACM TOG; presented at SIGGRAPH Asia 2024.");
+  await expect(page.locator("[data-news-id=siggraph-2026] .terminal-message")).toHaveText("SSAT — Accepted to SIGGRAPH 2026.");
+  const timeline = await page.locator(".terminal-line").evaluateAll((items) => items.map((item) => ({
+    id: item.getAttribute("data-news-id"),
+    date: item.querySelector("time")?.getAttribute("datetime")
+  })));
+  expect(timeline).toEqual([
+    { id: "thoth-010", date: "2026.07" },
+    { id: "eva01", date: "2026.07" },
+    { id: "eccv-2026", date: "2026.06" },
+    { id: "siggraph-2026", date: "2026.04" },
+    { id: "iccv-2025", date: "2025.05" },
+    { id: "directl-2024", date: "2024.10" },
+    { id: "docdiff-2023", date: "2023.05" }
+  ]);
+  const eventLefts = await page.locator(".terminal-event").evaluateAll((items) => items.map((item) => item.getBoundingClientRect().left));
+  expect(Math.max(...eventLefts) - Math.min(...eventLefts)).toBeLessThan(1);
   await expect(page.getByText("TTY / RESEARCH-TAIL", { exact: true })).toBeVisible();
   await expect(page.locator("[data-terminal-buffer]")).toHaveText("BUFFER 07/09");
   await expect(page.locator(".terminal-output-cursor")).toBeVisible();
+  await expect(page.locator(".terminal-lines + .terminal-cycle-boundary")).toContainText("END OF NEWS");
+  await expect(page.locator(".terminal-cycle-boundary")).toContainText("LOOP ↻");
   await expect(page.locator(".terminal-keyword").first()).toBeVisible();
   await expect(page.locator(".terminal-year-2026").first()).toBeVisible();
   await expect(page.locator(".terminal-year-2025").first()).toBeVisible();
   await expect(page.locator(".terminal-year-2024").first()).toBeVisible();
   await expect(page.locator(".terminal-year-2023").first()).toBeVisible();
+});
+
+test("cabinet plaques expose the four authoritative venue labels", async ({ page }) => {
+  await expect(page.locator("[data-playcanvas-gallery]")).toBeVisible({ timeout: 30_000 });
+  const labels = await page.locator(".gallery-ui-card").evaluateAll((cards) => cards.map((card) => ({
+    id: card.getAttribute("data-project"),
+    title: card.querySelector(".gallery-hotspot-label b")?.textContent?.trim(),
+    venue: card.querySelector(".gallery-hotspot-label small")?.textContent?.trim()
+  })));
+  expect(labels).toEqual([
+    { id: "ssat", title: "SSAT", venue: "SIGGRAPH 2026" },
+    { id: "directl", title: "DirectL", venue: "ACM TOG · SIGGRAPH Asia 2024" },
+    { id: "eva01", title: "EVA01", venue: "ACM TOG · SIGGRAPH Asia 2026" },
+    { id: "docdiff", title: "DocDiff", venue: "ACM MM 2023" }
+  ]);
 });
 
 test("terminal pauses on hover and resumes after leaving", async ({ page }) => {
@@ -93,52 +182,27 @@ test("terminal pauses on hover and resumes after leaving", async ({ page }) => {
   await expect(page.locator("[data-terminal-state]")).toHaveText("FOLLOW");
 });
 
-test("terminal appends one keyed record without replacing retained rows", async ({ page }) => {
+test("terminal live refresh preserves strict reverse chronological order", async ({ page }) => {
   test.setTimeout(90_000);
   const terminal = page.locator(".terminal-shell");
   const toggle = page.locator("[data-terminal-toggle]");
   await toggle.dispatchEvent("click");
   await expect(terminal).toHaveAttribute("data-paused", "true");
   await expect(terminal).not.toHaveClass(/is-ingesting/, { timeout: 10_000 });
-  const firstId = await page.locator(".terminal-line").first().getAttribute("data-news-id");
-  await page.locator(".terminal-line").nth(1).evaluate((row) => { row.dataset.retainedProbe = "true"; });
-  await page.evaluate((previousFirst) => {
-    window.__terminalAppendProbe = { resolved: false };
-    const terminal = document.querySelector(".terminal-shell");
-    const lines = document.querySelector(".terminal-lines");
-    const observer = new MutationObserver(() => {
-      const first = lines?.firstElementChild;
-      if (first?.getAttribute("data-news-id") === previousFirst) return;
-      window.__terminalAppendProbe = {
-        resolved: true,
-        retained: first?.getAttribute("data-retained-probe") === "true",
-        rowCount: lines?.children.length,
-        ingesting: terminal?.classList.contains("is-ingesting"),
-        incomingMarked: lines?.querySelectorAll(".terminal-line.is-ingesting").length === 1,
-        state: terminal?.querySelector("[data-terminal-state]")?.textContent
-      };
-      observer.disconnect();
-    });
-    if (lines) observer.observe(lines, { childList: true });
-  }, firstId);
+  const initialOrder = await page.locator(".terminal-line").evaluateAll((items) => items.map((item) => item.getAttribute("data-news-id")));
+  const initialSequence = Number(await terminal.getAttribute("data-refresh-sequence") || "0");
   await toggle.dispatchEvent("click");
   await expect(terminal).toHaveAttribute("data-paused", "false");
-  await page.waitForFunction(() => window.__terminalAppendProbe?.resolved, null, { timeout: 15_000, polling: 100 });
-  expect(await page.evaluate(() => window.__terminalAppendProbe)).toEqual({
-    resolved: true,
-    retained: true,
-    rowCount: 7,
-    ingesting: true,
-    incomingMarked: true,
-    state: "INGEST"
-  });
+  await expect.poll(async () => Number(await terminal.getAttribute("data-refresh-sequence") || "0"), { timeout: 15_000 }).toBeGreaterThan(initialSequence);
+  expect(await page.locator(".terminal-line").evaluateAll((items) => items.map((item) => item.getAttribute("data-news-id")))).toEqual(initialOrder);
+  await expect(page.locator(".terminal-line")).toHaveCount(7);
   await toggle.dispatchEvent("click");
   await expect(terminal).toHaveAttribute("data-paused", "true");
   await expect(terminal).not.toHaveClass(/is-ingesting/, { timeout: 10_000 });
   await expect(page.locator("[data-terminal-state]")).toHaveText("HOLD / MANUAL");
   await toggle.dispatchEvent("click");
   await expect(terminal).toHaveAttribute("data-paused", "false");
-  await expect(page.locator("[data-terminal-state]")).toHaveText("FOLLOW");
+  await expect(page.locator("[data-terminal-state]")).toHaveText(/FOLLOW|INGEST/);
 });
 
 test("terminal follow control toggles a persistent manual hold", async ({ page }) => {
@@ -416,7 +480,9 @@ test("living profile dungeon loads approved room-v4 atlases and runs one determi
 });
 
 test("profile room controls use ground focus, manual actions, unique portal transit, and freeze on pause", async ({ page }) => {
-  test.setTimeout(120_000);
+  // Software WebGL on CI can spend most of the default budget compiling the
+  // room and cabinet shaders before this long deterministic interaction pass.
+  test.setTimeout(240_000);
   await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
   const nobita = page.locator('[data-profile-actor="nobita"]');
   await nobita.focus();
@@ -479,7 +545,7 @@ test("profile room controls use ground focus, manual actions, unique portal tran
 });
 
 test("room-v4 actor failures stay local, reduced motion is static, and the removed 3d runner is never requested", async ({ browser }) => {
-  test.setTimeout(180_000);
+  test.setTimeout(300_000);
   const fallback = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await fallback.newPage();
   let requestedRiggedModel = false;
@@ -494,7 +560,7 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
     "**/room-v3/posters/spirited-away-pixel.webp"
   ]) await page.route(route, (handler) => handler.abort());
   await page.goto("/", { waitUntil: "domcontentloaded" });
-  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
   await page.evaluate(() => window.__profileAdventureDebug.setTime(9.75));
   const state = await page.evaluate(() => window.__profileAdventureDebug.getState());
   expect(state.assets.actors.suneo).toBe("partial-fallback");
@@ -511,7 +577,7 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
   const reduced = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: "reduce" });
   const reducedPage = await reduced.newPage();
   await reducedPage.goto("/", { waitUntil: "domcontentloaded" });
-  await reducedPage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
+  await reducedPage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
   const first = await reducedPage.evaluate(() => window.__profileAdventureDebug.getState());
   await reducedPage.waitForTimeout(350);
   const second = await reducedPage.evaluate(() => window.__profileAdventureDebug.getState());
@@ -958,6 +1024,7 @@ test("mobile Voyage uses a portrait pixel canvas and a vertical semantic route",
   await page.locator("[data-evidence-toggle]").click();
   await expect(page.locator("[data-evidence-panel]")).toHaveAttribute("aria-hidden", "false");
   await expect(page.locator("[data-captains-log]")).toHaveCSS("visibility", "hidden");
+  await expect.poll(() => page.locator("[data-evidence-panel]").evaluate((element) => element.getBoundingClientRect().top)).toBeGreaterThan(46);
   const evidence = await page.evaluate(() => {
     const box = (element) => {
       const rect = element.getBoundingClientRect();
@@ -1021,6 +1088,8 @@ test("Horizon is one unified renderer with a sprite boat and no legacy visual la
 
 test("Horizon transition remains scroll-driven without a bridge boat", async ({ page }) => {
   test.setTimeout(120_000);
+  const initialTop = await page.locator("#horizon").evaluate((element) => element.offsetTop);
+  await page.evaluate((value) => scrollTo({ top: value - innerHeight * .86, behavior: "instant" }), initialTop);
   await page.waitForFunction(() => window.__horizonDebug?.().ready, null, { timeout: 30_000 });
   const horizonTop = await page.locator("#horizon").evaluate((element) => element.offsetTop);
   const samples = [];
@@ -1044,7 +1113,7 @@ test("Horizon deterministic meteor hook keeps the rare event testable", async ({
   await page.waitForFunction(() => window.__horizonDebug?.().ready, null, { timeout: 30_000 });
   await page.waitForFunction(() => window.__horizonDebug().transitionProgress > .98, null, { timeout: 10_000 });
   await page.evaluate(() => window.__horizonDebug.triggerMeteor("shower"));
-  await expect.poll(() => page.evaluate(() => window.__horizonDebug().meteorCount), { timeout: 10_000 }).toBe(8);
+  await expect.poll(() => page.evaluate(() => window.__horizonDebug().lastMeteorBatchSize), { timeout: 10_000 }).toBe(8);
   const debug = await page.evaluate(() => window.__horizonDebug());
   expect(debug.lastMeteorBatchSize).toBe(8);
   expect(debug.nextMeteorIn).toBeGreaterThanOrEqual(0);
@@ -1215,6 +1284,45 @@ test("mobile Horizon uses an aspect-correct internal canvas and includes the boa
   expect(debug.internalResolution[1]).toBeGreaterThan(debug.internalResolution[0]);
   expect(debug.boatScreenPosition[0]).toBeGreaterThan(.60);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
+  await context.close();
+});
+
+test("mobile gallery keeps all four project targets aligned and inside the viewport", async ({ browser }) => {
+  test.setTimeout(120_000);
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: "dark" });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+  await page.getByRole("heading", { name: "Zongyuan Yang" }).waitFor();
+  await expect(page.locator("[data-playcanvas-gallery]")).toBeVisible({ timeout: 30_000 });
+  await page.locator(".gallery-stage").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
+  const geometry = await page.locator(".gallery-overlay").evaluate((overlay) => {
+    const parent = overlay.getBoundingClientRect();
+    const cards = [...overlay.querySelectorAll(".gallery-ui-card")].map((card) => {
+      const rect = card.getBoundingClientRect();
+      return { id: card.getAttribute("data-project"), left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
+    });
+    const overlaps = cards.flatMap((a, index) => cards.slice(index + 1).map((b) => (
+      Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
+      * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top))
+    )));
+    return {
+      parent: { left: parent.left, top: parent.top, right: parent.right, bottom: parent.bottom },
+      cards,
+      overlaps,
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth
+    };
+  });
+  expect(geometry.cards.map((card) => card.id)).toEqual(["ssat", "directl", "eva01", "docdiff"]);
+  expect(geometry.overlaps.every((area) => area === 0)).toBe(true);
+  expect(geometry.cards.every((card) => card.left >= geometry.parent.left && card.right <= geometry.parent.right && card.top >= geometry.parent.top && card.bottom <= geometry.parent.bottom)).toBe(true);
+  expect(geometry.scrollWidth).toBe(geometry.clientWidth);
+  for (const id of ["ssat", "directl", "eva01", "docdiff"]) {
+    const card = page.locator(`.gallery-ui-card[data-project="${id}"]`);
+    await card.dispatchEvent("click");
+    await expect(card).toHaveClass(/is-active/);
+    await expect(page.locator(".gallery-ui-card.is-active")).toHaveCount(1);
+  }
   await context.close();
 });
 

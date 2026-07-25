@@ -1,0 +1,14 @@
+/* Export-only dimensions. This stylesheet never enters the production app. */
+html, body {
+  width: 720px;
+  height: 350px;
+  margin: 0;
+  overflow: hidden;
+  background: #06100e;
+}
+.profile-gif-room-root {
+  box-sizing: border-box;
+  width: 720px;
+  height: 350px;
+  min-height: 350px;
+}

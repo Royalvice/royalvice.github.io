@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages and Profile GIFs
 
 on:
   push:
@@ -11,25 +11,116 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-and-profile
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-export:
     runs-on: ubuntu-latest
+    outputs:
+      gif_success: ${{ steps.export.outputs.success }}
     steps:
-      - name: Checkout
+      - name: Checkout homepage
         uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - name: Install
+
+      - name: Install dependencies
         run: npm ci
-      - name: Build
+
+      - name: Install Chromium and FFmpeg
+        run: |
+          npx playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Build homepage
         run: npm run build
-      - name: Upload artifact
+
+      - name: Start export server
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 4173 > /tmp/profile-gif-vite.log 2>&1 &
+          echo $! > /tmp/profile-gif-vite.pid
+          for _ in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          tail -n 120 /tmp/profile-gif-vite.log
+          exit 1
+
+      - name: Export and verify profile GIFs
+        id: export
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          npm run export:profile-gifs -- \
+            --base-url http://127.0.0.1:4173 \
+            --out-dir dist/profile-gifs \
+            --width 720 \
+            --fps 24 \
+            --max-bytes 36700160 2>&1 | tee /tmp/profile-gif-export.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -eq 0 ]; then
+            npm run verify:profile-gifs -- dist/profile-gifs
+            status=$?
+          fi
+          if [ "$status" -eq 0 ]; then
+            echo "success=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "success=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit "$status"
+
+      - name: Collect GIF diagnostics
+        if: always()
+        run: |
+          mkdir -p profile-gif-diagnostics
+          cp /tmp/profile-gif-export.log profile-gif-diagnostics/export.log 2>/dev/null || true
+          cp /tmp/profile-gif-vite.log profile-gif-diagnostics/vite.log 2>/dev/null || true
+          cp dist/profile-gifs/manifest.json profile-gif-diagnostics/manifest.json 2>/dev/null || true
+          cp dist/profile-gifs/*.gif profile-gif-diagnostics/ 2>/dev/null || true
+          cp -R dist/profile-gifs/diagnostics profile-gif-diagnostics/ 2>/dev/null || true
+          cp -R dist/profile-gifs/.work profile-gif-diagnostics/failed-frames 2>/dev/null || true
+
+      - name: Reuse previous published GIFs after an export failure
+        if: steps.export.outputs.success != 'true'
+        shell: bash
+        run: |
+          rm -rf dist/profile-gifs
+          mkdir -p dist/profile-gifs
+          for file in profile-card.gif news-terminal.gif sprite-room.gif manifest.json; do
+            partial="dist/profile-gifs/${file}.partial"
+            if curl --fail --location --retry 3 --retry-delay 2 \
+              "https://royalvice.github.io/profile-gifs/${file}?fallback=${GITHUB_SHA}" \
+              --output "$partial"; then
+              mv "$partial" "dist/profile-gifs/$file"
+            else
+              rm -f "$partial"
+              echo "No prior published $file was available; Pages will deploy without it."
+            fi
+          done
+
+      - name: Remove diagnostics from the Pages payload
+        if: steps.export.outputs.success == 'true'
+        run: rm -rf dist/profile-gifs/diagnostics dist/profile-gifs/.work
+
+      - name: Upload GIF diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: profile-gif-diagnostics-${{ github.sha }}
+          path: profile-gif-diagnostics
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -39,8 +130,84 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-export
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  publish-profile:
+    runs-on: ubuntu-latest
+    needs: [build-export, deploy]
+    if: needs.build-export.outputs.gif_success == 'true' && needs.deploy.result == 'success'
+    steps:
+      - name: Checkout GitHub Profile repository
+        uses: actions/checkout@v4
+        with:
+          repository: Royalvice/Royalvice
+          ref: main
+          token: ${{ secrets.PROFILE_REPO_TOKEN }}
+          path: github-profile
+
+      - name: Replace Profile README with linked GIFs
+        working-directory: github-profile
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          source_sha = os.environ["SOURCE_SHA"]
+          readme = f'''<a href="https://royalvice.github.io/">
+            <img src="https://royalvice.github.io/profile-gifs/profile-card.gif?v={source_sha}" width="100%" alt="Royalvice profile card">
+          </a>
+
+          <a href="https://royalvice.github.io/">
+            <img src="https://royalvice.github.io/profile-gifs/news-terminal.gif?v={source_sha}" width="100%" alt="Royalvice research news">
+          </a>
+
+          <a href="https://royalvice.github.io/">
+            <img src="https://royalvice.github.io/profile-gifs/sprite-room.gif?v={source_sha}" width="100%" alt="Royalvice sprite room">
+          </a>
+          '''
+          Path("README.md").write_text(readme, encoding="utf-8")
+          PY
+
+      - name: Commit Profile README when changed
+        working-directory: github-profile
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "Profile README already references ${SOURCE_SHA}."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update profile GIFs from royalvice.github.io ${SOURCE_SHA}"
+          git push origin main
+
+  gif-export-status:
+    runs-on: ubuntu-latest
+    needs: [build-export, deploy, publish-profile]
+    if: always()
+    steps:
+      - name: Report GIF/Profile publication failure after Pages deployment
+        env:
+          GIF_SUCCESS: ${{ needs.build-export.outputs.gif_success }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+          PROFILE_RESULT: ${{ needs.publish-profile.result }}
+        run: |
+          echo "GIF export: $GIF_SUCCESS"
+          echo "Pages deploy: $DEPLOY_RESULT"
+          echo "Profile publish: $PROFILE_RESULT"
+          if [ "$GIF_SUCCESS" != "true" ]; then
+            echo "Profile GIF export failed. Pages was allowed to deploy using prior GIFs when available."
+            exit 1
+          fi
+          if [ "$DEPLOY_RESULT" != "success" ] || [ "$PROFILE_RESULT" != "success" ]; then
+            echo "Pages or Profile publication did not complete successfully."
+            exit 1
+          fi
