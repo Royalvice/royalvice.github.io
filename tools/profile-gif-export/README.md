@@ -40,3 +40,9 @@ npm run export:profile-gifs -- \
   --fps 24 \
   --max-bytes 36700160
 ```
+
+The deployment workflow also mirrors the two verified binaries into the GitHub
+Profile repository before replacing its README. Repository-relative image URLs
+keep the full-resolution GIFs on GitHub's trusted raw-content path instead of
+the size-limited external Camo proxy; both images still link to the homepage and
+use the homepage source commit as their cache-busting query.

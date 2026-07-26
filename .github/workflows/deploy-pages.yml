@@ -141,6 +141,12 @@ jobs:
     needs: [build-export, deploy]
     if: needs.build-export.outputs.gif_success == 'true' && needs.deploy.result == 'success'
     steps:
+      - name: Download verified Profile GIF payload
+        uses: actions/download-artifact@v4
+        with:
+          name: profile-gif-diagnostics-${{ github.sha }}
+          path: published-profile-gifs
+
       - name: Checkout GitHub Profile repository
         uses: actions/checkout@v4
         with:
@@ -148,6 +154,39 @@ jobs:
           ref: main
           token: ${{ secrets.PROFILE_REPO_TOKEN }}
           path: github-profile
+
+      - name: Mirror verified GIFs into the Profile repository
+        working-directory: github-profile
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import shutil
+          from pathlib import Path
+
+          payload = Path("../published-profile-gifs")
+          manifest = json.loads((payload / "manifest.json").read_text(encoding="utf-8"))
+          source_sha = os.environ["SOURCE_SHA"]
+          if manifest["sourceCommit"] != source_sha:
+              raise SystemExit("Downloaded GIF manifest belongs to a different source commit.")
+          if manifest["publication"]["order"] != ["profile-card", "news-terminal"]:
+              raise SystemExit("Downloaded GIF manifest is not the approved two-card publication.")
+
+          destination = Path("profile-gifs")
+          destination.mkdir(exist_ok=True)
+          for card in manifest["cards"]:
+              source = payload / card["file"]
+              body = source.read_bytes()
+              if len(body) != card["verification"]["bytes"]:
+                  raise SystemExit(f"{card['file']} byte count differs from the manifest.")
+              if hashlib.sha256(body).hexdigest() != card["verification"]["sha256"]:
+                  raise SystemExit(f"{card['file']} SHA-256 differs from the manifest.")
+              shutil.copyfile(source, destination / card["file"])
+          (destination / "sprite-room.gif").unlink(missing_ok=True)
+          PY
 
       - name: Replace Profile README with linked GIFs
         working-directory: github-profile
@@ -160,11 +199,11 @@ jobs:
 
           source_sha = os.environ["SOURCE_SHA"]
           readme = f'''<a href="https://royalvice.github.io/">
-            <img src="https://royalvice.github.io/profile-gifs/profile-card.gif?v={source_sha}" width="100%" alt="Royalvice profile card">
+            <img src="./profile-gifs/profile-card.gif?v={source_sha}" width="100%" alt="Royalvice profile card">
           </a>
 
           <a href="https://royalvice.github.io/">
-            <img src="https://royalvice.github.io/profile-gifs/news-terminal.gif?v={source_sha}" width="100%" alt="Royalvice research news">
+            <img src="./profile-gifs/news-terminal.gif?v={source_sha}" width="100%" alt="Royalvice research news">
           </a>
           '''
           Path("README.md").write_text(readme, encoding="utf-8")
@@ -175,13 +214,13 @@ jobs:
         env:
           SOURCE_SHA: ${{ github.sha }}
         run: |
-          if git diff --quiet -- README.md; then
-            echo "Profile README already references ${SOURCE_SHA}."
+          if git diff --quiet -- README.md profile-gifs; then
+            echo "Profile README and mirrored GIFs already reference ${SOURCE_SHA}."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
+          git add -A -- README.md profile-gifs
           git commit -m "Update profile GIFs from royalvice.github.io ${SOURCE_SHA}"
           git push origin main
 
