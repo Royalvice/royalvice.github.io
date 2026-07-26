@@ -19,7 +19,7 @@ const ROOT = path.resolve(import.meta.dirname, "../..");
 const DEFAULTS = {
   baseUrl: "http://127.0.0.1:4173",
   outDir: path.join(ROOT, "dist/profile-gifs"),
-  width: 720,
+  width: 1920,
   fps: 24,
   maxBytes: 36_700_160,
   only: "all"
@@ -30,8 +30,12 @@ const CARD_SPECS = {
     id: "profile-card",
     file: "profile-card.gif",
     selector: ".profile-top",
-    width: 720,
-    height: 340,
+    layoutWidth: 800,
+    layoutHeight: 340,
+    captureScale: 3,
+    width: 1920,
+    height: 816,
+    resample: "lanczos",
     frames: 192,
     duration: 8,
     keyframes: [0, 12, 36, 61, 84, 108, 168, 180, 191]
@@ -40,8 +44,12 @@ const CARD_SPECS = {
     id: "sprite-room",
     file: "sprite-room.gif",
     selector: "[data-profile-gif-room]",
+    layoutWidth: 720,
+    layoutHeight: 350,
+    captureScale: 1,
     width: 720,
     height: 350,
+    resample: null,
     frames: 1_440,
     duration: 60,
     keyframes: [0, 240, 480, 720, 960, 1_200, 1_320, 1_416, 1_439]
@@ -50,8 +58,12 @@ const CARD_SPECS = {
     id: "news-terminal",
     file: "news-terminal.gif",
     selector: ".terminal-shell",
-    width: 720,
-    height: 350,
+    layoutWidth: 720,
+    layoutHeight: 350,
+    captureScale: 3,
+    width: 1920,
+    height: 934,
+    resample: "lanczos",
     frames: 240,
     duration: 10,
     keyframes: [0, 1, 29, 58, 116, 174, 202, 216, 239]
@@ -73,14 +85,17 @@ function parseArgs(argv) {
       process.stdout.write(`Usage: npm run export:profile-gifs -- [options]\n\n` +
         `  --base-url <url>      Vite development server (default ${DEFAULTS.baseUrl})\n` +
         `  --out-dir <path>      Published output directory\n` +
-        `  --width <pixels>      Required output width (locked to 720)\n` +
+        `  --width <pixels>      Published GIF width (1920; room-only export uses 720)\n` +
         `  --fps <number>        Required frame rate (locked to 24)\n` +
         `  --max-bytes <bytes>   Per-GIF hard cap (default 36700160)\n` +
         `  --only <name>         all, profile, room, or news (development aid)\n`);
       process.exit(0);
     } else throw new Error(`Unknown argument: ${arg}`);
   }
-  if (options.width !== 720) throw new Error("Profile GIF publication is locked to 720px width.");
+  const expectedWidth = options.only === "room" ? 720 : 1920;
+  if (options.width !== expectedWidth) {
+    throw new Error(`${options.only === "room" ? "Room-only" : "Profile GIF publication"} is locked to ${expectedWidth}px width.`);
+  }
   if (options.fps !== 24) throw new Error("Profile GIF publication is locked to 24fps.");
   if (!Number.isSafeInteger(options.maxBytes) || options.maxBytes <= 0) throw new Error("--max-bytes must be a positive integer.");
   if (!Object.hasOwn(CARD_SPECS, options.only) && options.only !== "all") throw new Error("--only must be all, profile, room, or news.");
@@ -156,16 +171,16 @@ async function fetchVisitorSnapshot() {
 
 function visitorSvg(snapshot) {
   const value = `${snapshot.today} / ${snapshot.total}`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="134" height="20" role="img" aria-label="${value}">` +
-    `<rect width="134" height="20" fill="#060d09"/><rect x="61" width="73" height="20" fill="#1b6e3a"/>` +
-    `<text x="6" y="14" fill="#9df5aa" font-family="monospace" font-size="9">VISITORS</text>` +
-    `<text x="67" y="14" fill="#fff" font-family="monospace" font-size="9">${value}</text></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="110" height="20" role="img" aria-label="${value}">` +
+    `<rect width="110" height="20" fill="#060d09"/><rect x="46" width="64" height="20" fill="#1b6e3a"/>` +
+    `<text x="3" y="14" fill="#9df5aa" font-family="monospace" font-size="8">VISITORS</text>` +
+    `<text x="49" y="14" fill="#fff" font-family="monospace" font-size="8">${value}</text></svg>`;
 }
 
 async function prepareMainPage(browser, options, visitor, diagnostics) {
   const context = await browser.newContext({
     viewport: { width: 1920, height: 1080 },
-    deviceScaleFactor: 1,
+    deviceScaleFactor: 3,
     colorScheme: "dark",
     reducedMotion: "no-preference"
   });
@@ -234,6 +249,17 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
     html[data-profile-gif-export="main"] .scene:not(#profile),
     html[data-profile-gif-export="main"] .chapter-nav,
     html[data-profile-gif-export="main"] .scene-nav { visibility:hidden !important; }
+    html[data-profile-gif-export="main"] .gallery-stage { visibility:hidden !important; }
+    html[data-profile-gif-export="main"] .profile-console { overflow:visible !important; }
+    html[data-profile-gif-export="main"] .profile-top {
+      position:relative !important;
+      z-index:20 !important;
+      background:radial-gradient(ellipse at 20% 12%,rgba(237,196,119,.105),transparent 16rem),linear-gradient(180deg,rgba(10,17,12,.99),rgba(3,8,6,.995));
+    }
+    html[data-profile-gif-export="main"] .profile-top .profile-telemetry-row { grid-template-columns:minmax(0,1fr) 112px !important; gap:8px !important; }
+    html[data-profile-gif-export="main"] .profile-top .visitor-telemetry { width:112px !important; min-width:112px !important; max-width:112px !important; margin-right:0 !important; padding-inline:0 !important; }
+    html[data-profile-gif-export="main"] .profile-top .visitor-telemetry img { width:110px !important; max-width:110px !important; }
+    html[data-profile-gif-export="main"] .profile-top .social-dock { transform:translateY(-4px) !important; }
     html[data-profile-gif-export="main"] .avatar-curtain,
     html[data-profile-gif-export="main"] .spotlight-beam,
     html[data-profile-gif-export="main"] .spotlight-ring,
@@ -278,33 +304,118 @@ async function resetDirectory(directory) {
   await mkdir(directory, { recursive: true });
 }
 
-async function screenshotElement(page, selector, destination, spec) {
+async function applyElementLayout(page, selector, spec) {
   const locator = page.locator(selector);
   await locator.waitFor({ state: "visible", timeout: 30_000 });
   await locator.evaluate((element, dimensions) => {
     Object.assign(element.style, {
       boxSizing: "border-box",
-      width: `${dimensions.width}px`,
-      minWidth: `${dimensions.width}px`,
-      maxWidth: `${dimensions.width}px`,
-      height: `${dimensions.height}px`,
-      minHeight: `${dimensions.height}px`,
-      maxHeight: `${dimensions.height}px`
+      width: `${dimensions.layoutWidth}px`,
+      minWidth: `${dimensions.layoutWidth}px`,
+      maxWidth: `${dimensions.layoutWidth}px`,
+      height: `${dimensions.layoutHeight}px`,
+      minHeight: `${dimensions.layoutHeight}px`,
+      maxHeight: `${dimensions.layoutHeight}px`
     });
-  }, { width: spec.width, height: spec.height });
+  }, { layoutWidth: spec.layoutWidth, layoutHeight: spec.layoutHeight });
+  return locator;
+}
+
+async function screenshotElement(page, selector, destination, spec) {
+  const locator = await applyElementLayout(page, selector, spec);
   await locator.scrollIntoViewIfNeeded();
   const box = await locator.boundingBox();
   if (!box) throw new Error(`Could not measure ${selector}.`);
-  if (box.width < spec.width - 1 || box.height < spec.height - 1) {
-    throw new Error(`${selector} is ${box.width}x${box.height}, smaller than ${spec.width}x${spec.height}.`);
+  if (box.width < spec.layoutWidth - 1 || box.height < spec.layoutHeight - 1) {
+    throw new Error(`${selector} is ${box.width}x${box.height}, smaller than ${spec.layoutWidth}x${spec.layoutHeight}.`);
   }
   await page.screenshot({
     path: destination,
     animations: "allow",
     caret: "hide",
-    scale: "css",
-    clip: { x: Math.floor(box.x), y: Math.floor(box.y), width: spec.width, height: spec.height }
+    scale: "device",
+    clip: { x: box.x, y: box.y, width: spec.layoutWidth, height: spec.layoutHeight }
   });
+}
+
+async function validateProfileGeometry(page) {
+  const geometry = await page.evaluate(() => {
+    const rect = (element) => {
+      const value = element.getBoundingClientRect();
+      return {
+        left: value.left,
+        right: value.right,
+        top: value.top,
+        bottom: value.bottom,
+        width: value.width,
+        height: value.height
+      };
+    };
+    const top = document.querySelector(".profile-top");
+    const summary = document.querySelector(".profile-summary");
+    const visitor = document.querySelector(".visitor-telemetry");
+    const routeLabels = [...document.querySelectorAll(".research-route b")];
+    const socialLinks = [...document.querySelectorAll(".social-dock a")];
+    if (!top || !summary || !visitor || routeLabels.length !== 3 || socialLinks.length !== 3) {
+      throw new Error("Profile export geometry could not resolve all required elements.");
+    }
+    const topRect = rect(top);
+    const summaryRect = rect(summary);
+    const visitorRect = rect(visitor);
+    const routeRects = routeLabels.map((label) => {
+      const range = document.createRange();
+      range.selectNodeContents(label);
+      const value = range.getBoundingClientRect();
+      return {
+        left: value.left,
+        right: value.right,
+        top: value.top,
+        bottom: value.bottom,
+        width: value.width,
+        height: value.height,
+        lineCount: range.getClientRects().length,
+        text: label.textContent?.trim() || ""
+      };
+    });
+    const socialRects = socialLinks.map(rect);
+    const routeRight = Math.max(...routeRects.map((value) => value.right));
+    const inside = (outer, inner) => inner.left >= outer.left - .5
+      && inner.right <= outer.right + .5
+      && inner.top >= outer.top - .5
+      && inner.bottom <= outer.bottom + .5;
+    return {
+      top: topRect,
+      summary: summaryRect,
+      visitor: visitorRect,
+      routeLabels: routeRects,
+      socialLinks: socialRects,
+      routeVisitorGap: visitorRect.left - routeRight,
+      visitorSocialGap: Math.min(...socialRects.map((value) => value.top)) - visitorRect.bottom,
+      routeLabelsInsideSummary: routeRects.every((value) => inside(summaryRect, value)),
+      visitorInsideSummary: inside(summaryRect, visitorRect),
+      socialInsideTop: socialRects.every((value) => inside(topRect, value))
+    };
+  });
+  if (geometry.routeVisitorGap < 4) {
+    throw new Error(`Profile research labels overlap the visitor badge (gap ${geometry.routeVisitorGap.toFixed(2)}px).`);
+  }
+  if (!geometry.routeLabelsInsideSummary) throw new Error("Profile research-route text escapes the summary card.");
+  if (!geometry.visitorInsideSummary) throw new Error("Profile visitor badge escapes the summary card.");
+  if (geometry.visitorSocialGap < 0) throw new Error("Profile visitor badge overlaps the social controls.");
+  if (!geometry.socialInsideTop) throw new Error("Profile social controls are clipped by the export card.");
+  return geometry;
+}
+
+async function normalizeCapturedFrames(sourceDir, framesDir, spec, fps) {
+  if (!spec.resample) return;
+  await run("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-framerate", String(fps), "-start_number", "0", "-i", path.join(sourceDir, "frame-%04d.png"),
+    "-vf", `scale=${spec.width}:${spec.height}:flags=${spec.resample}`,
+    "-fps_mode", "passthrough",
+    "-start_number", "0", path.join(framesDir, "frame-%04d.png")
+  ]);
+  await rm(sourceDir, { recursive: true, force: true });
 }
 
 function framePath(directory, frame) {
@@ -312,6 +423,8 @@ function framePath(directory, frame) {
 }
 
 async function captureProfileFrames(page, framesDir, spec) {
+  await applyElementLayout(page, spec.selector, spec);
+  const geometry = await validateProfileGeometry(page);
   let triggered = false;
   let settled = false;
   let settledFrame = null;
@@ -375,7 +488,8 @@ async function captureProfileFrames(page, framesDir, spec) {
     fireStartFrame: 96,
     resultBeforeFire,
     mainEffectsOverlap: false,
-    returnedToInitialFrame: spec.frames - 1
+    returnedToInitialFrame: spec.frames - 1,
+    geometry
   };
 }
 
@@ -447,7 +561,7 @@ async function makeContactSheet(framesDir, diagnosticsDir, spec) {
   await run("ffmpeg", [
     "-hide_banner", "-loglevel", "error", "-y",
     "-framerate", "1", "-pattern_type", "glob", "-i", path.join(keyDir, "key-*.png"),
-    "-vf", "scale=292:-1:flags=neighbor,tile=3x3:padding=4:margin=4:color=#07100e",
+    "-vf", "scale=600:-1:flags=lanczos,tile=3x3:padding=6:margin=6:color=#07100e",
     "-frames:v", "1", contact
   ]);
   return {
@@ -458,7 +572,7 @@ async function makeContactSheet(framesDir, diagnosticsDir, spec) {
 }
 
 async function encodeGif(framesDir, output, spec, options) {
-  const attempts = [128, 96, 80];
+  const attempts = [256, 224, 192];
   const encodingAttempts = [];
   for (const colors of attempts) {
     const palette = path.join(framesDir, `palette-${colors}.png`);
@@ -466,14 +580,14 @@ async function encodeGif(framesDir, output, spec, options) {
     await run("ffmpeg", [
       "-hide_banner", "-loglevel", "error", "-y",
       "-framerate", String(options.fps), "-i", path.join(framesDir, "frame-%04d.png"),
-      "-vf", `palettegen=max_colors=${colors}:reserve_transparent=0:stats_mode=diff`,
+      "-vf", `palettegen=max_colors=${colors}:reserve_transparent=0:stats_mode=full`,
       palette
     ]);
     await run("ffmpeg", [
       "-hide_banner", "-loglevel", "error", "-y",
       "-framerate", String(options.fps), "-i", path.join(framesDir, "frame-%04d.png"),
       "-i", palette,
-      "-lavfi", "paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle",
+      "-lavfi", "paletteuse=dither=none:diff_mode=rectangle",
       "-loop", "0", temporary
     ]);
     const bytes = (await stat(temporary)).size;
@@ -486,7 +600,50 @@ async function encodeGif(framesDir, output, spec, options) {
     }
     await rm(temporary, { force: true });
   }
-  throw new Error(`${spec.file} exceeds ${options.maxBytes} bytes after the 80-color profile: ${JSON.stringify(encodingAttempts)}.`);
+  throw new Error(`${spec.file} exceeds ${options.maxBytes} bytes after the 192-color profile: ${JSON.stringify(encodingAttempts)}.`);
+}
+
+async function measureKeyframeFidelity(file, framesDir, diagnosticsDir, spec) {
+  const decodedDir = path.join(diagnosticsDir, `${spec.id}-decoded-keyframes`);
+  await resetDirectory(decodedDir);
+  const select = spec.keyframes.map((frame) => `eq(n\\,${frame})`).join("+");
+  await run("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y", "-i", file,
+    "-vf", `select=${select}`,
+    "-fps_mode", "passthrough",
+    "-start_number", "0", path.join(decodedDir, "decoded-%02d.png")
+  ]);
+  const keyframes = [];
+  for (const [index, frame] of spec.keyframes.entries()) {
+    const source = framePath(framesDir, frame);
+    const decoded = path.join(decodedDir, `decoded-${String(index).padStart(2, "0")}.png`);
+    const result = await run("ffmpeg", [
+      "-hide_banner", "-i", source, "-i", decoded,
+      "-lavfi", "ssim", "-frames:v", "1", "-f", "null", "-"
+    ], { capture: true });
+    const matches = [...result.stderr.toString().matchAll(/All:([0-9.]+)/g)];
+    const ssim = Number(matches.at(-1)?.[1]);
+    if (!Number.isFinite(ssim)) throw new Error(`Could not measure SSIM for ${spec.file} frame ${frame}.`);
+    keyframes.push({ frame, ssim });
+  }
+  const minimum = Math.min(...keyframes.map((value) => value.ssim));
+  const average = keyframes.reduce((sum, value) => sum + value.ssim, 0) / keyframes.length;
+  if (minimum < .975) throw new Error(`${spec.file} minimum keyframe SSIM ${minimum.toFixed(6)} is below 0.975.`);
+  const encodedContact = path.join(diagnosticsDir, `${spec.id}-encoded-contact-sheet.png`);
+  await run("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-framerate", "1", "-pattern_type", "glob", "-i", path.join(decodedDir, "decoded-*.png"),
+    "-vf", "scale=600:-1:flags=lanczos,tile=3x3:padding=6:margin=6:color=#07100e",
+    "-frames:v", "1", encodedContact
+  ]);
+  return {
+    threshold: .975,
+    minimum,
+    average,
+    keyframes,
+    decodedKeyframeDirectory: `diagnostics/${path.basename(decodedDir)}`,
+    encodedContactSheet: `diagnostics/${path.basename(encodedContact)}`
+  };
 }
 
 async function probeGif(file) {
@@ -530,6 +687,8 @@ async function exportCard(key, browser, mainPage, options, directories, visitor)
   const spec = CARD_SPECS[key];
   const framesDir = path.join(directories.working, spec.id);
   await resetDirectory(framesDir);
+  const captureDir = spec.resample ? path.join(framesDir, ".capture") : framesDir;
+  if (spec.resample) await mkdir(captureDir, { recursive: true });
   let page = mainPage.page;
   let context = null;
   let errors = mainPage.errors;
@@ -543,22 +702,28 @@ async function exportCard(key, browser, mainPage, options, directories, visitor)
   }
 
   process.stdout.write(`Capturing ${spec.id}: ${spec.frames} frames at ${options.fps}fps...\n`);
-  if (key === "profile") semantic = await captureProfileFrames(page, framesDir, spec);
-  if (key === "room") semantic = await captureRoomFrames(page, framesDir, spec);
-  if (key === "news") semantic = await captureNewsFrames(page, framesDir, spec);
+  if (key === "profile") semantic = await captureProfileFrames(page, captureDir, spec);
+  if (key === "room") semantic = await captureRoomFrames(page, captureDir, spec);
+  if (key === "news") semantic = await captureNewsFrames(page, captureDir, spec);
   if (errors.length) throw new Error(`${spec.id} browser errors:\n${errors.join("\n")}`);
+  await normalizeCapturedFrames(captureDir, framesDir, spec, options.fps);
 
   const diagnostics = await makeContactSheet(framesDir, directories.diagnostics, spec);
   const output = path.join(options.outDir, spec.file);
   const encoding = await encodeGif(framesDir, output, spec, options);
   const verification = await verifyEncodedGif(output, spec, options);
+  const fidelity = await measureKeyframeFidelity(output, framesDir, directories.diagnostics, spec);
   await context?.close();
   await rm(framesDir, { recursive: true, force: true });
   return {
     id: spec.id,
     file: spec.file,
+    layoutWidth: spec.layoutWidth,
+    layoutHeight: spec.layoutHeight,
+    captureScale: spec.captureScale,
     width: spec.width,
     height: spec.height,
+    resample: spec.resample,
     fps: options.fps,
     frames: spec.frames,
     duration: spec.duration,
@@ -567,6 +732,7 @@ async function exportCard(key, browser, mainPage, options, directories, visitor)
     semantic,
     diagnostics,
     encoding,
+    fidelity,
     verification
   };
 }
@@ -580,12 +746,13 @@ async function main() {
   await mkdir(options.outDir, { recursive: true });
   await resetDirectory(directories.working);
   await resetDirectory(directories.diagnostics);
+  if (options.only === "all") await rm(path.join(options.outDir, CARD_SPECS.room.file), { force: true });
   const visitor = await fetchVisitorSnapshot();
   process.stdout.write(`Visitor snapshot: ${visitor.today} / ${visitor.total} (${visitor.source})\n`);
 
   const browser = await chromium.launch({ headless: true });
   const mainPage = await prepareMainPage(browser, options, visitor, directories.diagnostics);
-  const requested = options.only === "all" ? ["profile", "room", "news"] : [options.only];
+  const requested = options.only === "all" ? ["profile", "news"] : [options.only];
   const cards = [];
   try {
     for (const key of requested) cards.push(await exportCard(key, browser, mainPage, options, directories, visitor));
@@ -596,11 +763,17 @@ async function main() {
   }
 
   const manifest = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     generatedAt: new Date().toISOString(),
     sourceCommit: process.env.GITHUB_SHA || (await run("git", ["rev-parse", "HEAD"], { capture: true })).stdout.toString().trim(),
     baseUrl: options.baseUrl,
-    publication: { width: options.width, fps: options.fps, maxBytes: options.maxBytes, order: ["profile-card", "news-terminal", "sprite-room"] },
+    publication: {
+      width: options.width,
+      fps: options.fps,
+      maxBytes: options.maxBytes,
+      order: cards.map((card) => card.id),
+      palette: { attempts: [256, 224, 192], statsMode: "full", dither: "none" }
+    },
     visitor,
     cards
   };

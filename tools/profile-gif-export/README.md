@@ -10,17 +10,33 @@ Run a production export against an already-running Vite development server:
 npm run export:profile-gifs -- \
   --base-url http://127.0.0.1:4173 \
   --out-dir dist/profile-gifs \
-  --width 720 \
+  --width 1920 \
   --fps 24 \
   --max-bytes 36700160
 ```
 
-The command creates three looping GIFs, `manifest.json`, contact sheets and
-selected diagnostic PNG keyframes. `ProfileRoomGifAutomaton.ts` is the
-deterministic 60-second room harness; it reuses the production Canvas stage,
-assets, TV and room geometry while remaining outside the production bundle.
+The publication command creates two looping GIFs, `profile-card.gif` at
+`1920x816` and `news-terminal.gif` at `1920x934`, plus a schema-v2
+`manifest.json`, source and encoded contact sheets, and selected diagnostic PNG
+keyframes. Browser screenshots are supersampled before Lanczos normalization so
+GitHub Camo always downsamples rather than enlarges the cards.
 
-Each GIF is encoded at 128 colors first, then retried at 96 and 80 colors if
-needed. Width and frame rate are never silently reduced. The export fails if
-the 80-color result still exceeds 35 MiB, if the encoded frame count or
-duration drifts, or if the decoded first and last pixel hashes differ.
+Each GIF is encoded with a global 256-color, full-animation palette and no
+dithering, then retried at 224 and 192 colors only if needed. Width and frame
+rate are never silently reduced. The export fails if the 192-color result still
+exceeds 35 MiB, if keyframe SSIM drops below 0.975, if the encoded frame count
+or duration drifts, or if the decoded first and last pixel hashes differ.
+
+`ProfileRoomGifAutomaton.ts` remains available as an optional deterministic
+60-second development harness, but it is not part of the published Profile set.
+Export it manually at its legacy dimensions when needed:
+
+```bash
+npm run export:profile-gifs -- \
+  --base-url http://127.0.0.1:4173 \
+  --out-dir /tmp/profile-room-gif \
+  --only room \
+  --width 720 \
+  --fps 24 \
+  --max-bytes 36700160
+```

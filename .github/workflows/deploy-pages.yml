@@ -63,7 +63,7 @@ jobs:
           npm run export:profile-gifs -- \
             --base-url http://127.0.0.1:4173 \
             --out-dir dist/profile-gifs \
-            --width 720 \
+            --width 1920 \
             --fps 24 \
             --max-bytes 36700160 2>&1 | tee /tmp/profile-gif-export.log
           status=${PIPESTATUS[0]}
@@ -95,7 +95,7 @@ jobs:
         run: |
           rm -rf dist/profile-gifs
           mkdir -p dist/profile-gifs
-          for file in profile-card.gif news-terminal.gif sprite-room.gif manifest.json; do
+          for file in profile-card.gif news-terminal.gif manifest.json; do
             partial="dist/profile-gifs/${file}.partial"
             if curl --fail --location --retry 3 --retry-delay 2 \
               "https://royalvice.github.io/profile-gifs/${file}?fallback=${GITHUB_SHA}" \
@@ -165,10 +165,6 @@ jobs:
 
           <a href="https://royalvice.github.io/">
             <img src="https://royalvice.github.io/profile-gifs/news-terminal.gif?v={source_sha}" width="100%" alt="Royalvice research news">
-          </a>
-
-          <a href="https://royalvice.github.io/">
-            <img src="https://royalvice.github.io/profile-gifs/sprite-room.gif?v={source_sha}" width="100%" alt="Royalvice sprite room">
           </a>
           '''
           Path("README.md").write_text(readme, encoding="utf-8")
