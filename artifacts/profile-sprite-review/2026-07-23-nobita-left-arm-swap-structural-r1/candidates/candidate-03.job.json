@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 84002,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1ab0d0f30b304d23/sample.png",
+      "sha256": "3487be15e82a4170dd47f3769e227accfd66b5ccb73daa3a6694061b0cbadadc",
+      "size_bytes": 225623,
+      "url": "/v1/artifacts/flux2-1ab0d0f30b304d23/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784804872.6303556,
+  "error": null,
+  "finished_at": 1784804890.7178178,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1ab0d0f30b304d23/reference_0.png"
+  ],
+  "job_id": "flux2-1ab0d0f30b304d23",
+  "metrics": {
+    "nvml_peak_used_mib": 56337,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 84002,
+    "width": 1024
+  },
+  "started_at": 1784804872.7602127,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.053,
+    "denoise": 5.07,
+    "load_inputs": 0.023,
+    "reference_encode": 0.372,
+    "save_png": 0.36,
+    "text_encode": 0.335,
+    "total_wall": 17.958
+  },
+  "updated_at": 1784804890.7178335,
+  "worker_finished_at": 1784804889.9756806
+}

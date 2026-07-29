@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "反转参考图中的走路姿势，左脚改到后面，右脚改到前面，身子保持朝左竖直。",
+    "prompt_upsampling": false,
+    "seed": 80001,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4958489e8c834360/sample.png",
+      "sha256": "68c15b42d7663231821631a6039e2eef30b07163d8ab278138a1c3925760907b",
+      "size_bytes": 226207,
+      "url": "/v1/artifacts/flux2-4958489e8c834360/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784731940.150024,
+  "error": null,
+  "finished_at": 1784731959.7855868,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4958489e8c834360/reference_0.png"
+  ],
+  "job_id": "flux2-4958489e8c834360",
+  "metrics": {
+    "nvml_peak_used_mib": 56289,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "反转参考图中的走路姿势，左脚改到后面，右脚改到前面，身子保持朝左竖直。",
+    "prompt_upsampling": false,
+    "seed": 80001,
+    "width": 1024
+  },
+  "started_at": 1784731940.2277176,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.108,
+    "denoise": 5.072,
+    "load_inputs": 0.018,
+    "reference_encode": 0.236,
+    "save_png": 0.31,
+    "text_encode": 0.336,
+    "total_wall": 19.558
+  },
+  "updated_at": 1784731959.7856019,
+  "worker_finished_at": 1784731958.360448
+}

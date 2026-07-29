@@ -318,6 +318,94 @@ test("capture living room TV frames, keyboard ground focus, reduced motion, and 
   await fallback.close();
 });
 
+test("capture Pac-Lab television boot, desktop and mobile cabinets, swapped Voyage, and Evidence lightbox", async ({ browser }) => {
+  test.setTimeout(300_000);
+  await mkdir(out, { recursive: true });
+  const desktop = await browser.newContext({ viewport: { width: 1440, height: 1000 }, colorScheme: "dark", reducedMotion: "no-preference" });
+  const page = await desktop.newPage();
+  await page.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
+  await page.locator(".profile-adventure-stage").scrollIntoViewIfNeeded();
+  await page.locator("[data-profile-tv]").hover();
+  await captureViewport(page, "paclab-tv-hover-aligned.png");
+  await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("white"));
+  await captureViewport(page, "paclab-tv-white-boot.png");
+  await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("idle"));
+  await page.locator("[data-profile-tv]").click();
+  await page.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
+  await captureViewport(page, "paclab-arcade-desktop.png");
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("ArrowLeft");
+  await page.waitForTimeout(700);
+  await captureViewport(page, "paclab-arcade-playing.png");
+  await page.keyboard.press("Escape");
+
+  const voyageTop = await page.locator("#voyage").evaluate((element) => element.offsetTop);
+  await page.evaluate((value) => scrollTo({ top: value, behavior: "instant" }), voyageTop);
+  await page.waitForFunction(() => window.__voyageDebug?.().ready, null, { timeout: 120_000 });
+  await page.evaluate(() => {
+    window.__voyageDebug.skipIntro();
+    window.__voyageDebug.setSceneTime(18);
+  });
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("gulls", .5));
+  await captureViewport(page, "voyage-wildlife-day-gulls.png");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("dolphins-underwater", .38));
+  await captureViewport(page, "voyage-wildlife-dolphins-underwater.png");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("dolphins-breach", .47));
+  await captureViewport(page, "voyage-wildlife-dolphins-breach.png");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-underwater", .30));
+  await captureViewport(page, "voyage-wildlife-blue-whale-underwater.png");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .5));
+  await captureViewport(page, "voyage-wildlife-blue-whale-apex.png");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .65));
+  await captureViewport(page, "voyage-wildlife-blue-whale-splashdown.png");
+  await page.evaluate(() => {
+    window.__voyageDebug.setSceneTime(45);
+    window.__voyageDebug.setWildlifeScenario("shark-patrol", .5);
+  });
+  await captureViewport(page, "voyage-wildlife-night-shark-patrol.png");
+  await page.evaluate(() => {
+    window.__voyageDebug.clearWildlifeScenario();
+    window.__voyageDebug.setSceneTime(18);
+  });
+  await page.locator('[data-voyage-node="neural"]').click();
+  await page.waitForTimeout(500);
+  await captureViewport(page, "voyage-neural-rendering-reef.png");
+  await page.locator('[data-project-card="ssat"] [data-evidence-zoom]').click();
+  await captureViewport(page, "evidence-lightbox-ssat.png");
+  await desktop.close();
+
+  const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: "dark", reducedMotion: "reduce" });
+  const mobilePage = await mobile.newPage();
+  await mobilePage.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+  await mobilePage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
+  await mobilePage.locator("[data-profile-tv]").click();
+  await mobilePage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
+  await captureViewport(mobilePage, "paclab-arcade-mobile-390x844.png");
+  expect(await mobilePage.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
+  await mobile.close();
+
+  const mobileWildlife = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: "dark", reducedMotion: "no-preference" });
+  const mobileWildlifePage = await mobileWildlife.newPage();
+  await mobileWildlifePage.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+  const mobileVoyageTop = await mobileWildlifePage.locator("#voyage").evaluate((element) => element.offsetTop);
+  await mobileWildlifePage.evaluate((value) => scrollTo({ top: value, behavior: "instant" }), mobileVoyageTop);
+  await mobileWildlifePage.waitForFunction(() => window.__voyageDebug?.().ready, null, { timeout: 120_000 });
+  await mobileWildlifePage.evaluate(() => {
+    window.__voyageDebug.setIntroTime(5.2);
+    window.__voyageDebug.setSceneTime(18);
+    window.__voyageDebug.setWildlifeScenario("dolphins-breach", .47);
+  });
+  await captureViewport(mobileWildlifePage, "voyage-wildlife-mobile-day-390x844.png");
+  await mobileWildlifePage.evaluate(() => {
+    window.__voyageDebug.setSceneTime(45);
+    window.__voyageDebug.setWildlifeScenario("shark-patrol", .30);
+  });
+  await captureViewport(mobileWildlifePage, "voyage-wildlife-mobile-night-390x844.png");
+  expect(await mobileWildlifePage.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
+  await mobileWildlife.close();
+});
+
 test("capture Horizon responsive, reduced-motion, fallback, and transition frames", async ({ browser }) => {
   test.setTimeout(360_000);
   await mkdir(out, { recursive: true });

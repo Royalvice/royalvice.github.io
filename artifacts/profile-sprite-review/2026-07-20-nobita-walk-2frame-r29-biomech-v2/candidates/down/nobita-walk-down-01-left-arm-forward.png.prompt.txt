@@ -1,0 +1,1 @@
+参考大雄图，保持大雄脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋与2D pixel sprite比例、脚底pivot。 DOWN front contact pose：左脚承重落地，右腿向后自然伸展；右臂前摆、左臂后摆，肘部轻弯，骨盆与肩线反向微转。 anatomically correct，完整全身，关节自然，脚底接触线清楚，纯#00FF00 chroma-key绿幕。

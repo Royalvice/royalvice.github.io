@@ -1,0 +1,876 @@
+{
+  "service": {
+    "name": "game-service",
+    "version": "0.1.0",
+    "host": "0.0.0.0",
+    "port": 8081,
+    "auth": {
+      "type": "bearer",
+      "env": "GAME_SERVICE_TOKEN"
+    },
+    "gpu_policy": {
+      "visible_devices": "0",
+      "placement": "single_gpu0",
+      "queue": "global_single_job",
+      "model_lifecycle": "load_per_job_unload_after_job"
+    }
+  },
+  "models": {
+    "trellis2": {
+      "gpu": 0,
+      "source_repo": "/mnt/cfs/5vr0p6/yzy/TRELLIS.2_official_clean",
+      "source_head": "5565d240c4a494caaf9ece7a554542b76ffa36d3",
+      "allowed_resolutions": [
+        "512",
+        "1024",
+        "1024_cascade"
+      ],
+      "defaults": {
+        "resolution": "1024_cascade",
+        "seed": 42,
+        "decimation_target": 500000,
+        "texture_size": 2048,
+        "include_mp4": true,
+        "video_resolution": 1024,
+        "num_frames": 120,
+        "fps": 15
+      },
+      "endpoint": "POST /v1/trellis2/jobs",
+      "outputs": [
+        "glb",
+        "result.json",
+        "mp4 when include_mp4=true"
+      ],
+      "direct_1024": {
+        "resolution": "1024",
+        "description": "Run the native TRELLIS2 1024 pipeline directly without the staged 512 cascade.",
+        "artifacts": [
+          "sample.glb",
+          "sample.mp4 when include_mp4=true"
+        ],
+        "stage_outputs": {
+          "1024": {
+            "artifacts": [
+              "sample.glb",
+              "sample.mp4 when include_mp4=true"
+            ]
+          }
+        }
+      },
+      "staged_cascade": {
+        "1024_cascade_stage_outputs": {
+          "512": {
+            "artifact": "preview_512.glb",
+            "mp4_default": false
+          },
+          "1024": {
+            "artifacts": [
+              "sample.glb",
+              "sample.mp4 when include_mp4=true"
+            ]
+          }
+        }
+      }
+    },
+    "flux2": {
+      "gpu": 0,
+      "source_repo": "/mnt/cfs/5vr0p6/yzy/flux2",
+      "source_head": "50fe5162777813d869182b139e83b10743caef15",
+      "model_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local",
+      "ae_path": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-dev/ae.safetensors",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "allowed_sizes": [
+        [
+          256,
+          256
+        ],
+        [
+          384,
+          384
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          768,
+          768
+        ],
+        [
+          1024,
+          1024
+        ],
+        [
+          1024,
+          576
+        ],
+        [
+          1360,
+          768
+        ],
+        [
+          1536,
+          864
+        ]
+      ],
+      "max_reference_images": 4,
+      "safety_filter_enabled": false,
+      "watermark_enabled": false,
+      "defaults": {
+        "width": 512,
+        "height": 512,
+        "seed": 42,
+        "num_steps": 4,
+        "guidance": 1,
+        "prompt_upsampling": false,
+        "num_images": 1,
+        "format": "png"
+      },
+      "fixed_params": {
+        "num_steps": 4,
+        "guidance": 1,
+        "prompt_upsampling_must_be": false
+      },
+      "endpoint": "POST /v1/flux2/jobs",
+      "modes": [
+        "t2i",
+        "i2i"
+      ],
+      "outputs": [
+        "png",
+        "result.json"
+      ]
+    }
+  },
+  "jobs": {
+    "mode": "async",
+    "status_endpoint": "GET /v1/jobs/{job_id}",
+    "cancel_endpoint": "DELETE /v1/jobs/{job_id}",
+    "artifact_endpoint": "GET /v1/artifacts/{job_id}/{filename}",
+    "timeouts_seconds": {
+      "trellis2_512": 600,
+      "trellis2_1024": 1800,
+      "trellis2_1024_cascade": 1800,
+      "flux2": 1200,
+      "benchmark": 14400
+    },
+    "artifact_retention_days": 7,
+    "upload_max_bytes": 26214400
+  },
+  "benchmarks": {
+    "latest_endpoint": "GET /v1/benchmarks/latest.json",
+    "latest": {
+      "created_at": "20260707T062007Z",
+      "url": "http://127.0.0.1:8081",
+      "warmup_excluded": true,
+      "cases": [
+        {
+          "actual_parameters": {
+            "decimation_target": 500000,
+            "fps": 15,
+            "include_mp4": false,
+            "num_frames": 120,
+            "preprocessed_image_hash": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56",
+            "public_512_result_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1001-500000-2048-glb-1024-120-15",
+            "resolution": "512",
+            "seed": 1001,
+            "stage512_internal_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1001",
+            "texture_size": 2048,
+            "video_resolution": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "model/gltf-binary",
+              "filename": "sample.glb",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-9feabe1c3c174dd2/sample.glb",
+              "sha256": "41a3a71ce090de939b25f3167af13786d966178091d841df71ad8ccd09514a7e",
+              "size_bytes": 20143452,
+              "url": "/v1/artifacts/trellis2-9feabe1c3c174dd2/sample.glb"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783405405.3176963,
+          "current_stage": "succeeded",
+          "error": null,
+          "finished_at": 1783405494.589152,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-9feabe1c3c174dd2/input_image.png"
+          ],
+          "job_id": "trellis2-9feabe1c3c174dd2",
+          "metrics": {
+            "nvml_peak_used_mib": 519,
+            "public512_cache_hit": true,
+            "stage512_cache_hit": true,
+            "torch_peak_allocated_mib": 38,
+            "torch_peak_reserved_mib": 62
+          },
+          "model": "trellis2",
+          "request": {
+            "include_mp4": false,
+            "resolution": "512",
+            "seed": 1001
+          },
+          "stage_outputs": {
+            "512": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "sample.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-9feabe1c3c174dd2/sample.glb",
+                  "sha256": "41a3a71ce090de939b25f3167af13786d966178091d841df71ad8ccd09514a7e",
+                  "size_bytes": 20143452,
+                  "url": "/v1/artifacts/trellis2-9feabe1c3c174dd2/sample.glb"
+                }
+              ],
+              "state": "reused"
+            },
+            "1024": {
+              "artifacts": [],
+              "state": "pending"
+            }
+          },
+          "started_at": 1783405405.3797717,
+          "state": "succeeded",
+          "timings_s": {
+            "preprocess": 0.279,
+            "total_wall": 89.209
+          },
+          "updated_at": 1783405494.5891685,
+          "worker_finished_at": 1783405494.0202885,
+          "observed": {
+            "preview_512_ready_s": 90.348,
+            "queue_wait_s": 0.062
+          },
+          "bench_case": "trellis2_512_first",
+          "bench_wall_s": 90.489
+        },
+        {
+          "actual_parameters": {
+            "decimation_target": 500000,
+            "fps": 15,
+            "include_mp4": false,
+            "num_frames": 120,
+            "preprocessed_image_hash": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56",
+            "public_512_result_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1001-500000-2048-glb-1024-120-15",
+            "resolution": "1024_cascade",
+            "seed": 1001,
+            "stage512_internal_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1001",
+            "texture_size": 2048,
+            "video_resolution": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "model/gltf-binary",
+              "filename": "sample.glb",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-004c83b972914d56/sample.glb",
+              "sha256": "457fedea5fc6e198685f646cafb7d98db0e1048a6db916f4058ca505a8d6c0ef",
+              "size_bytes": 20946400,
+              "url": "/v1/artifacts/trellis2-004c83b972914d56/sample.glb"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783405495.7721183,
+          "current_stage": "succeeded",
+          "error": null,
+          "finished_at": 1783405679.7817159,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-004c83b972914d56/input_image.png"
+          ],
+          "job_id": "trellis2-004c83b972914d56",
+          "metrics": {
+            "nvml_peak_used_mib": 23897,
+            "public512_cache_hit": true,
+            "stage512_cache_hit": true,
+            "torch_peak_allocated_mib": 18711,
+            "torch_peak_reserved_mib": 19016
+          },
+          "model": "trellis2",
+          "request": {
+            "include_mp4": false,
+            "resolution": "1024_cascade",
+            "seed": 1001
+          },
+          "stage_outputs": {
+            "512": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "preview_512.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-004c83b972914d56/preview_512.glb",
+                  "sha256": "41a3a71ce090de939b25f3167af13786d966178091d841df71ad8ccd09514a7e",
+                  "size_bytes": 20143452,
+                  "url": "/v1/artifacts/trellis2-004c83b972914d56/preview_512.glb"
+                }
+              ],
+              "state": "reused"
+            },
+            "1024": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "sample.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-004c83b972914d56/sample.glb",
+                  "sha256": "457fedea5fc6e198685f646cafb7d98db0e1048a6db916f4058ca505a8d6c0ef",
+                  "size_bytes": 20946400,
+                  "url": "/v1/artifacts/trellis2-004c83b972914d56/sample.glb"
+                }
+              ],
+              "state": "ready"
+            }
+          },
+          "started_at": 1783405495.8346343,
+          "state": "succeeded",
+          "timings_s": {
+            "glb": 36.031,
+            "infer_1024": 64.202,
+            "preprocess": 0.284,
+            "total_wall": 183.947
+          },
+          "updated_at": 1783405679.781731,
+          "worker_finished_at": 1783405679.1857162,
+          "observed": {
+            "preview_512_ready_s": 83.029,
+            "queue_wait_s": 0.063
+          },
+          "bench_case": "trellis2_512_then_1024_hit",
+          "bench_wall_s": 185.152
+        },
+        {
+          "actual_parameters": {
+            "decimation_target": 500000,
+            "fps": 15,
+            "include_mp4": false,
+            "num_frames": 120,
+            "preprocessed_image_hash": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56",
+            "public_512_result_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1002-500000-2048-glb-1024-120-15",
+            "resolution": "1024_cascade",
+            "seed": 1002,
+            "stage512_internal_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1002",
+            "texture_size": 2048,
+            "video_resolution": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "model/gltf-binary",
+              "filename": "sample.glb",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-e810adb7a1474f48/sample.glb",
+              "sha256": "1c7fb32319ab8d20cdd78eb6a3f44d3d73a7f8479d608a86c458874e81c7e079",
+              "size_bytes": 22193032,
+              "url": "/v1/artifacts/trellis2-e810adb7a1474f48/sample.glb"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783405680.9223802,
+          "current_stage": "succeeded",
+          "error": null,
+          "finished_at": 1783405876.9197063,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-e810adb7a1474f48/input_image.png"
+          ],
+          "job_id": "trellis2-e810adb7a1474f48",
+          "metrics": {
+            "nvml_peak_used_mib": 23565,
+            "public512_cache_hit": true,
+            "stage512_cache_hit": true,
+            "torch_peak_allocated_mib": 17927,
+            "torch_peak_reserved_mib": 18434
+          },
+          "model": "trellis2",
+          "request": {
+            "include_mp4": false,
+            "resolution": "1024_cascade",
+            "seed": 1002
+          },
+          "stage_outputs": {
+            "512": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "preview_512.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-e810adb7a1474f48/preview_512.glb",
+                  "sha256": "dd83f771bc77d43886cec98756493ab00177593e7f4e61d5ac534cca475448e0",
+                  "size_bytes": 19951780,
+                  "url": "/v1/artifacts/trellis2-e810adb7a1474f48/preview_512.glb"
+                }
+              ],
+              "state": "reused"
+            },
+            "1024": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "sample.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-e810adb7a1474f48/sample.glb",
+                  "sha256": "1c7fb32319ab8d20cdd78eb6a3f44d3d73a7f8479d608a86c458874e81c7e079",
+                  "size_bytes": 22193032,
+                  "url": "/v1/artifacts/trellis2-e810adb7a1474f48/sample.glb"
+                }
+              ],
+              "state": "ready"
+            }
+          },
+          "started_at": 1783405680.9849231,
+          "state": "succeeded",
+          "timings_s": {
+            "glb": 55.323,
+            "infer_1024": 60.091,
+            "preprocess": 0.276,
+            "total_wall": 195.935
+          },
+          "updated_at": 1783405876.9197319,
+          "worker_finished_at": 1783405876.143816,
+          "observed": {
+            "preview_512_ready_s": 80.354,
+            "queue_wait_s": 0.063
+          },
+          "bench_case": "trellis2_1024_first",
+          "bench_wall_s": 198.047
+        },
+        {
+          "actual_parameters": {
+            "decimation_target": 500000,
+            "fps": 15,
+            "include_mp4": false,
+            "num_frames": 120,
+            "preprocessed_image_hash": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56",
+            "public_512_result_key": null,
+            "resolution": "1024",
+            "seed": 1003,
+            "stage512_internal_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1003",
+            "texture_size": 2048,
+            "video_resolution": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "model/gltf-binary",
+              "filename": "sample.glb",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-436dde35221f400a/sample.glb",
+              "sha256": "c8e99cd1c338b851561198e594ab133c7976504c1beea29d555f99085857d68d",
+              "size_bytes": 23157340,
+              "url": "/v1/artifacts/trellis2-436dde35221f400a/sample.glb"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783405878.9747777,
+          "current_stage": "succeeded",
+          "error": null,
+          "finished_at": 1783406057.941429,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-436dde35221f400a/input_image.png"
+          ],
+          "job_id": "trellis2-436dde35221f400a",
+          "metrics": {
+            "nvml_peak_used_mib": 16637,
+            "public512_cache_hit": false,
+            "stage512_cache_hit": false,
+            "torch_peak_allocated_mib": 10538.5,
+            "torch_peak_reserved_mib": 11502
+          },
+          "model": "trellis2",
+          "request": {
+            "include_mp4": false,
+            "resolution": "1024",
+            "seed": 1003
+          },
+          "stage_outputs": {
+            "512": {
+              "artifacts": [],
+              "state": "pending"
+            },
+            "1024": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "sample.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-436dde35221f400a/sample.glb",
+                  "sha256": "c8e99cd1c338b851561198e594ab133c7976504c1beea29d555f99085857d68d",
+                  "size_bytes": 23157340,
+                  "url": "/v1/artifacts/trellis2-436dde35221f400a/sample.glb"
+                }
+              ],
+              "state": "ready"
+            }
+          },
+          "started_at": 1783405879.0372002,
+          "state": "succeeded",
+          "timings_s": {
+            "glb": 39.41,
+            "infer_1024_direct": 59.423,
+            "preprocess": 0.277,
+            "total_wall": 178.904
+          },
+          "updated_at": 1783406057.941444,
+          "worker_finished_at": 1783406057.309181,
+          "bench_case": "trellis2_1024_direct_first",
+          "bench_wall_s": 179.92,
+          "observed": {
+            "queue_wait_s": 0.062
+          }
+        },
+        {
+          "actual_parameters": {
+            "decimation_target": 500000,
+            "fps": 15,
+            "include_mp4": false,
+            "num_frames": 120,
+            "preprocessed_image_hash": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56",
+            "public_512_result_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1002-500000-2048-glb-1024-120-15",
+            "resolution": "512",
+            "seed": 1002,
+            "stage512_internal_key": "f1efbe2b6f60cd8a10576f30691aec4e7f4d5f2fba0908bd2ddb6782d4f59c56-1002",
+            "texture_size": 2048,
+            "video_resolution": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "model/gltf-binary",
+              "filename": "sample.glb",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-bf02ad6fa95b494c/sample.glb",
+              "sha256": "dd83f771bc77d43886cec98756493ab00177593e7f4e61d5ac534cca475448e0",
+              "size_bytes": 19951780,
+              "url": "/v1/artifacts/trellis2-bf02ad6fa95b494c/sample.glb"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783406058.898391,
+          "current_stage": "succeeded",
+          "error": null,
+          "finished_at": 1783406137.7954786,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-bf02ad6fa95b494c/input_image.png"
+          ],
+          "job_id": "trellis2-bf02ad6fa95b494c",
+          "metrics": {
+            "nvml_peak_used_mib": 709,
+            "public512_cache_hit": true,
+            "stage512_cache_hit": true,
+            "torch_peak_allocated_mib": 38,
+            "torch_peak_reserved_mib": 64
+          },
+          "model": "trellis2",
+          "request": {
+            "include_mp4": false,
+            "resolution": "512",
+            "seed": 1002
+          },
+          "stage_outputs": {
+            "512": {
+              "artifacts": [
+                {
+                  "content_type": "model/gltf-binary",
+                  "filename": "sample.glb",
+                  "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/trellis2-bf02ad6fa95b494c/sample.glb",
+                  "sha256": "dd83f771bc77d43886cec98756493ab00177593e7f4e61d5ac534cca475448e0",
+                  "size_bytes": 19951780,
+                  "url": "/v1/artifacts/trellis2-bf02ad6fa95b494c/sample.glb"
+                }
+              ],
+              "state": "reused"
+            },
+            "1024": {
+              "artifacts": [],
+              "state": "pending"
+            }
+          },
+          "started_at": 1783406058.967377,
+          "state": "succeeded",
+          "timings_s": {
+            "preprocess": 0.275,
+            "total_wall": 78.828
+          },
+          "updated_at": 1783406137.7954936,
+          "worker_finished_at": 1783406137.2619798,
+          "observed": {
+            "preview_512_ready_s": 78.29,
+            "queue_wait_s": 0.069
+          },
+          "bench_case": "trellis2_1024_then_512_hit",
+          "bench_wall_s": 80.408
+        },
+        {
+          "actual_parameters": {
+            "format": "png",
+            "guidance": 1,
+            "height": 512,
+            "mode": "t2i",
+            "model_name": "black-forest-labs/FLUX.2-klein-9B",
+            "num_images": 1,
+            "num_reference_images": 0,
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "prompt_upsampling": false,
+            "seed": 42,
+            "width": 512
+          },
+          "artifacts": [
+            {
+              "content_type": "image/png",
+              "filename": "sample.png",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-22ab3eca25464bbc/sample.png",
+              "sha256": "6f758759c699d0303282d7ab23dd82f0a16f5b16f9ba6ca2e09bc15683ca4072",
+              "size_bytes": 412087,
+              "url": "/v1/artifacts/flux2-22ab3eca25464bbc/sample.png"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783406139.2719867,
+          "error": null,
+          "finished_at": 1783406150.580668,
+          "input_files": [],
+          "job_id": "flux2-22ab3eca25464bbc",
+          "metrics": {
+            "nvml_peak_used_mib": 50829,
+            "placement": "full_resident",
+            "startup_diagnostics": {
+              "full_resident": "ok",
+              "model_name": "black-forest-labs/FLUX.2-klein-9B",
+              "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+            },
+            "torch_peak_allocated_mib": 50017.7,
+            "torch_peak_reserved_mib": 50184
+          },
+          "model": "flux2",
+          "request": {
+            "guidance": 1,
+            "height": 512,
+            "mode": "t2i",
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "width": 512
+          },
+          "started_at": 1783406139.302739,
+          "state": "succeeded",
+          "timings_s": {
+            "decode": 0.148,
+            "denoise": 0.718,
+            "load_inputs": 0,
+            "reference_encode": 0,
+            "save_png": 0.201,
+            "text_encode": 0.335,
+            "total_wall": 11.278
+          },
+          "updated_at": 1783406150.5806818,
+          "worker_finished_at": 1783406149.9597087,
+          "bench_case": "flux2_klein9b_t2i_512x512",
+          "bench_wall_s": 12.086,
+          "observed": {
+            "queue_wait_s": 0.031
+          }
+        },
+        {
+          "actual_parameters": {
+            "format": "png",
+            "guidance": 1,
+            "height": 1024,
+            "mode": "t2i",
+            "model_name": "black-forest-labs/FLUX.2-klein-9B",
+            "num_images": 1,
+            "num_reference_images": 0,
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "prompt_upsampling": false,
+            "seed": 42,
+            "width": 1024
+          },
+          "artifacts": [
+            {
+              "content_type": "image/png",
+              "filename": "sample.png",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9a34eea57b904b7c/sample.png",
+              "sha256": "090a3eda424259ca10e7f47e38bc7d0e65b1d08896a1eabacb2dfa90413a58a2",
+              "size_bytes": 1587741,
+              "url": "/v1/artifacts/flux2-9a34eea57b904b7c/sample.png"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783406151.3577387,
+          "error": null,
+          "finished_at": 1783406164.3294024,
+          "input_files": [],
+          "job_id": "flux2-9a34eea57b904b7c",
+          "metrics": {
+            "nvml_peak_used_mib": 54475,
+            "placement": "full_resident",
+            "startup_diagnostics": {
+              "full_resident": "ok",
+              "model_name": "black-forest-labs/FLUX.2-klein-9B",
+              "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+            },
+            "torch_peak_allocated_mib": 53286.3,
+            "torch_peak_reserved_mib": 53830
+          },
+          "model": "flux2",
+          "request": {
+            "guidance": 1,
+            "height": 1024,
+            "mode": "t2i",
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "width": 1024
+          },
+          "started_at": 1783406151.3926795,
+          "state": "succeeded",
+          "timings_s": {
+            "decode": 0.522,
+            "denoise": 2.378,
+            "load_inputs": 0,
+            "reference_encode": 0,
+            "save_png": 0.853,
+            "text_encode": 0.336,
+            "total_wall": 12.937
+          },
+          "updated_at": 1783406164.329417,
+          "worker_finished_at": 1783406163.608937,
+          "bench_case": "flux2_klein9b_t2i_1024x1024",
+          "bench_wall_s": 14.097,
+          "observed": {
+            "queue_wait_s": 0.035
+          }
+        },
+        {
+          "actual_parameters": {
+            "format": "png",
+            "guidance": 1,
+            "height": 768,
+            "mode": "t2i",
+            "model_name": "black-forest-labs/FLUX.2-klein-9B",
+            "num_images": 1,
+            "num_reference_images": 0,
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "prompt_upsampling": false,
+            "seed": 42,
+            "width": 1360
+          },
+          "artifacts": [
+            {
+              "content_type": "image/png",
+              "filename": "sample.png",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c4b69d4030654b90/sample.png",
+              "sha256": "212838c53d25405340d3b7c247902fb9754bf18a32912f0fa18df953eac8f220",
+              "size_bytes": 1596288,
+              "url": "/v1/artifacts/flux2-c4b69d4030654b90/sample.png"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783406165.4542577,
+          "error": null,
+          "finished_at": 1783406178.3211875,
+          "input_files": [],
+          "job_id": "flux2-c4b69d4030654b90",
+          "metrics": {
+            "nvml_peak_used_mib": 54455,
+            "placement": "full_resident",
+            "startup_diagnostics": {
+              "full_resident": "ok",
+              "model_name": "black-forest-labs/FLUX.2-klein-9B",
+              "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+            },
+            "torch_peak_allocated_mib": 53269.3,
+            "torch_peak_reserved_mib": 53810
+          },
+          "model": "flux2",
+          "request": {
+            "guidance": 1,
+            "height": 768,
+            "mode": "t2i",
+            "num_steps": 4,
+            "prompt": "Realistic macro photograph of a hermit crab using a soda can as its shell, partially emerging from the can, captured with sharp detail and natural colors.",
+            "width": 1360
+          },
+          "started_at": 1783406165.4866748,
+          "state": "succeeded",
+          "timings_s": {
+            "decode": 0.595,
+            "denoise": 2.375,
+            "load_inputs": 0,
+            "reference_encode": 0,
+            "save_png": 0.741,
+            "text_encode": 0.335,
+            "total_wall": 12.835
+          },
+          "updated_at": 1783406178.3212025,
+          "worker_finished_at": 1783406177.4205947,
+          "bench_case": "flux2_klein9b_t2i_1360x768",
+          "bench_wall_s": 14.209,
+          "observed": {
+            "queue_wait_s": 0.032
+          }
+        },
+        {
+          "actual_parameters": {
+            "format": "png",
+            "guidance": 1,
+            "height": 512,
+            "mode": "i2i",
+            "model_name": "black-forest-labs/FLUX.2-klein-9B",
+            "num_images": 1,
+            "num_reference_images": 1,
+            "num_steps": 4,
+            "prompt": "Turn this into a cinematic product photograph.",
+            "prompt_upsampling": false,
+            "seed": 42,
+            "width": 512
+          },
+          "artifacts": [
+            {
+              "content_type": "image/png",
+              "filename": "sample.png",
+              "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-aab057b9952644c5/sample.png",
+              "sha256": "711bf494321d4e12b89784b15ac29f8cbe373aea5c0e2b9ed793976f24063b5a",
+              "size_bytes": 290728,
+              "url": "/v1/artifacts/flux2-aab057b9952644c5/sample.png"
+            }
+          ],
+          "cancel_requested": false,
+          "created_at": 1783406179.7161782,
+          "error": null,
+          "finished_at": 1783406199.749529,
+          "input_files": [
+            "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-aab057b9952644c5/reference_0.png"
+          ],
+          "job_id": "flux2-aab057b9952644c5",
+          "metrics": {
+            "nvml_peak_used_mib": 59233,
+            "placement": "full_resident",
+            "startup_diagnostics": {
+              "full_resident": "ok",
+              "model_name": "black-forest-labs/FLUX.2-klein-9B",
+              "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+            },
+            "torch_peak_allocated_mib": 57182.4,
+            "torch_peak_reserved_mib": 58586
+          },
+          "model": "flux2",
+          "request": {
+            "guidance": 1,
+            "height": 512,
+            "mode": "i2i",
+            "num_steps": 4,
+            "prompt": "Turn this into a cinematic product photograph.",
+            "width": 512
+          },
+          "started_at": 1783406179.7836974,
+          "state": "succeeded",
+          "timings_s": {
+            "decode": 1.718,
+            "denoise": 8.286,
+            "load_inputs": 0.059,
+            "reference_encode": 0.673,
+            "save_png": 0.202,
+            "text_encode": 0.334,
+            "total_wall": 19.966
+          },
+          "updated_at": 1783406199.7495463,
+          "worker_finished_at": 1783406198.9074678,
+          "bench_case": "flux2_klein9b_i2i_512",
+          "bench_wall_s": 20.751,
+          "observed": {
+            "queue_wait_s": 0.068
+          }
+        }
+      ]
+    }
+  }
+}

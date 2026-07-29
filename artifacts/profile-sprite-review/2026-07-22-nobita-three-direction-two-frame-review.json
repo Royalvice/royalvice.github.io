@@ -1,0 +1,47 @@
+{
+  "reviewedAt": "2026-07-22",
+  "scope": "大雄三个源方向的两帧走路候选；右向未独立生成，可在后续运行时由左向镜像。",
+  "layout": {
+    "columns": [
+      "frame-a",
+      "frame-b"
+    ],
+    "rows": [
+      "down",
+      "left",
+      "up"
+    ]
+  },
+  "contactSheet": {
+    "path": "artifacts/profile-sprite-review/2026-07-22-nobita-three-direction-two-frame-review.png",
+    "sha256": "790aac42584c12520b3d9cc936cf3ca903460d924526dea6e99613638c51f3b0",
+    "current": true,
+    "note": "当前总览已包含用户最终确认的朝左 A14+R2-04，以及朝上 B01+B04。",
+    "size": [
+      1024,
+      1536
+    ]
+  },
+  "directions": {
+    "down": {
+      "runId": "2026-07-22-nobita-down-two-frame-clean-r1",
+      "frameA": 9,
+      "frameB": 1,
+      "status": "accepted"
+    },
+    "left": {
+      "runId": "2026-07-22-nobita-left-two-frame-clean-r1",
+      "frameA": "A14",
+      "frameB": "R2-04",
+      "status": "accepted-by-user-selection-a14-plus-r2-04"
+    },
+    "up": {
+      "runId": "2026-07-22-nobita-up-two-frame-clean-r1",
+      "frameA": "B01",
+      "frameB": "B04",
+      "status": "accepted-by-user-selection-b01-b04"
+    }
+  },
+  "runtimeIntegration": false,
+  "sourceOutputAlpha": false
+}

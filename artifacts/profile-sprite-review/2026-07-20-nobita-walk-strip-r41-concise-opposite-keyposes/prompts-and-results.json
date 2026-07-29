@@ -1,0 +1,32 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r41-concise-opposite-keyposes",
+  "strips": [
+    {
+      "direction": "down",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r41-concise-opposite-keyposes/candidates/down/nobita-walk-down-1x2.png",
+      "prompt": "根据参考图的大雄形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正面，同一张闭嘴正脸、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向下前踏、右腿向上后伸，画面右臂向前摆、左臂向后摆。Pose B：画面右腿向下前踏、左腿向上后伸，画面左臂向前摆、右臂向后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，鞋底靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-b9fff78a639d468c",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r41-concise-opposite-keyposes/candidates/up/nobita-walk-up-1x2.png",
+      "prompt": "根据参考图的大雄背面形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正背面并朝画面上方，同一后脑、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向上前踏、右腿向下后伸，画面右臂向上前摆、左臂向下后摆。Pose B：画面右腿向上前踏、左腿向下后伸，画面左臂向上前摆、右臂向下后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，两只浅蓝鞋靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-9eb213a93dfa4efb",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r41-concise-opposite-keyposes/candidates/left/nobita-walk-left-1x2.png",
+      "prompt": "根据参考图的大雄左侧面形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格左侧面，同一张闭嘴侧脸、同一服装、同一尺寸和同一 baseline。 Pose A：近侧腿向左前踏、远侧腿向右后伸，近侧臂向右后摆、远侧臂向左前摆。Pose B：远侧腿向左前踏、近侧腿向右后伸，近侧臂向左前摆、远侧臂向右后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，鞋底靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-e5b684684df2432f",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

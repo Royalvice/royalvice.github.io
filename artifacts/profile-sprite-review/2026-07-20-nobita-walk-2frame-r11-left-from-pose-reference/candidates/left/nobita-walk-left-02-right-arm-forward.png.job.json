@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an approved LEFT-facing passing pose. Preserve this exact pose silhouette and identity. Keep the near arm bent forward with the hand near the waist, keep the far arm hanging backward, keep one foot reaching screen-left and the other foot trailing behind. Do not straighten the bent arm, do not point with it, do not change the pose; only cleanly render the same Nobita pixel sprite. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+    "prompt_upsampling": false,
+    "seed": 45302,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-857c1253ddff40a2/sample.png",
+      "sha256": "dc4472b53f4c458a6720c30d1d55da8f789c0bd614e3a3e74989487ae5a27724",
+      "size_bytes": 673935,
+      "url": "/v1/artifacts/flux2-857c1253ddff40a2/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784540531.977059,
+  "error": null,
+  "finished_at": 1784540549.3541994,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-857c1253ddff40a2/reference_0.png"
+  ],
+  "job_id": "flux2-857c1253ddff40a2",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an approved LEFT-facing passing pose. Preserve this exact pose silhouette and identity. Keep the near arm bent forward with the hand near the waist, keep the far arm hanging backward, keep one foot reaching screen-left and the other foot trailing behind. Do not straighten the bent arm, do not point with it, do not change the pose; only cleanly render the same Nobita pixel sprite. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+    "prompt_upsampling": false,
+    "seed": 45302,
+    "width": 1024
+  },
+  "started_at": 1784540532.0500484,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.055,
+    "denoise": 5.093,
+    "load_inputs": 0.022,
+    "reference_encode": 0.24,
+    "save_png": 0.627,
+    "text_encode": 0.336,
+    "total_wall": 17.304
+  },
+  "updated_at": 1784540549.354211,
+  "worker_finished_at": 1784540548.7024164
+}

@@ -10,7 +10,9 @@ const manualContextTests = new Set([
   "Horizon keeps a visible fallback when WebGL2 is unavailable",
   "mobile Horizon uses an aspect-correct internal canvas and includes the boat",
   "mobile gallery keeps all four project targets aligned and inside the viewport",
-  "reduced motion exposes the static final state"
+  "reduced motion exposes the static final state",
+  "television cabinet hitbox and CRT aperture stay aligned at responsive widths",
+  "Voyage wildlife follows daylight, rare whale, night patrol, and mobile capacity rules"
 ]);
 
 test.beforeEach(async ({ page }, testInfo) => {
@@ -589,6 +591,345 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
   expect(second.tvFrame).toBe(first.tvFrame);
   expect(second.actorPositions).toEqual(first.actorPositions);
   await reduced.close();
+});
+
+test("Pac-Lab television easter egg opens a complete original maze game and restores room focus", async ({ page, browser }) => {
+  test.setTimeout(240_000);
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
+  const stage = page.locator(".profile-adventure-stage");
+  const tv = page.locator("[data-profile-tv]");
+  await stage.scrollIntoViewIfNeeded();
+  await expect(tv).toBeVisible();
+  await expect(tv).toHaveAttribute("aria-label", /playable Pac-Lab maze arcade/i);
+  const geometry = await page.evaluate(() => {
+    const room = document.querySelector(".profile-adventure-stage").getBoundingClientRect();
+    const button = document.querySelector("[data-profile-tv]").getBoundingClientRect();
+    return {
+      inside: button.left >= room.left && button.top >= room.top && button.right <= room.right && button.bottom <= room.bottom,
+      width: button.width,
+      height: button.height
+    };
+  });
+  expect(geometry.inside).toBe(true);
+  expect(geometry.width).toBeGreaterThan(30);
+  expect(geometry.height).toBeGreaterThan(30);
+
+  await tv.focus();
+  await page.keyboard.press("Enter");
+  await page.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
+  const roomBoot = await page.evaluate(() => window.__profileAdventureDebug.getState());
+  expect(roomBoot.tvPowerHistory.slice(-3)).toEqual(["glow", "white", "arcade"]);
+  expect(roomBoot.paused).toBe(true);
+  await expect(page.locator("[data-paclab-dialog]")).toBeVisible();
+  await expect(page.getByText("MOVE WASD / ARROWS", { exact: false })).toBeVisible();
+  await expect(page.getByText("PAUSE SPACE", { exact: false })).toBeVisible();
+
+  const initial = await page.evaluate(() => window.__pacLabDebug.getState());
+  expect(initial.phase).toBe("ready");
+  expect(initial.lives).toBe(3);
+  expect(initial.level).toBe(1);
+  expect(initial.pelletsRemaining).toBeGreaterThan(200);
+  expect(initial.specters).toHaveLength(4);
+  await page.evaluate(() => {
+    window.__pacLabDebug.start();
+    window.__pacLabDebug.setDirection("left");
+    window.__pacLabDebug.advanceTime(.75);
+  });
+  const moved = await page.evaluate(() => window.__pacLabDebug.getState());
+  expect(moved.player.x).toBeLessThan(initial.player.x - .5);
+  expect(moved.score).toBeGreaterThan(0);
+  expect(moved.pelletsRemaining).toBeLessThan(initial.pelletsRemaining);
+
+  await page.keyboard.press("Space");
+  const paused = await page.evaluate(() => window.__pacLabDebug.getState());
+  expect(paused.phase).toBe("paused");
+  await page.waitForTimeout(180);
+  expect((await page.evaluate(() => window.__pacLabDebug.getState())).player).toEqual(paused.player);
+
+  const power = await page.evaluate(() => window.__pacLabDebug.setScenario("power-pellet"));
+  expect(power.frightenedRemaining).toBeGreaterThan(2.9);
+  expect(power.specters.every((specter) => specter.state === "frightened")).toBe(true);
+  const chained = await page.evaluate(() => window.__pacLabDebug.setScenario("ghost-chain"));
+  expect(chained.specters[0].state).toBe("eaten");
+  expect(chained.score).toBeGreaterThanOrEqual(power.score + 200);
+  const livesBeforeDeath = chained.lives;
+  await page.evaluate(() => {
+    window.__pacLabDebug.setScenario("death");
+    window.__pacLabDebug.advanceTime(1.5);
+  });
+  expect((await page.evaluate(() => window.__pacLabDebug.getState())).lives).toBe(livesBeforeDeath - 1);
+  const beforeLevel = await page.evaluate(() => window.__pacLabDebug.getState());
+  await page.evaluate(() => {
+    window.__pacLabDebug.setScenario("level-clear");
+    window.__pacLabDebug.advanceTime(2);
+  });
+  const nextLevel = await page.evaluate(() => window.__pacLabDebug.getState());
+  expect(nextLevel.level).toBe(beforeLevel.level + 1);
+  expect(nextLevel.pelletsRemaining).toBeGreaterThan(200);
+
+  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-paclab-dialog]")).toBeHidden();
+  await expect(tv).toBeFocused();
+  expect((await page.evaluate(() => window.__profileAdventureDebug.getState())).tvPowerPhase).toBe("idle");
+
+  const reduced = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: "reduce" });
+  const reducedPage = await reduced.newPage();
+  await reducedPage.goto("/", { waitUntil: "domcontentloaded" });
+  await reducedPage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
+  await reducedPage.locator("[data-profile-tv]").click();
+  await reducedPage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
+  expect((await reducedPage.evaluate(() => window.__profileAdventureDebug.getState())).tvPowerHistory.slice(-1)).toEqual(["arcade"]);
+  await reduced.close();
+
+  const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  const mobilePage = await mobile.newPage();
+  await mobilePage.goto("/", { waitUntil: "domcontentloaded" });
+  await mobilePage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
+  await mobilePage.locator("[data-profile-tv]").click();
+  await mobilePage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
+  const touch = await mobilePage.locator("[data-paclab-direction]").evaluateAll((buttons) => buttons.map((button) => {
+    const rect = button.getBoundingClientRect();
+    return { width: rect.width, height: rect.height };
+  }));
+  expect(touch).toHaveLength(4);
+  expect(touch.every((button) => button.width >= 44 && button.height >= 44)).toBe(true);
+  expect(await mobilePage.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
+  await mobilePage.locator('[data-paclab-direction="left"]').dispatchEvent("pointerdown");
+  expect((await mobilePage.evaluate(() => window.__pacLabDebug.getState())).player.queuedDirection).toBe("left");
+  await mobile.close();
+});
+
+test("television cabinet hitbox and CRT aperture stay aligned at responsive widths", async ({ browser }) => {
+  test.setTimeout(180_000);
+  for (const viewport of [
+    { width: 1280, height: 800 },
+    { width: 760, height: 900 },
+    { width: 390, height: 844 }
+  ]) {
+    const context = await browser.newContext({ viewport, reducedMotion: "no-preference" });
+    const page = await context.newPage();
+    await page.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
+    const control = page.locator("[data-profile-tv]");
+    await control.scrollIntoViewIfNeeded();
+    await control.hover();
+    const geometry = await page.evaluate(() => {
+      const stage = document.querySelector(".profile-adventure-stage").getBoundingClientRect();
+      const canvas = document.querySelector(".profile-sprite-canvas");
+      const button = document.querySelector("[data-profile-tv]");
+      const buttonRect = button.getBoundingClientRect();
+      const before = getComputedStyle(button, "::before");
+      const label = button.querySelector("span").getBoundingClientRect();
+      const state = window.__profileAdventureDebug.getState();
+      const prop = state.layout.props.tv;
+      const mobileLayout = canvas.width === 320;
+      const mapX = mobileLayout ? .05 + prop.worldAnchor[0] * .9 : prop.worldAnchor[0];
+      const sourceY = prop.worldAnchor[1];
+      const mapY = !mobileLayout
+        ? sourceY
+        : sourceY < .34 ? .04 + sourceY * .95 : sourceY < .64 ? .02 + sourceY * 1.02 : -.02 + sourceY * 1.06;
+      const size = mobileLayout ? prop.mobileSize : prop.desktopSize;
+      const internalWidth = Math.round(size[0] * canvas.width);
+      const internalHeight = Math.round(size[1] * canvas.height);
+      const internalLeft = Math.round(mapX * canvas.width - internalWidth * prop.pivot[0]);
+      const internalTop = Math.round(mapY * canvas.height - internalHeight * prop.pivot[1]);
+      const cabinet = {
+        left: internalLeft / canvas.width * stage.width,
+        top: internalTop / canvas.height * stage.height,
+        width: internalWidth / canvas.width * stage.width,
+        height: internalHeight / canvas.height * stage.height
+      };
+      const screenRect = state.layout.tvScreenRect;
+      const screen = {
+        left: cabinet.left + cabinet.width * screenRect[0],
+        top: cabinet.top + cabinet.height * screenRect[1],
+        width: cabinet.width * screenRect[2],
+        height: cabinet.height * screenRect[3]
+      };
+      const px = (value) => Number.parseFloat(value || "0");
+      const actualCabinet = {
+        left: buttonRect.left - stage.left,
+        top: buttonRect.top - stage.top,
+        width: buttonRect.width,
+        height: buttonRect.height
+      };
+      const actualScreen = {
+        left: actualCabinet.left + px(before.left),
+        top: actualCabinet.top + px(before.top),
+        width: px(before.width),
+        height: px(before.height)
+      };
+      const edges = (first, second) => [
+        Math.abs(first.left - second.left),
+        Math.abs(first.top - second.top),
+        Math.abs(first.left + first.width - second.left - second.width),
+        Math.abs(first.top + first.height - second.top - second.height)
+      ];
+      return {
+        maxCabinetError: Math.max(...edges(cabinet, actualCabinet)),
+        maxScreenError: Math.max(...edges(screen, actualScreen)),
+        labelCenterError: Math.abs(label.left + label.width / 2 - stage.left - (screen.left + screen.width / 2)),
+        borderColor: before.borderTopColor,
+        inside: buttonRect.left >= stage.left && buttonRect.top >= stage.top && buttonRect.right <= stage.right && buttonRect.bottom <= stage.bottom
+      };
+    });
+    expect(geometry.inside).toBe(true);
+    expect(geometry.maxCabinetError).toBeLessThanOrEqual(1);
+    expect(geometry.maxScreenError).toBeLessThanOrEqual(1);
+    expect(geometry.labelCenterError).toBeLessThanOrEqual(1);
+    expect(geometry.borderColor).not.toBe("rgba(0, 0, 0, 0)");
+    await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("white"));
+    await expect(control).toBeVisible();
+    const whiteGeometry = await control.evaluate((button) => {
+      const before = getComputedStyle(button, "::before");
+      return { left: before.left, top: before.top, width: before.width, height: before.height, background: before.backgroundColor };
+    });
+    expect(whiteGeometry.background).not.toBe("rgba(0, 0, 0, 0)");
+    await context.close();
+  }
+});
+
+test("Voyage wildlife follows daylight, rare whale, night patrol, and mobile capacity rules", async ({ browser }) => {
+  test.setTimeout(240_000);
+  const openVoyage = async (page) => {
+    await page.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
+    const top = await page.locator("#voyage").evaluate((element) => element.offsetTop);
+    await page.evaluate((value) => scrollTo({ top: value, behavior: "instant" }), top);
+    await page.waitForFunction(() => window.__voyageDebug?.().ready, null, { timeout: 90_000 });
+    await page.evaluate(() => window.__voyageDebug.setIntroTime(5.2));
+  };
+  const visibleCount = (actors) => actors.filter((actor) => actor.visible).length;
+
+  const desktop = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: "no-preference" });
+  const page = await desktop.newPage();
+  await openVoyage(page);
+  await page.evaluate(() => {
+    window.__voyageDebug.clearWildlifeScenario();
+    window.__voyageDebug.setSceneTime(6);
+  });
+  const morning = await page.evaluate(() => window.__voyageDebug());
+  expect(morning.environmentPhase).toBe("morning");
+  expect(visibleCount(morning.wildlife.gulls)).toBeGreaterThanOrEqual(3);
+  expect(visibleCount(morning.wildlife.sharks)).toBe(0);
+
+  await page.evaluate(() => window.__voyageDebug.setSceneTime(18));
+  const noon = await page.evaluate(() => window.__voyageDebug());
+  expect(noon.environmentPhase).toBe("noon");
+  expect(visibleCount(noon.wildlife.dolphins)).toBeGreaterThanOrEqual(2);
+  expect(visibleCount(noon.wildlife.whales)).toBe(0);
+  expect(noon.wildlife.dolphins.some((actor) => actor.depth > 0)).toBe(true);
+
+  await page.evaluate(() => window.__voyageDebug.setSceneTime(78));
+  const firstWhale = await page.evaluate(() => window.__voyageDebug().wildlife);
+  expect(firstWhale.currentCycle).toBe(1);
+  expect(firstWhale.activeScenario).toBe("natural-whale");
+  expect(visibleCount(firstWhale.whales)).toBe(1);
+  expect(firstWhale.whales[0].motion).toMatch(/breaching|splashdown/);
+  expect(firstWhale.nextWhaleCycle - firstWhale.currentCycle).toBe(firstWhale.whaleIntervalCycles);
+  expect([2, 3]).toContain(firstWhale.whaleIntervalCycles);
+  const nextWhaleTime = firstWhale.nextWhaleCycle * 60 + 18;
+  await page.evaluate((seconds) => window.__voyageDebug.setSceneTime(seconds), nextWhaleTime);
+  const nextWhale = await page.evaluate(() => window.__voyageDebug().wildlife);
+  expect(nextWhale.activeScenario).toBe("natural-whale");
+  expect([2, 3]).toContain(nextWhale.whaleIntervalCycles);
+
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("dolphins-breach", .47));
+  const dolphinBreach = await page.evaluate(() => window.__voyageDebug().wildlife);
+  expect(dolphinBreach.dolphins.some((actor) => actor.height > .5 && actor.breachPhase !== "none")).toBe(true);
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .5));
+  const forcedWhale = await page.evaluate(() => window.__voyageDebug().wildlife);
+  expect(forcedWhale.whales[0].height).toBeGreaterThan(1);
+  expect(forcedWhale.whales[0].breachPhase).toBe("apex");
+  await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .5));
+  expect((await page.evaluate(() => window.__voyageDebug().wildlife.whales[0].position))).toEqual(forcedWhale.whales[0].position);
+
+  await page.evaluate(() => {
+    window.__voyageDebug.clearWildlifeScenario();
+    window.__voyageDebug.setSceneTime(45);
+  });
+  const night = await page.evaluate(() => window.__voyageDebug());
+  expect(night.environmentPhase).toBe("night");
+  expect(visibleCount(night.wildlife.gulls)).toBe(0);
+  expect(visibleCount(night.wildlife.dolphins)).toBe(0);
+  expect(visibleCount(night.wildlife.whales)).toBe(0);
+  expect(visibleCount(night.wildlife.sharks)).toBeGreaterThanOrEqual(1);
+  expect(night.wildlife.sharks.some((actor) => actor.finVisible)).toBe(true);
+  const frozen = night.wildlife.sharks.map((actor) => actor.position);
+  await page.waitForTimeout(220);
+  expect((await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map((actor) => actor.position)))).toEqual(frozen);
+  const wildlifeResources = await page.evaluate(() => performance.getEntriesByType("resource")
+    .map((entry) => entry.name)
+    .filter((name) => /gull|dolphin|whale|shark/i.test(name)));
+  expect(wildlifeResources.length).toBeGreaterThanOrEqual(4);
+  expect(wildlifeResources.every((name) => /127\.0\.0\.1:4173\/assets\/voyage\/models\/wildlife\/.*\.glb/i.test(name))).toBe(true);
+  for (const filename of [
+    "gull-trellis2-1024-cascade.glb",
+    "dolphin-trellis2-1024-cascade.glb",
+    "blue-whale-trellis2-1024-cascade.glb",
+    "shark-trellis2-1024-cascade.glb"
+  ]) {
+    expect(wildlifeResources.some((name) => name.includes(filename))).toBe(true);
+  }
+  await desktop.close();
+
+  const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "no-preference" });
+  const mobilePage = await mobile.newPage();
+  await openVoyage(mobilePage);
+  await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("gulls", .5));
+  expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).gulls)).toBe(3);
+  await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("dolphins-breach", .47));
+  expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).dolphins)).toBe(2);
+  await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("shark-patrol", .5));
+  expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).sharks)).toBe(1);
+  expect(await mobilePage.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+  await mobile.close();
+});
+
+test("Voyage swaps DirectL and SSAT, removes distinction stamps, and layers Evidence image zoom", async ({ page }) => {
+  test.setTimeout(180_000);
+  const top = await page.locator("#voyage").evaluate((element) => element.offsetTop);
+  await page.evaluate((value) => scrollTo({ top: value, behavior: "instant" }), top);
+  await page.waitForFunction(() => window.__voyageDebug?.().ready, null, { timeout: 60_000 });
+  await page.evaluate(() => window.__voyageDebug.skipIntro());
+  const nodes = await page.locator("[data-voyage-node]").evaluateAll((items) => items.map((item) => ({
+    id: item.dataset.voyageNode,
+    index: item.dataset.nodeIndex,
+    text: item.textContent.replace(/\s+/g, " ").trim()
+  })));
+  expect(nodes.map((node) => node.id)).toEqual(["docdiff", "directl", "neural", "eva01", "world"]);
+  expect(nodes[1]).toMatchObject({ id: "directl", index: "1" });
+  expect(nodes[1].text).toContain("01");
+  expect(nodes[2]).toMatchObject({ id: "neural", index: "2" });
+  expect(nodes[2].text).toContain("02");
+  expect(nodes[2].text).toContain("Neural Rendering Reef");
+  expect(nodes[2].text).toContain("SSAT · Realtime Neural Rendering");
+  await expect(page.getByText("Prism Sea", { exact: true })).toHaveCount(0);
+  await expect(page.locator(".journal-stamps")).toHaveCount(0);
+  await expect(page.locator(".gallery-ui-card")).toHaveCount(4);
+
+  await page.locator('[data-voyage-node="neural"]').click();
+  await expect(page.locator("[data-evidence-panel]")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator("[data-log-title]")).toHaveText("Neural Rendering Reef");
+  await expect(page.locator("[data-log-subtitle]")).toHaveText("SSAT · Realtime Neural Rendering");
+  const zoom = page.locator('[data-project-card="ssat"] [data-evidence-zoom]');
+  await expect(zoom).toBeEnabled();
+  await zoom.click();
+  const lightbox = page.locator("[data-evidence-lightbox]");
+  await expect(lightbox).toBeVisible();
+  await expect(page.locator("[data-evidence-lightbox-title]")).toHaveText("SSAT");
+  await expect.poll(() => page.locator("[data-evidence-lightbox-image]").evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+  await page.keyboard.press("Escape");
+  await expect(lightbox).toBeHidden();
+  await expect(page.locator("[data-evidence-panel]")).toHaveAttribute("aria-hidden", "false");
+  await expect(zoom).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-evidence-panel]")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator("[data-evidence-toggle]")).toBeFocused();
+
+  await page.locator('[data-voyage-node="directl"]').click();
+  await expect(page.locator('[data-project-card="directl"] [data-evidence-zoom]')).toHaveCount(0);
+  await expect(page.locator('[data-project-card="directl"] video')).toBeAttached();
 });
 
 test("THE LUMINOUS WAKE is one unified pixel voyage without dashboard-era layers", async ({ page }) => {
@@ -1353,6 +1694,12 @@ test("reduced motion exposes the static final state", async ({ browser }) => {
   expect(voyage.environmentPhase).toBe("morning");
   expect(voyage.environmentCycleElapsed).toBe(6);
   expect(voyage.sunStrength).toBeGreaterThan(voyage.moonStrength);
+  expect([
+    ...voyage.wildlife.gulls,
+    ...voyage.wildlife.dolphins,
+    ...voyage.wildlife.whales,
+    ...voyage.wildlife.sharks
+  ].every((actor) => !actor.visible)).toBe(true);
   const reducedPose = voyage.floatingBodies.boat;
   const reducedBeamDirection = voyage.lighthouseBeamDirection;
   await page.waitForTimeout(350);

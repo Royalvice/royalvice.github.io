@@ -1,0 +1,126 @@
+{
+  "runId": "2026-07-20-nobita-walk-4frame-r2-single-ref",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/down/nobita-walk-down-01-left-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面下方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 DOWN-facing front view，面向画面下方和观察者，双眼、双圆形镜片、鼻子和肩线清楚可见；身体中轴稳定，不旋转成侧面。 Animation pose: 第 1 帧 contact：大雄的左脚向画面下方伸出并落地，右脚留在身体后方；右臂向左前下方摆，左臂向右后上方摆；躯干轻微前倾，重心落在左脚。 Continuity: 这是四帧连续步态中的 01-left-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-e28ab37afe1644e3",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "02-left-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/down/nobita-walk-down-02-left-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面下方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 DOWN-facing front view，面向画面下方和观察者，双眼、双圆形镜片、鼻子和肩线清楚可见；身体中轴稳定，不旋转成侧面。 Animation pose: 第 2 帧 passing：右脚支撑身体，左腿屈膝从身体下方经过；双脚靠近但不重叠；右臂回到身体右侧，左臂开始向前下方摆；髋部位于两脚正中，身体略微升高。 Continuity: 这是四帧连续步态中的 02-left-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-619c26406e0a4227",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "03-right-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/down/nobita-walk-down-03-right-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面下方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 DOWN-facing front view，面向画面下方和观察者，双眼、双圆形镜片、鼻子和肩线清楚可见；身体中轴稳定，不旋转成侧面。 Animation pose: 第 3 帧 opposite contact：右脚向画面下方伸出并落地，左脚退到身体后方；左臂向右前下方摆，右臂向左后上方摆；重心落在右脚，肩线和头部高度与第 1 帧一致。 Continuity: 这是四帧连续步态中的 03-right-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-fb1518ff25bb4448",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "04-right-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/down/nobita-walk-down-04-right-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面下方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 DOWN-facing front view，面向画面下方和观察者，双眼、双圆形镜片、鼻子和肩线清楚可见；身体中轴稳定，不旋转成侧面。 Animation pose: 第 4 帧 opposite passing：左脚支撑身体，右腿屈膝从身体下方收回并经过；双脚再次靠近但位置与第 2 帧相反；左臂回到身体左侧，右臂开始向前下方摆；身体准备进入下一步，但不复制第 1 帧。 Continuity: 这是四帧连续步态中的 04-right-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-97e3427102f543df",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/up/nobita-walk-up-01-left-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面上方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 UP-facing back view，背向观察者并面向画面上方，只显示黑色短发后脑、黄色上衣背面、深蓝短裤背面、白袜和浅蓝鞋；不出现正面五官或眼镜。 Animation pose: 第 1 帧 contact：背面大雄的左脚向画面上方伸出并落地，右脚留在身体下方后侧；右臂向画面左上方摆，左臂向画面右下方摆；肩胛和衣服背面随步伐轻微前倾，重心落在左脚。 Continuity: 这是四帧连续步态中的 01-left-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-bf340c4c7bb84b7d",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "02-left-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/up/nobita-walk-up-02-left-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面上方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 UP-facing back view，背向观察者并面向画面上方，只显示黑色短发后脑、黄色上衣背面、深蓝短裤背面、白袜和浅蓝鞋；不出现正面五官或眼镜。 Animation pose: 第 2 帧 passing：右脚支撑，左腿屈膝从身体下方经过；双脚靠近但不重叠；右臂回到右侧，左臂开始向左上方摆；黄色上衣背面保持水平，身体略微升高。 Continuity: 这是四帧连续步态中的 02-left-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-27ad68706b2c4986",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "03-right-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/up/nobita-walk-up-03-right-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面上方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 UP-facing back view，背向观察者并面向画面上方，只显示黑色短发后脑、黄色上衣背面、深蓝短裤背面、白袜和浅蓝鞋；不出现正面五官或眼镜。 Animation pose: 第 3 帧 opposite contact：右脚向画面上方伸出并落地，左脚退到身体下方后侧；左臂向画面右上方摆，右臂向画面左下方摆；重心落在右脚，后脑和肩线高度与第 1 帧一致。 Continuity: 这是四帧连续步态中的 03-right-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-07499c16c47a4d8d",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "04-right-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/up/nobita-walk-up-04-right-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面上方行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 UP-facing back view，背向观察者并面向画面上方，只显示黑色短发后脑、黄色上衣背面、深蓝短裤背面、白袜和浅蓝鞋；不出现正面五官或眼镜。 Animation pose: 第 4 帧 opposite passing：左脚支撑，右腿屈膝从身体下方收回并经过；双脚靠近但位置与第 2 帧相反；左臂回到左侧，右臂开始向右上方摆；保持背面连续性，不复制第 1 帧。 Continuity: 这是四帧连续步态中的 04-right-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-629ea7be1e984692",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/left/nobita-walk-left-01-left-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 1 帧 contact：左腿作为前导腿向画面左侧伸出并落地，右腿向画面右后方拖后；大雄的右臂向左前方摆，左臂向右后方摆，后侧手臂部分被躯干遮挡；身体轻微向左前倾。 Continuity: 这是四帧连续步态中的 01-left-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-3dc5d3609cfb46d8",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "02-left-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/left/nobita-walk-left-02-left-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 2 帧 passing：右脚支撑，左腿屈膝从身体下方向前经过；双脚在 profile 中前后错开但不重叠；右臂回落到身体前侧，左臂开始向左前方摆；头部保持纯左侧面。 Continuity: 这是四帧连续步态中的 02-left-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-95eb90bda04c406e",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "03-right-contact",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/left/nobita-walk-left-03-right-contact.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 3 帧 opposite contact：右腿向画面左侧伸出并落地，左腿向画面右后方拖后；左臂向左前方摆，右臂向右后方摆并被躯干部分遮挡；重心落在右脚，侧脸和眼镜高度与第 1 帧一致。 Continuity: 这是四帧连续步态中的 03-right-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-bc83faa5af09482a",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "04-right-passing",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r2-single-ref/candidates/left/nobita-walk-left-04-right-passing.png",
+      "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 4 帧 opposite passing：左脚支撑，右腿屈膝从身体下方向前经过；双脚在 profile 中交换前后位置；左臂回落，右臂开始向左前方摆；身体准备进入下一步，但不复制第 1 帧。 Continuity: 这是四帧连续步态中的 04-right-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+      "jobId": "flux2-c39c21dd99c74854",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

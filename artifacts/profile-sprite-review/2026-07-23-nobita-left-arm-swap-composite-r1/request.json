@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-composite-r1",
+  "method": "single-image-natural-arm-composite-cleanup",
+  "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-composite-r1/arm-swap-composite-guide-v2.png",
+  "referenceSha256": "1685c31df8ae6f254aa68f1002b0780a347a18f845f074a98f78af6cc959f925",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "referencePose": "腿序正确；画面左侧为自然长臂、画面右侧为自然弯曲臂，右肩接缝待修复",
+  "targetPose": "保留自然长前臂与自然弯曲后臂的位置，只修复右肩接缝",
+  "inputImageCount": 1,
+  "prompt": "只修复画面右侧弯曲手臂与肩膀的连接，手臂位置、双腿和身子保持不变。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 85000,
+  "maxCandidates": 16,
+  "inputPolicy": "每个候选只上传同一张本地自然像素拼接图，不上传其他帧、其他方向或其他资产。"
+}

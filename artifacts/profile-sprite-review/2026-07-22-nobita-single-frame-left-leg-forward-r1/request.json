@@ -1,0 +1,10 @@
+{
+  "runId": "2026-07-22-nobita-single-frame-left-leg-forward-r1",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+  "referenceSha256": "c5153e06eff9e628483b29570c7400672030c355bc6c0b0518c2c600c6de2022",
+  "inputImageCount": 1,
+  "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+  "promptUpsampling": false,
+  "maxCandidates": 64,
+  "stabilityTarget": "同一轮四张中至少两张满足角色自身四肢方向"
+}

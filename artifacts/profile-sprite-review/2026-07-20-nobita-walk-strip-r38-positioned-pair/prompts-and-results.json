@@ -1,0 +1,14 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r38-positioned-pair",
+  "strips": [
+    {
+      "direction": "down",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r38-positioned-pair/candidates/down/nobita-walk-down-1x2.png",
+      "prompt": "严格沿用上传参考图的大雄形象：同一张正面脸、圆形黑框眼镜、黑短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 DOWN front orthographic camera，大雄都正面直视镜头，头部、眼镜、鼻子、嘴、肩线、胸口中轴和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：左脚向画面下方前伸并承重，右脚向画面上方后伸；右臂向画面下方前摆，左臂向画面上方后摆，双腿与双臂彼此分离，膝盖和手肘轻微弯曲，身体重心明确落在左脚。 右半格是下一瞬间的 walking passing：左脚仍在身体正下方支撑，右膝从左腿旁向上抬起，右小腿向下垂，左腿向后；左臂向前、右臂向后，四肢位置与左半格明显不同但仍是同一个正面大雄，脸和躯干完全不转动。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄，保持统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。",
+      "jobId": "flux2-748f1c23601643ed",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    }
+  ]
+}

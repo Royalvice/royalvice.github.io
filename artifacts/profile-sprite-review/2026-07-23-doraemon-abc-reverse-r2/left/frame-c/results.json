@@ -1,0 +1,136 @@
+{
+  "runId": "2026-07-23-doraemon-abc-reverse-r2",
+  "actor": "doraemon",
+  "direction": "left",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 100800,
+      "jobId": "flux2-766ef1c7232d4427",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-01.png",
+      "outputSha256": "39ac0de50445702ec45bd16c99b37a0522a2c05f4a553e4959407104eee18c09",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 100801,
+      "jobId": "flux2-ce8f63c44c8449ad",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-02.png",
+      "outputSha256": "b1d15b023eb42014a3c68e715bcdf0da9a7044debe02da165c27a0aa118d363c",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 100802,
+      "jobId": "flux2-3165e994df5140a0",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-03.png",
+      "outputSha256": "cb8c54e540dffe011002325df97a8b5c848d89b23386f38b48d9a7b43d86838e",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 100803,
+      "jobId": "flux2-476801bbf5e74754",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-04.png",
+      "outputSha256": "3826ffc756ac7badd1a6d8e6d4724483ef81dd3fb76271560253e283a3546972",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 5,
+      "seed": 100804,
+      "jobId": "flux2-27499c17a9794a1a",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-05.png",
+      "outputSha256": "492ee3141aa82f3bd606bc2fa30f09cbe89d43aa47035f6e079479f3579c18af",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 6,
+      "seed": 100805,
+      "jobId": "flux2-440e003c70874994",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-06.png",
+      "outputSha256": "c0048fb9973aafeaabd048b78664b5698e4aad8f2bbdf8dea5e205d0d3a9711f",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 7,
+      "seed": 100806,
+      "jobId": "flux2-13b3be43e0ad4830",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-07.png",
+      "outputSha256": "2fa6e05da51362e274a56028c90ed423c52a622f7ccefc3cadde08fc5184acb0",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 8,
+      "seed": 100807,
+      "jobId": "flux2-997fa59be63b4fdc",
+      "prompt": "把参考图中的人物的走路姿势反转，身子保持朝左竖直，左右腿和左右臂的前后关系互换，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-r2/left/frame-c/candidate-08.png",
+      "outputSha256": "98dad434ef304b76914475fbeafc5e429d6ccaf27cc63f03c6851d5a320c045d",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

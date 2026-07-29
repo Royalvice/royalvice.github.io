@@ -1,0 +1,72 @@
+{
+  "runId": "2026-07-23-gian-abc-reverse-explicit-r3",
+  "actor": "gian",
+  "direction": "left",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 120900,
+      "jobId": "flux2-e19b21ebda0a455a",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+      "outputSha256": "5039b04cb880131b1613d792e8a9b80667e8b866222ae9302c4ef50f2f5e7088",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 120901,
+      "jobId": "flux2-8b3cae37e7fc4e89",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-02.png",
+      "outputSha256": "feb13e0b641885018f0c8277ddeb5a29533f42c03efe9fdeca0a565e72b079fc",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 120902,
+      "jobId": "flux2-8481afa4bb914351",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-03.png",
+      "outputSha256": "40b686e038e95d1c93c19f4bc7026fcf7246b174d6cfa0928cdf0443ed900dc0",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 120903,
+      "jobId": "flux2-091488e8bf364d13",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-04.png",
+      "outputSha256": "7adebb051c52386a61da52355be3010236a7ccf1d7b885e8222d7f5b0bc4e160",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

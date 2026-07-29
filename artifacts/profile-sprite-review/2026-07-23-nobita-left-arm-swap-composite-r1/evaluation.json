@@ -1,0 +1,8 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-composite-r1",
+  "status": "rejected-no-clean-two-arm-result",
+  "accepted": false,
+  "selection": null,
+  "reason": "C01-C03 未保留可见反转；C04 首次保留长臂与弯臂交换，但额外生成第三只前臂和拳头，因此拒绝。",
+  "structuralSourceForNextRun": "candidate-04 after deterministic removal of the detached third forearm and fist"
+}

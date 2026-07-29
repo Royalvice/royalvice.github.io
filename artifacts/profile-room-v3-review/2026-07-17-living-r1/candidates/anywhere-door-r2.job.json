@@ -1,0 +1,69 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "t2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 0,
+    "num_steps": 4,
+    "prompt": "Production-ready top-down pixel-art two-frame sprite strip of one freestanding pink Anywhere Door for a warm cinematic research dungeon. Exactly two equal invisible cells in one horizontal row. Left cell: fully closed pink enamel door with dark copper hinges and brass handle. Right cell: fully open door at the same position and scale, showing a luminous pearly cyan interior and the visible angled door leaf. Approximately seventy-degree high three-quarter overhead view, warm upper-left light, crisp deliberate pixel clusters, one-to-two-pixel dark outline, limited palette. Perfectly flat solid #00FF00 chroma-key background. No room, no floor, no cast shadow, no people, no third state, no text, no labels, no divider, no border, no logo, no watermark, no cropping.",
+    "prompt_upsampling": false,
+    "seed": 84129,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bf2541bf634c43de/sample.png",
+      "sha256": "37ef7544c7c48ce4606e30c7d0852a68e2759dc5eb48cd72998eff8168550f02",
+      "size_bytes": 418922,
+      "url": "/v1/artifacts/flux2-bf2541bf634c43de/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784286008.0068986,
+  "error": null,
+  "finished_at": 1784286021.5228226,
+  "input_files": [],
+  "job_id": "flux2-bf2541bf634c43de",
+  "metrics": {
+    "nvml_peak_used_mib": 56849,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53287.1,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "t2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Production-ready top-down pixel-art two-frame sprite strip of one freestanding pink Anywhere Door for a warm cinematic research dungeon. Exactly two equal invisible cells in one horizontal row. Left cell: fully closed pink enamel door with dark copper hinges and brass handle. Right cell: fully open door at the same position and scale, showing a luminous pearly cyan interior and the visible angled door leaf. Approximately seventy-degree high three-quarter overhead view, warm upper-left light, crisp deliberate pixel clusters, one-to-two-pixel dark outline, limited palette. Perfectly flat solid #00FF00 chroma-key background. No room, no floor, no cast shadow, no people, no third state, no text, no labels, no divider, no border, no logo, no watermark, no cropping.",
+    "prompt_upsampling": false,
+    "seed": 84129,
+    "width": 1024
+  },
+  "started_at": 1784286008.0328033,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.569,
+    "denoise": 2.371,
+    "load_inputs": 0,
+    "reference_encode": 0,
+    "save_png": 0.428,
+    "text_encode": 0.338,
+    "total_wall": 13.49
+  },
+  "updated_at": 1784286021.5228403,
+  "worker_finished_at": 1784286020.8364797
+}

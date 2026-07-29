@@ -1,0 +1,103 @@
+{
+  "description": "Two identical placements derived from one approved canonical frame; no action candidate is used.",
+  "canvasSize": [
+    1024,
+    576
+  ],
+  "chromaKey": "#00FF00",
+  "records": [
+    {
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+      "output": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-down-reference.png",
+      "sourceSha256": "c5153e06eff9e628483b29570c7400672030c355bc6c0b0518c2c600c6de2022",
+      "outputSha256": "124fffa729f6dcaf6e51ef553bb38ebd71e6ebec62a57c1367daa2a6b28af469",
+      "sourceAlphaBbox": [
+        304,
+        86,
+        726,
+        945
+      ],
+      "subjectSize": [
+        236,
+        480
+      ],
+      "placements": [
+        [
+          138,
+          56,
+          236,
+          480
+        ],
+        [
+          650,
+          56,
+          236,
+          480
+        ]
+      ],
+      "baselineY": 536
+    },
+    {
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+      "output": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-up-reference.png",
+      "sourceSha256": "d19ba29d82a6d89abf901f23853953b7089793060e7bc361a269675f5abb65aa",
+      "outputSha256": "e12cde78863ebec9aaac4483358ee1c50b3801c33e6cc9a22de845c469d2abd9",
+      "sourceAlphaBbox": [
+        307,
+        88,
+        721,
+        952
+      ],
+      "subjectSize": [
+        230,
+        480
+      ],
+      "placements": [
+        [
+          141,
+          56,
+          230,
+          480
+        ],
+        [
+          653,
+          56,
+          230,
+          480
+        ]
+      ],
+      "baselineY": 536
+    },
+    {
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "output": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-left-reference.png",
+      "sourceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b",
+      "outputSha256": "ced3b8704032c6cbc7929aa9122990d416479db3855ca4cfd1b6cdc3a5b25e34",
+      "sourceAlphaBbox": [
+        324,
+        87,
+        712,
+        940
+      ],
+      "subjectSize": [
+        218,
+        480
+      ],
+      "placements": [
+        [
+          147,
+          56,
+          218,
+          480
+        ],
+        [
+          659,
+          56,
+          218,
+          480
+        ]
+      ],
+      "baselineY": 536
+    }
+  ]
+}

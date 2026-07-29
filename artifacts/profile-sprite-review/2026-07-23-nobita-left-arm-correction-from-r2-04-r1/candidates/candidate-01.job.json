@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+    "prompt_upsampling": false,
+    "seed": 82000,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-28fa90bcb4c44e0e/sample.png",
+      "sha256": "65e13ebfd8a6a22123627f21e8f99e486d4a19636ee272eabd9c3fc777476854",
+      "size_bytes": 225626,
+      "url": "/v1/artifacts/flux2-28fa90bcb4c44e0e/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784803919.7742014,
+  "error": null,
+  "finished_at": 1784803961.8419049,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-28fa90bcb4c44e0e/reference_0.png"
+  ],
+  "job_id": "flux2-28fa90bcb4c44e0e",
+  "metrics": {
+    "nvml_peak_used_mib": 57617,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+    "prompt_upsampling": false,
+    "seed": 82000,
+    "width": 1024
+  },
+  "started_at": 1784803943.4947927,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.053,
+    "denoise": 5.074,
+    "load_inputs": 0.023,
+    "reference_encode": 0.228,
+    "save_png": 0.372,
+    "text_encode": 0.335,
+    "total_wall": 18.347
+  },
+  "updated_at": 1784803961.8419206,
+  "worker_finished_at": 1784803960.9559216
+}

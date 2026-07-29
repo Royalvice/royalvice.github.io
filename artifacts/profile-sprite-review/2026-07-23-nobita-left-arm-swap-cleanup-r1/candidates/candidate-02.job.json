@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 86001,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c3ffad8a258d44dd/sample.png",
+      "sha256": "b30312a6b0883cb242f345ef457ef0eeee6f126ba848a3f4354fd5ea1e6f3a24",
+      "size_bytes": 223223,
+      "url": "/v1/artifacts/flux2-c3ffad8a258d44dd/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784805693.1024578,
+  "error": null,
+  "finished_at": 1784805711.9531693,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c3ffad8a258d44dd/reference_0.png"
+  ],
+  "job_id": "flux2-c3ffad8a258d44dd",
+  "metrics": {
+    "nvml_peak_used_mib": 56337,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 86001,
+    "width": 1024
+  },
+  "started_at": 1784805693.2235465,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.053,
+    "denoise": 5.072,
+    "load_inputs": 0.017,
+    "reference_encode": 0.308,
+    "save_png": 0.366,
+    "text_encode": 0.336,
+    "total_wall": 18.73
+  },
+  "updated_at": 1784805711.9531858,
+  "worker_finished_at": 1784805711.208574
+}

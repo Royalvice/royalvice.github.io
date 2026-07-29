@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72030,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b9196632f56a4fca/sample.png",
+      "sha256": "353c456ecdd5114daeac1f18940bad70c48f23072e644d5c7463acfc0744ed68",
+      "size_bytes": 254632,
+      "url": "/v1/artifacts/flux2-b9196632f56a4fca/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784704953.3060553,
+  "error": null,
+  "finished_at": 1784704971.4902577,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b9196632f56a4fca/reference_0.png"
+  ],
+  "job_id": "flux2-b9196632f56a4fca",
+  "metrics": {
+    "nvml_peak_used_mib": 57405,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.7,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72030,
+    "width": 1024
+  },
+  "started_at": 1784704953.3767474,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.073,
+    "denoise": 5.074,
+    "load_inputs": 0.024,
+    "reference_encode": 0.246,
+    "save_png": 0.359,
+    "text_encode": 0.342,
+    "total_wall": 18.114
+  },
+  "updated_at": 1784704971.4902692,
+  "worker_finished_at": 1784704970.5084913
+}

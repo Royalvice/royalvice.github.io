@@ -1,0 +1,59 @@
+{
+  "samples": {
+    "movement:down:0": {
+      "time": 0,
+      "frame": "movement:down:0",
+      "facing": "down",
+      "position": [
+        0.36,
+        0.9
+      ]
+    },
+    "movement:down:1": {
+      "time": 55.599999999999405,
+      "frame": "movement:down:1",
+      "facing": "down",
+      "position": [
+        0.16190849454897677,
+        0.39407343048581567
+      ]
+    },
+    "movement:side:0": {
+      "time": 0.19999999999999998,
+      "frame": "movement:side:0",
+      "facing": "left",
+      "position": [
+        0.35093126680676145,
+        0.9038708007532117
+      ]
+    },
+    "movement:side:1": {
+      "time": 0.6,
+      "frame": "movement:side:1",
+      "facing": "left",
+      "position": [
+        0.3348103905237706,
+        0.91
+      ]
+    },
+    "movement:up:0": {
+      "time": 9.199999999999978,
+      "frame": "movement:up:0",
+      "facing": "up",
+      "position": [
+        0.08514285714285713,
+        0.9006885240977589
+      ]
+    },
+    "movement:up:1": {
+      "time": 9.399999999999977,
+      "frame": "movement:up:1",
+      "facing": "up",
+      "position": [
+        0.08514285714285713,
+        0.8912221499324796
+      ]
+    }
+  },
+  "forbiddenThirdFrames": []
+}

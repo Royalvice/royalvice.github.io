@@ -1,0 +1,7 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-correction-from-r2-04-r2",
+  "status": "rejected-arms-not-reversed",
+  "accepted": false,
+  "selection": null,
+  "reason": "按画面空间描述交换手臂后，四张仍只改变抬臂幅度或同时下垂，没有完成前后手臂轮廓交换。"
+}

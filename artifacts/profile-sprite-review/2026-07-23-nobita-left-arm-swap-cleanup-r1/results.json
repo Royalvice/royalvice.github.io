@@ -1,0 +1,69 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-cleanup-r1",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 86000,
+      "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-6779f8c898f345c0",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-01.png",
+      "outputSha256": "bb435b7868b17984e9290574fb0e0d8e503b4fdcd15d42739033720a62c4e6b9",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/remove-extra-arm-guide-v2.png",
+      "referenceSha256": "c466717c9bd654e015bea87ac43be3f6060d18ff564d893bbed04e8901c42b82"
+    },
+    {
+      "candidate": 2,
+      "seed": 86001,
+      "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-c3ffad8a258d44dd",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-02.png",
+      "outputSha256": "b30312a6b0883cb242f345ef457ef0eeee6f126ba848a3f4354fd5ea1e6f3a24",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/remove-extra-arm-guide-v2.png",
+      "referenceSha256": "c466717c9bd654e015bea87ac43be3f6060d18ff564d893bbed04e8901c42b82"
+    },
+    {
+      "candidate": 3,
+      "seed": 86002,
+      "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-d6891866dc364af8",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-03.png",
+      "outputSha256": "d0f404d477c0f0a90839bd63f3499ebf86e4bbfd3bb30206a607c2c0c70897f1",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/remove-extra-arm-guide-v2.png",
+      "referenceSha256": "c466717c9bd654e015bea87ac43be3f6060d18ff564d893bbed04e8901c42b82"
+    },
+    {
+      "candidate": 4,
+      "seed": 86003,
+      "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-2bbd923a0ebc4b8b",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-04.png",
+      "outputSha256": "fb661ef0e0efe67dec111d04b783a732db09fc1f40e8173a550d63ee6c17477a",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/remove-extra-arm-guide-v2.png",
+      "referenceSha256": "c466717c9bd654e015bea87ac43be3f6060d18ff564d893bbed04e8901c42b82"
+    }
+  ]
+}

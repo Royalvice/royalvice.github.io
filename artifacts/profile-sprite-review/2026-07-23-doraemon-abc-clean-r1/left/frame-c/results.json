@@ -1,0 +1,264 @@
+{
+  "runId": "2026-07-23-doraemon-abc-clean-r1",
+  "actor": "doraemon",
+  "direction": "left",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 100300,
+      "jobId": "flux2-091a051768074363",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-01.png",
+      "outputSha256": "9013056fa03522111477c0b7c2e45b4b805ae14dfda8d931274fd2ca87ca11a2",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 100301,
+      "jobId": "flux2-8d1b23fe1a1649fa",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-02.png",
+      "outputSha256": "fcfdc65c0b7139146a272c100c4c8c16dd6b52434f7d252ad7f553808dc93f9f",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 100302,
+      "jobId": "flux2-a499f5c49cc547f6",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-03.png",
+      "outputSha256": "661cefbd0fab468476b1389d841851e48017dbd965c9aa762f66acd9ff0288d4",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 100303,
+      "jobId": "flux2-287cce67e8064986",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-04.png",
+      "outputSha256": "be70c332cf82430309b0ed88efea0aed20c5f8d08bc9e13dee71f8995dd086d2",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 5,
+      "seed": 100304,
+      "jobId": "flux2-8f78ad2f013b4416",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-05.png",
+      "outputSha256": "84addef1659882bd754981e17300a6f19fdd23dc35e8b29e95c023d66006483f",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 6,
+      "seed": 100305,
+      "jobId": "flux2-8759da7b7a384e6b",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-06.png",
+      "outputSha256": "4ada9841818de6ce9517ec4f125440ab3716bb7fa78ca738fa1e6ab4621e2cdd",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 7,
+      "seed": 100306,
+      "jobId": "flux2-4eabe8e6dc0f4f50",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-07.png",
+      "outputSha256": "24d3310649709ec0e5e2be33647d00fbc425d9f54f661c381c151264b1bae00a",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 8,
+      "seed": 100307,
+      "jobId": "flux2-1bcb964076d34f27",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-08.png",
+      "outputSha256": "dc92a159468919cf5fcd844c5c98ebf29f371f47b50ad29c121320ea2049d6bc",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 9,
+      "seed": 100308,
+      "jobId": "flux2-21d93d0f89954238",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-09.png",
+      "outputSha256": "1f4473f0c9f0b89cf7395d54bc9b16da682c8a0c603e67b9b03892e0bb6976d2",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 10,
+      "seed": 100309,
+      "jobId": "flux2-e2d1d6a08f6f439c",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-10.png",
+      "outputSha256": "3056f4bd0f4c60136f16488a4871fd50244fde772360a2499097164b7354fc85",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 11,
+      "seed": 100310,
+      "jobId": "flux2-3961deeeabe34a90",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-11.png",
+      "outputSha256": "0d0a0f92655102ff3628e6780479953da1a7698c16cc8dd2b1ae8c1c1097781a",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 12,
+      "seed": 100311,
+      "jobId": "flux2-875c98b2ee264c9e",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-12.png",
+      "outputSha256": "84fb0533521927193fb112b35644d9e0136804f4ea04c0f94b52aa5102a9b66b",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 13,
+      "seed": 100312,
+      "jobId": "flux2-657a4d7686cd4422",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-13.png",
+      "outputSha256": "1a288ea28d09fcafd143a804d8201bace44cc00497d75206c15af5966d55892c",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 14,
+      "seed": 100313,
+      "jobId": "flux2-4662484d87124e0d",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-14.png",
+      "outputSha256": "bc36d233b0a4a49b8af822632164030f5a9e629ec1b1b00b8c2ed59039f19d51",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 15,
+      "seed": 100314,
+      "jobId": "flux2-ce09662704b44286",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-15.png",
+      "outputSha256": "d17887c8ce2dbfdbb8c0c4976310b08410bb4f465ce11523f439c05b42e2affd",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 16,
+      "seed": 100315,
+      "jobId": "flux2-ce405db8311f4405",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+      "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-16.png",
+      "outputSha256": "ba3f991cad8f61fda39d131bc360a907423767dc7067929532c7e7a0923bd795",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

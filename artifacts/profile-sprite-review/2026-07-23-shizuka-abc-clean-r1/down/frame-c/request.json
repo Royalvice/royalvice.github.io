@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-shizuka-abc-clean-r1",
+  "actor": "shizuka",
+  "direction": "down",
+  "pose": "c",
+  "label": "C · 角色自身右腿在前",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+  "referenceSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "inputImageCount": 1,
+  "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 110100,
+  "maxCandidates": 16
+}

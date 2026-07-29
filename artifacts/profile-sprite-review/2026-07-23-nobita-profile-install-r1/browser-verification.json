@@ -1,0 +1,390 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:4180/",
+  "selectors": {
+    "stageVisible": true,
+    "canvasVisible": true
+  },
+  "network": {
+    "atlasResponses": [
+      {
+        "url": "http://127.0.0.1:4180/assets/profile/adventure/room-v4/actors/nobita-movement-3x3.webp",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/assets/profile/adventure/room-v4/actors/nobita-movement-3x3.webp",
+        "status": 200,
+        "ok": true
+      }
+    ],
+    "liveChecks": {
+      "atlasStatus": 200,
+      "atlasBytes": 40166,
+      "manifestStatus": 200,
+      "movement": {
+        "url": "/assets/profile/adventure/room-v4/actors/nobita-movement-3x3.webp",
+        "size": [
+          384,
+          384
+        ],
+        "frameSize": [
+          128,
+          128
+        ],
+        "frameOrder": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "side-0",
+          "side-1",
+          "side-2",
+          "up-0",
+          "up-1",
+          "up-2"
+        ],
+        "runtimeFrameCount": 2,
+        "runtimeFrameIndices": [
+          0,
+          1
+        ],
+        "approvedFrames": 6,
+        "compatibilityDuplicateCells": [
+          "down-2",
+          "side-2",
+          "up-2"
+        ],
+        "sha256": "31a492b3791740b3daca22f22413fe131c9d1bea2accbfeb487077ca6af94b26",
+        "bytes": 40166,
+        "sources": [
+          {
+            "frame": "down-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/down-0.png",
+            "sha256": "b006f6327ccfe9f7d3ebd11f1eeb7c1e2f182a095d048e469a27496d66daedb1",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "down-1",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/down-1.png",
+            "sha256": "668b3d0fa7b5376f0360f68348ca097e4de73e0bd349a17d48738463d2bed5fd",
+            "alphaBbox": [
+              37,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "down-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/down-2.png",
+            "sha256": "b006f6327ccfe9f7d3ebd11f1eeb7c1e2f182a095d048e469a27496d66daedb1",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": "down-0",
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "side-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/side-0.png",
+            "sha256": "f59347c3dd6e4de6db1cd2698326e4907475723ba4516c34881113ec0f78496c",
+            "alphaBbox": [
+              38,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "side-1",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/side-1.png",
+            "sha256": "ac568cffe87fb83b42201157bf933dd3fa7f46e95634aafd53997f32792a860d",
+            "alphaBbox": [
+              38,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "side-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/side-2.png",
+            "sha256": "f59347c3dd6e4de6db1cd2698326e4907475723ba4516c34881113ec0f78496c",
+            "alphaBbox": [
+              38,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": true,
+            "runtimeDuplicateOf": "side-0",
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "up-0",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/up-0.png",
+            "sha256": "c2bdc2a7db43439ca98eacae2080d6b4564fde43496dc2a766d141a8aed782e7",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "up-1",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-02.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/up-1.png",
+            "sha256": "ce8e989a4c846259d131eaf112800a88ffec760110b156e07883bde769030f21",
+            "alphaBbox": [
+              36,
+              8,
+              91,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": null,
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          },
+          {
+            "frame": "up-2",
+            "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-01.png",
+            "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/processed/up-2.png",
+            "sha256": "c2bdc2a7db43439ca98eacae2080d6b4564fde43496dc2a766d141a8aed782e7",
+            "alphaBbox": [
+              38,
+              8,
+              90,
+              118
+            ],
+            "pivot": [
+              0.5,
+              0.921875
+            ],
+            "mirroredForRuntime": false,
+            "runtimeDuplicateOf": "up-0",
+            "review": {
+              "identity": true,
+              "action": true,
+              "continuity": true,
+              "alpha": true,
+              "notes": "用户确认的两帧步态；Nobita 运行时只使用每行索引 0 和 1。"
+            }
+          }
+        ]
+      },
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      },
+      "canvas": [
+        576,
+        288
+      ]
+    },
+    "failedRequests": [
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:4180/assets/gallery/hero/directl_preview.mp4",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "profileFailedRequests": [],
+    "outOfScopeRequestWarnings": [
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:4180/assets/gallery/hero/directl_preview.mp4",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  },
+  "runtime": {
+    "samples": {
+      "movement:down:0": {
+        "time": 0,
+        "frame": "movement:down:0",
+        "facing": "down",
+        "position": [
+          0.36,
+          0.9
+        ]
+      },
+      "movement:down:1": {
+        "time": 55.599999999999405,
+        "frame": "movement:down:1",
+        "facing": "down",
+        "position": [
+          0.16190849454897677,
+          0.39407343048581567
+        ]
+      },
+      "movement:side:0": {
+        "time": 0.19999999999999998,
+        "frame": "movement:side:0",
+        "facing": "left",
+        "position": [
+          0.35093126680676145,
+          0.9038708007532117
+        ]
+      },
+      "movement:side:1": {
+        "time": 0.6,
+        "frame": "movement:side:1",
+        "facing": "left",
+        "position": [
+          0.3348103905237706,
+          0.91
+        ]
+      },
+      "movement:up:0": {
+        "time": 9.199999999999978,
+        "frame": "movement:up:0",
+        "facing": "up",
+        "position": [
+          0.08514285714285713,
+          0.9006885240977589
+        ]
+      },
+      "movement:up:1": {
+        "time": 9.399999999999977,
+        "frame": "movement:up:1",
+        "facing": "up",
+        "position": [
+          0.08514285714285713,
+          0.8912221499324796
+        ]
+      }
+    },
+    "forbiddenThirdFrames": [],
+    "reusedDeterministicTimes": true
+  },
+  "errors": {
+    "console": [],
+    "page": []
+  },
+  "screenshots": {
+    "stage": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/profile-nobita-live-stage.png",
+    "page": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/profile-nobita-live-page.png",
+    "sixStateReview": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-install-r1/profile-nobita-runtime-six-state-review.png"
+  }
+}

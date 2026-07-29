@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-doraemon-abc-clean-r1",
+  "actor": "doraemon",
+  "direction": "down",
+  "pose": "c",
+  "label": "C · 角色自身右腿在前",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+  "referenceSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "inputImageCount": 1,
+  "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 100100,
+  "maxCandidates": 16
+}

@@ -1,0 +1,86 @@
+{
+  "runId": "2026-07-22-nobita-left-two-frame-clean-r1",
+  "reviewedAt": "2026-07-22",
+  "leftRightConvention": "始终按角色自身解剖学左右，不按画面左右",
+  "acceptanceRevision": {
+    "source": "user feedback during review",
+    "rule": "不做过严筛选；身体不明显侧斜，并且两帧步态能够形成可读交换即可。手臂方向、双脚是否完全贴地和轻微造型变化不作为硬性淘汰条件。"
+  },
+  "latestUserReview": {
+    "supersedesEarlierAcceptance": true,
+    "feedback": "用户先确认 R2-04 腿序合格，随后指出手臂没有反转；经过结构控制和多余肢体清理后，用户要求将 A14 + R5-C01 接入 Profile 网页。",
+    "finalSelection": "A14（左脚在前、右脚在后）+ R5-C01（右脚在前、左脚在后；手臂可见轮廓反转）"
+  },
+  "frameA": {
+    "target": "角色自身左腿在前",
+    "generatedCandidates": 16,
+    "acceptedCandidate": 14,
+    "acceptedSeed": 76013,
+    "acceptedJobId": "flux2-f8b7eed5bd1b4f7a",
+    "reason": "A14 身体朝左竖直、左脚在前且轮廓清楚，被用作最终第一帧和反转实验的唯一参考图。",
+    "reviews": [
+      {
+        "candidates": "1-13",
+        "accepted": false,
+        "reason": "未被用户选为最终正向步态参考。"
+      },
+      {
+        "candidate": 14,
+        "accepted": true,
+        "reason": "身体竖直、侧向步伐清晰，左脚在前、右脚在后。"
+      },
+      {
+        "candidates": "15-16",
+        "accepted": false,
+        "reason": "未被用户选为最终正向步态参考。"
+      }
+    ]
+  },
+  "frameB": {
+    "target": "角色自身右腿在前",
+    "generatedCandidates": 16,
+    "acceptedCandidate": null,
+    "reason": "原始 Frame B 的 16 张候选均未得到用户认可；最终第二帧来自独立的 A14 步态反转实验。",
+    "reviews": [
+      {
+        "candidates": "1-16",
+        "accepted": false,
+        "reason": "腿序仍表现为左脚在前、右脚在后，未满足反向步态。"
+      }
+    ]
+  },
+  "reversalExperiments": {
+    "reference": "frame-a/candidate-14.png",
+    "referencePose": "左脚在前、右脚在后",
+    "r1": {
+      "prompt": "反转参考图中的走路姿势，左脚改到后面，右脚改到前面，身子保持朝左竖直。",
+      "generatedCandidates": 4,
+      "acceptedCandidate": null
+    },
+    "r2": {
+      "prompt": "反转人物双腿的前后位置：左脚在后，右脚在前。",
+      "generatedCandidates": 4,
+      "acceptedCandidate": null,
+      "acceptedSeed": null,
+      "acceptedJobId": null,
+      "reason": "R2-04 仅腿序合格，后续被用户否决，因为手臂没有反转。"
+    },
+    "armSwapCleanupR5": {
+      "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+      "generatedCandidates": 4,
+      "acceptedCandidate": 1,
+      "acceptedSeed": 86000,
+      "acceptedJobId": "flux2-6779f8c898f345c0",
+      "reason": "R5-C01 保持正确腿序，并相对 A14 形成长臂与弯臂的可见反转；用户要求接入 Profile 网页。"
+    }
+  },
+  "pairReview": {
+    "accepted": true,
+    "source": "user-confirmed-a14-plus-r5-c01-for-profile",
+    "bodyAlignment": "A14 与 R5-C01 均保持朝左的竖直侧面，没有明显前倾或侧倒。",
+    "strideAlternation": "A14 为左脚在前、右脚在后；R5-C01 为右脚在前、左脚在后。",
+    "scaleAndBaseline": "人物中心、头部高度、整体尺寸和脚底范围接近，可形成稳定两帧循环。",
+    "nonBlockingDifference": "最终判断以用户对编号 Sheet 的人工视觉验收为准。"
+  },
+  "status": "accepted-by-user-selection-a14-plus-r5-c01"
+}

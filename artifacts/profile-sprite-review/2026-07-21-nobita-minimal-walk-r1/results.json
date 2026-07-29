@@ -1,0 +1,41 @@
+{
+  "runId": "2026-07-21-nobita-minimal-walk-r1",
+  "results": [
+    {
+      "pose": "left-leg-forward",
+      "variant": 1,
+      "seed": 60000,
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，左腿向前、右腿向后、右臂向前、左臂向后。",
+      "jobId": "flux2-2d8c6ee3518249ce",
+      "output": "artifacts/profile-sprite-review/2026-07-21-nobita-minimal-walk-r1/candidates/left-leg-forward/left-leg-forward-v1.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "pose": "left-leg-forward",
+      "variant": 2,
+      "seed": 60001,
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，左腿向前、右腿向后、右臂向前、左臂向后。",
+      "jobId": "flux2-963400ea114343f9",
+      "output": "artifacts/profile-sprite-review/2026-07-21-nobita-minimal-walk-r1/candidates/left-leg-forward/left-leg-forward-v2.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "pose": "right-leg-forward",
+      "variant": 1,
+      "seed": 61000,
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，右腿向前、左腿向后、左臂向前、右臂向后。",
+      "jobId": "flux2-c676ffd6924545bf",
+      "output": "artifacts/profile-sprite-review/2026-07-21-nobita-minimal-walk-r1/candidates/right-leg-forward/right-leg-forward-v1.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "pose": "right-leg-forward",
+      "variant": 2,
+      "seed": 61001,
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，右腿向前、左腿向后、左臂向前、右臂向后。",
+      "jobId": "flux2-674e134d181344e6",
+      "output": "artifacts/profile-sprite-review/2026-07-21-nobita-minimal-walk-r1/candidates/right-leg-forward/right-leg-forward-v2.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    }
+  ]
+}

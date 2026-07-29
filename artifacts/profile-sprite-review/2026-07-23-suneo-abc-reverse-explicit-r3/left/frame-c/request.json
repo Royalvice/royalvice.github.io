@@ -1,0 +1,28 @@
+{
+  "runId": "2026-07-23-suneo-abc-reverse-explicit-r3",
+  "actor": "suneo",
+  "direction": "left",
+  "pose": "c",
+  "label": "C · 以 Left A 为单图 reference 整体反转",
+  "strategy": "reverse-left-a-explicit",
+  "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+  "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "inputImageCount": 1,
+  "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 130900,
+  "maxCandidates": 16
+}

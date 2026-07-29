@@ -1,0 +1,66 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r30-contact-passing",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/down/nobita-walk-down-01-left-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 DOWN正面 contact pose：左脚承重落地，右腿向前摆；右臂前摆、左臂后摆，膝盖朝前，双脚接触线清楚。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-a9b8a91ce6774b01",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/down/nobita-walk-down-02-right-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 DOWN正面 passing pose：左脚承重，右膝抬起从身体下方经过；右臂后摆、左臂前摆，骨盆稳定，双脚不交叉。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-a6c7c92da4a8422a",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/up/nobita-walk-up-01-left-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 UP背面 contact pose：左脚承重落地，右腿向上方前摆；右臂前摆、左臂后摆，膝盖朝前，背部中轴稳定。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-93a03a432ddd4e88",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/up/nobita-walk-up-02-right-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 UP背面 passing pose：右脚承重，左膝抬起向上方经过；左臂后摆、右臂前摆，骨盆稳定，双脚不交叉。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-37a90f1918314c42",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/left/nobita-walk-left-01-left-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 LEFT纯侧面 contact pose：右脚承重落地，左腿向左前摆；近侧手臂前摆、远侧手臂后摆，膝盖和脚尖朝左。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-c480eb66873048f0",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r30-contact-passing/candidates/left/nobita-walk-left-02-right-arm-forward.png",
+      "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 LEFT纯侧面 passing pose：左脚承重，右膝抬起向左方经过；近侧手臂后摆、远侧手臂前摆，身体保持纯侧面。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+      "jobId": "flux2-2680e4c74825412e",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

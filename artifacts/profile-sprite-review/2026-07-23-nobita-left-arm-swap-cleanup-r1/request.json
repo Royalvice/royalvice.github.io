@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-cleanup-r1",
+  "method": "single-image-extra-limb-cleanup",
+  "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/remove-extra-arm-guide-v2.png",
+  "referenceSha256": "c466717c9bd654e015bea87ac43be3f6060d18ff564d893bbed04e8901c42b82",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "referencePose": "腿序正确；两条主手臂已反转；最右侧多余拳头已在本地清除",
+  "targetPose": "保留长前臂与胸前弯曲后臂，清理多余肢体并修复肩部连接",
+  "inputImageCount": 1,
+  "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 86000,
+  "maxCandidates": 16,
+  "inputPolicy": "每个候选只上传同一张已清除多余拳头的单图，不上传其他帧、其他方向或其他资产。"
+}

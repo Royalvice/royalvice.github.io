@@ -1,0 +1,1618 @@
+{
+  "states": {
+    "autonomous-start": {
+      "ready": true,
+      "simulationElapsed": 0.49999999999999994,
+      "elapsed": 0.49999999999999994,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.4402003908393964,
+            0.7885004657620712
+          ],
+          "facing": "up",
+          "station": "blackboard",
+          "frame": "movement:up:0",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "doraemon": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.6058307456604263,
+            0.81605757026577
+          ],
+          "facing": "right",
+          "station": "water-cooler",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.3779171699124001,
+            0.8571813429463296
+          ],
+          "facing": "right",
+          "station": "sofa-left",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "gian": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.1663698685983643,
+            0.7691610217315996
+          ],
+          "facing": "up",
+          "station": "secondary-desk",
+          "frame": "movement:up:0",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "suneo": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.8269935892031125,
+            0.7840807591778962
+          ],
+          "facing": "up",
+          "station": "tv-console",
+          "frame": "movement:up:0",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        }
+      },
+      "actorFrames": {
+        "nobita": "movement:up:0",
+        "doraemon": "movement:side:0",
+        "shizuka": "movement:side:0",
+        "gian": "movement:up:0",
+        "suneo": "movement:up:0"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.4402003908393964,
+          0.7885004657620712
+        ],
+        "doraemon": [
+          0.6058307456604263,
+          0.81605757026577
+        ],
+        "shizuka": [
+          0.3779171699124001,
+          0.8571813429463296
+        ],
+        "gian": [
+          0.1663698685983643,
+          0.7691610217315996
+        ],
+        "suneo": [
+          0.8269935892031125,
+          0.7840807591778962
+        ]
+      },
+      "depthOrder": [
+        "gian",
+        "suneo",
+        "nobita",
+        "doraemon",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "nobita"
+        ],
+        "water-cooler": [
+          "doraemon"
+        ],
+        "primary-desk": [],
+        "secondary-desk": [
+          "gian"
+        ],
+        "sofa-left": [
+          "shizuka"
+        ],
+        "sofa-right": [],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [],
+        "poster-right": [],
+        "anywhere-door": []
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 4,
+      "tvPelletsRemaining": 157,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "tv-gaming": {
+      "ready": true,
+      "simulationElapsed": 2.0000000000000027,
+      "elapsed": 2.0000000000000027,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.47080156335758605,
+            0.634001863048285
+          ],
+          "facing": "up",
+          "station": "blackboard",
+          "frame": "movement:up:2",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "doraemon": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.7433229826417049,
+            0.80423028106308
+          ],
+          "facing": "right",
+          "station": "water-cooler",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.5216686796496,
+            0.8487253717853186
+          ],
+          "facing": "right",
+          "station": "sofa-left",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "gian": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.15547947439345763,
+            0.6466440869263983
+          ],
+          "facing": "up",
+          "station": "secondary-desk",
+          "frame": "movement:up:2",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "suneo": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.82,
+            0.67
+          ],
+          "facing": "left",
+          "station": "tv-console",
+          "frame": "life:sit-game-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "movement:up:2",
+        "doraemon": "movement:side:2",
+        "shizuka": "movement:side:2",
+        "gian": "movement:up:2",
+        "suneo": "life:sit-game-a"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.47080156335758605,
+          0.634001863048285
+        ],
+        "doraemon": [
+          0.7433229826417049,
+          0.80423028106308
+        ],
+        "shizuka": [
+          0.5216686796496,
+          0.8487253717853186
+        ],
+        "gian": [
+          0.15547947439345763,
+          0.6466440869263983
+        ],
+        "suneo": [
+          0.82,
+          0.67
+        ]
+      },
+      "depthOrder": [
+        "nobita",
+        "gian",
+        "suneo",
+        "doraemon",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "nobita"
+        ],
+        "water-cooler": [
+          "doraemon"
+        ],
+        "primary-desk": [],
+        "secondary-desk": [
+          "gian"
+        ],
+        "sofa-left": [
+          "shizuka"
+        ],
+        "sofa-right": [],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [],
+        "poster-right": [],
+        "anywhere-door": []
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 20,
+      "tvPelletsRemaining": 152,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "blackboard-thinking": {
+      "ready": true,
+      "simulationElapsed": 4.999999999999992,
+      "elapsed": 4.999999999999992,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "thinking",
+          "visible": true,
+          "position": [
+            0.34,
+            0.41
+          ],
+          "facing": "up",
+          "station": "blackboard",
+          "frame": "life:think-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard"
+          ]
+        },
+        "doraemon": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.8574827927123198,
+            0.721875237353532
+          ],
+          "facing": "up",
+          "station": "water-cooler",
+          "frame": "movement:up:1",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "shizuka": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.67,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-left",
+          "frame": "life:sit-game-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left"
+          ]
+        },
+        "gian": {
+          "state": "working",
+          "visible": true,
+          "position": [
+            0.22,
+            0.68
+          ],
+          "facing": "up",
+          "station": "secondary-desk",
+          "frame": "base:interaction-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "secondary-desk"
+          ]
+        },
+        "suneo": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.82,
+            0.67
+          ],
+          "facing": "left",
+          "station": "tv-console",
+          "frame": "life:sit-game-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "life:think-a",
+        "doraemon": "movement:up:1",
+        "shizuka": "life:sit-game-b",
+        "gian": "base:interaction-b",
+        "suneo": "life:sit-game-b"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.34,
+          0.41
+        ],
+        "doraemon": [
+          0.8574827927123198,
+          0.721875237353532
+        ],
+        "shizuka": [
+          0.67,
+          0.84
+        ],
+        "gian": [
+          0.22,
+          0.68
+        ],
+        "suneo": [
+          0.82,
+          0.67
+        ]
+      },
+      "depthOrder": [
+        "nobita",
+        "suneo",
+        "gian",
+        "doraemon",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "nobita"
+        ],
+        "water-cooler": [
+          "doraemon"
+        ],
+        "primary-desk": [],
+        "secondary-desk": [
+          "gian"
+        ],
+        "sofa-left": [
+          "shizuka"
+        ],
+        "sofa-right": [],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [],
+        "poster-right": [],
+        "anywhere-door": []
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 49,
+      "tvPelletsRemaining": 143,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "water-cooler": {
+      "ready": true,
+      "simulationElapsed": 9.73333333333331,
+      "elapsed": 9.73333333333331,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.4501066900225988,
+            0.5881159207447848
+          ],
+          "facing": "down",
+          "station": "primary-desk",
+          "frame": "movement:down:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard"
+          ]
+        },
+        "doraemon": {
+          "state": "drinking",
+          "visible": true,
+          "position": [
+            0.73,
+            0.49
+          ],
+          "facing": "up",
+          "station": "water-cooler",
+          "frame": "life:drink-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "water-cooler"
+          ]
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.5181433362369657,
+            0.8169237422713036
+          ],
+          "facing": "left",
+          "station": "sofa-left",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left"
+          ]
+        },
+        "gian": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.42337205051868004,
+            0.6471721598716608
+          ],
+          "facing": "right",
+          "station": "anywhere-door",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "secondary-desk"
+          ]
+        },
+        "suneo": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.4869429023463567,
+            0.6545712677843472
+          ],
+          "facing": "left",
+          "station": "poster-right",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "movement:down:2",
+        "doraemon": "life:drink-a",
+        "shizuka": "movement:side:2",
+        "gian": "movement:side:0",
+        "suneo": "movement:side:2"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.4501066900225988,
+          0.5881159207447848
+        ],
+        "doraemon": [
+          0.73,
+          0.49
+        ],
+        "shizuka": [
+          0.5181433362369657,
+          0.8169237422713036
+        ],
+        "gian": [
+          0.42337205051868004,
+          0.6471721598716608
+        ],
+        "suneo": [
+          0.4869429023463567,
+          0.6545712677843472
+        ]
+      },
+      "depthOrder": [
+        "doraemon",
+        "nobita",
+        "gian",
+        "suneo",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [],
+        "water-cooler": [
+          "doraemon"
+        ],
+        "primary-desk": [
+          "nobita"
+        ],
+        "secondary-desk": [],
+        "sofa-left": [
+          "shizuka"
+        ],
+        "sofa-right": [],
+        "tv-console": [],
+        "poster-left": [],
+        "poster-right": [
+          "suneo"
+        ],
+        "anywhere-door": [
+          "gian"
+        ]
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 97,
+      "tvPelletsRemaining": 127,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "two-seat-sofa": {
+      "ready": true,
+      "simulationElapsed": 21.733333333333572,
+      "elapsed": 21.733333333333572,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.67,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-left",
+          "frame": "life:sit-game-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard",
+            "primary-desk",
+            "sofa-left"
+          ]
+        },
+        "doraemon": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.76,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-right",
+          "frame": "life:sit-game-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "water-cooler",
+            "tv-console",
+            "sofa-right"
+          ]
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.2740998180467772,
+            0.8028096715498956
+          ],
+          "facing": "left",
+          "station": "poster-left",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left"
+          ]
+        },
+        "gian": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.8262207969559862,
+            0.6066623908679576
+          ],
+          "facing": "up",
+          "station": "anywhere-door",
+          "frame": "movement:up:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "secondary-desk"
+          ]
+        },
+        "suneo": {
+          "state": "thinking",
+          "visible": true,
+          "position": [
+            0.34,
+            0.41
+          ],
+          "facing": "up",
+          "station": "blackboard",
+          "frame": "life:think-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console",
+            "poster-right",
+            "blackboard"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "life:sit-game-a",
+        "doraemon": "life:sit-game-a",
+        "shizuka": "movement:side:2",
+        "gian": "movement:up:0",
+        "suneo": "life:think-a"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.67,
+          0.84
+        ],
+        "doraemon": [
+          0.76,
+          0.84
+        ],
+        "shizuka": [
+          0.2740998180467772,
+          0.8028096715498956
+        ],
+        "gian": [
+          0.8262207969559862,
+          0.6066623908679576
+        ],
+        "suneo": [
+          0.34,
+          0.41
+        ]
+      },
+      "depthOrder": [
+        "suneo",
+        "gian",
+        "shizuka",
+        "nobita",
+        "doraemon"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "suneo"
+        ],
+        "water-cooler": [],
+        "primary-desk": [],
+        "secondary-desk": [],
+        "sofa-left": [
+          "nobita"
+        ],
+        "sofa-right": [
+          "doraemon"
+        ],
+        "tv-console": [],
+        "poster-left": [
+          "shizuka"
+        ],
+        "poster-right": [],
+        "anywhere-door": [
+          "gian"
+        ]
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 217,
+      "tvPelletsRemaining": 89,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "door-entering": {
+      "ready": true,
+      "simulationElapsed": 24.00000000000035,
+      "elapsed": 24.00000000000035,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.67,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-left",
+          "frame": "life:sit-game-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard",
+            "primary-desk",
+            "sofa-left"
+          ]
+        },
+        "doraemon": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.76,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-right",
+          "frame": "life:sit-game-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "water-cooler",
+            "tv-console",
+            "sofa-right"
+          ]
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.1365452793942924,
+            0.701726396971462
+          ],
+          "facing": "up",
+          "station": "poster-left",
+          "frame": "movement:up:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left"
+          ]
+        },
+        "gian": {
+          "state": "portal-entering",
+          "visible": true,
+          "position": [
+            0.87,
+            0.52
+          ],
+          "facing": "right",
+          "station": "anywhere-door",
+          "frame": "life:portal-enter",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "secondary-desk",
+            "anywhere-door"
+          ]
+        },
+        "suneo": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.5196682106969871,
+            0.4606337684691511
+          ],
+          "facing": "right",
+          "station": "tv-console",
+          "frame": "movement:side:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console",
+            "poster-right",
+            "blackboard"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "life:sit-game-b",
+        "doraemon": "life:sit-game-b",
+        "shizuka": "movement:up:0",
+        "gian": "life:portal-enter",
+        "suneo": "movement:side:2"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.67,
+          0.84
+        ],
+        "doraemon": [
+          0.76,
+          0.84
+        ],
+        "shizuka": [
+          0.1365452793942924,
+          0.701726396971462
+        ],
+        "gian": [
+          0.87,
+          0.52
+        ],
+        "suneo": [
+          0.5196682106969871,
+          0.4606337684691511
+        ]
+      },
+      "depthOrder": [
+        "suneo",
+        "gian",
+        "shizuka",
+        "nobita",
+        "doraemon"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [],
+        "water-cooler": [],
+        "primary-desk": [],
+        "secondary-desk": [],
+        "sofa-left": [
+          "nobita"
+        ],
+        "sofa-right": [
+          "doraemon"
+        ],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [
+          "shizuka"
+        ],
+        "poster-right": [],
+        "anywhere-door": [
+          "gian"
+        ]
+      },
+      "doorFrame": "open",
+      "doorUser": "gian",
+      "portalStrength": 1,
+      "tvFrame": 240,
+      "tvPelletsRemaining": 82,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "door-away": {
+      "ready": true,
+      "simulationElapsed": 25.0000000000004,
+      "elapsed": 25.0000000000004,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.6597811437079424,
+            0.8375865012777552
+          ],
+          "facing": "left",
+          "station": "blackboard",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard",
+            "primary-desk",
+            "sofa-left"
+          ]
+        },
+        "doraemon": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.76,
+            0.84
+          ],
+          "facing": "up",
+          "station": "sofa-right",
+          "frame": "life:sit-game-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "water-cooler",
+            "tv-console",
+            "sofa-right"
+          ]
+        },
+        "shizuka": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.13471641009120433,
+            0.6083234195743803
+          ],
+          "facing": "up",
+          "station": "poster-left",
+          "frame": "movement:up:1",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left"
+          ]
+        },
+        "gian": {
+          "state": "portal-away",
+          "visible": false,
+          "position": [
+            0.87,
+            0.52
+          ],
+          "facing": "right",
+          "station": "anywhere-door",
+          "frame": "base:idle",
+          "renderInstanceCount": 0,
+          "visitedStations": [
+            "secondary-desk",
+            "anywhere-door"
+          ]
+        },
+        "suneo": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.6274691371151794,
+            0.49101402955064155
+          ],
+          "facing": "right",
+          "station": "tv-console",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console",
+            "poster-right",
+            "blackboard"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "movement:side:0",
+        "doraemon": "life:sit-game-a",
+        "shizuka": "movement:up:1",
+        "gian": "base:idle",
+        "suneo": "movement:side:0"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.6597811437079424,
+          0.8375865012777552
+        ],
+        "doraemon": [
+          0.76,
+          0.84
+        ],
+        "shizuka": [
+          0.13471641009120433,
+          0.6083234195743803
+        ],
+        "gian": [
+          0.87,
+          0.52
+        ],
+        "suneo": [
+          0.6274691371151794,
+          0.49101402955064155
+        ]
+      },
+      "depthOrder": [
+        "suneo",
+        "shizuka",
+        "nobita",
+        "doraemon"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "nobita"
+        ],
+        "water-cooler": [],
+        "primary-desk": [],
+        "secondary-desk": [],
+        "sofa-left": [],
+        "sofa-right": [
+          "doraemon"
+        ],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [
+          "shizuka"
+        ],
+        "poster-right": [],
+        "anywhere-door": [
+          "gian"
+        ]
+      },
+      "doorFrame": "open",
+      "doorUser": "gian",
+      "portalStrength": 1,
+      "tvFrame": 250,
+      "tvPelletsRemaining": 78,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    },
+    "door-returning": {
+      "ready": true,
+      "simulationElapsed": 28.73333333333392,
+      "elapsed": 28.73333333333392,
+      "running": false,
+      "paused": true,
+      "reducedMotion": false,
+      "actors": {
+        "nobita": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.471,
+            0.5980000000000005
+          ],
+          "facing": "up",
+          "station": "blackboard",
+          "frame": "movement:up:2",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "blackboard",
+            "primary-desk",
+            "sofa-left"
+          ]
+        },
+        "doraemon": {
+          "state": "walking",
+          "visible": true,
+          "position": [
+            0.5135321927688276,
+            0.8090778396831739
+          ],
+          "facing": "left",
+          "station": "primary-desk",
+          "frame": "movement:side:0",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "water-cooler",
+            "tv-console",
+            "sofa-right"
+          ]
+        },
+        "shizuka": {
+          "state": "thinking",
+          "visible": true,
+          "position": [
+            0.12,
+            0.41
+          ],
+          "facing": "up",
+          "station": "poster-left",
+          "frame": "life:think-b",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "sofa-left",
+            "poster-left"
+          ]
+        },
+        "gian": {
+          "state": "portal-returning",
+          "visible": true,
+          "position": [
+            0.87,
+            0.52
+          ],
+          "facing": "left",
+          "station": "anywhere-door",
+          "frame": "life:portal-return",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "secondary-desk",
+            "anywhere-door"
+          ]
+        },
+        "suneo": {
+          "state": "watching-tv",
+          "visible": true,
+          "position": [
+            0.82,
+            0.67
+          ],
+          "facing": "left",
+          "station": "tv-console",
+          "frame": "life:sit-game-a",
+          "renderInstanceCount": 1,
+          "visitedStations": [
+            "tv-console",
+            "poster-right",
+            "blackboard"
+          ]
+        }
+      },
+      "actorFrames": {
+        "nobita": "movement:up:2",
+        "doraemon": "movement:side:0",
+        "shizuka": "life:think-b",
+        "gian": "life:portal-return",
+        "suneo": "life:sit-game-a"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.471,
+          0.5980000000000005
+        ],
+        "doraemon": [
+          0.5135321927688276,
+          0.8090778396831739
+        ],
+        "shizuka": [
+          0.12,
+          0.41
+        ],
+        "gian": [
+          0.87,
+          0.52
+        ],
+        "suneo": [
+          0.82,
+          0.67
+        ]
+      },
+      "depthOrder": [
+        "shizuka",
+        "gian",
+        "nobita",
+        "suneo",
+        "doraemon"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [
+          "nobita"
+        ],
+        "water-cooler": [],
+        "primary-desk": [
+          "doraemon"
+        ],
+        "secondary-desk": [],
+        "sofa-left": [],
+        "sofa-right": [],
+        "tv-console": [
+          "suneo"
+        ],
+        "poster-left": [
+          "shizuka"
+        ],
+        "poster-right": [],
+        "anywhere-door": [
+          "gian"
+        ]
+      },
+      "doorFrame": "open",
+      "doorUser": "gian",
+      "portalStrength": 1,
+      "tvFrame": 287,
+      "tvPelletsRemaining": 67,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    }
+  },
+  "desktopLayout": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollWidth": 1920,
+    "stage": [
+      39.03125,
+      442,
+      717.5625,
+      308.609375
+    ],
+    "state": {
+      "ready": true,
+      "simulationElapsed": 0,
+      "elapsed": 0,
+      "running": false,
+      "paused": true,
+      "reducedMotion": true,
+      "actors": {
+        "nobita": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.34,
+            0.42
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "doraemon": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.73,
+            0.49
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "shizuka": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.67,
+            0.84
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "gian": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.22,
+            0.68
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "suneo": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.82,
+            0.69
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        }
+      },
+      "actorFrames": {
+        "nobita": "base:idle",
+        "doraemon": "base:idle",
+        "shizuka": "base:idle",
+        "gian": "base:idle",
+        "suneo": "base:idle"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.34,
+          0.42
+        ],
+        "doraemon": [
+          0.73,
+          0.49
+        ],
+        "shizuka": [
+          0.67,
+          0.84
+        ],
+        "gian": [
+          0.22,
+          0.68
+        ],
+        "suneo": [
+          0.82,
+          0.69
+        ]
+      },
+      "depthOrder": [
+        "nobita",
+        "doraemon",
+        "gian",
+        "suneo",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [],
+        "water-cooler": [],
+        "primary-desk": [],
+        "secondary-desk": [],
+        "sofa-left": [],
+        "sofa-right": [],
+        "tv-console": [],
+        "poster-left": [],
+        "poster-right": [],
+        "anywhere-door": []
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 134,
+      "tvPelletsRemaining": 116,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    }
+  },
+  "mobileLayout": {
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollWidth": 390,
+    "stage": [
+      21,
+      1091,
+      348,
+      350
+    ],
+    "state": {
+      "ready": true,
+      "simulationElapsed": 0,
+      "elapsed": 0,
+      "running": false,
+      "paused": true,
+      "reducedMotion": true,
+      "actors": {
+        "nobita": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.34,
+            0.42
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "doraemon": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.73,
+            0.49
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "shizuka": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.67,
+            0.84
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "gian": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.22,
+            0.68
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        },
+        "suneo": {
+          "state": "waiting",
+          "visible": true,
+          "position": [
+            0.82,
+            0.69
+          ],
+          "facing": "down",
+          "station": null,
+          "frame": "base:idle",
+          "renderInstanceCount": 1,
+          "visitedStations": []
+        }
+      },
+      "actorFrames": {
+        "nobita": "base:idle",
+        "doraemon": "base:idle",
+        "shizuka": "base:idle",
+        "gian": "base:idle",
+        "suneo": "base:idle"
+      },
+      "actorPositions": {
+        "nobita": [
+          0.34,
+          0.42
+        ],
+        "doraemon": [
+          0.73,
+          0.49
+        ],
+        "shizuka": [
+          0.67,
+          0.84
+        ],
+        "gian": [
+          0.22,
+          0.68
+        ],
+        "suneo": [
+          0.82,
+          0.69
+        ]
+      },
+      "depthOrder": [
+        "nobita",
+        "doraemon",
+        "gian",
+        "suneo",
+        "shizuka"
+      ],
+      "focusedActor": null,
+      "stationOccupancy": {
+        "blackboard": [],
+        "water-cooler": [],
+        "primary-desk": [],
+        "secondary-desk": [],
+        "sofa-left": [],
+        "sofa-right": [],
+        "tv-console": [],
+        "poster-left": [],
+        "poster-right": [],
+        "anywhere-door": []
+      },
+      "doorFrame": "closed",
+      "doorUser": null,
+      "portalStrength": 0,
+      "tvFrame": 134,
+      "tvPelletsRemaining": 116,
+      "assets": {
+        "actors": {
+          "nobita": "ready",
+          "doraemon": "ready",
+          "shizuka": "ready",
+          "gian": "ready",
+          "suneo": "ready"
+        },
+        "furniture": "ready",
+        "door": "ready",
+        "lamps": "ready",
+        "posters": "ready"
+      }
+    }
+  },
+  "errors": []
+}

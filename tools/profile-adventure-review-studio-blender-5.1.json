@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "template_id": "royalvice.profile_adventure.review_studio.blender_5_1",
+  "purpose": "Neutral Auto-Rig Pro bind evidence for the Royalvice profile adventure.",
+  "coordinate_contract": {
+    "input": "Godot/glTF +Y-up, -Z-forward",
+    "native_blender_import_front": "+Y",
+    "working_front": "-Y",
+    "working_adapter": "rotate_z_180_baked_before_binding",
+    "runtime_compensation": false
+  },
+  "render": {
+    "engine": "BLENDER_EEVEE",
+    "resolution_px": [640, 640],
+    "film_transparent": false,
+    "color_management": {
+      "view_transform": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    }
+  },
+  "world": {
+    "background_rgba": [0.075, 0.095, 0.13, 1.0],
+    "strength": 0.18
+  },
+  "floor": {
+    "albedo_rgba": [0.075, 0.09, 0.11, 1.0],
+    "size_radius_multiplier": 3.0,
+    "z_offset": -0.002
+  },
+  "framing": {
+    "target": "mesh_base_center",
+    "radius_multiplier": 1.9,
+    "height_frame_multiplier": 0.92,
+    "orthographic_scale_multiplier": 1.2
+  },
+  "views": [
+    { "id": "front", "filename": "rest_front.png", "position": { "radius_x": 0.0, "radius_y": -1.0, "height_from_center": 0.0 } },
+    { "id": "side", "filename": "rest_side.png", "position": { "radius_x": 1.0, "radius_y": 0.0, "height_from_center": 0.0 } },
+    { "id": "game", "filename": "rest_game.png", "position": { "radius_x": 0.85, "radius_y": -1.15, "height_from_center": 0.88 } }
+  ],
+  "lighting": {
+    "normalization_height": 0.9,
+    "minimum_scale": 1.0,
+    "lights": [
+      {
+        "id": "key",
+        "type": "AREA",
+        "shape": "DISK",
+        "position": { "width_multiplier": 0.85, "radius_multiplier": -0.65, "height_from_center": 0.95 },
+        "base_energy": 260.0,
+        "size": { "height_multiplier": 1.5, "minimum": 1.0 }
+      },
+      {
+        "id": "fill",
+        "type": "AREA",
+        "shape": "SQUARE",
+        "position": { "width_multiplier": -0.8, "radius_multiplier": 0.25, "height_from_center": 0.0 },
+        "base_energy": 140.0,
+        "size": { "height_multiplier": 1.0, "minimum": 0.8 }
+      }
+    ]
+  }
+}

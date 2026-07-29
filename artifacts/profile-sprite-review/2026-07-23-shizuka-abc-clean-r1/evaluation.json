@@ -1,0 +1,78 @@
+{
+  "runId": "2026-07-23-shizuka-abc-clean-r1",
+  "actor": "shizuka",
+  "status": "failed-selection-gate",
+  "evaluatedAt": "2026-07-23T23:36:35+08:00",
+  "selectionPolicy": "首个严格合格候选即停止；每个动作最多 16 张；不得用近似帧顶替。",
+  "accepted": [
+    {
+      "direction": "down",
+      "pose": "a",
+      "candidate": 1,
+      "seed": 110000,
+      "jobId": "flux2-5cec9edc0fcb4b9b",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-a/candidate-01.png",
+      "outputSha256": "27e506e992f24a360be32ac653fd9bbe7597b6b5cae0d5aaf7a7efe2af6ce44f",
+      "reason": "正面竖直，角色自身左腿前迈，裙装与身份稳定。"
+    },
+    {
+      "direction": "down",
+      "pose": "c",
+      "candidate": 3,
+      "seed": 110102,
+      "jobId": "flux2-bfa72ac6971240bf",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-c/candidate-03.png",
+      "outputSha256": "27ebccae0f3faa7ee3eb513fb0f51cdf7755ec814de9c049c75f4f2d3d143f70",
+      "reason": "正面竖直，角色自身右腿前迈，与 Down A 的腿部关系相反。"
+    },
+    {
+      "direction": "left",
+      "pose": "a",
+      "candidate": 1,
+      "seed": 110200,
+      "jobId": "flux2-b37b30caab2847bf",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-a/candidate-01.png",
+      "outputSha256": "2bd9bf23cb31265aec3356be6e1b3f10c513343e61fb573244d41cf964964304",
+      "reason": "朝左竖直，跨步和前后臂分离清楚。"
+    }
+  ],
+  "failed": [
+    {
+      "direction": "left",
+      "pose": "c",
+      "candidateCount": 16,
+      "reviewSheet": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-c/candidate-review-contact.png",
+      "rejectedCandidates": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      "rejectionReasons": {
+        "01": "腿与 Left A 同向前迈，前后臂未反转。",
+        "02": "腿与 Left A 同向前迈，前后臂未反转。",
+        "03": "腿与 Left A 同向前迈，前后臂未反转。",
+        "04": "腿与 Left A 同向前迈，前后臂未反转。",
+        "05": "腿与 Left A 同向前迈，前后臂未反转。",
+        "06": "腿与 Left A 同向前迈，手臂几乎为中立姿势。",
+        "07": "腿与 Left A 同向前迈，手臂几乎为中立姿势。",
+        "08": "腿与 Left A 同向前迈，前后臂未反转。",
+        "09": "腿与 Left A 同向前迈，前后臂未反转。",
+        "10": "腿与 Left A 同向前迈，前后臂未反转。",
+        "11": "腿与 Left A 同向前迈，前后臂未反转。",
+        "12": "腿与 Left A 同向前迈，前后臂未反转。",
+        "13": "腿与 Left A 同向前迈，前后臂未反转。",
+        "14": "腿与 Left A 同向前迈，手臂几乎为中立姿势。",
+        "15": "腿与 Left A 同向前迈，前后臂未反转。",
+        "16": "腿与 Left A 同向前迈，前后臂未反转。"
+      },
+      "reason": "16 张全部与 Left A 一样向画面左侧前迈，手臂摆向也未反转；无法组成可读的 A/B/C 循环。"
+    }
+  ],
+  "notGeneratedAfterGateFailure": [
+    {"direction": "up", "pose": "a"},
+    {"direction": "up", "pose": "c"}
+  ],
+  "publishGate": {
+    "passed": false,
+    "reason": "Left C 在 16 张上限内无严格合格候选；全局发布门禁此前也已被 Doraemon Left C 阻断。",
+    "runtimeAssetsModified": false,
+    "repositoryCommitted": false,
+    "deployed": false
+  }
+}

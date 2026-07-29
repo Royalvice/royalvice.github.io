@@ -1,0 +1,12 @@
+{
+  "mode": "i2i",
+  "width": 1024,
+  "height": 1024,
+  "num_steps": 4,
+  "guidance": 1,
+  "prompt_upsampling": false,
+  "num_images": 1,
+  "format": "png",
+  "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+  "seed": 130901
+}

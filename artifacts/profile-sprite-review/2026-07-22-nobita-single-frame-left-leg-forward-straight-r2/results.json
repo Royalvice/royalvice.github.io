@@ -1,0 +1,45 @@
+{
+  "runId": "2026-07-22-nobita-single-frame-left-leg-forward-straight-r2",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 73000,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-d9664d1c8d6f4e41",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-straight-r2/candidate-01.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 2,
+      "seed": 73001,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-7bcede462b6e44bf",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-straight-r2/candidate-02.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 3,
+      "seed": 73002,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-a5e1a05bc0474cca",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-straight-r2/candidate-03.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 4,
+      "seed": 73003,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-dce5be1f87814462",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-straight-r2/candidate-04.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72001,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b2cff854545844b7/sample.png",
+      "sha256": "974d057aa402bd745ea0706875f868fbe8a00d598d6478ea4eca7966fc132e82",
+      "size_bytes": 278791,
+      "url": "/v1/artifacts/flux2-b2cff854545844b7/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784702333.4830542,
+  "error": null,
+  "finished_at": 1784702352.0069814,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b2cff854545844b7/reference_0.png"
+  ],
+  "job_id": "flux2-b2cff854545844b7",
+  "metrics": {
+    "nvml_peak_used_mib": 55807,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.6,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72001,
+    "width": 1024
+  },
+  "started_at": 1784702333.5587335,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.068,
+    "denoise": 5.071,
+    "load_inputs": 0.023,
+    "reference_encode": 0.229,
+    "save_png": 0.381,
+    "text_encode": 0.337,
+    "total_wall": 18.448
+  },
+  "updated_at": 1784702352.0069993,
+  "worker_finished_at": 1784702351.187379
+}

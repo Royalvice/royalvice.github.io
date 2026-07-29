@@ -1,0 +1,1 @@
+参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 DOWN正面 passing pose：左脚承重，右膝抬起从身体下方经过；右臂后摆、左臂前摆，骨盆稳定，双脚不交叉。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。

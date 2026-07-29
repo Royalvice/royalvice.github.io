@@ -6,6 +6,7 @@ import type { LinkItem, Project, ProjectId, SectionId, SiteContent, VoyageNode }
 import type { SceneRenderer, TransitionAwareSceneRenderer } from "../scenes/SceneRenderer";
 import type { PlayCanvasGallery } from "../gallery/PlayCanvasGallery";
 import type { ProfileAdventureDirector } from "../profile/ProfileAdventureDirector";
+import type { PacLabArcade } from "../profile/PacLabArcade";
 import { TerminalController } from "./TerminalController";
 
 type InitOptions = {
@@ -323,7 +324,12 @@ function renderMedia(project: Project): string {
   if (project.media.type === "video") {
     return `<video data-section-video="voyage" muted loop playsinline preload="metadata" poster="${escapeHtml(project.media.poster)}" aria-label="${escapeHtml(project.media.alt)}"><source src="${escapeHtml(project.media.src)}" type="video/mp4" /></video>`;
   }
-  return `<img src="${escapeHtml(project.media.src)}" alt="${escapeHtml(project.media.alt)}" loading="lazy" />`;
+  return `
+    <button class="evidence-zoom-trigger" type="button" data-evidence-zoom data-evidence-title="${escapeHtml(project.title)}" aria-label="Enlarge ${escapeHtml(project.title)} evidence image" disabled>
+      <img src="${escapeHtml(project.media.src)}" alt="${escapeHtml(project.media.alt)}" loading="lazy" />
+      <span aria-hidden="true">View full frame <i>↗</i></span>
+    </button>
+  `;
 }
 
 function renderEvidenceCard(project: Project): string {
@@ -374,7 +380,7 @@ function renderVoyage(content: SiteContent): string {
       </div>
 
       <ol class="voyage-index" aria-hidden="true">
-        ${content.voyage.nodes.map((node, index) => `<li class="${node.id === current.id ? "is-current" : ""}"><b>${String(index).padStart(2, "0")}</b><span>${escapeHtml(node.id === "directl" ? "LIGHTFIELD" : node.id === "neural" ? "PRISM" : node.id === "eva01" ? "NATIVE" : node.id === "world" ? "OASIS" : "DOCK")}</span></li>`).join("")}
+        ${content.voyage.nodes.map((node, index) => `<li class="${node.id === current.id ? "is-current" : ""}"><b>${String(index).padStart(2, "0")}</b><span>${escapeHtml(node.id === "directl" ? "LIGHTFIELD" : node.id === "neural" ? "NEURAL" : node.id === "eva01" ? "NATIVE" : node.id === "world" ? "OASIS" : "DOCK")}</span></li>`).join("")}
       </ol>
 
       <div class="voyage-right-rail" data-voyage-right-rail>
@@ -396,9 +402,6 @@ function renderVoyage(content: SiteContent): string {
           <nav class="captain-actions" data-captain-actions aria-label="Selected log links"></nav>
           <div class="journal-controls">
             <button type="button" data-evidence-toggle aria-expanded="false" aria-controls="voyage-evidence">Open evidence <span>↓</span></button>
-          </div>
-          <div class="journal-stamps" aria-label="Research distinctions">
-            ${content.awards.map((award, index) => `<span title="${escapeHtml(award.text)}"><b>${String(index + 1).padStart(2, "0")}</b>${escapeHtml(award.title)}</span>`).join("")}
           </div>
         </aside>
 
@@ -425,6 +428,12 @@ function renderVoyage(content: SiteContent): string {
           </nav>
         </section>
       </div>
+      <dialog class="evidence-lightbox" data-evidence-lightbox aria-labelledby="evidence-lightbox-title">
+        <div class="evidence-lightbox-frame">
+          <header><div><span>Evidence / Full Frame</span><b id="evidence-lightbox-title" data-evidence-lightbox-title>Research evidence</b></div><button type="button" data-evidence-lightbox-close aria-label="Close enlarged evidence image">Close <i aria-hidden="true">×</i></button></header>
+          <figure><img data-evidence-lightbox-image alt="" /><figcaption data-evidence-lightbox-caption></figcaption></figure>
+        </div>
+      </dialog>
     </section>
   `;
 }
@@ -723,16 +732,45 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
   const evidenceNext = document.querySelector<HTMLButtonElement>("[data-evidence-next]");
   const evidenceCount = document.querySelector<HTMLElement>("[data-evidence-count]");
   const evidenceCards = [...document.querySelectorAll<HTMLElement>("[data-project-card],[data-evidence-future]")];
+  const evidenceLightbox = document.querySelector<HTMLDialogElement>("[data-evidence-lightbox]");
+  const evidenceLightboxImage = evidenceLightbox?.querySelector<HTMLImageElement>("[data-evidence-lightbox-image]");
+  const evidenceLightboxTitle = evidenceLightbox?.querySelector<HTMLElement>("[data-evidence-lightbox-title]");
+  const evidenceLightboxCaption = evidenceLightbox?.querySelector<HTMLElement>("[data-evidence-lightbox-caption]");
+  const evidenceLightboxClose = evidenceLightbox?.querySelector<HTMLButtonElement>("[data-evidence-lightbox-close]");
   const skipButton = document.querySelector<HTMLButtonElement>("[data-voyage-skip]");
-  if (!section || !log || !evidence || !evidenceToggle) return null;
+  if (!section || !log || !evidence || !evidenceToggle || !evidenceLightbox || !evidenceLightboxImage || !evidenceLightboxTitle || !evidenceLightboxCaption) return null;
   let renderer: VoyageRendererBridge | null = null;
   let selectedNode = content.voyage.nodes.find((node) => node.status === "current")!;
   let evidenceOpen = false;
   let evidenceIndex = 0;
+  let lightboxTrigger: HTMLButtonElement | null = null;
 
   const eligibleEvidenceCards = (): HTMLElement[] => evidenceCards.filter((card) => card.dataset.evidenceEligible === "true");
 
+  const closeLightbox = (restoreFocus = true): void => {
+    if (!evidenceLightbox.open) return;
+    evidenceLightbox.close();
+    document.documentElement.classList.remove("has-evidence-lightbox");
+    const trigger = lightboxTrigger;
+    lightboxTrigger = null;
+    if (restoreFocus) requestAnimationFrame(() => trigger?.focus({ preventScroll: true }));
+  };
+
+  const openLightbox = (trigger: HTMLButtonElement): void => {
+    const image = trigger.querySelector<HTMLImageElement>("img");
+    if (!image || !image.complete || image.naturalWidth <= 0 || trigger.disabled) return;
+    lightboxTrigger = trigger;
+    evidenceLightboxImage.src = image.currentSrc || image.src;
+    evidenceLightboxImage.alt = image.alt;
+    evidenceLightboxTitle.textContent = trigger.dataset.evidenceTitle || "Research evidence";
+    evidenceLightboxCaption.textContent = image.alt;
+    document.documentElement.classList.add("has-evidence-lightbox");
+    evidenceLightbox.showModal();
+    evidenceLightboxClose?.focus({ preventScroll: true });
+  };
+
   const setEvidenceIndex = (index: number, notifyRenderer = true): void => {
+    closeLightbox(false);
     const eligible = eligibleEvidenceCards();
     evidenceIndex = Math.max(0, Math.min(Math.max(0, eligible.length - 1), Math.floor(index)));
     evidenceCards.forEach((card) => { card.hidden = card !== eligible[evidenceIndex]; });
@@ -752,6 +790,7 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
   };
 
   const setEvidenceOpen = (open: boolean, notifyRenderer = true): void => {
+    if (!open) closeLightbox(false);
     evidenceOpen = open;
     section.classList.toggle("is-evidence-open", open);
     evidence.setAttribute("aria-hidden", String(!open));
@@ -831,9 +870,30 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
     if (!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) renderer?.skipIntro();
   };
   const onEscape = (event: KeyboardEvent): void => {
-    if (event.key !== "Escape" || !evidenceOpen) return;
+    if (event.key !== "Escape") return;
+    if (evidenceLightbox.open) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      closeLightbox();
+      return;
+    }
+    if (!evidenceOpen) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
     setEvidenceOpen(false);
     evidenceToggle.focus();
+  };
+  const onLightboxCancel = (event: Event): void => {
+    event.preventDefault();
+    closeLightbox();
+  };
+  const onLightboxPointerDown = (event: PointerEvent): void => {
+    if (event.target === evidenceLightbox) closeLightbox();
+  };
+  const onLightboxCloseClick = (): void => closeLightbox();
+  const onEvidenceClick = (event: MouseEvent): void => {
+    const trigger = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-evidence-zoom]");
+    if (trigger) openLightbox(trigger);
   };
   const onEvidenceIndexRequest = (event: Event): void => {
     const detail = (event as CustomEvent<{ index?: number }>).detail;
@@ -844,7 +904,11 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
   section.addEventListener("pointerdown", skipFromPointer, { passive: true });
   section.addEventListener("keydown", skipFromKeyboard);
   section.addEventListener("voyage:evidence-index", onEvidenceIndexRequest);
+  section.addEventListener("click", onEvidenceClick);
   document.addEventListener("keydown", onEscape);
+  evidenceLightbox.addEventListener("cancel", onLightboxCancel);
+  evidenceLightbox.addEventListener("pointerdown", onLightboxPointerDown);
+  evidenceLightboxClose?.addEventListener("click", onLightboxCloseClick);
   skipButton?.addEventListener("click", () => renderer?.skipIntro());
   evidenceToggle.addEventListener("click", () => setEvidenceOpen(!evidenceOpen));
   evidenceClose?.addEventListener("click", () => {
@@ -859,10 +923,16 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
       card.classList.add("is-media-ready");
       return;
     }
-    const markReady = (): void => card.classList.add("is-media-ready");
+    const markReady = (): void => {
+      card.classList.add("is-media-ready");
+      const zoom = card.querySelector<HTMLButtonElement>("[data-evidence-zoom]");
+      if (zoom) zoom.disabled = false;
+    };
     const markFailed = (): void => {
       card.classList.remove("is-media-ready");
       card.classList.add("is-media-failed");
+      const zoom = card.querySelector<HTMLButtonElement>("[data-evidence-zoom]");
+      if (zoom) zoom.disabled = true;
       const matte = card.querySelector<HTMLElement>("[data-evidence-media],.evidence-media-matte");
       if (matte) {
         matte.dataset.mediaFallback = "Preview unavailable · use the project links below";
@@ -900,10 +970,15 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
       setEvidenceOpen(open, false);
     },
     destroy() {
+      closeLightbox(false);
       section.removeEventListener("pointerdown", skipFromPointer);
       section.removeEventListener("keydown", skipFromKeyboard);
       section.removeEventListener("voyage:evidence-index", onEvidenceIndexRequest);
+      section.removeEventListener("click", onEvidenceClick);
       document.removeEventListener("keydown", onEscape);
+      evidenceLightbox.removeEventListener("cancel", onLightboxCancel);
+      evidenceLightbox.removeEventListener("pointerdown", onLightboxPointerDown);
+      evidenceLightboxClose?.removeEventListener("click", onLightboxCloseClick);
       evidencePrev?.removeEventListener("click", showPreviousEvidence);
       evidenceNext?.removeEventListener("click", showNextEvidence);
     }
@@ -980,9 +1055,27 @@ export async function initializeApplication({ content, state, onSectionChange }:
 
   let gallery: PlayCanvasGallery | null = null;
   let profileAdventure: ProfileAdventureDirector | null = null;
+  let pacLabArcade: PacLabArcade | null = null;
+  let pacLabInitialization: Promise<PacLabArcade> | null = null;
   let galleryInitialization: Promise<void> = Promise.resolve();
   const adventureRoot = document.querySelector<HTMLElement>("[data-future-slot]");
   const galleryRoot = document.getElementById("hero-exhibits");
+  const ensurePacLabArcade = (): Promise<PacLabArcade> => {
+    if (pacLabArcade) return Promise.resolve(pacLabArcade);
+    if (pacLabInitialization) return pacLabInitialization;
+    pacLabInitialization = import("../profile/PacLabArcade").then(({ PacLabArcade }) => {
+      const instance = new PacLabArcade({
+        reducedMotion: state.reducedMotion,
+        onClose: () => {
+          profileAdventure?.resetTvPower();
+          if (state.activeSection === "profile" && state.documentVisible && !state.reducedMotion) profileAdventure?.resume();
+        }
+      });
+      pacLabArcade = instance;
+      return instance;
+    });
+    return pacLabInitialization;
+  };
   if (galleryRoot) {
     // Navigation and pause/resume lifecycles stay independent, but the first
     // PlayCanvas shader compilation is serialized. PlayCanvas shares shader
@@ -1025,7 +1118,19 @@ export async function initializeApplication({ content, state, onSectionChange }:
         } else window.setTimeout(resolve, 120);
       });
       const { ProfileAdventureDirector } = await import("../profile/ProfileAdventureDirector");
-      const director = new ProfileAdventureDirector(adventureRoot, { reducedMotion: state.reducedMotion });
+      const director = new ProfileAdventureDirector(adventureRoot, {
+        reducedMotion: state.reducedMotion,
+        onTvInteraction: () => {
+          void ensurePacLabArcade().then((arcade) => {
+            arcade.open(adventureRoot.querySelector<HTMLElement>("[data-profile-tv]"));
+          }).catch((error) => {
+            director.resetTvPower();
+            const status = adventureRoot.querySelector<HTMLElement>("[data-room-status]");
+            if (status) status.textContent = "ARCADE OFFLINE";
+            console.warn("Pac-Lab arcade fallback active", error);
+          });
+        }
+      });
       await director.init();
       profileAdventure = director;
       adventureRoot.classList.add("is-ready");
@@ -1269,6 +1374,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
     }
     window.clearTimeout(horizonPrewarmTimer);
     gallery?.destroy();
+    pacLabArcade?.destroy();
     profileAdventure?.destroy();
     cancelAnimationFrame(transitionRaf);
     window.clearTimeout(navigationTimer);

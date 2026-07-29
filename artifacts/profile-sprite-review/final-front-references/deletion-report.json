@@ -1,0 +1,40 @@
+{
+  "version": "final-front-references-r1",
+  "status": "complete",
+  "completedAt": "2026-07-19",
+  "formalReferenceUpdate": {
+    "updatedAt": "2026-07-20",
+    "previousFormat": "PNG RGB identity references",
+    "currentFormat": "PNG RGBA transparent i2i identity references",
+    "sourceRun": "2026-07-20-i2i-single-frame-r1",
+    "policy": "final-front-references/*.png is the only formal reference set"
+  },
+  "scope": "删除已固定五张身份参考图之外的旧参考图片；保留审查元数据、job/prompt 文件、动作候选、contact sheet、processed 资源和 public 生产资源。",
+  "plannedFileCount": 66,
+  "deletedFileCount": 66,
+  "categories": {
+    "topdownOfficialSources": 8,
+    "strictV4SourceImages": 20,
+    "strictV4CanonicalCandidateImages": 24,
+    "recanonicalUnselectedCandidateImages": 8,
+    "recanonicalUserReferenceCopy": 1,
+    "recanonicalPreferredReviewContact": 1,
+    "fluxDownAuxiliaryReferenceImages": 4
+  },
+  "preserved": [
+    "final-front-references/*.png",
+    "*.job.json",
+    "*.prompt.txt",
+    "review.json",
+    "review.md",
+    "generation-summary.json",
+    "sequence-reviews/**",
+    "enlarged-frames/**",
+    "processed/**",
+    "public/assets/profile/adventure/**"
+  ],
+  "intentionallyPreservedActionCandidates": [
+    "2026-07-19-flux-down-r1/independent-frames/nobita-down-frame3-flipped-pose.png",
+    "2026-07-19-flux-down-r1/independent-frames/nobita-down-frame3-t2i-pose.png"
+  ]
+}

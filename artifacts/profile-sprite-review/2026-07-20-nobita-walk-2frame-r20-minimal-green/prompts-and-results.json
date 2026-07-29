@@ -1,0 +1,66 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r20-minimal-green",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/down/nobita-walk-down-01-left-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，左臂前摆，右臂后摆，右腿前跨，左腿后收。；绿幕。",
+      "jobId": "flux2-cddbab70dac84e8b",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/down/nobita-walk-down-02-right-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，右臂前摆，左臂后摆，左腿前跨，右腿后收。；绿幕。",
+      "jobId": "flux2-428b8cca32b84620",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/up/nobita-walk-up-01-left-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，左臂前摆，右臂后摆，右腿前跨，左腿后收。；绿幕。",
+      "jobId": "flux2-b7ba2099599340a7",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/up/nobita-walk-up-02-right-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，右臂前摆，左臂后摆，左腿前跨，右腿后收。；绿幕。",
+      "jobId": "flux2-b643ce20bf9740fc",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/left/nobita-walk-left-01-left-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；左侧面，左臂左伸，右臂右摆，右腿左跨，左膝后抬。；绿幕。",
+      "jobId": "flux2-54f652681f2649a2",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r20-minimal-green/candidates/left/nobita-walk-left-02-right-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；左侧面，右臂左伸，左臂右摆，左腿左跨，右膝后抬。；绿幕。",
+      "jobId": "flux2-3c9c1be602ca43e6",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

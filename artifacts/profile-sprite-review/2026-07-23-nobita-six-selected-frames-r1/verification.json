@@ -1,0 +1,57 @@
+{
+  "verifiedAt": "2026-07-23T12:09:00.839545+00:00",
+  "status": "passed",
+  "checks": {
+    "allSixSourceFilesPresent": true,
+    "allFramesAre1024SquarePng": true,
+    "copiedFilesMatchSourceHashes": true,
+    "allSourcesAreSingleImageI2ISelections": true,
+    "selectionPairs": {
+      "down": [
+        "A09",
+        "B01"
+      ],
+      "up": [
+        "B01",
+        "B04"
+      ],
+      "left": [
+        "A14",
+        "R5-C01"
+      ]
+    },
+    "cleanSheet": {
+      "path": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-six-frame-sheet.png",
+      "size": [
+        2048,
+        3072
+      ],
+      "sha256": "44f23f9bc34d74bf7448b34dcae417b938a7fa0b8f7a159175d45805d9d6b181"
+    },
+    "reviewSheet": {
+      "path": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-six-frame-review-numbered.png",
+      "size": [
+        1640,
+        2510
+      ],
+      "sha256": "ecd163a6fa44b8be54f6c5ba3f306c87cdf4f55902d69e6db32cbd45dad8c882"
+    },
+    "previews": [
+      {
+        "path": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-two-frame-preview.gif",
+        "frameCount": 2,
+        "sha256": "d5cdeb0ab0e12b7e6a1c545b2d92f7448bdf724a06dac04816de6a49e812e2f4"
+      },
+      {
+        "path": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-two-frame-preview.gif",
+        "frameCount": 2,
+        "sha256": "4c0e4441219187df7933ae1a82c9de7791728e167603f1200aabdb2314330440"
+      },
+      {
+        "path": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-two-frame-preview.gif",
+        "frameCount": 2,
+        "sha256": "37fce77d66a4fdfc166ac4dec385b69b86b7d16db5e6e20d410d1e712e9926c6"
+      }
+    ]
+  }
+}

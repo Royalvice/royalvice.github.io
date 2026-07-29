@@ -1,0 +1,33 @@
+{
+  "runId": "2026-07-23-doraemon-abc-reverse-explicit-r3",
+  "actor": "doraemon",
+  "displayName": "哆啦A梦",
+  "service": "http://180.76.242.105:2201",
+  "strategy": "reverse-left-a-explicit",
+  "inputPolicy": "每个候选只上传当前角色已通过的 Left A；只反转当前走路姿势。",
+  "inputImageCount": 1,
+  "maxCandidatesPerPose": 16,
+  "batchSize": 4,
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedPolicy": {
+    "actorBase": 100000,
+    "directionOffsets": {
+      "down": 0,
+      "left": 200,
+      "up": 400
+    },
+    "poseOffsets": {
+      "a": 0,
+      "c": 100
+    }
+  }
+}

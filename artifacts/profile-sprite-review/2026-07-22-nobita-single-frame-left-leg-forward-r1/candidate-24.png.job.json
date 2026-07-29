@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72023,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-148448b3ca4d48dc/sample.png",
+      "sha256": "7d04b682e033945afe788e1faff710c2461dcee8c05747e636654011c19133ff",
+      "size_bytes": 270710,
+      "url": "/v1/artifacts/flux2-148448b3ca4d48dc/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784704377.6791606,
+  "error": null,
+  "finished_at": 1784704395.4327056,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-148448b3ca4d48dc/reference_0.png"
+  ],
+  "job_id": "flux2-148448b3ca4d48dc",
+  "metrics": {
+    "nvml_peak_used_mib": 57405,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.7,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72023,
+    "width": 1024
+  },
+  "started_at": 1784704377.7537365,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.052,
+    "denoise": 5.092,
+    "load_inputs": 0.024,
+    "reference_encode": 0.217,
+    "save_png": 0.4,
+    "text_encode": 0.337,
+    "total_wall": 17.679
+  },
+  "updated_at": 1784704395.4327197,
+  "worker_finished_at": 1784704394.5058057
+}

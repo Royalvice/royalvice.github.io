@@ -1,0 +1,14 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r33-front-lock",
+  "strips": [
+    {
+      "direction": "down",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r33-front-lock/candidates/down/nobita-walk-down-1x2.png",
+      "prompt": "参考上传的大雄正面 canonical，制作横向 1×2 的 2D pixel sprite strip，画布 1024×576。 左右两个等宽画格都是同一个大雄，使用完全相同的 DOWN front orthographic camera、正面朝向、角色尺度、头部中心和脚底 baseline；保持圆形黑框眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和统一 pixel clusters。 两个格子都必须正面直视观察者，双眼和双镜片对称、鼻子居中、肩膀水平；只改变四肢位置，不改变头脸朝向、眼镜形状、躯干朝向或相机角度。 左格是 walking contact pose：左脚在画面下方落地承重，右腿向后下方伸展；右臂向前摆，左臂向后摆，膝盖朝下，肩线和骨盆自然反向。右格是紧接的 walking passing pose：左脚继续承重，右膝从身体下方抬起经过；左臂前摆，右臂后摆，手肘和膝盖自然弯曲，四肢分离，两个姿势明显不同。 两个格子都是完整头到脚的单个角色，纯色 #00FF00 chroma-key 背景连续铺满，格间保持绿色不画黑线、不画分隔栏、不画场景家具文字，使用有限色板。",
+      "jobId": "flux2-0602a66956144b00",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    }
+  ]
+}

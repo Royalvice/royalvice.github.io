@@ -1,0 +1,86 @@
+{
+  "samples": {
+    "movement:down:0": {
+      "time": 0,
+      "frame": "movement:down:0",
+      "facing": "down",
+      "position": [
+        0.36,
+        0.9
+      ]
+    },
+    "movement:down:1": {
+      "time": 56.19999999999937,
+      "frame": "movement:down:1",
+      "facing": "down",
+      "position": [
+        0.1807078524348108,
+        0.418263780706558
+      ]
+    },
+    "movement:down:2": {
+      "time": 55.599999999999405,
+      "frame": "movement:down:2",
+      "facing": "down",
+      "position": [
+        0.16190849454897677,
+        0.39407343048581567
+      ]
+    },
+    "movement:side:0": {
+      "time": 0.19999999999999998,
+      "frame": "movement:side:0",
+      "facing": "left",
+      "position": [
+        0.35093126680676145,
+        0.9038708007532117
+      ]
+    },
+    "movement:side:1": {
+      "time": 0.39999999999999997,
+      "frame": "movement:side:1",
+      "facing": "left",
+      "position": [
+        0.3432113662891086,
+        0.9071658802424538
+      ]
+    },
+    "movement:side:2": {
+      "time": 0.7999999999999999,
+      "frame": "movement:side:2",
+      "facing": "left",
+      "position": [
+        0.3252897348698464,
+        0.91
+      ]
+    },
+    "movement:up:0": {
+      "time": 9.799999999999976,
+      "frame": "movement:up:0",
+      "facing": "up",
+      "position": [
+        0.08121411706413321,
+        0.8725916947516421
+      ]
+    },
+    "movement:up:1": {
+      "time": 9.199999999999978,
+      "frame": "movement:up:1",
+      "facing": "up",
+      "position": [
+        0.08514285714285713,
+        0.9006885240977589
+      ]
+    },
+    "movement:up:2": {
+      "time": 9.599999999999977,
+      "frame": "movement:up:2",
+      "facing": "up",
+      "position": [
+        0.08514285714285713,
+        0.8830699534496496
+      ]
+    }
+  },
+  "unexpectedFrames": []
+}

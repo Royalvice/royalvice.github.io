@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+    "prompt_upsampling": false,
+    "seed": 110307,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-7cedfcdfa7a44c97/sample.png",
+      "sha256": "d79ea36067cc7e461fec4f11e148fa1aebfc873d6a1bfa6d7c1141268a24647a",
+      "size_bytes": 241259,
+      "url": "/v1/artifacts/flux2-7cedfcdfa7a44c97/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784820555.8029819,
+  "error": null,
+  "finished_at": 1784820593.859335,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-7cedfcdfa7a44c97/reference_0.png"
+  ],
+  "job_id": "flux2-7cedfcdfa7a44c97",
+  "metrics": {
+    "nvml_peak_used_mib": 57637,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+    "prompt_upsampling": false,
+    "seed": 110307,
+    "width": 1024
+  },
+  "started_at": 1784820574.8101907,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.06,
+    "denoise": 5.089,
+    "load_inputs": 0.02,
+    "reference_encode": 0.244,
+    "save_png": 0.375,
+    "text_encode": 0.336,
+    "total_wall": 19.049
+  },
+  "updated_at": 1784820593.8593547,
+  "worker_finished_at": 1784820592.9271147
+}

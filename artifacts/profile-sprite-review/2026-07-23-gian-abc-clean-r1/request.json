@@ -1,0 +1,33 @@
+{
+  "runId": "2026-07-23-gian-abc-clean-r1",
+  "actor": "gian",
+  "displayName": "胖虎",
+  "service": "http://180.76.242.105:2201",
+  "strategy": "neutral-b",
+  "inputPolicy": "每个候选只上传当前角色、当前方向的同一张中立 B 参考图；A/C 互不作为输入。",
+  "inputImageCount": 1,
+  "maxCandidatesPerPose": 16,
+  "batchSize": 4,
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedPolicy": {
+    "actorBase": 120000,
+    "directionOffsets": {
+      "down": 0,
+      "left": 200,
+      "up": 400
+    },
+    "poseOffsets": {
+      "a": 0,
+      "c": 100
+    }
+  }
+}

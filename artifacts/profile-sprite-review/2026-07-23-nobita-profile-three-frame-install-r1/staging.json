@@ -1,0 +1,314 @@
+{
+  "runId": "2026-07-23-nobita-profile-three-frame-install-r1",
+  "status": "staged",
+  "sourceRun": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1",
+  "directionalReferenceRoot": "artifacts/profile-sprite-review/final-directional-references/nobita",
+  "frameOrder": [
+    "down-0",
+    "down-1",
+    "down-2",
+    "side-0",
+    "side-1",
+    "side-2",
+    "up-0",
+    "up-1",
+    "up-2"
+  ],
+  "runtimeAnimation": {
+    "nobitaFrameCount": 3,
+    "usedIndices": [
+      0,
+      1,
+      2
+    ],
+    "poseOrder": [
+      "A",
+      "B-reference",
+      "C"
+    ],
+    "thirdCellPolicy": "all three cells are authored runtime frames"
+  },
+  "atlas": {
+    "staged": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/nobita-movement-3x3.webp",
+    "size": [
+      384,
+      384
+    ],
+    "sha256": "02cf5e43cfeb7189165db4c19e20c9d9d2d2b64f666c286d2ebf3ab6a8364e3d",
+    "bytes": 58206,
+    "review": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/nobita-movement-runtime-review.png"
+  },
+  "frames": [
+    {
+      "frame": "down-0",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-01.png",
+      "sourceSha256": "881466177c783a406a1c384a656e41dd2a9e1050609ecc888d0ce804e1538325",
+      "sourceBbox": [
+        291,
+        79,
+        732,
+        962
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        36,
+        8,
+        91,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-0.png",
+      "processedSha256": "b006f6327ccfe9f7d3ebd11f1eeb7c1e2f182a095d048e469a27496d66daedb1"
+    },
+    {
+      "frame": "down-1",
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+      "sourceSha256": "c5153e06eff9e628483b29570c7400672030c355bc6c0b0518c2c600c6de2022",
+      "sourceBbox": [
+        298,
+        79,
+        732,
+        951
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        36,
+        8,
+        91,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-1.png",
+      "processedSha256": "820466cc8753fe662c8c9ebbd896f6bd352d694f94537cd118116e9883968a1e"
+    },
+    {
+      "frame": "down-2",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-down-02.png",
+      "sourceSha256": "bbcb90e9aed94e730d33c4e17d3df6b80976f7fcf7f647936d1a2be011ef0afd",
+      "sourceBbox": [
+        304,
+        79,
+        724,
+        952
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        37,
+        8,
+        90,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/down-2.png",
+      "processedSha256": "668b3d0fa7b5376f0360f68348ca097e4de73e0bd349a17d48738463d2bed5fd"
+    },
+    {
+      "frame": "side-0",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-01.png",
+      "sourceSha256": "97274ec46daaf94f412ebd8100bc22e8b5856b17464587d13082f80ff5399b83",
+      "sourceBbox": [
+        299,
+        80,
+        718,
+        947
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        38,
+        8,
+        91,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": true,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-0.png",
+      "processedSha256": "f59347c3dd6e4de6db1cd2698326e4907475723ba4516c34881113ec0f78496c"
+    },
+    {
+      "frame": "side-1",
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "sourceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b",
+      "sourceBbox": [
+        318,
+        80,
+        718,
+        946
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        39,
+        8,
+        90,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": true,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-1.png",
+      "processedSha256": "ad3de4e614088913fc74d05c25f8000de85ed9cb890276e39bde8ba1bddca05f"
+    },
+    {
+      "frame": "side-2",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-left-02.png",
+      "sourceSha256": "bb435b7868b17984e9290574fb0e0d8e503b4fdcd15d42739033720a62c4e6b9",
+      "sourceBbox": [
+        300,
+        79,
+        719,
+        952
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        38,
+        8,
+        91,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": true,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/side-2.png",
+      "processedSha256": "ac568cffe87fb83b42201157bf933dd3fa7f46e95634aafd53997f32792a860d"
+    },
+    {
+      "frame": "up-0",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-01.png",
+      "sourceSha256": "4fbbbf8031f1482382187289a91574ff4c65ba8b2b8d2fc3f9661b2c4080d917",
+      "sourceBbox": [
+        301,
+        82,
+        717,
+        964
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        38,
+        8,
+        90,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-0.png",
+      "processedSha256": "c2bdc2a7db43439ca98eacae2080d6b4564fde43496dc2a766d141a8aed782e7"
+    },
+    {
+      "frame": "up-1",
+      "source": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+      "sourceSha256": "d19ba29d82a6d89abf901f23853953b7089793060e7bc361a269675f5abb65aa",
+      "sourceBbox": [
+        301,
+        82,
+        727,
+        958
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        37,
+        8,
+        90,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-1.png",
+      "processedSha256": "ceb1c19e991138773e2e8b577cf3706f3aa32a18a56693adaba6d9d2009d2809"
+    },
+    {
+      "frame": "up-2",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-six-selected-frames-r1/nobita-up-02.png",
+      "sourceSha256": "f8aef0d3ba48e13fa323c3a5f1359ddb65bcd3344f6ff485cdd99e0790a46194",
+      "sourceBbox": [
+        298,
+        82,
+        734,
+        958
+      ],
+      "processedSize": [
+        128,
+        128
+      ],
+      "alphaBbox": [
+        36,
+        8,
+        91,
+        118
+      ],
+      "pivot": [
+        0.5,
+        0.921875
+      ],
+      "mirroredForRuntime": false,
+      "processed": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/processed/up-2.png",
+      "processedSha256": "ce8e989a4c846259d131eaf112800a88ffec760110b156e07883bde769030f21"
+    }
+  ],
+  "previews": {
+    "down": {
+      "path": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/nobita-down-three-frame-runtime-preview.gif",
+      "sha256": "9183fa23ad0e2f4540067148d27560b963fb7db0f430a4dd090fcf310b6da0df",
+      "frames": 3
+    },
+    "side": {
+      "path": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/nobita-side-three-frame-runtime-preview.gif",
+      "sha256": "efc582627d4d4813c6db7cdb854007d30e33bc274b71c6ae70ba218fcf23b593",
+      "frames": 3
+    },
+    "up": {
+      "path": "artifacts/profile-sprite-review/2026-07-23-nobita-profile-three-frame-install-r1/nobita-up-three-frame-runtime-preview.gif",
+      "sha256": "c4aeeddd6cb3306ab8ae7ddd8ba49f5caef1a4d227e0b79e8203a0eb9d0da474",
+      "frames": 3
+    }
+  },
+  "installTarget": "public/assets/profile/adventure/room-v4/actors/nobita-movement-3x3.webp",
+  "previousPublicSha256": "31a492b3791740b3daca22f22413fe131c9d1bea2accbfeb487077ca6af94b26"
+}

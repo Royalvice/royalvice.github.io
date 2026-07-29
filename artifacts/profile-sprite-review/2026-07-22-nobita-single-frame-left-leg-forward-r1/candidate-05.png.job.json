@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72004,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-ad79ea7a30b643ac/sample.png",
+      "sha256": "6220b942e0e7fcf309318ee93695877592fbe6e10128b575661e9696c2d7a4fd",
+      "size_bytes": 292624,
+      "url": "/v1/artifacts/flux2-ad79ea7a30b643ac/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784702501.3760185,
+  "error": null,
+  "finished_at": 1784702521.132984,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-ad79ea7a30b643ac/reference_0.png"
+  ],
+  "job_id": "flux2-ad79ea7a30b643ac",
+  "metrics": {
+    "nvml_peak_used_mib": 55809,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.6,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72004,
+    "width": 1024
+  },
+  "started_at": 1784702501.4487088,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.169,
+    "denoise": 5.166,
+    "load_inputs": 0.024,
+    "reference_encode": 0.222,
+    "save_png": 0.273,
+    "text_encode": 0.338,
+    "total_wall": 19.684
+  },
+  "updated_at": 1784702521.1330042,
+  "worker_finished_at": 1784702519.6964982
+}

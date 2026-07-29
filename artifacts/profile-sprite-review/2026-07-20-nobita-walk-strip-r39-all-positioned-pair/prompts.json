@@ -1,0 +1,26 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r39-all-positioned-pair",
+  "actor": "nobita",
+  "layout": "1x2 horizontal strip",
+  "width": 1024,
+  "height": 576,
+  "seedBase": 28000,
+  "generation": "one independent Flux i2i job per direction; one reference image per job",
+  "strips": [
+    {
+      "direction": "down",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+      "prompt": "严格沿用上传参考图的大雄形象：同一张正面脸、圆形黑框眼镜、黑短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 DOWN front orthographic camera，大雄都正面直视镜头，头部、眼镜、鼻子、嘴、肩线、胸口中轴和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：左脚向画面下方前伸并承重，右脚向画面上方后伸；右臂向画面下方前摆，左臂向画面上方后摆，双腿与双臂彼此分离，膝盖和手肘轻微弯曲，身体重心明确落在左脚。 右半格是下一瞬间的 walking passing：左脚仍在身体正下方支撑，右膝从左腿旁向上抬起，右小腿向下垂，左腿向后；左臂向前、右臂向后，四肢位置与左半格明显不同但仍是同一个正面大雄，脸和躯干完全不转动。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄，保持统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。"
+    },
+    {
+      "direction": "up",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+      "prompt": "严格沿用上传参考图的大雄背面：同一后脑轮廓、黑短发、黄色上衣背面、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 UP back orthographic camera，大雄都背对镜头朝画面上方，后脑中心、肩宽、衣背中轴和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：左脚向画面上方前伸并承重，右脚向画面下方后伸；右臂向画面上方前摆，左臂向画面下方后摆，双腿与双臂彼此分离，背部中轴笔直。两只鞋都保持参考图的浅蓝色和白袜。 右半格是下一瞬间的 walking passing：左脚在身体正下方支撑，右膝从左腿旁向画面上方抬起，右小腿向下垂，左腿向后；左臂向前、右臂向后，衣背和后脑完全不变，保持背面视角和自然重心转移。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄背面，使用统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。"
+    },
+    {
+      "direction": "left",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "prompt": "严格沿用上传参考图的大雄左侧面：同一尖鼻线、圆形眼镜侧框、黑短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 LEFT strict profile orthographic camera，大雄都保持严格左侧面，鼻子、胸口、脚尖朝向画面左侧，头部中心和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：右脚在身体正下方承重，左脚向画面左侧前方伸出并贴近地面；靠近镜头的手臂向左前摆，远侧手臂向右后摆，双手、双腿和鞋子彼此分离，膝盖与手肘轻微弯曲。 右半格是下一瞬间的 walking passing：右脚继续支撑，左膝向画面左侧抬起并经过身体，左小腿向下垂，右腿向后；靠近镜头的手臂向右后摆，远侧手臂向左前摆，鼻子方向、侧脸轮廓、眼镜侧框和胸口轴线完全不变。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄左侧面，使用统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。"
+    }
+  ]
+}

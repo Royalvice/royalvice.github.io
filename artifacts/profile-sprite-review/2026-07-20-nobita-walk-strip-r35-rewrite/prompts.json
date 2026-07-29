@@ -1,0 +1,25 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r35-rewrite",
+  "actor": "nobita",
+  "layout": "1x2 horizontal strip",
+  "width": 1024,
+  "height": 576,
+  "generation": "one independent Flux i2i job per direction; one reference image per job",
+  "strips": [
+    {
+      "direction": "down",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+      "prompt": "以参考图中的大雄为唯一角色，保持同一张脸、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋、像素轮廓和人物比例。 生成一张 1024×576 的横向 1×2 2D pixel sprite strip，左格和右格各占一半画布，两个格子共用同一 DOWN front orthographic camera：大雄正面朝向镜头，头部中心、肩线、胸口中轴和脚底 baseline 完全对齐，只让四肢完成连续步态。 左格：walking contact pose。大雄的左脚落在身体前下方承重，右脚向身体后上方伸出，双脚分开可见；右臂自然向前下方摆，左臂向后上方摆，手掌朝下，膝盖和肘部有真实弯曲，身体重心落在左脚。 右格：紧接左格的 walking passing pose。左脚仍在身体下方支撑，右膝抬起从左腿旁经过，右小腿向下垂，左腿略向后；左臂向前下方摆，右臂向后上方摆，四肢位置与左格形成清楚但自然的变化，面部和躯干不变。 整张图是干净的 game-ready sprite strip：两个完整头到脚的大雄，均匀纯色 #00FF00 chroma-key 背景，格间连续绿色，像素颗粒和有限色板统一，画面没有场景、家具、文字、边框或分隔线。"
+    },
+    {
+      "direction": "up",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+      "prompt": "以参考图中的大雄背面为唯一角色，保持同一后脑轮廓、黑色短发、黄色上衣背面、深蓝短裤、白袜、浅蓝鞋、像素轮廓和人物比例。 生成一张 1024×576 的横向 1×2 2D pixel sprite strip，左格和右格各占一半画布，两个格子共用同一 UP back orthographic camera：大雄背对镜头、朝画面上方行走，后脑中心、肩宽、衣服中轴和脚底 baseline 完全对齐，只让四肢完成连续步态。 左格：walking contact pose。大雄的左脚向画面上方落地承重，右脚向身体后下方伸展，双脚分开可见；右臂向前上方摆，左臂向后下方摆，肩胯有自然反向，背部中轴保持笔直。 右格：紧接左格的 walking passing pose。左脚仍在身体下方支撑，右膝抬起从左腿旁经过，右小腿向下垂，左腿略向后；左臂向前上方摆，右臂向后下方摆，衣背和后脑不变，四肢位置形成清楚的下一步变化。 整张图是干净的 game-ready sprite strip：两个完整头到脚的大雄背面，均匀纯色 #00FF00 chroma-key 背景，格间连续绿色，像素颗粒和有限色板统一，画面没有场景、家具、文字、边框或分隔线。"
+    },
+    {
+      "direction": "left",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "prompt": "以参考图中的大雄左侧面为唯一角色，保持同一尖鼻线、圆形眼镜侧框、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋、像素轮廓和人物比例。 生成一张 1024×576 的横向 1×2 2D pixel sprite strip，左格和右格各占一半画布，两个格子共用同一 LEFT strict profile orthographic camera：大雄严格左侧面，鼻子、胸口和脚尖朝画面左侧，只让四肢完成连续步态，头部中心和脚底 baseline 完全对齐。 左格：walking contact pose。大雄的右脚在身体下方承重，左脚向画面左侧前方伸出并接近地面；靠近镜头的手臂向画面左侧前摆，远侧手臂向右后方摆，前后两只手和双腿清楚分离，膝盖自然弯曲。 右格：紧接左格的 walking passing pose。右脚仍在身体下方支撑，左膝抬起向画面左侧经过，左小腿向下垂，右腿略向后；靠近镜头的手臂向右后摆，远侧手臂向左前摆，鼻子方向、侧脸轮廓和胸口轴线保持不变，动作变化清楚而自然。 整张图是干净的 game-ready sprite strip：两个完整头到脚的大雄左侧面，均匀纯色 #00FF00 chroma-key 背景，格间连续绿色，像素颗粒和有限色板统一，画面没有场景、家具、文字、边框或分隔线。"
+    }
+  ]
+}

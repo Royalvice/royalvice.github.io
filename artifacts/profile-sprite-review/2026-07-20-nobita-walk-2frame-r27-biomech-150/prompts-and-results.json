@@ -1,0 +1,66 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r27-biomech-150",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/down/nobita-walk-down-01-left-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 DOWN正面真实步态：左脚支撑落地，右腿从髋部向前摆并自然屈膝；右臂前摆、左臂后摆；肩线与骨盆轻微反向转动，手肘膝盖脚掌结构清楚，重心在左脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-7b23b7b6d80b4a68",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/down/nobita-walk-down-02-right-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 DOWN正面真实步态：右脚支撑落地，左腿从髋部向前摆并自然屈膝；左臂前摆、右臂后摆；肩线与骨盆轻微反向转动，手肘膝盖脚掌结构清楚，重心在右脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-e350aa06f6bf4261",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/up/nobita-walk-up-01-left-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 UP真实背面步态：左脚支撑落地，右腿沿画面上方前摆并自然屈膝；右臂前摆、左臂后摆；肩胯轻微反向转动，后脑、衣背、膝盖和鞋底连续可读，重心在左脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-1d0db5bfb3f14f1a",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/up/nobita-walk-up-02-right-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 UP真实背面步态：右脚支撑落地，左腿沿画面上方前摆并自然屈膝；左臂前摆、右臂后摆；肩胯轻微反向转动，后脑、衣背、膝盖和鞋底连续可读，重心在右脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-e149305ce9eb4040",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/left/nobita-walk-left-01-left-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 LEFT纯侧面真实步态：右脚支撑落地，左腿向画面左方前摆并自然屈膝；左臂前摆、右臂后摆；身体保持单一侧面，髋部带动步幅，手肘膝盖脚掌分离，重心在右脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-c58c8036d9a04077",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r27-biomech-150/candidates/left/nobita-walk-left-02-right-arm-forward.png",
+      "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 LEFT纯侧面真实步态：左脚支撑落地，右腿向画面左方前摆并自然屈膝；右臂前摆、左臂后摆；身体保持单一侧面，髋部带动步幅，手肘膝盖脚掌分离，重心在左脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+      "jobId": "flux2-bdd2bc9b6afb48bb",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

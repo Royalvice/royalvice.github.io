@@ -79,7 +79,6 @@ export interface SiteContent {
   projects: Project[];
   news: NewsItem[];
   voyage: { progress: 0.75; nodes: VoyageNode[]; logs: Record<VoyageNodeId, VoyageLogEntry> };
-  awards: { title: string; text: string }[];
   services: { tag: string; text: string }[];
   archive: { title: string; venue: string }[];
   ending: {
@@ -93,8 +92,8 @@ export const projects: Project[] = [
     id: "ssat",
     title: "SSAT",
     venue: "SIGGRAPH 2026",
-    direction: "Realtime Light-field Path Tracing",
-    summary: "Sparse spatial-angular-temporal reconstruction for real-time light-field path tracing.",
+    direction: "Realtime Neural Rendering",
+    summary: "Sparse spatial-angular-temporal samples drive display-native views through real-time neural rendering.",
     media: { type: "image", src: "/assets/gallery/hero/ssat_teaser.png", alt: "SSAT teaser" },
     heroTexture: "/assets/gallery/hero/ssat_teaser.png",
     trophyTier: "legendary-holo",
@@ -196,8 +195,8 @@ export const siteContent: SiteContent = {
     progress: 0.75,
     nodes: [
       { id: "docdiff", title: "Document Dock", subtitle: "DocDiff · Departure Archive", progress: 0.08, x: 7, y: 69, status: "complete", landmark: "dock", projectIds: ["docdiff"], venue: "ACM MM 2023", log: "Document restoration becomes the first working harbor." },
-      { id: "neural", title: "Prism Sea", subtitle: "Neural Graphics · SSAT", progress: 0.30, x: 28, y: 54, status: "complete", landmark: "reef", projectIds: ["ssat"], venue: "SIGGRAPH 2026", log: "SSAT and display-native rendering split the image into a navigable field." },
-      { id: "directl", title: "Light-Field Lighthouse", subtitle: "DirectL · Radiance Field", progress: 0.52, x: 47, y: 38, status: "complete", landmark: "lighthouse", projectIds: ["directl"], venue: "ACM TOG 2024", log: "Efficient radiance fields illuminate the spatial-display current." },
+      { id: "directl", title: "Light-Field Lighthouse", subtitle: "DirectL · Radiance Field", progress: 0.30, x: 28, y: 54, status: "complete", landmark: "lighthouse", projectIds: ["directl"], venue: "ACM TOG 2024", log: "Efficient radiance fields illuminate the spatial-display current." },
+      { id: "neural", title: "Neural Rendering Reef", subtitle: "SSAT · Realtime Neural Rendering", progress: 0.52, x: 47, y: 38, status: "complete", landmark: "reef", projectIds: ["ssat"], venue: "SIGGRAPH 2026", log: "SSAT turns sparse spatial-angular-temporal samples into realtime neural views." },
       { id: "eva01", title: "Native 3D Harbor", subtitle: "EVA01 · Current Berth", progress: 0.76, x: 60, y: 65, status: "current", landmark: "harbor", projectIds: ["eva01"], venue: "SIGGRAPH Asia 2026 (TOG)", log: "The current stage: native 3D understanding and generation." },
       { id: "world", title: "OASIS Gate", subtitle: "Interactive World Models", progress: 0.95, x: 63, y: 25, status: "future", landmark: "gate", projectIds: [], venue: "NEXT QUEST", log: "The route continues toward interactive, playable world models." }
     ],
@@ -207,11 +206,11 @@ export const siteContent: SiteContent = {
         paragraphs: ["At first light, the archive was sealed and the instruments were checked. The voyage begins with systems that preserve what would otherwise be lost."], projectIds: ["docdiff"]
       },
       neural: {
-        placeholder: true, entry: "01", title: "Prism Sea", subtitle: "Neural Graphics · SSAT", watch: "Morning Watch", bearing: "114° ESE", seaState: "Refracted / II", date: "SIGGRAPH · 2026",
-        paragraphs: ["The water split every signal into color and angle. Beyond the reef, images began to behave like spaces rather than flat records."], projectIds: ["ssat"]
+        placeholder: true, entry: "02", title: "Neural Rendering Reef", subtitle: "SSAT · Realtime Neural Rendering", watch: "Dog Watch", bearing: "138° SE", seaState: "Neural Current / II", date: "SIGGRAPH · 2026",
+        paragraphs: ["Sparse spatial, angular, and temporal samples converge at the reef. SSAT reconstructs them into display-native views for realtime neural rendering."], projectIds: ["ssat"]
       },
       directl: {
-        placeholder: true, entry: "02", title: "Light-Field Lighthouse", subtitle: "DirectL · Radiance Field", watch: "Dog Watch", bearing: "138° SE", seaState: "Mist / III", date: "ACM TOG · 2024",
+        placeholder: true, entry: "01", title: "Light-Field Lighthouse", subtitle: "DirectL · Radiance Field", watch: "Morning Watch", bearing: "114° ESE", seaState: "Mist / III", date: "ACM TOG · 2024",
         paragraphs: ["A narrow beam crossed the fog and returned as many views at once. The lighthouse held the course through a field of radiance."], projectIds: ["directl"]
       },
       eva01: {
@@ -224,12 +223,6 @@ export const siteContent: SiteContent = {
       }
     }
   },
-  awards: [
-    { title: "SIGGRAPH Technical Papers", text: "Three first-author research routes unlocked." },
-    { title: "ACM TOG", text: "Journal graphics work presented at SIGGRAPH Asia 2024." },
-    { title: "ICCV", text: "Vision research milestones in 2023 and 2025." },
-    { title: "ACM MM", text: "DocDiff document restoration milestone." }
-  ],
   services: [],
   archive: [
     { title: "GDB", venue: "Pattern Recognition 2024" },

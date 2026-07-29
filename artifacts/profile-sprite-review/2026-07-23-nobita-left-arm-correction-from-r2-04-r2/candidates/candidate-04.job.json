@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "双腿保持不变。将画面左侧向前伸出的手臂移到身体后方，将画面右侧垂下的手臂移到身体前方。",
+    "prompt_upsampling": false,
+    "seed": 83003,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-62df685cf6f94cf6/sample.png",
+      "sha256": "5407d122ca2c98aafe27fb8877b342f3959cf13fe5fecfadb651033b938bf983",
+      "size_bytes": 248676,
+      "url": "/v1/artifacts/flux2-62df685cf6f94cf6/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784804557.6796296,
+  "error": null,
+  "finished_at": 1784804576.2357376,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-62df685cf6f94cf6/reference_0.png"
+  ],
+  "job_id": "flux2-62df685cf6f94cf6",
+  "metrics": {
+    "nvml_peak_used_mib": 56337,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "双腿保持不变。将画面左侧向前伸出的手臂移到身体后方，将画面右侧垂下的手臂移到身体前方。",
+    "prompt_upsampling": false,
+    "seed": 83003,
+    "width": 1024
+  },
+  "started_at": 1784804557.7790167,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.053,
+    "denoise": 5.072,
+    "load_inputs": 0.025,
+    "reference_encode": 0.279,
+    "save_png": 0.397,
+    "text_encode": 0.337,
+    "total_wall": 18.457
+  },
+  "updated_at": 1784804576.2357502,
+  "worker_finished_at": 1784804575.4630153
+}

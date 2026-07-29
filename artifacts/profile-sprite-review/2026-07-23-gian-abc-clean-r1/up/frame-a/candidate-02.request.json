@@ -1,0 +1,12 @@
+{
+  "mode": "i2i",
+  "width": 1024,
+  "height": 1024,
+  "num_steps": 4,
+  "guidance": 1,
+  "prompt_upsampling": false,
+  "num_images": 1,
+  "format": "png",
+  "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+  "seed": 120401
+}

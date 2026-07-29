@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-structural-r1",
+  "method": "single-image-structural-arm-swap-cleanup",
+  "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+  "referenceSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "referencePose": "腿序正确；画面左侧为长臂、画面右侧为弯曲臂的粗结构图",
+  "targetPose": "保留粗结构图中已交换的长臂与弯曲臂位置，只修复自然连接",
+  "inputImageCount": 1,
+  "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 84000,
+  "maxCandidates": 16,
+  "inputPolicy": "每个候选只上传同一张本地粗结构图，不上传 R2-04 原图、其他帧或其他资产。"
+}

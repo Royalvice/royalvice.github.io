@@ -205,6 +205,7 @@ export const profileRoomLayoutSnapshot = () => ({
     worldAnchor: [...prop.worldAnchor],
     desktopSize: [...prop.desktopSize],
     mobileSize: [...prop.mobileSize],
+    pivot: prop.sprite ? [...PROFILE_ROOM_SPRITE_META[prop.sprite].pivot] : undefined,
     collisionBounds: prop.collisionBounds ? [...prop.collisionBounds] : undefined
   }])),
   stationPositions: Object.fromEntries(Object.entries(PROFILE_ROOM_STATION_POSITIONS).map(([id, point]) => [id, [...point]])),

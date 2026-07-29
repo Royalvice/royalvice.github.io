@@ -9,6 +9,10 @@ playwright-report/
 blob-report/
 *.log
 
+# Python bytecode caches
+__pycache__/
+*.py[cod]
+
 # Local environment overrides and credentials
 .env
 .env.*

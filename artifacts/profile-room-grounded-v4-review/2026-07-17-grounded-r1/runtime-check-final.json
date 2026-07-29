@@ -1,0 +1,677 @@
+{
+  "errors": [],
+  "report": {
+    "layoutVersion": "grounded-v4",
+    "maximumBlocked": {
+      "nobita": 1.6666666666666685,
+      "doraemon": 1.7666666666666688,
+      "shizuka": 1.7333333333333354,
+      "gian": 1.6666666666666685,
+      "suneo": 0.7999999999999999
+    },
+    "minimumDistance": {
+      "value": 0.06540053902477139,
+      "at": 856,
+      "actors": [
+        "shizuka",
+        "gian"
+      ]
+    },
+    "obstacleViolations": [],
+    "obstacleViolationCount": 0,
+    "threeActorClusters": [],
+    "threeActorClusterCount": 0,
+    "durationSamples": {
+      "sofa-left": [
+        10.12422141735442,
+        10.747629834804684,
+        13.927250080741942,
+        12.217957392567769,
+        10.472323667490855,
+        10.34126618062146,
+        12.403624892467633,
+        13.25664320611395,
+        14.33595203445293,
+        12.694559708470479,
+        10.83620109478943,
+        10.277570497710258,
+        14.334929438773543,
+        12.281785835511982,
+        13.650666087632999,
+        10.5660945631098
+      ],
+      "tv-console": [
+        7.5029386633541435,
+        9.15681815193966,
+        7.197953756665811,
+        8.304534665541723,
+        8.521498661022633,
+        9.387459599412978,
+        9.096676096087322,
+        9.216704827267677,
+        9.65594222722575,
+        7.304368402343243,
+        7.412526884814724,
+        7.3775003692135215,
+        9.655672582099214,
+        7.7276579204481095,
+        7.194037807639688,
+        7.384672354441136,
+        8.783975550439209,
+        7.477542474633083
+      ],
+      "water-cooler": [
+        4.649640821386129,
+        4.0796505734324455,
+        4.928040365688503,
+        4.888602863997221,
+        5.445712682791054,
+        5.0750168627128005,
+        4.922488232608885,
+        5.355283498298377,
+        4.918177186045796,
+        4.725348012521863,
+        4.34195257211104,
+        4.190872839652002,
+        4.996200583875179,
+        4.314030147623271
+      ],
+      "sofa-right": [
+        13.819843552773818,
+        11.348389114718884,
+        12.538583158748224,
+        11.103408857015893,
+        14.893606018740684,
+        11.387086448958144,
+        10.642140726558864,
+        11.306775636039674,
+        14.61844741832465,
+        14.54963538562879,
+        10.649877187097445,
+        13.067286422010511,
+        13.376096680294722
+      ],
+      "primary-desk": [
+        8.252347549190745,
+        8.817586831981316,
+        7.756194788729772,
+        8.629421241115779,
+        7.4287266379687935,
+        8.729676151880994,
+        7.4718736440408975,
+        7.554523954866454,
+        9.881750461179763,
+        8.597443670034409,
+        9.261059409938753,
+        8.719793862197548,
+        9.163038603961468,
+        7.606831872602925,
+        8.799435120774433,
+        7.353662986075506,
+        9.221811990020797,
+        9.152618536259979,
+        8.615869537228718,
+        8.847478330368176,
+        8.496850766707212,
+        9.663874098332599
+      ],
+      "blackboard": [
+        10.50315191783011,
+        10.977323822677135,
+        8.285940151661634,
+        10.370100065134466,
+        11.34735020622611,
+        10.16860408615321,
+        11.806382580660284,
+        10.727621195837855,
+        9.304187359288335,
+        10.206379037350416,
+        10.315088308416307,
+        8.342499889433384,
+        11.703232124447823,
+        8.62340901978314,
+        11.558094058185816,
+        9.255929904989898,
+        8.090597706846893,
+        9.67728834040463
+      ],
+      "anywhere-door": [
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "secondary-desk": [
+        7.872558432165533,
+        7.077635049354285,
+        9.115513669792563,
+        7.7908804717008024,
+        9.728507202351466,
+        7.267660532845184,
+        9.87970915902406,
+        9.075530929258093,
+        9.228566572535783,
+        8.770040722331032,
+        8.050457460805774,
+        8.833689039340243,
+        9.474520268617198,
+        7.37333677476272,
+        8.476020915200934
+      ],
+      "poster-left": [
+        11.069894159212708,
+        12.539086563512683,
+        13.00089839939028,
+        13.348635428585112,
+        11.554010747000575,
+        13.480802051723003,
+        11.95568853057921,
+        10.527621679008007,
+        10.566654651425779,
+        13.464378228411078,
+        13.595785053446889,
+        11.058458211831748,
+        11.51172318868339,
+        11.837411907501519,
+        12.04091480281204
+      ],
+      "poster-right": [
+        11.239299971610308,
+        13.964595884084702,
+        11.016599331982434,
+        10.590016448870301,
+        10.060457854531705,
+        12.240658337250352,
+        13.879878586158156,
+        11.23016787134111,
+        13.447833220474422,
+        11.894979022443295,
+        12.439655876718462,
+        13.973343085497618,
+        13.920848942361772,
+        12.145747233182192,
+        12.317065379582345
+      ]
+    },
+    "visited": {
+      "nobita": [
+        "blackboard",
+        "sofa-left",
+        "anywhere-door",
+        "primary-desk",
+        "poster-right",
+        "water-cooler",
+        "tv-console",
+        "poster-left"
+      ],
+      "doraemon": [
+        "water-cooler",
+        "tv-console",
+        "primary-desk",
+        "poster-right",
+        "sofa-right",
+        "poster-left",
+        "anywhere-door",
+        "blackboard"
+      ],
+      "shizuka": [
+        "sofa-left",
+        "sofa-right",
+        "poster-left",
+        "tv-console",
+        "blackboard",
+        "water-cooler",
+        "primary-desk"
+      ],
+      "gian": [
+        "primary-desk",
+        "secondary-desk",
+        "blackboard",
+        "poster-right",
+        "water-cooler",
+        "tv-console",
+        "sofa-right"
+      ],
+      "suneo": [
+        "tv-console",
+        "anywhere-door",
+        "sofa-left",
+        "blackboard",
+        "secondary-desk",
+        "poster-left",
+        "poster-right"
+      ]
+    },
+    "deadlockRecoveries": 411,
+    "snapshots": {
+      "0": {
+        "nobita": {
+          "state": "walking",
+          "position": [
+            0.39,
+            0.79
+          ],
+          "station": "blackboard",
+          "blocked": 0,
+          "replans": 0
+        },
+        "doraemon": {
+          "state": "walking",
+          "position": [
+            0.55,
+            0.79
+          ],
+          "station": "water-cooler",
+          "blocked": 0,
+          "replans": 0
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.65,
+            0.79
+          ],
+          "station": "sofa-left",
+          "blocked": 0,
+          "replans": 0
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.11,
+            0.8
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 0
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.9,
+            0.79
+          ],
+          "station": "tv-console",
+          "blocked": 0,
+          "replans": 0
+        }
+      },
+      "30": {
+        "nobita": {
+          "state": "thinking",
+          "position": [
+            0.325,
+            0.39
+          ],
+          "station": "blackboard",
+          "blocked": 0,
+          "replans": 3
+        },
+        "doraemon": {
+          "state": "walking",
+          "position": [
+            0.6613883167104917,
+            0.7158823529411765
+          ],
+          "station": "tv-console",
+          "blocked": 0,
+          "replans": 3
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.7121086333767153,
+            0.8129411764705883
+          ],
+          "station": "poster-left",
+          "blocked": 0,
+          "replans": 0
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.47766714301501534,
+            0.719457732484515
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 3
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.7012813498228757,
+            0.47341350161031803
+          ],
+          "station": "anywhere-door",
+          "blocked": 0,
+          "replans": 3
+        }
+      },
+      "60": {
+        "nobita": {
+          "state": "walking",
+          "position": [
+            0.6382857142857141,
+            0.7101266472798188
+          ],
+          "station": "anywhere-door",
+          "blocked": 0,
+          "replans": 3
+        },
+        "doraemon": {
+          "state": "working",
+          "position": [
+            0.48,
+            0.72
+          ],
+          "station": "primary-desk",
+          "blocked": 0,
+          "replans": 4
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.12407525409296936,
+            0.4069619892186056
+          ],
+          "station": "poster-left",
+          "blocked": 0,
+          "replans": 5
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.5377142857142856,
+            0.8129411764705883
+          ],
+          "station": "blackboard",
+          "blocked": 0,
+          "replans": 5
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.8462652184970023,
+            0.739438137963416
+          ],
+          "station": "tv-console",
+          "blocked": 0,
+          "replans": 3
+        }
+      },
+      "120": {
+        "nobita": {
+          "state": "thinking",
+          "position": [
+            0.675,
+            0.39
+          ],
+          "station": "poster-right",
+          "blocked": 0,
+          "replans": 8
+        },
+        "doraemon": {
+          "state": "walking",
+          "position": [
+            0.6382857142857141,
+            0.7054304590709214
+          ],
+          "station": "sofa-right",
+          "blocked": 0,
+          "replans": 7
+        },
+        "shizuka": {
+          "state": "watching-tv",
+          "position": [
+            0.72,
+            0.815
+          ],
+          "station": "sofa-left",
+          "blocked": 0,
+          "replans": 6
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.4986986211334028,
+            0.7158823529411765
+          ],
+          "station": "anywhere-door",
+          "blocked": 0,
+          "replans": 5
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.2304568676271757,
+            0.5288974129797371
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 6
+        }
+      },
+      "180": {
+        "nobita": {
+          "state": "walking",
+          "position": [
+            0.745587177486576,
+            0.5217647058823529
+          ],
+          "station": "anywhere-door",
+          "blocked": 0,
+          "replans": 13
+        },
+        "doraemon": {
+          "state": "walking",
+          "position": [
+            0.8348913307430093,
+            0.5217647058823529
+          ],
+          "station": "sofa-right",
+          "blocked": 0.03333333333333333,
+          "replans": 17
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.3305755797532487,
+            0.39035732715287474
+          ],
+          "station": "water-cooler",
+          "blocked": 0,
+          "replans": 6
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.5729834747237718,
+            0.7158823529411765
+          ],
+          "station": "tv-console",
+          "blocked": 0,
+          "replans": 8
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.46400699952531654,
+            0.8129411764705883
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 10
+        }
+      },
+      "300": {
+        "nobita": {
+          "state": "walking",
+          "position": [
+            0.613142857142857,
+            0.6444565896490055
+          ],
+          "station": "primary-desk",
+          "blocked": 0,
+          "replans": 76
+        },
+        "doraemon": {
+          "state": "watching-tv",
+          "position": [
+            0.8,
+            0.815
+          ],
+          "station": "sofa-right",
+          "blocked": 0,
+          "replans": 26
+        },
+        "shizuka": {
+          "state": "drinking",
+          "position": [
+            0.79,
+            0.515
+          ],
+          "station": "water-cooler",
+          "blocked": 0,
+          "replans": 53
+        },
+        "gian": {
+          "state": "working",
+          "position": [
+            0.23,
+            0.72
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 13
+        },
+        "suneo": {
+          "state": "portal-away",
+          "position": [
+            0.875,
+            0.535
+          ],
+          "station": "anywhere-door",
+          "blocked": 0,
+          "replans": 12
+        }
+      },
+      "600": {
+        "nobita": {
+          "state": "watching-tv",
+          "position": [
+            0.72,
+            0.815
+          ],
+          "station": "sofa-left",
+          "blocked": 0,
+          "replans": 111
+        },
+        "doraemon": {
+          "state": "walking",
+          "position": [
+            0.6602780471523891,
+            0.5217647058823529
+          ],
+          "station": "water-cooler",
+          "blocked": 0,
+          "replans": 42
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.1538044664959928,
+            0.3913304104796967
+          ],
+          "station": "sofa-right",
+          "blocked": 0,
+          "replans": 66
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.27279394293617,
+            0.7158823529411765
+          ],
+          "station": "secondary-desk",
+          "blocked": 0,
+          "replans": 54
+        },
+        "suneo": {
+          "state": "thinking",
+          "position": [
+            0.325,
+            0.39
+          ],
+          "station": "blackboard",
+          "blocked": 0,
+          "replans": 21
+        }
+      },
+      "900": {
+        "nobita": {
+          "state": "walking",
+          "position": [
+            0.7305673445508614,
+            0.5217647058823529
+          ],
+          "station": "sofa-left",
+          "blocked": 0,
+          "replans": 122
+        },
+        "doraemon": {
+          "state": "watching-tv",
+          "position": [
+            0.87,
+            0.69
+          ],
+          "station": "tv-console",
+          "blocked": 0,
+          "replans": 56
+        },
+        "shizuka": {
+          "state": "walking",
+          "position": [
+            0.613142857142857,
+            0.7158823529411765
+          ],
+          "station": null,
+          "blocked": 1.5333333333333348,
+          "replans": 148
+        },
+        "gian": {
+          "state": "walking",
+          "position": [
+            0.6226496596367556,
+            0.7805882352941176
+          ],
+          "station": null,
+          "blocked": 0.3333333333333333,
+          "replans": 109
+        },
+        "suneo": {
+          "state": "walking",
+          "position": [
+            0.5377142857142856,
+            0.7158823529411765
+          ],
+          "station": null,
+          "blocked": 0.3,
+          "replans": 83
+        }
+      }
+    }
+  }
+}

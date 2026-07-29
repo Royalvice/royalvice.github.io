@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 Pose A：大雄自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。Pose B：大雄自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地、浅蓝鞋完整可见。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 36100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-15bb1d79a4384195/sample.png",
+      "sha256": "189b37ae3afccc457e5089af8d1d8d98dd1c9e55e467946568aa2d04bad9ae11",
+      "size_bytes": 221565,
+      "url": "/v1/artifacts/flux2-15bb1d79a4384195/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784561566.3408864,
+  "error": null,
+  "finished_at": 1784561580.3865268,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-15bb1d79a4384195/reference_0.png"
+  ],
+  "job_id": "flux2-15bb1d79a4384195",
+  "metrics": {
+    "nvml_peak_used_mib": 54225,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 51382.3,
+    "torch_peak_reserved_mib": 51708
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 Pose A：大雄自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。Pose B：大雄自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地、浅蓝鞋完整可见。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 36100,
+    "width": 1024
+  },
+  "started_at": 1784561566.430761,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.569,
+    "denoise": 2.711,
+    "load_inputs": 0.013,
+    "reference_encode": 0.168,
+    "save_png": 0.238,
+    "text_encode": 0.336,
+    "total_wall": 13.956
+  },
+  "updated_at": 1784561580.3865433,
+  "worker_finished_at": 1784561579.6870725
+}

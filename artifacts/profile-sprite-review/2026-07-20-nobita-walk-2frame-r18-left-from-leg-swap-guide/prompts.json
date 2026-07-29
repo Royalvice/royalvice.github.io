@@ -1,0 +1,52 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r18-left-from-leg-swap-guide",
+  "actor": "nobita",
+  "frameMode": "two",
+  "generation": "one independent Flux i2i job per frame",
+  "references": [
+    {
+      "direction": "down",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "direction": "up",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+    },
+    {
+      "direction": "left",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+    }
+  ],
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict DOWN facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict DOWN facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict UP facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict UP facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an explicit opposite-contact pose guide. Preserve its exact LEFT-facing profile and swapped lower-body silhouette: the shoe that was previously behind is now the forward shoe on screen-left, while the other shoe trails behind on screen-right. Keep the bent forward arm and rear arm. Clean the green staging seam into a natural continuous pixel sprite, but do not restore the original leg order or arm pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    }
+  ]
+}

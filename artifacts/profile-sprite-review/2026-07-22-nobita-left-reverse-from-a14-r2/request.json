@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-22-nobita-left-reverse-from-a14-r2",
+  "variant": "r2",
+  "method": "single-image-walk-pose-reversal",
+  "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-a/candidate-14.png",
+  "referenceSha256": "97274ec46daaf94f412ebd8100bc22e8b5856b17464587d13082f80ff5399b83",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "referencePose": "左脚在前、右脚在后",
+  "inputImageCount": 1,
+  "prompt": "反转人物双腿的前后位置：左脚在后，右脚在前。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 81000,
+  "maxCandidates": 16,
+  "inputPolicy": "每个候选只上传同一张已生成的朝左走路姿势参考图，不上传中立图、其他帧或其他资产。"
+}

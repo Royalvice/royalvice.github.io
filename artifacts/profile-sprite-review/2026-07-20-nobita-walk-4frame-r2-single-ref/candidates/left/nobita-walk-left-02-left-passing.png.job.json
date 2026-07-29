@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 2 帧 passing：右脚支撑，左腿屈膝从身体下方向前经过；双脚在 profile 中前后错开但不重叠；右臂回落到身体前侧，左臂开始向左前方摆；头部保持纯左侧面。 Continuity: 这是四帧连续步态中的 02-left-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 23302,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-95eb90bda04c406e/sample.png",
+      "sha256": "4115bff9b2cc176647646dfbc00fb64602a5aea394bc863cdfd290b695f8aa12",
+      "size_bytes": 784783,
+      "url": "/v1/artifacts/flux2-95eb90bda04c406e/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784536493.3310912,
+  "error": null,
+  "finished_at": 1784536510.8493514,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-95eb90bda04c406e/reference_0.png"
+  ],
+  "job_id": "flux2-95eb90bda04c406e",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.2,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 2 帧 passing：右脚支撑，左腿屈膝从身体下方向前经过；双脚在 profile 中前后错开但不重叠；右臂回落到身体前侧，左臂开始向左前方摆；头部保持纯左侧面。 Continuity: 这是四帧连续步态中的 02-left-passing；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 23302,
+    "width": 1024
+  },
+  "started_at": 1784536493.4167228,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.052,
+    "denoise": 5.071,
+    "load_inputs": 0.021,
+    "reference_encode": 0.275,
+    "save_png": 0.755,
+    "text_encode": 0.336,
+    "total_wall": 17.433
+  },
+  "updated_at": 1784536510.8493636,
+  "worker_finished_at": 1784536510.1636791
+}

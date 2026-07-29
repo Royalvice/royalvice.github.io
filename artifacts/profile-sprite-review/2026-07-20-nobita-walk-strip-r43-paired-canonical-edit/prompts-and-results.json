@@ -1,0 +1,32 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r43-paired-canonical-edit",
+  "strips": [
+    {
+      "direction": "down",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r43-paired-canonical-edit/candidates/down/nobita-walk-down-1x2.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄正面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴正脸、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 Pose A：大雄自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。Pose B：大雄自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-6f055a6b999f426d",
+      "references": [
+        "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-down-reference.png"
+      ]
+    },
+    {
+      "direction": "up",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r43-paired-canonical-edit/candidates/up/nobita-walk-up-1x2.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 Pose A：大雄自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。Pose B：大雄自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地、浅蓝鞋完整可见。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-15bb1d79a4384195",
+      "references": [
+        "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-up-reference.png"
+      ]
+    },
+    {
+      "direction": "left",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-strip-r43-paired-canonical-edit/candidates/left/nobita-walk-left-1x2.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄左侧面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴侧脸、鼻尖朝左、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 Pose A：大雄自己的左脚向左前方落地、右脚向右后方落地，右臂向左前方、左臂向右后方。Pose B：大雄自己的右脚向左前方落地、左脚向右后方落地，左臂向左前方、右臂向右后方。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+      "jobId": "flux2-72bdaface34a4ccc",
+      "references": [
+        "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-left-reference.png"
+      ]
+    }
+  ]
+}

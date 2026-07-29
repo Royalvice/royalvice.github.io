@@ -1,0 +1,147 @@
+{
+  "furniture": {
+    "url": "/assets/profile/adventure/room-v3/furniture/furniture-grounded-v4-3x3.webp",
+    "size": [
+      384,
+      384
+    ],
+    "frameSize": [
+      128,
+      128
+    ],
+    "frameOrder": [
+      "chandelier",
+      "blackboard",
+      "eraser",
+      "secondary-desk",
+      "chair",
+      "sofa",
+      "water-cooler",
+      "tv-cabinet",
+      "ps5"
+    ],
+    "sha256": "522951d925e568b1e6b2b19d8de17bdb3f7dfc85dd1a4e0eb9cf3850c600ce71",
+    "bytes": 43044,
+    "layoutVersion": "grounded-v4",
+    "sprites": {
+      "chandelier": {
+        "alphaBbox": [
+          20,
+          10,
+          108,
+          121
+        ]
+      },
+      "blackboard": {
+        "alphaBbox": [
+          6,
+          33,
+          121,
+          96
+        ]
+      },
+      "eraser": {
+        "alphaBbox": [
+          35,
+          54,
+          95,
+          73
+        ]
+      },
+      "secondary-desk": {
+        "alphaBbox": [
+          7,
+          46,
+          122,
+          121
+        ]
+      },
+      "chair": {
+        "alphaBbox": [
+          27,
+          14,
+          101,
+          120
+        ]
+      },
+      "sofa": {
+        "alphaBbox": [
+          6,
+          37,
+          122,
+          121
+        ]
+      },
+      "water-cooler": {
+        "alphaBbox": [
+          39,
+          10,
+          88,
+          122
+        ]
+      },
+      "tv-cabinet": {
+        "alphaBbox": [
+          6,
+          31,
+          122,
+          121
+        ],
+        "screenRectPixels": [
+          39,
+          43,
+          87,
+          75
+        ],
+        "screenRectNormalized": [
+          0.304688,
+          0.335938,
+          0.375,
+          0.25
+        ],
+        "childAnchors": {
+          "ps5": [
+            0.83,
+            0.67
+          ]
+        }
+      },
+      "ps5": {
+        "alphaBbox": [
+          44,
+          22,
+          91,
+          119
+        ]
+      }
+    },
+    "selectedCandidates": {
+      "blackboard": "blackboard-b.png",
+      "secondary-desk": "desk-a.png",
+      "chair": "chair-b.png",
+      "sofa": "sofa-d.png",
+      "tv-cabinet": "tv-cabinet-a.png"
+    }
+  },
+  "lamps": {
+    "url": "/assets/profile/adventure/room-v3/props/bulkhead-wall-lamp-v4-4x1.webp",
+    "size": [
+      256,
+      96
+    ],
+    "frameSize": [
+      64,
+      96
+    ],
+    "frameOrder": [
+      "low",
+      "left",
+      "high",
+      "right"
+    ],
+    "sha256": "08d02be16564322a05572b12a7d3b0e52efaad9620571feb8c29277ddd14e5f9",
+    "bytes": 4996,
+    "layoutVersion": "grounded-v4",
+    "selectedCandidate": "bulkhead-lamp-a.png"
+  }
+}

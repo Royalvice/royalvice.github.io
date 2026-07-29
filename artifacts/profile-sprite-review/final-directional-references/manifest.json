@@ -1,0 +1,153 @@
+{
+  "version": "directional-reference-v1",
+  "generatedAt": "2026-07-20",
+  "reviewedWith": "view_image",
+  "status": "approved",
+  "purpose": "正式的 2D pixel sprite 方向参考图；不直接作为生产动画 atlas",
+  "directions": ["down", "up", "left"],
+  "rightPolicy": "运行时将 left 水平镜像为 right，不单独生成右向参考图",
+  "imageSpec": {
+    "format": "PNG",
+    "mode": "RGBA",
+    "size": [1024, 1024],
+    "transparentCorners": true,
+    "background": "透明 alpha，无房间、家具、地面、文字或 Logo"
+  },
+  "intermediateSources": {
+    "retained": false,
+    "cleanup": "所有 smoke、candidate、processed 和旧方向审查目录已在正式参考图归档后删除；每个 frame 的 sourceArtifact 字段保留生成时的历史路径和可追溯信息。"
+  },
+  "actors": {
+    "nobita": {
+      "displayName": "大雄",
+      "identityReference": "../final-front-references/nobita-front-reference.png",
+      "sourceRun": "2026-07-20-nobita-directional-reference-r1/r2",
+      "frames": {
+        "down": {
+          "file": "nobita/nobita-direction-down-reference.png",
+          "sourceArtifact": "../2026-07-20-nobita-directional-reference-r2/approved/nobita-direction-down-reference.png",
+          "sha256": "c5153e06eff9e628483b29570c7400672030c355bc6c0b0518c2c600c6de2022",
+          "alphaBbox": [304, 86, 726, 945]
+        },
+        "up": {
+          "file": "nobita/nobita-direction-up-reference.png",
+          "sourceArtifact": "../2026-07-20-nobita-directional-reference-r1/processed/nobita-direction-up-r1-alpha-contract1.png",
+          "sha256": "d19ba29d82a6d89abf901f23853953b7089793060e7bc361a269675f5abb65aa",
+          "alphaBbox": [307, 88, 721, 952]
+        },
+        "left": {
+          "file": "nobita/nobita-direction-left-reference.png",
+          "sourceArtifact": "../2026-07-20-nobita-directional-reference-r1/processed/nobita-direction-left-r1-alpha-contract1.png",
+          "sha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b",
+          "alphaBbox": [324, 87, 712, 940]
+        }
+      }
+    },
+    "doraemon": {
+      "displayName": "哆啦 A 梦",
+      "identityReference": "../final-front-references/doraemon-front-reference.png",
+      "sourceRun": "2026-07-20-doraemon-directional-reference-r2",
+      "frames": {
+        "down": {
+          "file": "doraemon/doraemon-direction-down-reference.png",
+          "sourceArtifact": "../2026-07-20-doraemon-directional-reference-r2/approved/doraemon-direction-down-reference.png",
+          "sha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+          "alphaBbox": [278, 160, 736, 863]
+        },
+        "up": {
+          "file": "doraemon/doraemon-direction-up-reference.png",
+          "sourceArtifact": "../2026-07-20-doraemon-directional-reference-r2/approved/doraemon-direction-up-reference.png",
+          "sha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+          "alphaBbox": [294, 154, 724, 872]
+        },
+        "left": {
+          "file": "doraemon/doraemon-direction-left-reference.png",
+          "sourceArtifact": "../2026-07-20-doraemon-directional-reference-r2/approved/doraemon-direction-left-reference.png",
+          "sha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+          "alphaBbox": [276, 151, 753, 885]
+        }
+      }
+    },
+    "shizuka": {
+      "displayName": "静香",
+      "identityReference": "../final-front-references/shizuka-front-reference.png",
+      "sourceRun": "2026-07-20-shizuka-directional-reference-r1",
+      "frames": {
+        "down": {
+          "file": "shizuka/shizuka-direction-down-reference.png",
+          "sourceArtifact": "../2026-07-20-shizuka-directional-reference-r1/approved/shizuka-direction-down-reference.png",
+          "sha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+          "alphaBbox": [328, 43, 683, 981]
+        },
+        "up": {
+          "file": "shizuka/shizuka-direction-up-reference.png",
+          "sourceArtifact": "../2026-07-20-shizuka-directional-reference-r1/approved/shizuka-direction-up-reference.png",
+          "sha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+          "alphaBbox": [329, 44, 684, 971]
+        },
+        "left": {
+          "file": "shizuka/shizuka-direction-left-reference.png",
+          "sourceArtifact": "../2026-07-20-shizuka-directional-reference-r1/approved/shizuka-direction-left-reference.png",
+          "sha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+          "alphaBbox": [354, 65, 661, 961]
+        }
+      }
+    },
+    "gian": {
+      "displayName": "胖虎",
+      "identityReference": "../final-front-references/gian-front-reference.png",
+      "sourceRun": "2026-07-20-gian-directional-reference-r2/r3",
+      "frames": {
+        "down": {
+          "file": "gian/gian-direction-down-reference.png",
+          "sourceArtifact": "../2026-07-20-gian-directional-reference-r2/approved/gian-direction-down-reference.png",
+          "sha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+          "alphaBbox": [243, 92, 779, 950]
+        },
+        "up": {
+          "file": "gian/gian-direction-up-reference.png",
+          "sourceArtifact": "../2026-07-20-gian-directional-reference-r2/approved/gian-direction-up-reference.png",
+          "sha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+          "alphaBbox": [250, 93, 774, 934]
+        },
+        "left": {
+          "file": "gian/gian-direction-left-reference.png",
+          "sourceArtifact": "../2026-07-20-gian-directional-reference-r2/approved/gian-direction-left-reference.png",
+          "sha256": "e09b0057e075a2a792422cabff8d20a03e655b8a9e77b30e16254e63880a5acf",
+          "alphaBbox": [343, 94, 717, 949]
+        }
+      }
+    },
+    "suneo": {
+      "displayName": "小夫",
+      "identityReference": "../final-front-references/suneo-front-reference.png",
+      "sourceRun": "2026-07-20-suneo-directional-reference-r2",
+      "frames": {
+        "down": {
+          "file": "suneo/suneo-direction-down-reference.png",
+          "sourceArtifact": "../2026-07-20-suneo-directional-reference-r2/approved/suneo-direction-down-reference.png",
+          "sha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+          "alphaBbox": [308, 50, 738, 961]
+        },
+        "up": {
+          "file": "suneo/suneo-direction-up-reference.png",
+          "sourceArtifact": "../2026-07-20-suneo-directional-reference-r2/approved/suneo-direction-up-reference.png",
+          "sha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+          "alphaBbox": [316, 52, 742, 956]
+        },
+        "left": {
+          "file": "suneo/suneo-direction-left-reference.png",
+          "sourceArtifact": "../2026-07-20-suneo-directional-reference-r2/approved/suneo-direction-left-reference.png",
+          "sha256": "3e05bff91431d7ff00ffb72d4763b178f4dcde8bff122ed9e8674789e6ca200a",
+          "alphaBbox": [271, 51, 736, 961]
+        }
+      }
+    }
+  },
+  "counts": {
+    "actors": 5,
+    "approvedReferences": 15,
+    "generatedDirections": 3,
+    "runtimeDirections": 4
+  }
+}

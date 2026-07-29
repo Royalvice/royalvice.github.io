@@ -1,0 +1,26 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r46-mirrored-front-back-side-passing",
+  "actor": "nobita",
+  "layout": "1x2 horizontal strip",
+  "width": 1024,
+  "height": 576,
+  "seedBase": 44000,
+  "generation": "one independent Flux i2i job per direction; one reference image per job",
+  "strips": [
+    {
+      "direction": "down",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-down-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄正面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴正脸、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄做自然小步 contact pose：画面左侧鞋向下前方落地，画面右侧鞋向上后方落地；画面右侧手臂向前，画面左侧手臂向后。 画布右边的大雄采用左边姿势的精确 horizontal mirror：画面右侧鞋向下前方落地，画面左侧鞋向上后方落地，双臂也左右互换；头脸仍严格正面。两幅双脚着地，连续纯色 #00FF00 chroma-key 背景。"
+    },
+    {
+      "direction": "up",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-up-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 画布左边的大雄做自然小步 contact pose：画面左侧鞋向上前方落地，画面右侧鞋向下后方落地；画面右侧手臂向前，画面左侧手臂向后。 画布右边的大雄采用左边姿势的精确 horizontal mirror：画面右侧鞋向上前方落地，画面左侧鞋向下后方落地，双臂也左右互换；后脑和衣背仍严格正背面。两幅双脚着地，连续纯色 #00FF00 chroma-key 背景。"
+    },
+    {
+      "direction": "left",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-left-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄左侧面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴侧脸、鼻尖朝左、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄做 contact pose：前侧鞋向画面左方落地，后侧鞋向右后方落地；前摆手臂朝左，后摆手臂朝右，步幅适中。 画布右边的大雄做紧接着的 passing pose：支撑脚位于身体正下方，另一只脚的脚尖从支撑脚旁贴地经过，两条腿靠拢；两只手臂经过身体两侧的中间位置。两格鼻尖都朝左，连续纯色 #00FF00 chroma-key 背景。"
+    }
+  ]
+}

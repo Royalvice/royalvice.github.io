@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 86002,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d6891866dc364af8/sample.png",
+      "sha256": "d0f404d477c0f0a90839bd63f3499ebf86e4bbfd3bb30206a607c2c0c70897f1",
+      "size_bytes": 218048,
+      "url": "/v1/artifacts/flux2-d6891866dc364af8/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784805712.1931236,
+  "error": null,
+  "finished_at": 1784805730.4835744,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d6891866dc364af8/reference_0.png"
+  ],
+  "job_id": "flux2-d6891866dc364af8",
+  "metrics": {
+    "nvml_peak_used_mib": 56337,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.8,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "只保留两条手臂，修复画面右侧弯曲手臂与肩膀的自然连接，手臂位置、双腿和身子保持不变。",
+    "prompt_upsampling": false,
+    "seed": 86002,
+    "width": 1024
+  },
+  "started_at": 1784805712.3199975,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.05,
+    "denoise": 5.075,
+    "load_inputs": 0.04,
+    "reference_encode": 0.305,
+    "save_png": 0.373,
+    "text_encode": 0.336,
+    "total_wall": 18.164
+  },
+  "updated_at": 1784805730.4835885,
+  "worker_finished_at": 1784805729.7153442
+}

@@ -1,0 +1,62 @@
+{
+  "runId": "2026-07-22-nobita-down-two-frame-clean-r1",
+  "reviewedAt": "2026-07-22",
+  "leftRightConvention": "角色自身左侧对应正面图的画面右侧",
+  "acceptanceRevision": {
+    "source": "user feedback during review",
+    "rule": "不做过严筛选；身体保持正面不侧斜，并且指定腿部前后关系正确即可。手臂方向、双脚是否完全贴地和轻微表情变化不再作为硬性淘汰条件。"
+  },
+  "frameA": {
+    "target": "角色自身左腿在前，即画面右侧腿在前",
+    "generatedCandidates": 16,
+    "acceptedCandidate": 9,
+    "acceptedSeed": 74008,
+    "acceptedJobId": "flux2-5bdb7009822c4e97",
+    "reason": "躯干保持正面竖直；画面右侧鞋更低、更大并位于前侧，对应角色自身左腿在前。",
+    "reviews": [
+      {
+        "candidates": "1-8",
+        "accepted": false,
+        "reason": "身体大多保持正直，但主要都是画面左侧腿在前，对应角色自身右腿，方向与 Frame A 相反。"
+      },
+      {
+        "candidate": 9,
+        "accepted": true,
+        "reason": "身体正直，角色自身左腿在前；轻微表情变化按放宽后的标准允许。"
+      },
+      {
+        "candidates": "10-16",
+        "accepted": false,
+        "reason": "身体大多保持正直，但前腿仍主要是角色自身右腿，未优于候选 9。"
+      }
+    ]
+  },
+  "frameB": {
+    "target": "角色自身右腿在前，即画面左侧腿在前",
+    "generatedCandidates": 4,
+    "acceptedCandidate": 1,
+    "acceptedSeed": 75000,
+    "acceptedJobId": "flux2-c00bf79c90dc4d54",
+    "reason": "躯干保持正面竖直，画面左侧腿清晰在前；人物尺寸与 Frame A 候选 9 接近。",
+    "reviews": [
+      {
+        "candidate": 1,
+        "accepted": true,
+        "reason": "第一批即满足身体不斜和角色自身右腿在前的核心标准。"
+      },
+      {
+        "candidates": "2-4",
+        "accepted": false,
+        "reason": "步伐方向基本可用，但候选 1 已合格且与 Frame A 的整体尺寸更接近，因此未继续抽卡。"
+      }
+    ]
+  },
+  "pairReview": {
+    "accepted": true,
+    "bodyAlignment": "两帧头部和躯干均保持正面，没有明显左右侧斜。",
+    "strideAlternation": "Frame A 为角色自身左腿在前，Frame B 为角色自身右腿在前。",
+    "scaleAndBaseline": "人物尺寸和脚底位置接近，可形成两帧循环。",
+    "nonBlockingDifference": "Frame A 嘴部略呈担忧表情，Frame B 为中性表情；按用户放宽后的验收标准保留。"
+  },
+  "status": "accepted-under-relaxed-body-and-stride-criteria"
+}

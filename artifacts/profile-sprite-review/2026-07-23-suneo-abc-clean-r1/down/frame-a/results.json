@@ -1,0 +1,72 @@
+{
+  "runId": "2026-07-23-suneo-abc-clean-r1",
+  "actor": "suneo",
+  "direction": "down",
+  "pose": "a",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 130000,
+      "jobId": "flux2-8a48efcdc3194b8c",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+      "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-01.png",
+      "outputSha256": "74e61bb82d7db7ca6a12d1ae4edb2235622f8a4200a6ab2356a182c13a15c27d",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 130001,
+      "jobId": "flux2-c1a03fc88eba4334",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+      "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-02.png",
+      "outputSha256": "ca0b388351e0260c36f595d9dfe9c0ac4b5592375eab42f1f26ab30e36a985e8",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 130002,
+      "jobId": "flux2-8ea5b8e520554a0a",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+      "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-03.png",
+      "outputSha256": "299a4583201607e19693d701f1c35b0754f3d6205fbe059e93f088686006ad8c",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 130003,
+      "jobId": "flux2-cff67c94c9944b29",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+      "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-04.png",
+      "outputSha256": "29ede553bbb9d54eba5b713f4e1f0d73dcc76ace7d23c215ca3e99fc16d41638",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

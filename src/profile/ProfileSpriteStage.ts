@@ -44,13 +44,17 @@ export type ProfileSpriteStageState = {
   depthOrder: ProfileActorId[];
   renderInstanceCount: Record<ProfileActorId, 0 | 1>;
   focusedActor: ProfileActorId | null;
+  tvPowerPhase: ProfileTvPowerPhase;
   assets: ProfileRoomAssetState;
 };
+
+export type ProfileTvPowerPhase = "idle" | "glow" | "white" | "arcade";
 
 type StageOptions = {
   reducedMotion: boolean;
   onReset: () => void;
   onDoorInteraction: () => void;
+  onTvInteraction: () => void;
   onActorInteraction: (actor: ProfileActorId, action: string) => void;
 };
 
@@ -82,11 +86,13 @@ export class ProfileSpriteStage {
   private posterRight = emptyImage();
   private snapshot: ProfileRoomSimulationState | null = null;
   private tv: ProfileRoomTv | null = null;
+  private tvPowerPhase: ProfileTvPowerPhase = "idle";
   private actionCounters = new Map<ProfileActorId, number>();
   private lastState: ProfileSpriteStageState = {
     depthOrder: [],
     renderInstanceCount: { nobita: 0, doraemon: 0, shizuka: 0, gian: 0, suneo: 0 },
     focusedActor: null,
+    tvPowerPhase: "idle",
     assets: {
       actors: { nobita: "failed", doraemon: "failed", shizuka: "failed", gian: "failed", suneo: "failed" },
       furniture: "fallback",
@@ -109,6 +115,7 @@ export class ProfileSpriteStage {
           ${PROFILE_ACTOR_IDS.map((id) => `<button type="button" data-profile-actor="${id}" aria-label="Trigger ${PROFILE_ACTORS[id].label} room action"><span>${PROFILE_ACTORS[id].label}</span></button>`).join("")}
         </div>
         <button class="profile-door-control" type="button" data-profile-door aria-label="Toggle the Anywhere Door inside the sprite room"><span>DOOR</span></button>
+        <button class="profile-tv-control" type="button" data-profile-tv aria-label="Open the playable Pac-Lab maze arcade inside the television" aria-controls="paclab-dialog" aria-expanded="false"><span>PLAY</span></button>
         <button class="profile-adventure-replay" type="button" data-profile-reset data-profile-replay><i aria-hidden="true">↻</i> RESET ROOM</button>
         <p class="profile-adventure-caption"><span data-room-status>ROOM ONLINE</span><b>PAC-LAB TV / 05</b></p>
         <ul class="profile-room-inventory sr-only" aria-label="Objects in the living research dungeon">
@@ -127,6 +134,7 @@ export class ProfileSpriteStage {
 
     this.bind(this.root.querySelector("[data-profile-reset]"), "click", () => this.options.onReset());
     this.bind(this.root.querySelector("[data-profile-door]"), "click", () => this.options.onDoorInteraction());
+    this.bind(this.root.querySelector("[data-profile-tv]"), "click", () => this.options.onTvInteraction());
     this.root.querySelectorAll<HTMLButtonElement>("[data-profile-actor]").forEach((button) => {
       const actor = button.dataset.profileActor as ProfileActorId;
       this.bind(button, "click", () => {
@@ -175,6 +183,17 @@ export class ProfileSpriteStage {
     this.snapshot = snapshot;
     this.tv = tv;
     return this.redraw();
+  }
+
+  setTvPowerPhase(phase: ProfileTvPowerPhase): void {
+    this.tvPowerPhase = phase;
+    this.root.dataset.tvPower = phase;
+    const button = this.root.querySelector<HTMLButtonElement>("[data-profile-tv]");
+    if (button) {
+      button.disabled = phase !== "idle";
+      button.setAttribute("aria-expanded", String(phase === "arcade"));
+    }
+    this.redraw();
   }
 
   getState(): ProfileSpriteStageState {
@@ -251,6 +270,7 @@ export class ProfileSpriteStage {
       depthOrder: ordered.map((actor) => actor.id),
       renderInstanceCount: count,
       focusedActor,
+      tvPowerPhase: this.tvPowerPhase,
       assets
     };
     this.root.dataset.roomRunning = this.options.reducedMotion ? "false" : "true";
@@ -954,6 +974,15 @@ export class ProfileSpriteStage {
     ctx.fillRect(x + 2, y + 2, 2, Math.max(1, height - 5));
     ctx.fillStyle = "rgba(4,10,12,.14)";
     for (let scanline = y + 2; scanline < y + height; scanline += 3) ctx.fillRect(x, scanline, width, 1);
+    if (this.tvPowerPhase === "glow") {
+      ctx.fillStyle = "rgba(238,250,233,.38)";
+      ctx.fillRect(x, y, width, height);
+      ctx.fillStyle = "rgba(255,255,255,.64)";
+      ctx.fillRect(x + 1, y + 1, Math.max(1, width - 2), 1);
+    } else if (this.tvPowerPhase === "white" || this.tvPowerPhase === "arcade") {
+      ctx.fillStyle = "#fffef5";
+      ctx.fillRect(x, y, width, height);
+    }
     ctx.restore();
   }
 
@@ -1067,6 +1096,20 @@ export class ProfileSpriteStage {
       doorButton.style.top = `${door.top / this.height * 100}%`;
       doorButton.style.width = `${door.width}px`;
       doorButton.style.height = `${door.height}px`;
+    }
+    const tvButton = this.root.querySelector<HTMLElement>("[data-profile-tv]");
+    if (tvButton) {
+      const tv = this.propRect("tv");
+      const screen = PROFILE_ROOM_SPRITE_META.tvCabinet.screenRect as [number, number, number, number];
+      tvButton.style.left = `${tv.left / this.width * 100}%`;
+      tvButton.style.top = `${tv.top / this.height * 100}%`;
+      tvButton.style.width = `${tv.width / this.width * 100}%`;
+      tvButton.style.height = `${tv.height / this.height * 100}%`;
+      tvButton.style.setProperty("--profile-tv-screen-left", `${screen[0] * 100}%`);
+      tvButton.style.setProperty("--profile-tv-screen-top", `${screen[1] * 100}%`);
+      tvButton.style.setProperty("--profile-tv-screen-width", `${screen[2] * 100}%`);
+      tvButton.style.setProperty("--profile-tv-screen-height", `${screen[3] * 100}%`);
+      tvButton.style.setProperty("--profile-tv-screen-center-x", `${(screen[0] + screen[2] * .5) * 100}%`);
     }
   }
 

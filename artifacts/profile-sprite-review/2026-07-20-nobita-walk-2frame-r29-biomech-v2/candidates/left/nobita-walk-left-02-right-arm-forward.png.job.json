@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，保持大雄脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋与2D pixel sprite比例、脚底pivot。 LEFT strict profile contact pose：左脚承重，右腿向左前摆；近侧手臂后摆、远侧手臂前摆，膝盖和脚尖朝左，身体保持纯侧面。 anatomically correct，完整全身，关节自然，脚底接触线清楚，纯#00FF00 chroma-key绿幕。",
+    "prompt_upsampling": false,
+    "seed": 23302,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-e0e1ea9589c34208/sample.png",
+      "sha256": "0a198d1300f035f3dbfb8df8c9c9f13eb453e8da7b8be701494551c4c9539fc5",
+      "size_bytes": 725720,
+      "url": "/v1/artifacts/flux2-e0e1ea9589c34208/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784552510.7953222,
+  "error": null,
+  "finished_at": 1784552528.4953756,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-e0e1ea9589c34208/reference_0.png"
+  ],
+  "job_id": "flux2-e0e1ea9589c34208",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.4,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，保持大雄脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋与2D pixel sprite比例、脚底pivot。 LEFT strict profile contact pose：左脚承重，右腿向左前摆；近侧手臂后摆、远侧手臂前摆，膝盖和脚尖朝左，身体保持纯侧面。 anatomically correct，完整全身，关节自然，脚底接触线清楚，纯#00FF00 chroma-key绿幕。",
+    "prompt_upsampling": false,
+    "seed": 23302,
+    "width": 1024
+  },
+  "started_at": 1784552510.8575854,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.055,
+    "denoise": 5.079,
+    "load_inputs": 0.022,
+    "reference_encode": 0.226,
+    "save_png": 0.714,
+    "text_encode": 0.335,
+    "total_wall": 17.638
+  },
+  "updated_at": 1784552528.4953923,
+  "worker_finished_at": 1784552527.7575114
+}

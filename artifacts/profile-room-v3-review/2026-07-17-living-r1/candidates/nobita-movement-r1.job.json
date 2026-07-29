@@ -1,0 +1,72 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 2,
+    "num_steps": 4,
+    "prompt": "A production-ready top-down pixel game sprite sheet. Exactly one character repeated exactly nine times in an exact 3 by 3 layout with nine equal invisible cells. Approximately seventy-degree high three-quarter overhead view, compact readable silhouette, visible crown, shoulders and feet, consistent scale and foot pivot. Crisp deliberate pixel clusters, dark one-to-two-pixel outline at final game resolution, limited palette, warm upper-left room light. Preserve the exact same identity, face, body proportions, clothing and colors in every cell. Perfectly flat solid #00FF00 chroma-key background. No floor, no cast shadow, no scenery, no furniture, no text, no labels, no grid lines, no card frame, no logo, no watermark, no cropped head or feet, no overlap between cells, no extra people, no duplicated limbs. Use image one as canonical identity and image two as the already approved pixel rendering reference. Subject: Nobita Nobi, the same slim Japanese schoolboy from the identity reference: child proportions, large round black glasses, short black hair, yellow short-sleeve polo, navy shorts, white socks and pale blue shoes. The character walks with the same small natural stride in all cells. Exact reading order: row one contains three walk-down frames facing toward the lower edge (left foot contact, passing pose, right foot contact); row two contains three walk-side frames facing screen-right (left foot contact, passing pose, right foot contact); row three contains three walk-up frames facing away toward the top edge (left foot contact, passing pose, right foot contact). The top/down/side directions must be unmistakable at thumbnail size. No props.",
+    "prompt_upsampling": false,
+    "seed": 81100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4fdf5f10a7d44e65/sample.png",
+      "sha256": "ef1333d24835021373f3894e0446822a4f62cfe485e79852b62b02aea7cdd1b7",
+      "size_bytes": 860693,
+      "url": "/v1/artifacts/flux2-4fdf5f10a7d44e65/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784285480.6415708,
+  "error": null,
+  "finished_at": 1784285495.787912,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4fdf5f10a7d44e65/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4fdf5f10a7d44e65/reference_1.png"
+  ],
+  "job_id": "flux2-4fdf5f10a7d44e65",
+  "metrics": {
+    "nvml_peak_used_mib": 56845,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53287.6,
+    "torch_peak_reserved_mib": 53828
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "A production-ready top-down pixel game sprite sheet. Exactly one character repeated exactly nine times in an exact 3 by 3 layout with nine equal invisible cells. Approximately seventy-degree high three-quarter overhead view, compact readable silhouette, visible crown, shoulders and feet, consistent scale and foot pivot. Crisp deliberate pixel clusters, dark one-to-two-pixel outline at final game resolution, limited palette, warm upper-left room light. Preserve the exact same identity, face, body proportions, clothing and colors in every cell. Perfectly flat solid #00FF00 chroma-key background. No floor, no cast shadow, no scenery, no furniture, no text, no labels, no grid lines, no card frame, no logo, no watermark, no cropped head or feet, no overlap between cells, no extra people, no duplicated limbs. Use image one as canonical identity and image two as the already approved pixel rendering reference. Subject: Nobita Nobi, the same slim Japanese schoolboy from the identity reference: child proportions, large round black glasses, short black hair, yellow short-sleeve polo, navy shorts, white socks and pale blue shoes. The character walks with the same small natural stride in all cells. Exact reading order: row one contains three walk-down frames facing toward the lower edge (left foot contact, passing pose, right foot contact); row two contains three walk-side frames facing screen-right (left foot contact, passing pose, right foot contact); row three contains three walk-up frames facing away toward the top edge (left foot contact, passing pose, right foot contact). The top/down/side directions must be unmistakable at thumbnail size. No props.",
+    "prompt_upsampling": false,
+    "seed": 81100,
+    "width": 1024
+  },
+  "started_at": 1784285480.7451425,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.748,
+    "denoise": 3.55,
+    "load_inputs": 0.018,
+    "reference_encode": 0.139,
+    "save_png": 0.679,
+    "text_encode": 0.336,
+    "total_wall": 15.043
+  },
+  "updated_at": 1784285495.7879276,
+  "worker_finished_at": 1784285495.0949054
+}

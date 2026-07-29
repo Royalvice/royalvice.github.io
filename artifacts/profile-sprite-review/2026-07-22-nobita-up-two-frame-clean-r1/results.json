@@ -1,0 +1,63 @@
+{
+  "runId": "2026-07-22-nobita-up-two-frame-clean-r1",
+  "reference": {
+    "path": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+    "sha256": "d19ba29d82a6d89abf901f23853953b7089793060e7bc361a269675f5abb65aa",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "selection": {
+    "frameA": {
+      "candidate": 1,
+      "sourceFrame": "frame-b",
+      "sheetLabel": "B01",
+      "seed": 79000,
+      "jobId": "flux2-93c1321227e4493e",
+      "source": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/frame-b/candidate-01.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/selected-frame-a.png",
+      "sha256": "4fbbbf8031f1482382187289a91574ff4c65ba8b2b8d2fc3f9661b2c4080d917",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "frameB": {
+      "candidate": 4,
+      "sourceFrame": "frame-b",
+      "sheetLabel": "B04",
+      "seed": 79003,
+      "jobId": "flux2-1ea283280c3140f4",
+      "source": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/frame-b/candidate-04.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/selected-frame-b.png",
+      "sha256": "f8aef0d3ba48e13fa323c3a5f1359ddb65bcd3344f6ff485cdd99e0790a46194",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "reviewArtifacts": {
+    "contactSheet": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/two-frame-review-contact.png",
+      "sha256": "b96a0dacc183b4163f255a1e12981d906f0a0d7de0dacc567aff37d4030b92d5",
+      "size": [
+        2048,
+        1088
+      ]
+    },
+    "loopPreview": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-up-two-frame-clean-r1/two-frame-preview.gif",
+      "sha256": "3b9648e5f5e3089cb7ace7d7eedf308d7b31b8e62835798ef291cb2108b814b6",
+      "frames": 2,
+      "durationMsPerFrame": 350
+    }
+  },
+  "generationCounts": {
+    "frameA": 4,
+    "frameB": 4,
+    "total": 8
+  },
+  "status": "accepted-by-user-selection-b01-b04"
+}

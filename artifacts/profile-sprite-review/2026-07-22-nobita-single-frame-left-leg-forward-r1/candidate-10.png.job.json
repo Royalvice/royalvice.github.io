@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72009,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b4e43eb1a23f4af9/sample.png",
+      "sha256": "553a02b5c93f96cca7faa62ee9e9e7030be3e0cc23fea83ac96b62d6cf8fbbed",
+      "size_bytes": 277727,
+      "url": "/v1/artifacts/flux2-b4e43eb1a23f4af9/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784702651.1849477,
+  "error": null,
+  "finished_at": 1784702669.9040923,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b4e43eb1a23f4af9/reference_0.png"
+  ],
+  "job_id": "flux2-b4e43eb1a23f4af9",
+  "metrics": {
+    "nvml_peak_used_mib": 55809,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.6,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+    "prompt_upsampling": false,
+    "seed": 72009,
+    "width": 1024
+  },
+  "started_at": 1784702651.25749,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.055,
+    "denoise": 5.082,
+    "load_inputs": 0.126,
+    "reference_encode": 0.267,
+    "save_png": 0.406,
+    "text_encode": 0.347,
+    "total_wall": 18.647
+  },
+  "updated_at": 1784702669.9041073,
+  "worker_finished_at": 1784702669.1901734
+}

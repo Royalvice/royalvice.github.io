@@ -1,0 +1,26 @@
+{
+  "runId": "2026-07-20-nobita-walk-strip-r45-spatially-bound-poses",
+  "actor": "nobita",
+  "layout": "1x2 horizontal strip",
+  "width": 1024,
+  "height": 576,
+  "seedBase": 42000,
+  "generation": "one independent Flux i2i job per direction; one reference image per job",
+  "strips": [
+    {
+      "direction": "down",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-down-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄正面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴正脸、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄是 Pose A：他自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。画布右边的大雄是 Pose B：他自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。"
+    },
+    {
+      "direction": "up",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-up-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 画布左边的大雄是 Pose A：他自己的左脚向前落地、右脚向后落地，右臂向前、左臂向后。画布右边的大雄是 Pose B：他自己的右脚向前落地、左脚向后落地，左臂向前、右臂向后。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地、浅蓝鞋完整可见。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。"
+    },
+    {
+      "direction": "left",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-left-reference.png",
+      "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄左侧面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴侧脸、鼻尖朝左、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄是 Pose A：他自己的左脚向左前方落地、右脚向右后方落地，右臂向左前方、左臂向右后方。画布右边的大雄是 Pose B：他自己的右脚向左前方落地、左脚向右后方落地，左臂向左前方、右臂向右后方。 A 的前脚明确是左脚，B 的前脚明确是右脚；两幅都是直立的小步慢走 contact pose，双脚着地。人物位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。"
+    }
+  ]
+}

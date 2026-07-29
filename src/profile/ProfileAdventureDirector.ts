@@ -4,7 +4,7 @@ import {
   type ProfileActorState,
   type ProfileRoomStationId
 } from "./ProfileRoomSimulation";
-import { ProfileSpriteStage, type ProfileRoomAssetState, type ProfileSpriteStageState } from "./ProfileSpriteStage";
+import { ProfileSpriteStage, type ProfileRoomAssetState, type ProfileSpriteStageState, type ProfileTvPowerPhase } from "./ProfileSpriteStage";
 import { ProfileRoomTv } from "./ProfileRoomTv";
 import { PROFILE_ROOM_LAYOUT_VERSION, profileRoomLayoutSnapshot } from "./profileRoomLayout";
 
@@ -43,6 +43,8 @@ export type ProfileRoomDebugState = {
   portalStrength: number;
   tvFrame: number;
   tvPelletsRemaining: number;
+  tvPowerPhase: ProfileTvPowerPhase;
+  tvPowerHistory: ProfileTvPowerPhase[];
   navigation: {
     deadlockRecoveries: number;
     reservedCells: Array<{ cell: string; actor: ProfileActorId }>;
@@ -66,12 +68,14 @@ declare global {
       triggerActor: (actor: ProfileActorId, action?: string) => void;
       sendActorTo: (actor: ProfileActorId, station: ProfileRoomStationId) => boolean;
       setDoorOpen: (open: boolean) => void;
+      setTvPowerPhase: (phase: ProfileTvPowerPhase) => void;
     };
   }
 }
 
 type DirectorOptions = {
   reducedMotion: boolean;
+  onTvInteraction?: () => void | Promise<void>;
 };
 
 const emptyAssets = (): ProfileRoomAssetState => ({
@@ -97,9 +101,13 @@ export class ProfileAdventureDirector {
     depthOrder: [],
     renderInstanceCount: { nobita: 0, doraemon: 0, shizuka: 0, gian: 0, suneo: 0 },
     focusedActor: null,
+    tvPowerPhase: "idle",
     assets: emptyAssets()
   };
   private listeners: Array<() => void> = [];
+  private tvPowerPhase: ProfileTvPowerPhase = "idle";
+  private tvPowerHistory: ProfileTvPowerPhase[] = ["idle"];
+  private tvBootTimers: number[] = [];
 
   constructor(private root: HTMLElement, private options: DirectorOptions) {
     this.simulation = new ProfileRoomSimulation(options.reducedMotion);
@@ -108,6 +116,7 @@ export class ProfileAdventureDirector {
       reducedMotion: options.reducedMotion,
       onReset: () => this.reset(),
       onDoorInteraction: () => this.toggleDoor(),
+      onTvInteraction: () => this.activateTvArcade(),
       onActorInteraction: (actor, action) => this.triggerActor(actor, action)
     });
     this.bind(document, "keydown", ((event: KeyboardEvent) => {
@@ -126,6 +135,7 @@ export class ProfileAdventureDirector {
 
   destroy(): void {
     this.pause();
+    this.clearTvBootTimers();
     this.stage.destroy();
     this.listeners.splice(0).forEach((dispose) => dispose());
     delete window.__profileAdventureDebug;
@@ -209,6 +219,50 @@ export class ProfileAdventureDirector {
     this.render();
   }
 
+  resetTvPower(): void {
+    this.clearTvBootTimers();
+    this.tvPowerPhase = "idle";
+    this.tvPowerHistory.push("idle");
+    this.stage.setTvPowerPhase("idle");
+  }
+
+  setTvPowerPhase(phase: ProfileTvPowerPhase): void {
+    this.clearTvBootTimers();
+    this.tvPowerPhase = phase;
+    this.tvPowerHistory.push(phase);
+    this.stage.setTvPowerPhase(phase);
+  }
+
+  private activateTvArcade(): void {
+    if (this.tvPowerPhase !== "idle") return;
+    this.pause();
+    if (this.options.reducedMotion) {
+      this.tvPowerPhase = "arcade";
+      this.tvPowerHistory.push("arcade");
+      this.stage.setTvPowerPhase("arcade");
+      void this.options.onTvInteraction?.();
+      return;
+    }
+    this.tvPowerPhase = "glow";
+    this.tvPowerHistory.push("glow");
+    this.stage.setTvPowerPhase("glow");
+    this.tvBootTimers.push(window.setTimeout(() => {
+      this.tvPowerPhase = "white";
+      this.tvPowerHistory.push("white");
+      this.stage.setTvPowerPhase("white");
+    }, 220));
+    this.tvBootTimers.push(window.setTimeout(() => {
+      this.tvPowerPhase = "arcade";
+      this.tvPowerHistory.push("arcade");
+      this.stage.setTvPowerPhase("arcade");
+      void this.options.onTvInteraction?.();
+    }, 420));
+  }
+
+  private clearTvBootTimers(): void {
+    this.tvBootTimers.splice(0).forEach((timer) => window.clearTimeout(timer));
+  }
+
   private toggleDoor(): void {
     if (this.options.reducedMotion) return;
     this.simulation.toggleDoor();
@@ -286,6 +340,8 @@ export class ProfileAdventureDirector {
       portalStrength: simulation.doorStrength,
       tvFrame: tv.frame,
       tvPelletsRemaining: tv.pelletsRemaining,
+      tvPowerPhase: this.tvPowerPhase,
+      tvPowerHistory: [...this.tvPowerHistory],
       navigation: {
         deadlockRecoveries: simulation.navigation.deadlockRecoveries,
         reservedCells: simulation.navigation.reservedCells.map((entry) => ({ ...entry }))
@@ -308,7 +364,8 @@ export class ProfileAdventureDirector {
       replay: () => this.reset(),
       triggerActor: (actor, action) => this.triggerActor(actor, action),
       sendActorTo: (actor, station) => this.sendActorTo(actor, station),
-      setDoorOpen: (open) => this.setDoorOpen(open)
+      setDoorOpen: (open) => this.setDoorOpen(open),
+      setTvPowerPhase: (phase) => this.setTvPowerPhase(phase)
     };
   }
 

@@ -1,0 +1,1 @@
+参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 LEFT纯侧面 contact pose：右脚承重落地，左腿向左前摆；近侧手臂前摆、远侧手臂后摆，膝盖和脚尖朝左。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。

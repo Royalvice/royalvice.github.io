@@ -1,0 +1,262 @@
+{
+  "runId": "2026-07-22-nobita-left-two-frame-clean-r1",
+  "frame": "frame-b",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 77000,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-add43c8d3d044a37",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-01.png",
+      "outputSha256": "4aac8199622a4273f11431b80c9d97d41127a0b2b1b83627d1fb394a5839a103",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 2,
+      "seed": 77001,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-bfc45acd3b69477c",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-02.png",
+      "outputSha256": "4b11be0484b269356e2dc821e37f1ce8c23b705a42082d9d04a74b254d7cc02e",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 3,
+      "seed": 77002,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-9b454ec32c1449a0",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-03.png",
+      "outputSha256": "66b9a4baa70aeae79bf72ed3f0ddfe876ce4b39e5cb5206d80444f8f69f42102",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 4,
+      "seed": 77003,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-3e62714e792a40d0",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-04.png",
+      "outputSha256": "e4ac1708ab4cf4486c99957056c05f208938f3156a47ed4ac3664964b94992e0",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 5,
+      "seed": 77004,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-fd73f6960b244aec",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-05.png",
+      "outputSha256": "c8a97a7b03d3e01cc6fdb45ab5ce30a5af678f3810e6486f5225d9837ba9e74f",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 6,
+      "seed": 77005,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-cad0b9cd73da4256",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-06.png",
+      "outputSha256": "8b2cc17227a86dbf2cddb63a0415e5f835eb5feafbbd6a4fc8df6a4299c7bc2b",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 7,
+      "seed": 77006,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-530d61db259d48a5",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-07.png",
+      "outputSha256": "3ffaadc1d3160a5e1374e932cdecf310c9ba963402cc3dcc2920cad6813b5d97",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 8,
+      "seed": 77007,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-2b807f8512d244ec",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-08.png",
+      "outputSha256": "07d3966ac65fafbb115833df33d2947f95f53c2199a23dd2ebb5d44180134333",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 9,
+      "seed": 77008,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-b9acd530649f450b",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-09.png",
+      "outputSha256": "6a5a5f4e5e669fa2e685b5fdb131cbf98e3866f1ab6a3ea72fffff6ab64b38c1",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 10,
+      "seed": 77009,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-4b26c39e2d8449fc",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-10.png",
+      "outputSha256": "96cda5cedd341dcde7a1cda740d7d18508e3b5aa0ee875b01f92ff34131a2837",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 11,
+      "seed": 77010,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-2878a5b2a72e43c6",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-11.png",
+      "outputSha256": "4e88f8bcee09c95821ee5c4e77518f12c9b5fc88ab76427afd45e8283a91eb62",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 12,
+      "seed": 77011,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-fa3d727069b345f6",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-12.png",
+      "outputSha256": "3174c536f2cb70366362702c7f4ea1f51b6713203fbc21c51ff1b95a360ba102",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 13,
+      "seed": 77012,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-425043bf8e46415f",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-13.png",
+      "outputSha256": "656e528e953795609c504ba4a7987fc35fb111ac5af60cf673287b9fb5782049",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 14,
+      "seed": 77013,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-f811875810c1448b",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-14.png",
+      "outputSha256": "2124fd89e0faa81ba07959429e348c28ff8aaa17238fed3e13e4910993614b2f",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 15,
+      "seed": 77014,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-1bc69a149f934ce1",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-15.png",
+      "outputSha256": "1f016e65d927581788483bb7a1e29a822efd625b27ae5ccc46008753c9554a2b",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    },
+    {
+      "candidate": 16,
+      "seed": 77015,
+      "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-5e4b650ec5994736",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-b/candidate-16.png",
+      "outputSha256": "aa11f4b09da7583bf2634fcb5f54491c4c6091eeda19049c59ce2d247d8ac4b5",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+      "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b"
+    }
+  ]
+}

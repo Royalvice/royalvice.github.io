@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. Use the supplied single image as an exact pose guide. Preserve the LEFT-facing profile, bent forward arm, rear arm, and the swapped lower-leg positions: the forward stride is now on the opposite side from the first frame, with one shoe extended screen-left and the other trailing behind. Clean the guide into a natural, coherent Nobita pixel sprite while keeping its pose, identity, glasses, hair, yellow shirt, navy shorts and pale blue shoes. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+    "prompt_upsampling": false,
+    "seed": 50302,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-dca422d65e194a05/sample.png",
+      "sha256": "4ed4fced8c3e9a4291cdc85b242f2eb58a03616b4d8bacfc2a2dc5dbb96392b2",
+      "size_bytes": 657822,
+      "url": "/v1/artifacts/flux2-dca422d65e194a05/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784541166.7540438,
+  "error": null,
+  "finished_at": 1784541184.3373735,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-dca422d65e194a05/reference_0.png"
+  ],
+  "job_id": "flux2-dca422d65e194a05",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. Use the supplied single image as an exact pose guide. Preserve the LEFT-facing profile, bent forward arm, rear arm, and the swapped lower-leg positions: the forward stride is now on the opposite side from the first frame, with one shoe extended screen-left and the other trailing behind. Clean the guide into a natural, coherent Nobita pixel sprite while keeping its pose, identity, glasses, hair, yellow shirt, navy shorts and pale blue shoes. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+    "prompt_upsampling": false,
+    "seed": 50302,
+    "width": 1024
+  },
+  "started_at": 1784541166.8194778,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.055,
+    "denoise": 5.077,
+    "load_inputs": 0.036,
+    "reference_encode": 0.214,
+    "save_png": 0.609,
+    "text_encode": 0.337,
+    "total_wall": 17.518
+  },
+  "updated_at": 1784541184.3373885,
+  "worker_finished_at": 1784541183.5330255
+}

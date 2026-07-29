@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 画布左边的大雄做自然小步 contact pose：画面左侧鞋向上前方落地，画面右侧鞋向下后方落地；画面右侧手臂向前，画面左侧手臂向后。 画布右边的大雄采用左边姿势的精确 horizontal mirror：画面右侧鞋向上前方落地，画面左侧鞋向下后方落地，双臂也左右互换；后脑和衣背仍严格正背面。两幅双脚着地，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 44100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-278528900bf54e9e/sample.png",
+      "sha256": "dd5f8fd1e1222dec4d6097e87ec3e3f2dfedb08c4d8301218acc644234f56402",
+      "size_bytes": 217272,
+      "url": "/v1/artifacts/flux2-278528900bf54e9e/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784562191.520551,
+  "error": null,
+  "finished_at": 1784562206.3865094,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-278528900bf54e9e/reference_0.png"
+  ],
+  "job_id": "flux2-278528900bf54e9e",
+  "metrics": {
+    "nvml_peak_used_mib": 54225,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 51382.3,
+    "torch_peak_reserved_mib": 51708
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄背面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的后脑、发型、躯干、衣背、尺寸、位置和 baseline，只重新摆放手臂与腿，两个人始终正背面朝画面上方。 画布左边的大雄做自然小步 contact pose：画面左侧鞋向上前方落地，画面右侧鞋向下后方落地；画面右侧手臂向前，画面左侧手臂向后。 画布右边的大雄采用左边姿势的精确 horizontal mirror：画面右侧鞋向上前方落地，画面左侧鞋向下后方落地，双臂也左右互换；后脑和衣背仍严格正背面。两幅双脚着地，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 44100,
+    "width": 1024
+  },
+  "started_at": 1784562191.5848525,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.563,
+    "denoise": 2.697,
+    "load_inputs": 0.013,
+    "reference_encode": 0.148,
+    "save_png": 0.229,
+    "text_encode": 0.338,
+    "total_wall": 14.802
+  },
+  "updated_at": 1784562206.386525,
+  "worker_finished_at": 1784562205.62865
+}

@@ -1,0 +1,1569 @@
+{
+  "runId": "2026-07-24-profile-walk-abc-all-actors-r1",
+  "status": "installed",
+  "generatedAt": "2026-07-24T08:01:51.062497+00:00",
+  "acceptance": "visual-gait-priority",
+  "frameOrder": [
+    "down-0",
+    "down-1",
+    "down-2",
+    "side-0",
+    "side-1",
+    "side-2",
+    "up-0",
+    "up-1",
+    "up-2"
+  ],
+  "actors": {
+    "doraemon": {
+      "actor": "doraemon",
+      "status": "installed",
+      "atlas": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/staged/doraemon-movement-3x3.webp",
+        "sha256": "19bc4b95dd0892aa8a03346699754469ded555afb14929be46c060dba6b2e78b",
+        "bytes": 81892,
+        "size": [
+          384,
+          384
+        ]
+      },
+      "review": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/doraemon-runtime-review-960.png",
+        "sha256": "f7d65e6ec90956587cb864cc1bea059ad749ba416a99e968a3e7793aeb0d0b78",
+        "size": [
+          960,
+          960
+        ]
+      },
+      "previews": {
+        "down": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/doraemon-down-abc.gif",
+          "sha256": "fb865850651cd4e2c270d22c57542b4cb7f0ab542e2225ed8373e97a6ac3669c"
+        },
+        "side": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/doraemon-side-abc.gif",
+          "sha256": "52cfa1ca6d9f06f5385c1b883a21e9499f8619ff530133c1d36367ebc1ca2677"
+        },
+        "up": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/doraemon-up-abc.gif",
+          "sha256": "1e3f57446cad8f01c22ffafc1b40c811beedc6d4da7639c6cab719876c9c7185"
+        }
+      },
+      "frames": [
+        {
+          "frame": "down-0",
+          "role": "selected-i2i",
+          "selectionKey": "down-a",
+          "candidate": 2,
+          "runId": "2026-07-23-doraemon-abc-clean-r1",
+          "seed": 100001,
+          "jobId": "flux2-4c2bb5f29be343e5",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+          "referenceSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-a/candidate-02.png",
+          "sourceSha256": "38d91617415d6be772a67763ff51165d52bc055a4430c35f76ac7e5547256b1c",
+          "sourceBbox": [
+            262,
+            153,
+            755,
+            891
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            27,
+            8,
+            100,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/down-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-0.png",
+          "processedSha256": "77a3fb20dbb50c550d03dd968883aa084b2d3e4ff9b211fbd5908fb5531186e1"
+        },
+        {
+          "frame": "down-1",
+          "role": "B-reference",
+          "direction": "down",
+          "referenceManifestSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+          "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+          "sourceSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+          "sourceBbox": [
+            278,
+            160,
+            736,
+            863
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            28,
+            8,
+            100,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/down-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-1.png",
+          "processedSha256": "c36fd5f645d7bf1f3823c5007069a74ac9ca1fb1c89aed9bfd0797555bfe6802"
+        },
+        {
+          "frame": "down-2",
+          "role": "selected-i2i",
+          "selectionKey": "down-c",
+          "candidate": 4,
+          "runId": "2026-07-23-doraemon-abc-clean-r1",
+          "seed": 100103,
+          "jobId": "flux2-45373c24012f4c29",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-down-reference.png",
+          "referenceSha256": "c7794e2c2249e1e5dbe7cea53e466c8232380d63aff39e12a6b1e3baeb71df4e",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-c/candidate-04.png",
+          "sourceSha256": "75108fdac747d9913e3921667c616b1510673c04e58ca8bda78bd8ddb5e73a18",
+          "sourceBbox": [
+            246,
+            154,
+            772,
+            891
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            24,
+            8,
+            103,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/down-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/down-2.png",
+          "processedSha256": "b681baad96857d4e98104a8d5eb0f7797ffd352efad64879e338bc649f612563"
+        },
+        {
+          "frame": "side-0",
+          "role": "selected-i2i",
+          "selectionKey": "left-a",
+          "candidate": 2,
+          "runId": "2026-07-23-doraemon-abc-clean-r1",
+          "seed": 100201,
+          "jobId": "flux2-1b1da2f1703e4c5a",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+          "referenceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+          "sourceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+          "sourceBbox": [
+            270,
+            144,
+            760,
+            899
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            29,
+            8,
+            100,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/side-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-0.png",
+          "processedSha256": "e8fbc85e29c82ab21a6c81249770f57880eb8f3b7c63790e9cc6d8b7819041fc"
+        },
+        {
+          "frame": "side-1",
+          "role": "B-reference",
+          "direction": "left",
+          "referenceManifestSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+          "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-left-reference.png",
+          "sourceSha256": "73f3c20a3fded75a8f1e7860ee73316583e82ca30375b7fc83e68f7cd498dba7",
+          "sourceBbox": [
+            276,
+            151,
+            753,
+            885
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            29,
+            8,
+            100,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/side-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-1.png",
+          "processedSha256": "cc5d21f1a49faa3fdf7474063a3f704bfeaaf347c0a82d079be74bed5e734bde"
+        },
+        {
+          "frame": "side-2",
+          "role": "selected-i2i",
+          "selectionKey": "left-c",
+          "candidate": 5,
+          "runId": "2026-07-23-doraemon-abc-reverse-explicit-r3",
+          "seed": 100904,
+          "jobId": "flux2-8373198b19f340fd",
+          "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+          "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-05.png",
+          "sourceSha256": "b7461ef08cea7ccee8ba550ee19d11724539c61ccc102c61934efeb80b9bffe7",
+          "sourceBbox": [
+            269,
+            145,
+            759,
+            897
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            28,
+            8,
+            100,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/side-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/side-2.png",
+          "processedSha256": "2d8abe0a7a3e09212df4e95ab2430322e5460374dd70cbe97431e1c64c4c1f93"
+        },
+        {
+          "frame": "up-0",
+          "role": "selected-i2i",
+          "selectionKey": "up-a",
+          "candidate": 1,
+          "runId": "2026-07-23-doraemon-abc-clean-r1",
+          "seed": 100400,
+          "jobId": "flux2-1dea4fb9cfc14449",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+          "referenceSha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-a/candidate-01.png",
+          "sourceSha256": "fbe51d8889b2b71d9303cc514520e795775682d47df2b4b4546de0364003ed5f",
+          "sourceBbox": [
+            282,
+            147,
+            731,
+            893
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            31,
+            8,
+            97,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/up-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-0.png",
+          "processedSha256": "ec95e535592d3aab20f16f9ff2f6f204db5b54406e1df608045c6022addccf2d"
+        },
+        {
+          "frame": "up-1",
+          "role": "B-reference",
+          "direction": "up",
+          "referenceManifestSha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+          "source": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+          "sourceSha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+          "sourceBbox": [
+            294,
+            154,
+            724,
+            872
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            31,
+            8,
+            97,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/up-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-1.png",
+          "processedSha256": "71a00fe3b170fb3c9b0bc2d45c8daf36cadfc0a3609f77f1611063bf47bc77f4"
+        },
+        {
+          "frame": "up-2",
+          "role": "selected-i2i",
+          "selectionKey": "up-c",
+          "candidate": 2,
+          "runId": "2026-07-23-doraemon-abc-clean-r1",
+          "seed": 100501,
+          "jobId": "flux2-56e1c51130c04756",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/doraemon/doraemon-direction-up-reference.png",
+          "referenceSha256": "15fadf57a32088b4de0793454f53b9d7e12c43048f1ce2076b5cdedfddd85c80",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-c/candidate-02.png",
+          "sourceSha256": "2ca6b444ca193869d367760b53871f55f50329f08185355e0bc6570192af928d",
+          "sourceBbox": [
+            288,
+            148,
+            735,
+            897
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            31,
+            8,
+            97,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/selected-sources/up-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/doraemon/processed/up-2.png",
+          "processedSha256": "b5bedc786ae80b90a11c4d4db218a8b160c9311308faa8f9de0d50ba04145ce8"
+        }
+      ],
+      "installTarget": "public/assets/profile/adventure/room-v4/actors/doraemon-movement-3x3.webp",
+      "previousPublicSha256": "f69b1bb11f754503cc42a5fe8b7fa98642528a8de612888d8588c72dfa301259",
+      "backup": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/backup/doraemon-movement-3x3.webp"
+    },
+    "shizuka": {
+      "actor": "shizuka",
+      "status": "installed",
+      "atlas": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/staged/shizuka-movement-3x3.webp",
+        "sha256": "c546e5258785193eedeb6af1041568c1be9b3099df3b71cdb15a65ffee743bcb",
+        "bytes": 60640,
+        "size": [
+          384,
+          384
+        ]
+      },
+      "review": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/shizuka-runtime-review-960.png",
+        "sha256": "dcdc44fcd21e43b8e2c3d74252461fbe365d188430211145d750469b827ec770",
+        "size": [
+          960,
+          960
+        ]
+      },
+      "previews": {
+        "down": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/shizuka-down-abc.gif",
+          "sha256": "05332ae4f06b3d416d40ebbdce6313b2e245066775632cb5ee95c76aa272e683"
+        },
+        "side": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/shizuka-side-abc.gif",
+          "sha256": "e30bf1174a3d1ad061e1cc96a6fb628e653461686f0ab429d59a07a360f2fe9e"
+        },
+        "up": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/shizuka-up-abc.gif",
+          "sha256": "21c948455e187351c8c12b5537dcb13ab5c64e2bb01eb742d6a3add963894d2b"
+        }
+      },
+      "frames": [
+        {
+          "frame": "down-0",
+          "role": "selected-i2i",
+          "selectionKey": "down-a",
+          "candidate": 1,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110000,
+          "jobId": "flux2-5cec9edc0fcb4b9b",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+          "referenceSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-a/candidate-01.png",
+          "sourceSha256": "27e506e992f24a360be32ac653fd9bbe7597b6b5cae0d5aaf7a7efe2af6ce44f",
+          "sourceBbox": [
+            320,
+            37,
+            701,
+            988
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            42,
+            8,
+            86,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/down-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-0.png",
+          "processedSha256": "50365aa48360ebad85f45e491a920987644da9e6ea34f53ec403f50eb36cf577"
+        },
+        {
+          "frame": "down-1",
+          "role": "B-reference",
+          "direction": "down",
+          "referenceManifestSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+          "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+          "sourceSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+          "sourceBbox": [
+            328,
+            43,
+            683,
+            981
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            43,
+            8,
+            85,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/down-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-1.png",
+          "processedSha256": "e790741ce6319f0225cdf7710807d8de689a18496f396a6ca843ca6ada91241f"
+        },
+        {
+          "frame": "down-2",
+          "role": "selected-i2i",
+          "selectionKey": "down-c",
+          "candidate": 3,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110102,
+          "jobId": "flux2-bfa72ac6971240bf",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-down-reference.png",
+          "referenceSha256": "9f75cb0f3951fb4a3c0d7626ec5b5893f7db12ecb0af125a388592112296a9b1",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/down/frame-c/candidate-03.png",
+          "sourceSha256": "27ebccae0f3faa7ee3eb513fb0f51cdf7755ec814de9c049c75f4f2d3d143f70",
+          "sourceBbox": [
+            311,
+            38,
+            705,
+            983
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            41,
+            8,
+            87,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/down-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/down-2.png",
+          "processedSha256": "450a0c098f851f818a79e9dc0062a5b66ea9b2cc0adf1342f47ed3732abb6612"
+        },
+        {
+          "frame": "side-0",
+          "role": "selected-i2i",
+          "selectionKey": "left-a",
+          "candidate": 1,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110200,
+          "jobId": "flux2-b37b30caab2847bf",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+          "referenceSha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-a/candidate-01.png",
+          "sourceSha256": "2bd9bf23cb31265aec3356be6e1b3f10c513343e61fb573244d41cf964964304",
+          "sourceBbox": [
+            264,
+            59,
+            719,
+            978
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            37,
+            8,
+            91,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/side-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-0.png",
+          "processedSha256": "5f9ea210a6e7ac8d041dabe4c4acf1c982e5871ddd84454d85968d35c2254d77"
+        },
+        {
+          "frame": "side-1",
+          "role": "B-reference",
+          "direction": "left",
+          "referenceManifestSha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+          "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+          "sourceSha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+          "sourceBbox": [
+            354,
+            65,
+            661,
+            961
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            45,
+            8,
+            83,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/side-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-1.png",
+          "processedSha256": "06f1b25bd3a9ae60a3c1828d905c694171f9e7b8578f89fdc3df8fcbd9d16255"
+        },
+        {
+          "frame": "side-2",
+          "role": "selected-i2i",
+          "selectionKey": "left-c",
+          "candidate": 14,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110313,
+          "jobId": "flux2-e33919cfc2b4402b",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-left-reference.png",
+          "referenceSha256": "8db071f8a4605291e569612c75daa4287131f58a860412db1bcd225f71873a46",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/left/frame-c/candidate-14.png",
+          "sourceSha256": "1f6223950dd374fd2d9c5fbbc5a0a4e92d1cf34a0485c5c8e00123f99ea0dad2",
+          "sourceBbox": [
+            276,
+            59,
+            702,
+            973
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            39,
+            8,
+            90,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/side-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/side-2.png",
+          "processedSha256": "b1798fd18674fcdf1319a5052a2d3d9e8cf0b6268b3e614b0e3a7fea97c82dde"
+        },
+        {
+          "frame": "up-0",
+          "role": "selected-i2i",
+          "selectionKey": "up-a",
+          "candidate": 3,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110402,
+          "jobId": "flux2-439c32fb055f41d9",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+          "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-a/candidate-03.png",
+          "sourceSha256": "7c0d41b81a1a6512f35929e6c2ba4b99eda42ccadaa38a0b181fd2c3d2b17dcd",
+          "sourceBbox": [
+            323,
+            36,
+            709,
+            979
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            41,
+            8,
+            86,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/up-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-0.png",
+          "processedSha256": "6c79b4364fc96c18b5f8dbb3d39967a2e0982e2db76b59d0f963587c1a0400ee"
+        },
+        {
+          "frame": "up-1",
+          "role": "B-reference",
+          "direction": "up",
+          "referenceManifestSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+          "source": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+          "sourceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+          "sourceBbox": [
+            329,
+            44,
+            684,
+            971
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            43,
+            8,
+            85,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/up-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-1.png",
+          "processedSha256": "1e7dde859344e1bccbf31a1747627675d15ff826b7172ab0d8f2253cf77a0928"
+        },
+        {
+          "frame": "up-2",
+          "role": "selected-i2i",
+          "selectionKey": "up-c",
+          "candidate": 8,
+          "runId": "2026-07-23-shizuka-abc-clean-r1",
+          "seed": 110507,
+          "jobId": "flux2-5a0ad3a91ffe4ddf",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+          "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-08.png",
+          "sourceSha256": "29431a7fcb2f16f47c2fdd6bcc26e5a081cda8cfdbff8da8aedb5f7ba4e3de33",
+          "sourceBbox": [
+            323,
+            38,
+            699,
+            986
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            42,
+            8,
+            86,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/selected-sources/up-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/shizuka/processed/up-2.png",
+          "processedSha256": "dfa9578ba148c2ffa209edc4cb14a0f4ef93285abd18e734c2ba7f5add6edba3"
+        }
+      ],
+      "installTarget": "public/assets/profile/adventure/room-v4/actors/shizuka-movement-3x3.webp",
+      "previousPublicSha256": "b3a48cd9b0b31eca588ea93040b83ca85446422ceb1e9e95203f4ce180c558f6",
+      "backup": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/backup/shizuka-movement-3x3.webp"
+    },
+    "gian": {
+      "actor": "gian",
+      "status": "installed",
+      "atlas": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/staged/gian-movement-3x3.webp",
+        "sha256": "d99fcc2597a7cf40cd38b5987f09b61b7243db66b7c8b8365b5d00948d465d62",
+        "bytes": 68880,
+        "size": [
+          384,
+          384
+        ]
+      },
+      "review": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/gian-runtime-review-960.png",
+        "sha256": "d68f9c84c5ba7f477880584b57e86be0e97ca1d284f726aac69f2bc1414948c7",
+        "size": [
+          960,
+          960
+        ]
+      },
+      "previews": {
+        "down": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/gian-down-abc.gif",
+          "sha256": "aef50db7b447cdeba6674f15a2629e98497ba9e9eadb2806a71edb515e879e85"
+        },
+        "side": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/gian-side-abc.gif",
+          "sha256": "4679d4573c43acdbdbed19ec65a8c84c09f4d6eb72833864c796d6cb9b9df02b"
+        },
+        "up": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/gian-up-abc.gif",
+          "sha256": "324ced7b0a3157be072e6b922f88c905df9b7f9209117edaca497904fa77c978"
+        }
+      },
+      "frames": [
+        {
+          "frame": "down-0",
+          "role": "selected-i2i",
+          "selectionKey": "down-a",
+          "candidate": 1,
+          "runId": "2026-07-23-gian-abc-clean-r1",
+          "seed": 120000,
+          "jobId": "flux2-62b64db38de14093",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+          "referenceSha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/down/frame-a/candidate-01.png",
+          "sourceSha256": "4fd6b754d6a6695974949fb90654d48e09cf1415c6dbdf5c5d1fdf5c0af8b66f",
+          "sourceBbox": [
+            236,
+            80,
+            772,
+            963
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            30,
+            8,
+            97,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/down-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-0.png",
+          "processedSha256": "5a62f222355d762b2df06e2ab18196fd0be28a3620dbb3600e5a1957c73c6f56"
+        },
+        {
+          "frame": "down-1",
+          "role": "B-reference",
+          "direction": "down",
+          "referenceManifestSha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+          "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+          "sourceSha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+          "sourceBbox": [
+            243,
+            92,
+            779,
+            950
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            29,
+            8,
+            98,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/down-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-1.png",
+          "processedSha256": "71bb6dea89eb5fa6786242c45f448be6953fca08b760973c70e4f80aabad4aef"
+        },
+        {
+          "frame": "down-2",
+          "role": "selected-i2i",
+          "selectionKey": "down-c",
+          "candidate": 4,
+          "runId": "2026-07-23-gian-abc-clean-r1",
+          "seed": 120103,
+          "jobId": "flux2-987621bf5b38499e",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-down-reference.png",
+          "referenceSha256": "a6f230e71a469fcdc30f0737085917cf4834f35648324bb78f89934432f66182",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/down/frame-c/candidate-04.png",
+          "sourceSha256": "26c114c3d77c5e0ce10f430813de87a97f790ceb4aaa7adb940744d6363e53c3",
+          "sourceBbox": [
+            231,
+            87,
+            784,
+            961
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            29,
+            8,
+            99,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/down-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/down-2.png",
+          "processedSha256": "28c304cb74cb4b50101306768cbea067edb1dd1746abd5a8d130d0eed397f651"
+        },
+        {
+          "frame": "side-0",
+          "role": "selected-i2i",
+          "selectionKey": "left-a",
+          "candidate": 2,
+          "runId": "2026-07-23-gian-abc-clean-r1",
+          "seed": 120201,
+          "jobId": "flux2-1b77fa00a33242a7",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-left-reference.png",
+          "referenceSha256": "e09b0057e075a2a792422cabff8d20a03e655b8a9e77b30e16254e63880a5acf",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+          "sourceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+          "sourceBbox": [
+            286,
+            86,
+            737,
+            954
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            36,
+            8,
+            93,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/side-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-0.png",
+          "processedSha256": "2420343ac623f646466186caeb5b004b295bde910ece8a80aa5605bf7864e8f6"
+        },
+        {
+          "frame": "side-1",
+          "role": "B-reference",
+          "direction": "left",
+          "referenceManifestSha256": "e09b0057e075a2a792422cabff8d20a03e655b8a9e77b30e16254e63880a5acf",
+          "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-left-reference.png",
+          "sourceSha256": "e09b0057e075a2a792422cabff8d20a03e655b8a9e77b30e16254e63880a5acf",
+          "sourceBbox": [
+            343,
+            94,
+            717,
+            949
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            40,
+            8,
+            88,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/side-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-1.png",
+          "processedSha256": "8f7a95323388ca5a236392ae61326d3bf6a61567133db4a7ebeccdfd37d4b69f"
+        },
+        {
+          "frame": "side-2",
+          "role": "selected-i2i",
+          "selectionKey": "left-c",
+          "candidate": 1,
+          "runId": "2026-07-23-gian-abc-reverse-explicit-r3",
+          "seed": 120900,
+          "jobId": "flux2-e19b21ebda0a455a",
+          "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/left/frame-a/candidate-02.png",
+          "referenceSha256": "1ec3f4952b0c8c12135b6f2f2543a1c46ca501d260d93a5bdd35cfee7007bdaa",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+          "sourceSha256": "5039b04cb880131b1613d792e8a9b80667e8b866222ae9302c4ef50f2f5e7088",
+          "sourceBbox": [
+            326,
+            86,
+            725,
+            954
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            39,
+            8,
+            90,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/side-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/side-2.png",
+          "processedSha256": "f79c6d552e651eee8c320d171b411168200b0591fd35b4d302be5d4a3cdc7c5d"
+        },
+        {
+          "frame": "up-0",
+          "role": "selected-i2i",
+          "selectionKey": "up-a",
+          "candidate": 2,
+          "runId": "2026-07-23-gian-abc-clean-r1",
+          "seed": 120401,
+          "jobId": "flux2-359061ddd4fe4850",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+          "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-02.png",
+          "sourceSha256": "7a7655cd4bd484729a6e21db6b3408d6d81091dd6dd165710fafd662c94b0d72",
+          "sourceBbox": [
+            260,
+            85,
+            757,
+            956
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            32,
+            8,
+            95,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/up-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-0.png",
+          "processedSha256": "97d0796c1a4c4be5955fb85c200b293e4988b16705baef6f96cbbb4f2b2392f6"
+        },
+        {
+          "frame": "up-1",
+          "role": "B-reference",
+          "direction": "up",
+          "referenceManifestSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+          "source": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+          "sourceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+          "sourceBbox": [
+            250,
+            93,
+            774,
+            934
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            29,
+            8,
+            98,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/up-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-1.png",
+          "processedSha256": "d82e0c4e42a615b91948b2d67f1527c7f997422743437e9d9ff7994c9453571e"
+        },
+        {
+          "frame": "up-2",
+          "role": "selected-i2i",
+          "selectionKey": "up-c",
+          "candidate": 4,
+          "runId": "2026-07-23-gian-abc-clean-r1",
+          "seed": 120503,
+          "jobId": "flux2-a8c3f664928e4100",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+          "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-c/candidate-04.png",
+          "sourceSha256": "32c6bef835256813fac175c00e8db28b066fbf3820858737614c38d86c729cc6",
+          "sourceBbox": [
+            268,
+            84,
+            750,
+            946
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            33,
+            8,
+            95,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/selected-sources/up-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/gian/processed/up-2.png",
+          "processedSha256": "a04b6b787f2b1e6582cb8c79dd3ddeb1ea202dbb4b63e687e9c90ea3bb7a9443"
+        }
+      ],
+      "installTarget": "public/assets/profile/adventure/room-v4/actors/gian-movement-3x3.webp",
+      "previousPublicSha256": "a54df62131318490fe4e7a9c32346dae06e9cf2dfc7dbaf1846d6bbe8da8b60a",
+      "backup": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/backup/gian-movement-3x3.webp"
+    },
+    "suneo": {
+      "actor": "suneo",
+      "status": "installed",
+      "atlas": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/staged/suneo-movement-3x3.webp",
+        "sha256": "e4801be1cbc2e8ddb2fa49163e43e466d01d002ad15ec250db2c33c51dcd2d2d",
+        "bytes": 64594,
+        "size": [
+          384,
+          384
+        ]
+      },
+      "review": {
+        "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/suneo-runtime-review-960.png",
+        "sha256": "47380466321208a81d7af997948a63c53819ef622ebe4a682404d50c96f2ddb3",
+        "size": [
+          960,
+          960
+        ]
+      },
+      "previews": {
+        "down": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/suneo-down-abc.gif",
+          "sha256": "2f35ebd029826d044a2e08d465e50af592c407feee2860e8c2ee521a31d7acf1"
+        },
+        "side": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/suneo-side-abc.gif",
+          "sha256": "43d24190f316b4648041e4d72f9d455f65fbb4bee1b020a57b686b4e324c1322"
+        },
+        "up": {
+          "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/suneo-up-abc.gif",
+          "sha256": "6c6dd9bd648f361521e4e96716ac3a82a0b0541a9ff07d284436f5227a805c7e"
+        }
+      },
+      "frames": [
+        {
+          "frame": "down-0",
+          "role": "selected-i2i",
+          "selectionKey": "down-a",
+          "candidate": 1,
+          "runId": "2026-07-23-suneo-abc-clean-r1",
+          "seed": 130000,
+          "jobId": "flux2-8a48efcdc3194b8c",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+          "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-a/candidate-01.png",
+          "sourceSha256": "74e61bb82d7db7ca6a12d1ae4edb2235622f8a4200a6ab2356a182c13a15c27d",
+          "sourceBbox": [
+            269,
+            42,
+            753,
+            959
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            35,
+            8,
+            93,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/down-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-0.png",
+          "processedSha256": "11629e0d6ce6387f1339a400ead23275f82e101c5fa6c7703dfdb1e7a9172b2b"
+        },
+        {
+          "frame": "down-1",
+          "role": "B-reference",
+          "direction": "down",
+          "referenceManifestSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+          "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+          "sourceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+          "sourceBbox": [
+            308,
+            50,
+            738,
+            961
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            38,
+            8,
+            90,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/down-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-1.png",
+          "processedSha256": "1ebef3b424172a8cf3671d439e9972c70976016aa4e0e17e3db1d86094ff37ff"
+        },
+        {
+          "frame": "down-2",
+          "role": "selected-i2i",
+          "selectionKey": "down-c",
+          "candidate": 4,
+          "runId": "2026-07-23-suneo-abc-clean-r1",
+          "seed": 130103,
+          "jobId": "flux2-e35e7675bacc4333",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持正面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-down-reference.png",
+          "referenceSha256": "af358d649f88ba8c95a1da0031d5c63d22a0a0b22ada9866b94a0419ad4bacd6",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/down/frame-c/candidate-04.png",
+          "sourceSha256": "31aa281b64fbd8614db7eb8d0e9cde5a61287829aca52d95b76067bf61507f77",
+          "sourceBbox": [
+            271,
+            41,
+            759,
+            967
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            35,
+            8,
+            93,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/down-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/down-2.png",
+          "processedSha256": "486b167c0acd491f62cf864f490597cc3aa7ac07c5cdcdec00575aae42351bcf"
+        },
+        {
+          "frame": "side-0",
+          "role": "selected-i2i",
+          "selectionKey": "left-a",
+          "candidate": 4,
+          "runId": "2026-07-23-suneo-abc-clean-r1",
+          "seed": 130203,
+          "jobId": "flux2-fdc57fdc947c467b",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-left-reference.png",
+          "referenceSha256": "3e05bff91431d7ff00ffb72d4763b178f4dcde8bff122ed9e8674789e6ca200a",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+          "sourceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+          "sourceBbox": [
+            262,
+            42,
+            746,
+            977
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            36,
+            8,
+            93,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/side-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-0.png",
+          "processedSha256": "76737d5d31d83ed1cb8f334835eaedd012eb8ec9e014178bc7571c8505aaff00"
+        },
+        {
+          "frame": "side-1",
+          "role": "B-reference",
+          "direction": "left",
+          "referenceManifestSha256": "3e05bff91431d7ff00ffb72d4763b178f4dcde8bff122ed9e8674789e6ca200a",
+          "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-left-reference.png",
+          "sourceSha256": "3e05bff91431d7ff00ffb72d4763b178f4dcde8bff122ed9e8674789e6ca200a",
+          "sourceBbox": [
+            271,
+            51,
+            736,
+            961
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            36,
+            8,
+            92,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/side-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-1.png",
+          "processedSha256": "dd0e261addd56c3d2de9a666f7bec038f2f87f4a852e1f34a17796a1a0acaad9"
+        },
+        {
+          "frame": "side-2",
+          "role": "selected-i2i",
+          "selectionKey": "left-c",
+          "candidate": 1,
+          "runId": "2026-07-23-suneo-abc-reverse-explicit-r3",
+          "seed": 130900,
+          "jobId": "flux2-5eb50bd215794f17",
+          "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+          "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+          "sourceSha256": "cb4fee629ee7ae6dfee8544111d5e5f946538d942104ae3b8923b3428a73c898",
+          "sourceBbox": [
+            262,
+            42,
+            746,
+            977
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            36,
+            8,
+            93,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": true,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/side-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/side-2.png",
+          "processedSha256": "83e2f2bf4a156817965cca42026e8a1d417d2c323f6ea298492ac238afb10149"
+        },
+        {
+          "frame": "up-0",
+          "role": "selected-i2i",
+          "selectionKey": "up-a",
+          "candidate": 3,
+          "runId": "2026-07-23-suneo-abc-clean-r1",
+          "seed": 130402,
+          "jobId": "flux2-f13bebccaa6d4e3e",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+          "referenceSha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/up/frame-a/candidate-03.png",
+          "sourceSha256": "dcd976af9ef5b1fb8e487e07ed427a5b2407bed4fe0d58cc786acfb2439bb959",
+          "sourceBbox": [
+            277,
+            43,
+            751,
+            961
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            35,
+            8,
+            92,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/up-0.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-0.png",
+          "processedSha256": "272b86e7a4f0782387ab8a2407e4db204c307bce2fb3649c7a350a2264f710e0"
+        },
+        {
+          "frame": "up-1",
+          "role": "B-reference",
+          "direction": "up",
+          "referenceManifestSha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+          "source": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+          "sourceSha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+          "sourceBbox": [
+            316,
+            52,
+            742,
+            956
+          ],
+          "alphaMethod": "source-alpha",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            38,
+            8,
+            90,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/up-1.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-1.png",
+          "processedSha256": "90234407bca763cc7869dd1d6712581d0ae7a141d83a77b644fd6dde8a17d29d"
+        },
+        {
+          "frame": "up-2",
+          "role": "selected-i2i",
+          "selectionKey": "up-c",
+          "candidate": 1,
+          "runId": "2026-07-23-suneo-abc-clean-r1",
+          "seed": 130500,
+          "jobId": "flux2-46df16c557a84304",
+          "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+          "reference": "artifacts/profile-sprite-review/final-directional-references/suneo/suneo-direction-up-reference.png",
+          "referenceSha256": "0da9d710b23a5551bed9eadc28b2165195b0e20b9089f8e8ad5a103960afc762",
+          "inputImageCount": 1,
+          "promptUpsampling": false,
+          "source": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/up/frame-c/candidate-01.png",
+          "sourceSha256": "577ab8a13deb56728e94bae73d3d3bbd0c65b2dabf7e230ba4a3853635e0b02f",
+          "sourceBbox": [
+            307,
+            43,
+            751,
+            973
+          ],
+          "alphaMethod": "closed-black-background",
+          "processedSize": [
+            128,
+            128
+          ],
+          "alphaBbox": [
+            37,
+            8,
+            90,
+            118
+          ],
+          "pivot": [
+            0.5,
+            0.921875
+          ],
+          "mirroredForRuntime": false,
+          "selectedCopy": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/selected-sources/up-2.png",
+          "processed": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/suneo/processed/up-2.png",
+          "processedSha256": "18090c64511835446e74bdfc44b6ad8e1c32cb0076b9809c31ec63fbbcbcfbc9"
+        }
+      ],
+      "installTarget": "public/assets/profile/adventure/room-v4/actors/suneo-movement-3x3.webp",
+      "previousPublicSha256": "45e07035c49af91c5dff259b4ffb5c34e6fed44df5000fa864113972fa201e64",
+      "backup": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/backup/suneo-movement-3x3.webp"
+    }
+  },
+  "combinedReview": {
+    "path": "artifacts/profile-sprite-review/2026-07-24-profile-walk-abc-all-actors-r1/all-actors-runtime-review-1000.png",
+    "sha256": "036d96668d6f2074556f91d76372515193315d2a3a88426fd300e757e252a242",
+    "size": [
+      1000,
+      1000
+    ]
+  },
+  "installedAt": "2026-07-24T08:01:51.067076+00:00",
+  "publicManifestSha256": "714164a7e2c3fdbe444a1f71c52f30827786c87cc79986effe5eb31b73ae18b3"
+}

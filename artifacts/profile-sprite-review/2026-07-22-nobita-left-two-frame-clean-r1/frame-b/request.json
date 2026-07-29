@@ -1,0 +1,26 @@
+{
+  "runId": "2026-07-22-nobita-left-two-frame-clean-r1",
+  "frame": "frame-b",
+  "label": "角色自身右腿在前",
+  "direction": "left",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+  "referenceSha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "inputImageCount": 1,
+  "prompt": "把参考图中的人物改成走路姿势，身子保持朝左竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "maxCandidates": 16,
+  "seedBase": 77000
+}

@@ -1,0 +1,52 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r8-left-frame2-compact",
+  "actor": "nobita",
+  "frameMode": "two",
+  "generation": "one independent Flux i2i job per frame",
+  "references": [
+    {
+      "direction": "down",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "direction": "up",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+    },
+    {
+      "direction": "left",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+    }
+  ],
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict DOWN facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 1 帧：DOWN-facing 正面向画面下方行走；大雄左臂（画面右侧）大幅向前下方伸直至肩高，右臂（画面左侧）明显向后上方拉开；右腿向画面下方大步前跨并弯曲，左腿在后方伸直；形成清楚的前后错位 silhouette，绝不是 neutral idle。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict DOWN facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 2 帧：DOWN-facing 正面向画面下方行走；大雄右臂（画面左侧）大幅向前下方伸直至肩高，左臂（画面右侧）明显向后上方拉开；左腿向画面下方大步前跨并弯曲，右腿在后方伸直；手臂和腿与第 1 帧完全左右交换，形成相反 silhouette，绝不接近第 1 帧。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict UP facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 1 帧：UP-facing 真实背面向画面上方行走；大雄左臂向行走方向前上方摆出，右臂向画面下方后摆；右腿向画面上方前跨并落地，左腿向后拖后；只显示后脑、黄色上衣背面和鞋后部。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict UP facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 2 帧：UP-facing 真实背面向画面上方行走；大雄右臂向行走方向前上方摆出，左臂向画面下方后摆；左腿向画面上方前跨并落地，右腿向后拖后；手臂和腿与第 1 帧完全交换，不出现正面五官或眼镜。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 1 帧：LEFT-facing strict profile 向画面左侧行走；大雄左臂完全伸直指向画面左方，右臂向画面右方后摆并在躯干后形成清楚的弯肘轮廓；右腿向画面左方大步前跨并伸直，左膝在画面右后方明显弯曲抬起；保持纯侧面，形成宽大步幅。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. 第 2 帧：LEFT-facing strict profile 向画面左侧行走；大雄右臂完全伸直指向画面左方，左臂向画面右方后摆并在躯干后形成清楚的弯肘轮廓；左腿向画面左方大步前跨并伸直，右膝在画面右后方明显弯曲抬起；四肢与第 1 帧完全交换，身体不回转成三分之四。 Opposite key pose: the forward arm reaches screen-left; the other arm swings fully to screen-right behind the torso with a high elbow. The forward leg reaches screen-left; the rear knee lifts high toward screen-right. Do not repeat the reference pose. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "runId": "2026-07-22-nobita-single-frame-left-leg-forward-r1",
+  "leftRightConvention": "角色自身左侧对应正面图的画面右侧",
+  "acceptance": "自身左腿在前、自身右腿在后、自身右臂在前、自身左臂在后，且四肢轮廓可辨认",
+  "status": "retrying-until-stable",
+  "stabilityTarget": "同一轮四张中至少两张同时满足角色自身左腿在前、右腿在后、右臂在前、左臂在后",
+  "acceptedCandidate": null,
+  "reviews": [
+    {
+      "candidate": 1,
+      "accepted": false,
+      "reason": "双腿前后关系不够明确，双臂摆向也不足以确认角色自身左右受控。"
+    },
+    {
+      "candidate": 2,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 3,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 4,
+      "accepted": false,
+      "reason": "画面左侧腿在前，且双臂接近中性下垂，未满足四肢方向。"
+    },
+    {
+      "candidate": 5,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 6,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 7,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 8,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 9,
+      "accepted": false,
+      "reason": "角色自身左腿正确在前，但自身左臂也在前、自身右臂在后，手臂方向相反。"
+    },
+    {
+      "candidate": 10,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 11,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    },
+    {
+      "candidate": 12,
+      "accepted": false,
+      "reason": "画面左侧腿明显在前，即角色自身右腿在前，腿部方向相反。"
+    }
+  ],
+  "conclusion": "前 12 次独立抽样没有得到同时满足四肢指定方向的候选，正在按相同输入和提示词继续抽样。"
+}

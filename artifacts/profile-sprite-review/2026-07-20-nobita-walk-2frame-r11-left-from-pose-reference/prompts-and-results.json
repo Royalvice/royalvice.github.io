@@ -1,0 +1,16 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r11-left-from-pose-reference",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r11-left-from-pose-reference/candidates/left/nobita-walk-left-02-right-arm-forward.png",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict LEFT facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is an approved LEFT-facing passing pose. Preserve this exact pose silhouette and identity. Keep the near arm bent forward with the hand near the waist, keep the far arm hanging backward, keep one foot reaching screen-left and the other foot trailing behind. Do not straighten the bent arm, do not point with it, do not change the pose; only cleanly render the same Nobita pixel sprite. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+      "jobId": "flux2-857c1253ddff40a2",
+      "references": [
+        "artifacts/profile-sprite-review/2026-07-20-nobita-walk-4frame-r1/processed/left/nobita-walk-left-02-left-passing-transparent.png"
+      ]
+    }
+  ]
+}

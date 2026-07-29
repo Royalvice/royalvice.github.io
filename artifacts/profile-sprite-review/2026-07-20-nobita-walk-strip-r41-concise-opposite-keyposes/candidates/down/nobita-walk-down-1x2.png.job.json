@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "根据参考图的大雄形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正面，同一张闭嘴正脸、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向下前踏、右腿向上后伸，画面右臂向前摆、左臂向后摆。Pose B：画面右腿向下前踏、左腿向上后伸，画面左臂向前摆、右臂向后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，鞋底靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 32000,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b9fff78a639d468c/sample.png",
+      "sha256": "da58c64826a280c3193560b4b0f4d535d65e6048637a474c5551e96087d4710b",
+      "size_bytes": 396889,
+      "url": "/v1/artifacts/flux2-b9fff78a639d468c/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784560812.340321,
+  "error": null,
+  "finished_at": 1784560827.9280238,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-b9fff78a639d468c/reference_0.png"
+  ],
+  "job_id": "flux2-b9fff78a639d468c",
+  "metrics": {
+    "nvml_peak_used_mib": 55805,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 52000.5,
+    "torch_peak_reserved_mib": 52548
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "根据参考图的大雄形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正面，同一张闭嘴正脸、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向下前踏、右腿向上后伸，画面右臂向前摆、左臂向后摆。Pose B：画面右腿向下前踏、左腿向上后伸，画面左臂向前摆、右臂向后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，鞋底靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 32000,
+    "width": 1024
+  },
+  "started_at": 1784560812.409466,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.809,
+    "denoise": 3.889,
+    "load_inputs": 0.022,
+    "reference_encode": 0.227,
+    "save_png": 0.342,
+    "text_encode": 0.335,
+    "total_wall": 15.519
+  },
+  "updated_at": 1784560827.9280589,
+  "worker_finished_at": 1784560827.1421676
+}

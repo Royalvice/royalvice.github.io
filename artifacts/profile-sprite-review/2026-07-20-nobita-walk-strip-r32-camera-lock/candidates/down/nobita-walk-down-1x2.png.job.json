@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考上传的大雄正面 canonical，制作横向 1×2 的 2D pixel sprite strip，画布 1024×576。 左右两个等宽画格都是同一个大雄，使用完全相同的 DOWN front orthographic camera、正面朝向、角色尺度、头部中心和脚底 baseline；保持圆形黑框眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和统一 pixel clusters。 左格是 walking contact pose：左脚在画面下方落地承重，右腿向后下方伸展；右臂向前摆，左臂向后摆，膝盖朝下，肩线和骨盆自然反向。右格是紧接的 walking passing pose：左脚继续承重，右膝从身体下方抬起经过；左臂前摆，右臂后摆，手肘和膝盖自然弯曲，四肢分离，两个姿势明显不同。 两个格子都是完整头到脚的单个角色，纯色 #00FF00 chroma-key 背景连续铺满，格间保持绿色不画黑线、不画分隔栏、不画场景家具文字，使用有限色板。",
+    "prompt_upsampling": false,
+    "seed": 24100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-78b68b00b99a4f22/sample.png",
+      "sha256": "bbee403b06575eb6fa822dc3780febf9935036e170a988ce8ee739b589f12bff",
+      "size_bytes": 387681,
+      "url": "/v1/artifacts/flux2-78b68b00b99a4f22/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784554353.4748333,
+  "error": null,
+  "finished_at": 1784554368.943255,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-78b68b00b99a4f22/reference_0.png"
+  ],
+  "job_id": "flux2-78b68b00b99a4f22",
+  "metrics": {
+    "nvml_peak_used_mib": 55805,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 52000.5,
+    "torch_peak_reserved_mib": 52548
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考上传的大雄正面 canonical，制作横向 1×2 的 2D pixel sprite strip，画布 1024×576。 左右两个等宽画格都是同一个大雄，使用完全相同的 DOWN front orthographic camera、正面朝向、角色尺度、头部中心和脚底 baseline；保持圆形黑框眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和统一 pixel clusters。 左格是 walking contact pose：左脚在画面下方落地承重，右腿向后下方伸展；右臂向前摆，左臂向后摆，膝盖朝下，肩线和骨盆自然反向。右格是紧接的 walking passing pose：左脚继续承重，右膝从身体下方抬起经过；左臂前摆，右臂后摆，手肘和膝盖自然弯曲，四肢分离，两个姿势明显不同。 两个格子都是完整头到脚的单个角色，纯色 #00FF00 chroma-key 背景连续铺满，格间保持绿色不画黑线、不画分隔栏、不画场景家具文字，使用有限色板。",
+    "prompt_upsampling": false,
+    "seed": 24100,
+    "width": 1024
+  },
+  "started_at": 1784554353.544761,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.808,
+    "denoise": 3.887,
+    "load_inputs": 0.022,
+    "reference_encode": 0.233,
+    "save_png": 0.33,
+    "text_encode": 0.336,
+    "total_wall": 15.398
+  },
+  "updated_at": 1784554368.94327,
+  "worker_finished_at": 1784554368.2544563
+}

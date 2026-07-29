@@ -1,0 +1,15 @@
+{
+  "runId": "2026-07-21-nobita-minimal-walk-r1",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+  "variants": 2,
+  "poses": [
+    {
+      "id": "left-leg-forward",
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，左腿向前、右腿向后、右臂向前、左臂向后。"
+    },
+    {
+      "id": "right-leg-forward",
+      "prompt": "把参考图中的野比大雄改成自然走路姿势，右腿向前、左腿向后、左臂向前、右臂向后。"
+    }
+  ]
+}

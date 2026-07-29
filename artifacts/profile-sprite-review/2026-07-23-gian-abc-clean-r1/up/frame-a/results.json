@@ -1,0 +1,72 @@
+{
+  "runId": "2026-07-23-gian-abc-clean-r1",
+  "actor": "gian",
+  "direction": "up",
+  "pose": "a",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 120400,
+      "jobId": "flux2-90c09449ce374636",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+      "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-01.png",
+      "outputSha256": "fdc90106ed6c93b8a601baf9262d697554dc40c305cbee32387a4333d5a81401",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 120401,
+      "jobId": "flux2-359061ddd4fe4850",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+      "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-02.png",
+      "outputSha256": "7a7655cd4bd484729a6e21db6b3408d6d81091dd6dd165710fafd662c94b0d72",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 120402,
+      "jobId": "flux2-93fba71cd4bc450e",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+      "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-03.png",
+      "outputSha256": "82386257e018a8e23bbde5400e96b652f77f6b9ecc67c36c9ec9906349f8ed6c",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 120403,
+      "jobId": "flux2-f1772edc9aed4724",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/gian/gian-direction-up-reference.png",
+      "referenceSha256": "526a236da1b2a69285b54293029599cde1db66a7121ccee1b6a1b1d054c7d250",
+      "output": "artifacts/profile-sprite-review/2026-07-23-gian-abc-clean-r1/up/frame-a/candidate-04.png",
+      "outputSha256": "78b0934754dae7082b6c6119cc5659d7d1bd8ae48a069ffe451a84123c816c68",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

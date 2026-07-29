@@ -1,0 +1,3265 @@
+{
+  "url": "http://127.0.0.1:4173",
+  "generatedAt": "2026-07-22T05:42:06.267Z",
+  "durationMs": 66250,
+  "consoleErrors": [],
+  "stages": [
+    {
+      "label": "profile-active",
+      "raf": {
+        "frames": 2,
+        "elapsedMs": 3549,
+        "fps": 0.56,
+        "medianFrameMs": 3549.4,
+        "p95FrameMs": 3549.4,
+        "framesOver33ms": 1,
+        "framesOver50ms": 1
+      },
+      "metrics": {
+        "JSEventListeners": 114,
+        "Nodes": 1831,
+        "LayoutDuration": 0.07,
+        "RecalcStyleDuration": 0.02,
+        "ScriptDuration": 0.51,
+        "TaskDuration": 20.83,
+        "JSHeapUsedSize": 26752404,
+        "JSHeapTotalSize": 36782080
+      },
+      "diagnostics": {
+        "activeSection": "profile",
+        "canvasCount": 4,
+        "gallery": {
+          "cabinetVersion": "v6",
+          "cabinetLoaded": true,
+          "anchorsFound": 32,
+          "envAtlas": true,
+          "lightmapReady": true,
+          "woodCandidate": "walnut_cabinet_v6",
+          "materialSystem": "unified-walnut-v6",
+          "materialBindings": {
+            "mat_walnut_outer": true,
+            "mat_warm_inner_wall": true,
+            "mat_warm_side_wall": true,
+            "mat_warm_right_side_wall": true,
+            "mat_inner_floor": true,
+            "mat_shadow_groove": true,
+            "mat_black_lacquer_trim": true,
+            "mat_brass_trim": true,
+            "mat_light_diffuser": true,
+            "mat_glass_edge": true,
+            "mat_glass_pane": true,
+            "mat_card_frame": true,
+            "mat_plaque_lcd": true,
+            "mat_obsidian_plinth": true,
+            "mat_legendary_holo": true,
+            "mat_gold_trophy": true,
+            "mat_silver_trophy": true,
+            "mat_blue_crystal": true,
+            "mat_soft_shadow": true
+          },
+          "generatedHeroMedia": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "heroColorProbe": {},
+          "heroVideos": {
+            "directl": {
+              "url": "/assets/gallery/hero/directl_preview.mp4",
+              "ready": true,
+              "failed": false
+            }
+          },
+          "trophyMeshes": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "generatedTrophyModels": {
+            "ssat": false,
+            "directl": false,
+            "eva01": false,
+            "docdiff": false
+          },
+          "generatedTrophySources": {},
+          "generatedTrophyInteractionStarted": false,
+          "profileCompanionReady": true,
+          "generatedTrophyQueue": [
+            "ssat",
+            "directl",
+            "eva01",
+            "docdiff"
+          ],
+          "generatedTrophyLoading": null,
+          "staticCabinetBatch": {
+            "groupId": 0,
+            "sourceMeshes": 154,
+            "batches": 13
+          },
+          "canvasCount": 4,
+          "webglContexts": null,
+          "drawCalls": 186,
+          "triangles": 310270,
+          "fpsEstimate": 13,
+          "activeProject": null,
+          "hoverProject": null,
+          "spotlightSceneWeight": 0,
+          "slots": [
+            {
+              "id": "ssat",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "directl",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.74,
+                0.74,
+                0.74
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "eva01",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "docdiff",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.7,
+                0.7,
+                0.7
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            }
+          ],
+          "visibleMode": "desktop-2x2",
+          "lighting": {
+            "exposure": 0.96,
+            "skyboxIntensity": 0.17,
+            "ambientLight": [
+              0.17,
+              0.125,
+              0.09
+            ],
+            "topLight": 4.62,
+            "fillLight": 1.55,
+            "sideWallWash": 0.82
+          },
+          "source": "wooden-gallery-cabinet-v6.glb"
+        },
+        "voyage": null,
+        "horizon": null,
+        "profileAdventure": {
+          "layoutVersion": "grounded-v4",
+          "ready": true,
+          "simulationElapsed": 0,
+          "elapsed": 0,
+          "running": true,
+          "paused": false,
+          "reducedMotion": false,
+          "actors": {
+            "nobita": {
+              "state": "walking",
+              "stateElapsed": 0,
+              "visible": true,
+              "position": [
+                0.36,
+                0.9
+              ],
+              "facing": "down",
+              "station": "blackboard",
+              "frame": "movement:down:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.068,
+              "walkDistance": 0
+            },
+            "doraemon": {
+              "state": "walking",
+              "stateElapsed": 0,
+              "visible": true,
+              "position": [
+                0.55,
+                0.89
+              ],
+              "facing": "down",
+              "station": "water-cooler",
+              "frame": "movement:down:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.06,
+              "walkDistance": 0
+            },
+            "shizuka": {
+              "state": "walking",
+              "stateElapsed": 0,
+              "visible": true,
+              "position": [
+                0.65,
+                0.79
+              ],
+              "facing": "down",
+              "station": "sofa-left",
+              "frame": "movement:down:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.062,
+              "walkDistance": 0
+            },
+            "gian": {
+              "state": "walking",
+              "stateElapsed": 0,
+              "visible": true,
+              "position": [
+                0.08,
+                0.9
+              ],
+              "facing": "down",
+              "station": "secondary-desk",
+              "frame": "movement:down:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.053,
+              "walkDistance": 0
+            },
+            "suneo": {
+              "state": "walking",
+              "stateElapsed": 0,
+              "visible": true,
+              "position": [
+                0.9,
+                0.79
+              ],
+              "facing": "down",
+              "station": "tv-console",
+              "frame": "movement:down:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.073,
+              "walkDistance": 0
+            }
+          },
+          "actorFrames": {
+            "nobita": "movement:down:0",
+            "doraemon": "movement:down:0",
+            "shizuka": "movement:down:0",
+            "gian": "movement:down:0",
+            "suneo": "movement:down:0"
+          },
+          "actorPositions": {
+            "nobita": [
+              0.36,
+              0.9
+            ],
+            "doraemon": [
+              0.55,
+              0.89
+            ],
+            "shizuka": [
+              0.65,
+              0.79
+            ],
+            "gian": [
+              0.08,
+              0.9
+            ],
+            "suneo": [
+              0.9,
+              0.79
+            ]
+          },
+          "depthOrder": [
+            "shizuka",
+            "suneo",
+            "doraemon",
+            "nobita",
+            "gian"
+          ],
+          "focusedActor": null,
+          "stationOccupancy": {
+            "blackboard": [
+              "nobita"
+            ],
+            "water-cooler": [
+              "doraemon"
+            ],
+            "primary-desk": [],
+            "secondary-desk": [
+              "gian"
+            ],
+            "sofa-left": [
+              "shizuka"
+            ],
+            "sofa-right": [],
+            "tv-console": [
+              "suneo"
+            ],
+            "poster-left": [],
+            "poster-right": [],
+            "anywhere-door": []
+          },
+          "doorFrame": "closed",
+          "doorUser": null,
+          "portalStrength": 0,
+          "tvFrame": 0,
+          "tvPelletsRemaining": 158,
+          "navigation": {
+            "deadlockRecoveries": 0,
+            "reservedCells": [
+              {
+                "cell": "12:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "19:16",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "23:13",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "1:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "33:13",
+                "actor": "suneo"
+              },
+              {
+                "cell": "11:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "10:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "9:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "19:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "20:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "21:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "24:13",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "25:13",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "26:14",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "2:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "3:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "4:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "32:12",
+                "actor": "suneo"
+              },
+              {
+                "cell": "32:11",
+                "actor": "suneo"
+              },
+              {
+                "cell": "32:10",
+                "actor": "suneo"
+              }
+            ]
+          },
+          "layout": {
+            "version": "grounded-v4",
+            "walkBounds": [
+              0.06,
+              0.36,
+              0.94,
+              0.91
+            ],
+            "navGrid": {
+              "columns": 36,
+              "rows": 18
+            },
+            "props": {
+              "posterLeft": {
+                "id": "poster-left",
+                "worldAnchor": [
+                  0.145,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "blackboard": {
+                "id": "blackboard",
+                "worldAnchor": [
+                  0.325,
+                  0.22
+                ],
+                "desktopSize": [
+                  0.165,
+                  0.17
+                ],
+                "mobileSize": [
+                  0.235,
+                  0.12
+                ]
+              },
+              "posterRight": {
+                "id": "poster-right",
+                "worldAnchor": [
+                  0.675,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "chandelier": {
+                "id": "chandelier",
+                "worldAnchor": [
+                  0.5,
+                  0.39
+                ],
+                "desktopSize": [
+                  0.122,
+                  0.216
+                ],
+                "mobileSize": [
+                  0.194,
+                  0.156
+                ]
+              },
+              "waterCooler": {
+                "id": "water-cooler",
+                "worldAnchor": [
+                  0.79,
+                  0.475
+                ],
+                "desktopSize": [
+                  0.073,
+                  0.203
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.156
+                ],
+                "collisionBounds": [
+                  0.75,
+                  0.405,
+                  0.83,
+                  0.49
+                ]
+              },
+              "door": {
+                "id": "anywhere-door",
+                "worldAnchor": [
+                  0.92,
+                  0.52
+                ],
+                "desktopSize": [
+                  0.074,
+                  0.225
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.173
+                ],
+                "collisionBounds": [
+                  0.89,
+                  0.405,
+                  0.945,
+                  0.515
+                ]
+              },
+              "secondaryDesk": {
+                "id": "secondary-desk",
+                "worldAnchor": [
+                  0.23,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.118,
+                  0.197
+                ],
+                "mobileSize": [
+                  0.19,
+                  0.147
+                ],
+                "collisionBounds": [
+                  0.14,
+                  0.585,
+                  0.32,
+                  0.69
+                ]
+              },
+              "primaryDesk": {
+                "id": "primary-desk",
+                "worldAnchor": [
+                  0.48,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.132,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.385,
+                  0.58,
+                  0.575,
+                  0.69
+                ]
+              },
+              "tv": {
+                "id": "tv-cabinet",
+                "worldAnchor": [
+                  0.77,
+                  0.655
+                ],
+                "desktopSize": [
+                  0.13,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.685,
+                  0.565,
+                  0.855,
+                  0.675
+                ]
+              },
+              "sofa": {
+                "id": "sofa",
+                "worldAnchor": [
+                  0.77,
+                  0.86
+                ],
+                "desktopSize": [
+                  0.158,
+                  0.213
+                ],
+                "mobileSize": [
+                  0.245,
+                  0.168
+                ],
+                "collisionBounds": [
+                  0.675,
+                  0.835,
+                  0.865,
+                  0.905
+                ]
+              }
+            },
+            "stationPositions": {
+              "poster-left": [
+                0.145,
+                0.39
+              ],
+              "blackboard": [
+                0.325,
+                0.39
+              ],
+              "poster-right": [
+                0.675,
+                0.39
+              ],
+              "water-cooler": [
+                0.79,
+                0.515
+              ],
+              "anywhere-door": [
+                0.875,
+                0.535
+              ],
+              "secondary-desk": [
+                0.23,
+                0.72
+              ],
+              "primary-desk": [
+                0.48,
+                0.72
+              ],
+              "tv-console": [
+                0.87,
+                0.69
+              ],
+              "sofa-left": [
+                0.72,
+                0.815
+              ],
+              "sofa-right": [
+                0.8,
+                0.815
+              ]
+            },
+            "tvScreenRect": [
+              0.304688,
+              0.335938,
+              0.375,
+              0.25
+            ],
+            "tvChildAnchors": {
+              "ps5": [
+                0.73,
+                0.61
+              ]
+            },
+            "lampAnchors": [
+              [
+                0.055,
+                0.145
+              ],
+              [
+                0.233,
+                0.145
+              ],
+              [
+                0.411,
+                0.145
+              ],
+              [
+                0.589,
+                0.145
+              ],
+              [
+                0.767,
+                0.145
+              ],
+              [
+                0.945,
+                0.145
+              ]
+            ]
+          },
+          "assets": {
+            "actors": {
+              "nobita": "ready",
+              "doraemon": "ready",
+              "shizuka": "ready",
+              "gian": "ready",
+              "suneo": "ready"
+            },
+            "furniture": "ready",
+            "door": "ready",
+            "lamps": "ready",
+            "posters": "ready"
+          }
+        },
+        "longTasks": [
+          {
+            "startTime": 348,
+            "duration": 58
+          },
+          {
+            "startTime": 678,
+            "duration": 123
+          },
+          {
+            "startTime": 803,
+            "duration": 6544
+          },
+          {
+            "startTime": 7349,
+            "duration": 3300
+          },
+          {
+            "startTime": 10685,
+            "duration": 3395
+          },
+          {
+            "startTime": 14081,
+            "duration": 3742
+          },
+          {
+            "startTime": 17837,
+            "duration": 3421
+          }
+        ],
+        "layoutShift": 0.007372018613933046
+      }
+    },
+    {
+      "label": "voyage-active-assets-ready",
+      "raf": {
+        "frames": 14,
+        "elapsedMs": 1650,
+        "fps": 8.49,
+        "medianFrameMs": 66.7,
+        "p95FrameMs": 799.9,
+        "framesOver33ms": 13,
+        "framesOver50ms": 10
+      },
+      "metrics": {
+        "JSEventListeners": 132,
+        "Nodes": 1787,
+        "LayoutDuration": 0.08,
+        "RecalcStyleDuration": 0.05,
+        "ScriptDuration": 1.05,
+        "TaskDuration": 61.55,
+        "JSHeapUsedSize": 27340644,
+        "JSHeapTotalSize": 39649280
+      },
+      "diagnostics": {
+        "activeSection": "voyage",
+        "canvasCount": 4,
+        "gallery": {
+          "cabinetVersion": "v6",
+          "cabinetLoaded": true,
+          "anchorsFound": 32,
+          "envAtlas": true,
+          "lightmapReady": true,
+          "woodCandidate": "walnut_cabinet_v6",
+          "materialSystem": "unified-walnut-v6",
+          "materialBindings": {
+            "mat_walnut_outer": true,
+            "mat_warm_inner_wall": true,
+            "mat_warm_side_wall": true,
+            "mat_warm_right_side_wall": true,
+            "mat_inner_floor": true,
+            "mat_shadow_groove": true,
+            "mat_black_lacquer_trim": true,
+            "mat_brass_trim": true,
+            "mat_light_diffuser": true,
+            "mat_glass_edge": true,
+            "mat_glass_pane": true,
+            "mat_card_frame": true,
+            "mat_plaque_lcd": true,
+            "mat_obsidian_plinth": true,
+            "mat_legendary_holo": true,
+            "mat_gold_trophy": true,
+            "mat_silver_trophy": true,
+            "mat_blue_crystal": true,
+            "mat_soft_shadow": true
+          },
+          "generatedHeroMedia": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "heroColorProbe": {},
+          "heroVideos": {
+            "directl": {
+              "url": "/assets/gallery/hero/directl_preview.mp4",
+              "ready": true,
+              "failed": false
+            }
+          },
+          "trophyMeshes": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "generatedTrophyModels": {
+            "ssat": true,
+            "directl": false,
+            "eva01": false,
+            "docdiff": false
+          },
+          "generatedTrophySources": {
+            "ssat": "v3-lod"
+          },
+          "generatedTrophyInteractionStarted": false,
+          "profileCompanionReady": true,
+          "generatedTrophyQueue": [
+            "directl",
+            "eva01",
+            "docdiff"
+          ],
+          "generatedTrophyLoading": null,
+          "staticCabinetBatch": {
+            "groupId": 0,
+            "sourceMeshes": 154,
+            "batches": 13
+          },
+          "canvasCount": 4,
+          "webglContexts": null,
+          "drawCalls": 0,
+          "triangles": 0,
+          "fpsEstimate": 11,
+          "activeProject": null,
+          "hoverProject": null,
+          "spotlightSceneWeight": 0,
+          "slots": [
+            {
+              "id": "ssat",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "directl",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.74,
+                0.74,
+                0.74
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "eva01",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "docdiff",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.7,
+                0.7,
+                0.7
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            }
+          ],
+          "visibleMode": "desktop-2x2",
+          "lighting": {
+            "exposure": 0.96,
+            "skyboxIntensity": 0.17,
+            "ambientLight": [
+              0.17,
+              0.125,
+              0.09
+            ],
+            "topLight": 4.62,
+            "fillLight": 1.55,
+            "sideWallWash": 0.82
+          },
+          "source": "wooden-gallery-cabinet-v6.glb"
+        },
+        "voyage": {
+          "ready": true,
+          "assetsReady": true,
+          "fallbackActive": false,
+          "introPhase": "route-survey",
+          "introElapsed": 2.116200000000005,
+          "selectedNode": "eva01",
+          "currentStage": "eva01",
+          "evidenceOpen": false,
+          "internalResolution": [
+            960,
+            540
+          ],
+          "wakeStrength": 0.3758480864898605,
+          "reflectionStrength": 0.58,
+          "boatHeading": 0,
+          "transitionProgress": 0,
+          "boatAsset": "v3-lod",
+          "landmarkAssets": {
+            "dock": "v3-lod",
+            "reef": "v3-lod",
+            "lighthouse": "v3-lod",
+            "harbor": "v3-lod",
+            "gate": "v3-lod"
+          },
+          "running": true,
+          "cameraPitch": 73.61045966596522,
+          "cameraProjection": "perspective",
+          "waterMode": "xz-gerstner",
+          "reflectionMode": "planar",
+          "reflectionUpdateInterval": 2,
+          "shadowUpdateInterval": 2,
+          "reflectionUpdates": 22,
+          "shadowUpdates": 22,
+          "floatingBodies": {
+            "docdiff": {
+              "height": 0.07710308796175605,
+              "pitch": 1.2744001258404636,
+              "roll": -0.48814618653438013,
+              "contactStrength": 0.9484145322309903,
+              "reflectionStrength": 0.7356129716565732,
+              "modelWaterlineOffset": 0.08,
+              "submergedFraction": 0
+            },
+            "neural": {
+              "height": -0.0012022350424637075,
+              "pitch": -0.06559823795286295,
+              "roll": -0.3315486094284398,
+              "contactStrength": 0.9779484918860737,
+              "reflectionStrength": 0.5399992163789612,
+              "modelWaterlineOffset": 0.1,
+              "submergedFraction": 0
+            },
+            "directl": {
+              "height": -0.03444830100820097,
+              "pitch": 0.2840120145448142,
+              "roll": 0.6329155025602733,
+              "contactStrength": 0.9372535430330995,
+              "reflectionStrength": 0.5536753928298573,
+              "modelWaterlineOffset": 0.1,
+              "submergedFraction": 0
+            },
+            "eva01": {
+              "height": 0.011095916323286208,
+              "pitch": 0.09585520718408384,
+              "roll": -0.10063817304441271,
+              "contactStrength": 0.9565612244966494,
+              "reflectionStrength": 0.7487681525144335,
+              "modelWaterlineOffset": 0.09,
+              "submergedFraction": 0.03908021464588872
+            },
+            "world": {
+              "height": 0.004869715665024955,
+              "pitch": 0.08220193916339963,
+              "roll": 0.14069829241313958,
+              "contactStrength": 0.9613241968743051,
+              "reflectionStrength": 0.7674556912210296,
+              "modelWaterlineOffset": 0.12,
+              "submergedFraction": 0
+            },
+            "boat": {
+              "height": 0.06265501622757552,
+              "pitch": -1.6735865722916574,
+              "roll": -1.4944896555965077,
+              "contactStrength": 0.9587249520449659,
+              "reflectionStrength": 0.6382544042544901,
+              "modelWaterlineOffset": -0.08,
+              "submergedFraction": 0.14278735801107956
+            }
+          },
+          "projectedNodePositions": {
+            "docdiff": [
+              28.76825286802351,
+              795.7124924218363
+            ],
+            "neural": [
+              464.68885090489897,
+              601.2780201704927
+            ],
+            "directl": [
+              842.5384620857651,
+              406.6215537741273
+            ],
+            "eva01": [
+              1101.813535102262,
+              743.2847015358564
+            ],
+            "world": [
+              1169.5578463244995,
+              234.31698123281703
+            ]
+          },
+          "evidenceIndex": 0,
+          "evidenceCount": 1,
+          "evidencePlacement": "right-rail",
+          "environmentCycleElapsed": 2.1162000000000063,
+          "environmentPhase": "morning",
+          "sunStrength": 1.6430521862071903,
+          "moonStrength": 0.03670683054182998,
+          "sunDirection": [
+            -0.4506298914770711,
+            0.5243201358818955,
+            0.7225102739865737
+          ],
+          "moonDirection": [
+            0.5332086003937315,
+            0.11637141036013826,
+            -0.8379416944614644
+          ],
+          "shadowDirection": [
+            0.4506298914770711,
+            -0.5243201358818955,
+            -0.7225102739865737
+          ],
+          "sunReflectionStrength": 1.07012049162549,
+          "moonReflectionStrength": 0.027530122906372485,
+          "lighthouseBeamStrength": 0.35777110615735236,
+          "lighthouseBeamDirection": [
+            0.40053731203079224,
+            0.9162804484367371
+          ],
+          "oasisGhostStrength": 0,
+          "routeSpectrumStrength": 0.7692971992609474,
+          "waterMeanLevel": 0.02613392149597007,
+          "waterLuminance": 0.3474096312808826
+        },
+        "horizon": null,
+        "profileAdventure": {
+          "layoutVersion": "grounded-v4",
+          "ready": true,
+          "simulationElapsed": 2.233333333333335,
+          "elapsed": 2.233333333333335,
+          "running": false,
+          "paused": true,
+          "reducedMotion": false,
+          "actors": {
+            "nobita": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.26300953210633327,
+                0.91
+              ],
+              "facing": "left",
+              "station": "blackboard",
+              "frame": "movement:side:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.068,
+              "walkDistance": 0.09320409646671689
+            },
+            "doraemon": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.603075223475794,
+                0.91
+              ],
+              "facing": "right",
+              "station": "water-cooler",
+              "frame": "movement:side:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.06,
+              "walkDistance": 0.08279676671132588
+            },
+            "shizuka": {
+              "state": "watching-tv",
+              "stateElapsed": 0.16666666666666666,
+              "visible": true,
+              "position": [
+                0.72,
+                0.815
+              ],
+              "facing": "up",
+              "station": "sofa-left",
+              "frame": "life:sit-game-a",
+              "renderInstanceCount": 1,
+              "visitedStations": [
+                "sofa-left"
+              ],
+              "activityDuration": 10.12422141735442,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.062,
+              "walkDistance": 0.07979435898806533
+            },
+            "gian": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.158139265605769,
+                0.91
+              ],
+              "facing": "right",
+              "station": "secondary-desk",
+              "frame": "movement:side:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.053,
+              "walkDistance": 0.07527469371190479
+            },
+            "suneo": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.8645714285714285,
+                0.6835294117647059
+              ],
+              "facing": "up",
+              "station": "tv-console",
+              "frame": "movement:up:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.073,
+              "walkDistance": 0.1127932846070614
+            }
+          },
+          "actorFrames": {
+            "nobita": "movement:side:0",
+            "doraemon": "movement:side:2",
+            "shizuka": "life:sit-game-a",
+            "gian": "movement:side:2",
+            "suneo": "movement:up:2"
+          },
+          "actorPositions": {
+            "nobita": [
+              0.26300953210633327,
+              0.91
+            ],
+            "doraemon": [
+              0.603075223475794,
+              0.91
+            ],
+            "shizuka": [
+              0.72,
+              0.815
+            ],
+            "gian": [
+              0.158139265605769,
+              0.91
+            ],
+            "suneo": [
+              0.8645714285714285,
+              0.6835294117647059
+            ]
+          },
+          "depthOrder": [
+            "suneo",
+            "shizuka",
+            "nobita",
+            "doraemon",
+            "gian"
+          ],
+          "focusedActor": null,
+          "stationOccupancy": {
+            "blackboard": [
+              "nobita"
+            ],
+            "water-cooler": [
+              "doraemon"
+            ],
+            "primary-desk": [],
+            "secondary-desk": [
+              "gian"
+            ],
+            "sofa-left": [
+              "shizuka"
+            ],
+            "sofa-right": [],
+            "tv-console": [
+              "suneo"
+            ],
+            "poster-left": [],
+            "poster-right": [],
+            "anywhere-door": []
+          },
+          "doorFrame": "closed",
+          "doorUser": null,
+          "portalStrength": 0,
+          "tvFrame": 22,
+          "tvPelletsRemaining": 151,
+          "navigation": {
+            "deadlockRecoveries": 0,
+            "reservedCells": [
+              {
+                "cell": "8:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "22:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "26:14",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "4:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "32:10",
+                "actor": "suneo"
+              },
+              {
+                "cell": "7:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "6:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "23:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "23:16",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "5:17",
+                "actor": "gian"
+              }
+            ]
+          },
+          "layout": {
+            "version": "grounded-v4",
+            "walkBounds": [
+              0.06,
+              0.36,
+              0.94,
+              0.91
+            ],
+            "navGrid": {
+              "columns": 36,
+              "rows": 18
+            },
+            "props": {
+              "posterLeft": {
+                "id": "poster-left",
+                "worldAnchor": [
+                  0.145,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "blackboard": {
+                "id": "blackboard",
+                "worldAnchor": [
+                  0.325,
+                  0.22
+                ],
+                "desktopSize": [
+                  0.165,
+                  0.17
+                ],
+                "mobileSize": [
+                  0.235,
+                  0.12
+                ]
+              },
+              "posterRight": {
+                "id": "poster-right",
+                "worldAnchor": [
+                  0.675,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "chandelier": {
+                "id": "chandelier",
+                "worldAnchor": [
+                  0.5,
+                  0.39
+                ],
+                "desktopSize": [
+                  0.122,
+                  0.216
+                ],
+                "mobileSize": [
+                  0.194,
+                  0.156
+                ]
+              },
+              "waterCooler": {
+                "id": "water-cooler",
+                "worldAnchor": [
+                  0.79,
+                  0.475
+                ],
+                "desktopSize": [
+                  0.073,
+                  0.203
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.156
+                ],
+                "collisionBounds": [
+                  0.75,
+                  0.405,
+                  0.83,
+                  0.49
+                ]
+              },
+              "door": {
+                "id": "anywhere-door",
+                "worldAnchor": [
+                  0.92,
+                  0.52
+                ],
+                "desktopSize": [
+                  0.074,
+                  0.225
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.173
+                ],
+                "collisionBounds": [
+                  0.89,
+                  0.405,
+                  0.945,
+                  0.515
+                ]
+              },
+              "secondaryDesk": {
+                "id": "secondary-desk",
+                "worldAnchor": [
+                  0.23,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.118,
+                  0.197
+                ],
+                "mobileSize": [
+                  0.19,
+                  0.147
+                ],
+                "collisionBounds": [
+                  0.14,
+                  0.585,
+                  0.32,
+                  0.69
+                ]
+              },
+              "primaryDesk": {
+                "id": "primary-desk",
+                "worldAnchor": [
+                  0.48,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.132,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.385,
+                  0.58,
+                  0.575,
+                  0.69
+                ]
+              },
+              "tv": {
+                "id": "tv-cabinet",
+                "worldAnchor": [
+                  0.77,
+                  0.655
+                ],
+                "desktopSize": [
+                  0.13,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.685,
+                  0.565,
+                  0.855,
+                  0.675
+                ]
+              },
+              "sofa": {
+                "id": "sofa",
+                "worldAnchor": [
+                  0.77,
+                  0.86
+                ],
+                "desktopSize": [
+                  0.158,
+                  0.213
+                ],
+                "mobileSize": [
+                  0.245,
+                  0.168
+                ],
+                "collisionBounds": [
+                  0.675,
+                  0.835,
+                  0.865,
+                  0.905
+                ]
+              }
+            },
+            "stationPositions": {
+              "poster-left": [
+                0.145,
+                0.39
+              ],
+              "blackboard": [
+                0.325,
+                0.39
+              ],
+              "poster-right": [
+                0.675,
+                0.39
+              ],
+              "water-cooler": [
+                0.79,
+                0.515
+              ],
+              "anywhere-door": [
+                0.875,
+                0.535
+              ],
+              "secondary-desk": [
+                0.23,
+                0.72
+              ],
+              "primary-desk": [
+                0.48,
+                0.72
+              ],
+              "tv-console": [
+                0.87,
+                0.69
+              ],
+              "sofa-left": [
+                0.72,
+                0.815
+              ],
+              "sofa-right": [
+                0.8,
+                0.815
+              ]
+            },
+            "tvScreenRect": [
+              0.304688,
+              0.335938,
+              0.375,
+              0.25
+            ],
+            "tvChildAnchors": {
+              "ps5": [
+                0.73,
+                0.61
+              ]
+            },
+            "lampAnchors": [
+              [
+                0.055,
+                0.145
+              ],
+              [
+                0.233,
+                0.145
+              ],
+              [
+                0.411,
+                0.145
+              ],
+              [
+                0.589,
+                0.145
+              ],
+              [
+                0.767,
+                0.145
+              ],
+              [
+                0.945,
+                0.145
+              ]
+            ]
+          },
+          "assets": {
+            "actors": {
+              "nobita": "ready",
+              "doraemon": "ready",
+              "shizuka": "ready",
+              "gian": "ready",
+              "suneo": "ready"
+            },
+            "furniture": "ready",
+            "door": "ready",
+            "lamps": "ready",
+            "posters": "ready"
+          }
+        },
+        "longTasks": [
+          {
+            "startTime": 348,
+            "duration": 58
+          },
+          {
+            "startTime": 678,
+            "duration": 123
+          },
+          {
+            "startTime": 803,
+            "duration": 6544
+          },
+          {
+            "startTime": 7349,
+            "duration": 3300
+          },
+          {
+            "startTime": 10685,
+            "duration": 3395
+          },
+          {
+            "startTime": 14081,
+            "duration": 3742
+          },
+          {
+            "startTime": 17837,
+            "duration": 3421
+          },
+          {
+            "startTime": 21262,
+            "duration": 3543
+          },
+          {
+            "startTime": 24806,
+            "duration": 3724
+          },
+          {
+            "startTime": 28534,
+            "duration": 3309
+          },
+          {
+            "startTime": 31845,
+            "duration": 3275
+          },
+          {
+            "startTime": 35121,
+            "duration": 3331
+          },
+          {
+            "startTime": 38454,
+            "duration": 3480
+          },
+          {
+            "startTime": 41937,
+            "duration": 3376
+          },
+          {
+            "startTime": 45316,
+            "duration": 3552
+          },
+          {
+            "startTime": 48872,
+            "duration": 3426
+          },
+          {
+            "startTime": 52332,
+            "duration": 4099
+          },
+          {
+            "startTime": 56492,
+            "duration": 344
+          },
+          {
+            "startTime": 56846,
+            "duration": 347
+          },
+          {
+            "startTime": 57198,
+            "duration": 290
+          },
+          {
+            "startTime": 57488,
+            "duration": 299
+          },
+          {
+            "startTime": 58007,
+            "duration": 83
+          },
+          {
+            "startTime": 58134,
+            "duration": 60
+          },
+          {
+            "startTime": 58239,
+            "duration": 63
+          },
+          {
+            "startTime": 58350,
+            "duration": 61
+          },
+          {
+            "startTime": 58454,
+            "duration": 65
+          },
+          {
+            "startTime": 58523,
+            "duration": 67
+          },
+          {
+            "startTime": 58591,
+            "duration": 75
+          },
+          {
+            "startTime": 58727,
+            "duration": 76
+          },
+          {
+            "startTime": 58809,
+            "duration": 52
+          },
+          {
+            "startTime": 58893,
+            "duration": 169
+          },
+          {
+            "startTime": 59071,
+            "duration": 79
+          },
+          {
+            "startTime": 59155,
+            "duration": 725
+          },
+          {
+            "startTime": 59881,
+            "duration": 62
+          },
+          {
+            "startTime": 59944,
+            "duration": 104
+          },
+          {
+            "startTime": 60049,
+            "duration": 64
+          }
+        ],
+        "layoutShift": 0.010546196321401087
+      }
+    },
+    {
+      "label": "horizon-active",
+      "raf": {
+        "frames": 37,
+        "elapsedMs": 1634,
+        "fps": 22.65,
+        "medianFrameMs": 50,
+        "p95FrameMs": 50.6,
+        "framesOver33ms": 31,
+        "framesOver50ms": 7
+      },
+      "metrics": {
+        "JSEventListeners": 119,
+        "Nodes": 1795,
+        "LayoutDuration": 0.08,
+        "RecalcStyleDuration": 0.08,
+        "ScriptDuration": 1.13,
+        "TaskDuration": 64.06,
+        "JSHeapUsedSize": 20835908,
+        "JSHeapTotalSize": 40697856
+      },
+      "diagnostics": {
+        "activeSection": "horizon",
+        "canvasCount": 4,
+        "gallery": {
+          "cabinetVersion": "v6",
+          "cabinetLoaded": true,
+          "anchorsFound": 32,
+          "envAtlas": true,
+          "lightmapReady": true,
+          "woodCandidate": "walnut_cabinet_v6",
+          "materialSystem": "unified-walnut-v6",
+          "materialBindings": {
+            "mat_walnut_outer": true,
+            "mat_warm_inner_wall": true,
+            "mat_warm_side_wall": true,
+            "mat_warm_right_side_wall": true,
+            "mat_inner_floor": true,
+            "mat_shadow_groove": true,
+            "mat_black_lacquer_trim": true,
+            "mat_brass_trim": true,
+            "mat_light_diffuser": true,
+            "mat_glass_edge": true,
+            "mat_glass_pane": true,
+            "mat_card_frame": true,
+            "mat_plaque_lcd": true,
+            "mat_obsidian_plinth": true,
+            "mat_legendary_holo": true,
+            "mat_gold_trophy": true,
+            "mat_silver_trophy": true,
+            "mat_blue_crystal": true,
+            "mat_soft_shadow": true
+          },
+          "generatedHeroMedia": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "heroColorProbe": {},
+          "heroVideos": {
+            "directl": {
+              "url": "/assets/gallery/hero/directl_preview.mp4",
+              "ready": true,
+              "failed": false
+            }
+          },
+          "trophyMeshes": {
+            "ssat": true,
+            "directl": true,
+            "eva01": true,
+            "docdiff": true
+          },
+          "generatedTrophyModels": {
+            "ssat": true,
+            "directl": false,
+            "eva01": false,
+            "docdiff": false
+          },
+          "generatedTrophySources": {
+            "ssat": "v3-lod"
+          },
+          "generatedTrophyInteractionStarted": false,
+          "profileCompanionReady": true,
+          "generatedTrophyQueue": [
+            "directl",
+            "eva01",
+            "docdiff"
+          ],
+          "generatedTrophyLoading": null,
+          "staticCabinetBatch": {
+            "groupId": 0,
+            "sourceMeshes": 154,
+            "batches": 13
+          },
+          "canvasCount": 4,
+          "webglContexts": null,
+          "drawCalls": 0,
+          "triangles": 0,
+          "fpsEstimate": 11,
+          "activeProject": null,
+          "hoverProject": null,
+          "spotlightSceneWeight": 0,
+          "slots": [
+            {
+              "id": "ssat",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "directl",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                0.20000004768371582,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.74,
+                0.74,
+                0.74
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "eva01",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                -0.737500011920929,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.71,
+                0.71,
+                0.71
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            },
+            {
+              "id": "docdiff",
+              "trophyLocalPosition": [
+                0.56,
+                -0.905,
+                0.34
+              ],
+              "trophyWorldPosition": [
+                1.8575000762939453,
+                -2.009999990463257,
+                0.3400000035762787
+              ],
+              "trophyScale": [
+                0.7,
+                0.7,
+                0.7
+              ],
+              "spotlightWeight": 0,
+              "spotlightEnabled": false,
+              "spotlightCastsShadows": false,
+              "spotlightIntensity": 0,
+              "topLightIntensity": 4.62,
+              "fillLightIntensity": 1.55,
+              "sideFillIntensity": 0.82,
+              "heroLightIntensity": 0.3,
+              "rimLightIntensity": 0.44,
+              "diffuserEmissiveIntensity": 0.82
+            }
+          ],
+          "visibleMode": "desktop-2x2",
+          "lighting": {
+            "exposure": 0.96,
+            "skyboxIntensity": 0.17,
+            "ambientLight": [
+              0.17,
+              0.125,
+              0.09
+            ],
+            "topLight": 4.62,
+            "fillLight": 1.55,
+            "sideWallWash": 0.82
+          },
+          "source": "wooden-gallery-cabinet-v6.glb"
+        },
+        "voyage": {
+          "ready": true,
+          "assetsReady": true,
+          "fallbackActive": false,
+          "introPhase": "harbor-reveal",
+          "introElapsed": 3.632900000000002,
+          "selectedNode": "eva01",
+          "currentStage": "eva01",
+          "evidenceOpen": false,
+          "internalResolution": [
+            960,
+            540
+          ],
+          "wakeStrength": 1,
+          "reflectionStrength": 0.6036120224197226,
+          "boatHeading": 0,
+          "transitionProgress": 1,
+          "boatAsset": "v3-lod",
+          "landmarkAssets": {
+            "dock": "v3-lod",
+            "reef": "v3-lod",
+            "lighthouse": "v3-lod",
+            "harbor": "v3-lod",
+            "gate": "v3-lod"
+          },
+          "running": false,
+          "cameraPitch": 73.61045966596522,
+          "cameraProjection": "perspective",
+          "waterMode": "xz-gerstner",
+          "reflectionMode": "planar",
+          "reflectionUpdateInterval": 2,
+          "shadowUpdateInterval": 2,
+          "reflectionUpdates": 33,
+          "shadowUpdates": 33,
+          "floatingBodies": {
+            "docdiff": {
+              "height": 0.03363595629347578,
+              "pitch": 0.5754872132417658,
+              "roll": -1.9552434381449328,
+              "contactStrength": 0.9662209485836111,
+              "reflectionStrength": 0.6913063836813753,
+              "modelWaterlineOffset": 0.08,
+              "submergedFraction": 0
+            },
+            "neural": {
+              "height": -0.009368484826014583,
+              "pitch": 0.0664669152270322,
+              "roll": -0.2533712589390366,
+              "contactStrength": 0.9640135065466242,
+              "reflectionStrength": 0.5321135116309328,
+              "modelWaterlineOffset": 0.1,
+              "submergedFraction": 0
+            },
+            "directl": {
+              "height": -0.01142824655596975,
+              "pitch": -0.6893649794395766,
+              "roll": 0.41359704513105056,
+              "contactStrength": 0.9658188347374348,
+              "reflectionStrength": 0.5738091010439564,
+              "modelWaterlineOffset": 0.1,
+              "submergedFraction": 0
+            },
+            "eva01": {
+              "height": 0.004934196738678169,
+              "pitch": 0.04500124976144091,
+              "roll": -0.21448031224230296,
+              "contactStrength": 0.9695771087057918,
+              "reflectionStrength": 0.7115953575075924,
+              "modelWaterlineOffset": 0.09,
+              "submergedFraction": 0.01390894775947292
+            },
+            "world": {
+              "height": 0.007024726839856463,
+              "pitch": 0.06773013528884594,
+              "roll": 0.030118638257990295,
+              "contactStrength": 0.9530595327330529,
+              "reflectionStrength": 0.812570508503475,
+              "modelWaterlineOffset": 0.12,
+              "submergedFraction": 0
+            },
+            "boat": {
+              "height": 0.07553794648189419,
+              "pitch": -0.11339155783207489,
+              "roll": 0.5622825267679521,
+              "contactStrength": 0.954350442620749,
+              "reflectionStrength": 0.6385877865430156,
+              "modelWaterlineOffset": -0.08,
+              "submergedFraction": 0.16152871976703864
+            }
+          },
+          "projectedNodePositions": {
+            "docdiff": [
+              77.42937326696598,
+              781.7995896806981
+            ],
+            "neural": [
+              509.0206508282556,
+              587.6469106745114
+            ],
+            "directl": [
+              884.6294363598879,
+              392.63172490259603
+            ],
+            "eva01": [
+              1145.5273499161688,
+              728.9347272220252
+            ],
+            "world": [
+              1210.0863100840227,
+              221.77662143739894
+            ]
+          },
+          "evidenceIndex": 0,
+          "evidenceCount": 1,
+          "evidencePlacement": "right-rail",
+          "environmentCycleElapsed": 3.6328999999999994,
+          "environmentPhase": "morning",
+          "sunStrength": 0.10088698644495837,
+          "moonStrength": 0.82,
+          "sunDirection": [
+            -0.4932080707132272,
+            0.610924675161271,
+            0.6192873648496569
+          ],
+          "moonDirection": [
+            0.5941713605217368,
+            0.0782604674791853,
+            -0.8005221380859417
+          ],
+          "shadowDirection": [
+            0.4932080707132272,
+            -0.610924675161271,
+            -0.6192873648496569
+          ],
+          "sunReflectionStrength": 0,
+          "moonReflectionStrength": 0.82,
+          "lighthouseBeamStrength": 0.3207448607060278,
+          "lighthouseBeamDirection": [
+            -0.11705601960420609,
+            0.993125319480896
+          ],
+          "oasisGhostStrength": 0.9789659221469018,
+          "routeSpectrumStrength": 0.92,
+          "waterMeanLevel": 0.02428349408377825,
+          "waterLuminance": 0.35975171309799076
+        },
+        "horizon": {
+          "ready": true,
+          "fallbackActive": false,
+          "atlasReady": true,
+          "ufoAtlasReady": true,
+          "qualityTier": "high",
+          "internalResolution": [
+            640,
+            360
+          ],
+          "targetFps": 60,
+          "effectiveFps": 60,
+          "frameDeltaMs": 18.69,
+          "transitionProgress": 1,
+          "boatProgress": 0.94,
+          "boatScreenPosition": [
+            0.61,
+            0.605
+          ],
+          "horizonScreenY": 0.52,
+          "meteorCount": 0,
+          "meteorOrigins": [],
+          "meteorVelocities": [],
+          "meteorTailRange": [
+            0,
+            0
+          ],
+          "fireworkCount": 0,
+          "fireworkEventCount": 0,
+          "boatCyclePhase": "boat-respawning",
+          "ufoVisible": false,
+          "beamStrength": 0,
+          "boatLift": 1,
+          "boatVisible": 0.4168449972592576,
+          "boatVerticalVelocity": 0,
+          "boatPitch": 0,
+          "boatLampStrength": 0.9368830165024322,
+          "splashStrength": 0,
+          "moonReflectionStrength": 0.7039638913831544,
+          "seaLuminance": 0.118,
+          "cycleElapsed": 43.9833,
+          "fireworkPrincipalCount": 0,
+          "fireworkCompanionCount": 0,
+          "nextMeteorIn": 2.3667000000000016,
+          "lastMeteorBatchSize": 0,
+          "running": true
+        },
+        "profileAdventure": {
+          "layoutVersion": "grounded-v4",
+          "ready": true,
+          "simulationElapsed": 2.233333333333335,
+          "elapsed": 2.233333333333335,
+          "running": false,
+          "paused": true,
+          "reducedMotion": false,
+          "actors": {
+            "nobita": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.26300953210633327,
+                0.91
+              ],
+              "facing": "left",
+              "station": "blackboard",
+              "frame": "movement:side:0",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.068,
+              "walkDistance": 0.09320409646671689
+            },
+            "doraemon": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.603075223475794,
+                0.91
+              ],
+              "facing": "right",
+              "station": "water-cooler",
+              "frame": "movement:side:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.06,
+              "walkDistance": 0.08279676671132588
+            },
+            "shizuka": {
+              "state": "watching-tv",
+              "stateElapsed": 0.16666666666666666,
+              "visible": true,
+              "position": [
+                0.72,
+                0.815
+              ],
+              "facing": "up",
+              "station": "sofa-left",
+              "frame": "life:sit-game-a",
+              "renderInstanceCount": 1,
+              "visitedStations": [
+                "sofa-left"
+              ],
+              "activityDuration": 10.12422141735442,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.062,
+              "walkDistance": 0.07979435898806533
+            },
+            "gian": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.158139265605769,
+                0.91
+              ],
+              "facing": "right",
+              "station": "secondary-desk",
+              "frame": "movement:side:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.053,
+              "walkDistance": 0.07527469371190479
+            },
+            "suneo": {
+              "state": "walking",
+              "stateElapsed": 2.233333333333335,
+              "visible": true,
+              "position": [
+                0.8645714285714285,
+                0.6835294117647059
+              ],
+              "facing": "up",
+              "station": "tv-console",
+              "frame": "movement:up:2",
+              "renderInstanceCount": 1,
+              "visitedStations": [],
+              "activityDuration": 0,
+              "blockedElapsed": 0,
+              "blockedBy": null,
+              "replanCount": 0,
+              "speed": 0.073,
+              "walkDistance": 0.1127932846070614
+            }
+          },
+          "actorFrames": {
+            "nobita": "movement:side:0",
+            "doraemon": "movement:side:2",
+            "shizuka": "life:sit-game-a",
+            "gian": "movement:side:2",
+            "suneo": "movement:up:2"
+          },
+          "actorPositions": {
+            "nobita": [
+              0.26300953210633327,
+              0.91
+            ],
+            "doraemon": [
+              0.603075223475794,
+              0.91
+            ],
+            "shizuka": [
+              0.72,
+              0.815
+            ],
+            "gian": [
+              0.158139265605769,
+              0.91
+            ],
+            "suneo": [
+              0.8645714285714285,
+              0.6835294117647059
+            ]
+          },
+          "depthOrder": [
+            "suneo",
+            "shizuka",
+            "nobita",
+            "doraemon",
+            "gian"
+          ],
+          "focusedActor": null,
+          "stationOccupancy": {
+            "blackboard": [
+              "nobita"
+            ],
+            "water-cooler": [
+              "doraemon"
+            ],
+            "primary-desk": [],
+            "secondary-desk": [
+              "gian"
+            ],
+            "sofa-left": [
+              "shizuka"
+            ],
+            "sofa-right": [],
+            "tv-console": [
+              "suneo"
+            ],
+            "poster-left": [],
+            "poster-right": [],
+            "anywhere-door": []
+          },
+          "doorFrame": "closed",
+          "doorUser": null,
+          "portalStrength": 0,
+          "tvFrame": 22,
+          "tvPelletsRemaining": 151,
+          "navigation": {
+            "deadlockRecoveries": 0,
+            "reservedCells": [
+              {
+                "cell": "8:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "22:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "26:14",
+                "actor": "shizuka"
+              },
+              {
+                "cell": "4:17",
+                "actor": "gian"
+              },
+              {
+                "cell": "32:10",
+                "actor": "suneo"
+              },
+              {
+                "cell": "7:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "6:17",
+                "actor": "nobita"
+              },
+              {
+                "cell": "23:17",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "23:16",
+                "actor": "doraemon"
+              },
+              {
+                "cell": "5:17",
+                "actor": "gian"
+              }
+            ]
+          },
+          "layout": {
+            "version": "grounded-v4",
+            "walkBounds": [
+              0.06,
+              0.36,
+              0.94,
+              0.91
+            ],
+            "navGrid": {
+              "columns": 36,
+              "rows": 18
+            },
+            "props": {
+              "posterLeft": {
+                "id": "poster-left",
+                "worldAnchor": [
+                  0.145,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "blackboard": {
+                "id": "blackboard",
+                "worldAnchor": [
+                  0.325,
+                  0.22
+                ],
+                "desktopSize": [
+                  0.165,
+                  0.17
+                ],
+                "mobileSize": [
+                  0.235,
+                  0.12
+                ]
+              },
+              "posterRight": {
+                "id": "poster-right",
+                "worldAnchor": [
+                  0.675,
+                  0.225
+                ],
+                "desktopSize": [
+                  0.06,
+                  0.16
+                ],
+                "mobileSize": [
+                  0.098,
+                  0.126
+                ]
+              },
+              "chandelier": {
+                "id": "chandelier",
+                "worldAnchor": [
+                  0.5,
+                  0.39
+                ],
+                "desktopSize": [
+                  0.122,
+                  0.216
+                ],
+                "mobileSize": [
+                  0.194,
+                  0.156
+                ]
+              },
+              "waterCooler": {
+                "id": "water-cooler",
+                "worldAnchor": [
+                  0.79,
+                  0.475
+                ],
+                "desktopSize": [
+                  0.073,
+                  0.203
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.156
+                ],
+                "collisionBounds": [
+                  0.75,
+                  0.405,
+                  0.83,
+                  0.49
+                ]
+              },
+              "door": {
+                "id": "anywhere-door",
+                "worldAnchor": [
+                  0.92,
+                  0.52
+                ],
+                "desktopSize": [
+                  0.074,
+                  0.225
+                ],
+                "mobileSize": [
+                  0.122,
+                  0.173
+                ],
+                "collisionBounds": [
+                  0.89,
+                  0.405,
+                  0.945,
+                  0.515
+                ]
+              },
+              "secondaryDesk": {
+                "id": "secondary-desk",
+                "worldAnchor": [
+                  0.23,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.118,
+                  0.197
+                ],
+                "mobileSize": [
+                  0.19,
+                  0.147
+                ],
+                "collisionBounds": [
+                  0.14,
+                  0.585,
+                  0.32,
+                  0.69
+                ]
+              },
+              "primaryDesk": {
+                "id": "primary-desk",
+                "worldAnchor": [
+                  0.48,
+                  0.665
+                ],
+                "desktopSize": [
+                  0.132,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.385,
+                  0.58,
+                  0.575,
+                  0.69
+                ]
+              },
+              "tv": {
+                "id": "tv-cabinet",
+                "worldAnchor": [
+                  0.77,
+                  0.655
+                ],
+                "desktopSize": [
+                  0.13,
+                  0.207
+                ],
+                "mobileSize": [
+                  0.205,
+                  0.153
+                ],
+                "collisionBounds": [
+                  0.685,
+                  0.565,
+                  0.855,
+                  0.675
+                ]
+              },
+              "sofa": {
+                "id": "sofa",
+                "worldAnchor": [
+                  0.77,
+                  0.86
+                ],
+                "desktopSize": [
+                  0.158,
+                  0.213
+                ],
+                "mobileSize": [
+                  0.245,
+                  0.168
+                ],
+                "collisionBounds": [
+                  0.675,
+                  0.835,
+                  0.865,
+                  0.905
+                ]
+              }
+            },
+            "stationPositions": {
+              "poster-left": [
+                0.145,
+                0.39
+              ],
+              "blackboard": [
+                0.325,
+                0.39
+              ],
+              "poster-right": [
+                0.675,
+                0.39
+              ],
+              "water-cooler": [
+                0.79,
+                0.515
+              ],
+              "anywhere-door": [
+                0.875,
+                0.535
+              ],
+              "secondary-desk": [
+                0.23,
+                0.72
+              ],
+              "primary-desk": [
+                0.48,
+                0.72
+              ],
+              "tv-console": [
+                0.87,
+                0.69
+              ],
+              "sofa-left": [
+                0.72,
+                0.815
+              ],
+              "sofa-right": [
+                0.8,
+                0.815
+              ]
+            },
+            "tvScreenRect": [
+              0.304688,
+              0.335938,
+              0.375,
+              0.25
+            ],
+            "tvChildAnchors": {
+              "ps5": [
+                0.73,
+                0.61
+              ]
+            },
+            "lampAnchors": [
+              [
+                0.055,
+                0.145
+              ],
+              [
+                0.233,
+                0.145
+              ],
+              [
+                0.411,
+                0.145
+              ],
+              [
+                0.589,
+                0.145
+              ],
+              [
+                0.767,
+                0.145
+              ],
+              [
+                0.945,
+                0.145
+              ]
+            ]
+          },
+          "assets": {
+            "actors": {
+              "nobita": "ready",
+              "doraemon": "ready",
+              "shizuka": "ready",
+              "gian": "ready",
+              "suneo": "ready"
+            },
+            "furniture": "ready",
+            "door": "ready",
+            "lamps": "ready",
+            "posters": "ready"
+          }
+        },
+        "longTasks": [
+          {
+            "startTime": 348,
+            "duration": 58
+          },
+          {
+            "startTime": 678,
+            "duration": 123
+          },
+          {
+            "startTime": 803,
+            "duration": 6544
+          },
+          {
+            "startTime": 7349,
+            "duration": 3300
+          },
+          {
+            "startTime": 10685,
+            "duration": 3395
+          },
+          {
+            "startTime": 14081,
+            "duration": 3742
+          },
+          {
+            "startTime": 17837,
+            "duration": 3421
+          },
+          {
+            "startTime": 21262,
+            "duration": 3543
+          },
+          {
+            "startTime": 24806,
+            "duration": 3724
+          },
+          {
+            "startTime": 28534,
+            "duration": 3309
+          },
+          {
+            "startTime": 31845,
+            "duration": 3275
+          },
+          {
+            "startTime": 35121,
+            "duration": 3331
+          },
+          {
+            "startTime": 38454,
+            "duration": 3480
+          },
+          {
+            "startTime": 41937,
+            "duration": 3376
+          },
+          {
+            "startTime": 45316,
+            "duration": 3552
+          },
+          {
+            "startTime": 48872,
+            "duration": 3426
+          },
+          {
+            "startTime": 52332,
+            "duration": 4099
+          },
+          {
+            "startTime": 56492,
+            "duration": 344
+          },
+          {
+            "startTime": 56846,
+            "duration": 347
+          },
+          {
+            "startTime": 57198,
+            "duration": 290
+          },
+          {
+            "startTime": 57488,
+            "duration": 299
+          },
+          {
+            "startTime": 58007,
+            "duration": 83
+          },
+          {
+            "startTime": 58134,
+            "duration": 60
+          },
+          {
+            "startTime": 58239,
+            "duration": 63
+          },
+          {
+            "startTime": 58350,
+            "duration": 61
+          },
+          {
+            "startTime": 58454,
+            "duration": 65
+          },
+          {
+            "startTime": 58523,
+            "duration": 67
+          },
+          {
+            "startTime": 58591,
+            "duration": 75
+          },
+          {
+            "startTime": 58727,
+            "duration": 76
+          },
+          {
+            "startTime": 58809,
+            "duration": 52
+          },
+          {
+            "startTime": 58893,
+            "duration": 169
+          },
+          {
+            "startTime": 59071,
+            "duration": 79
+          },
+          {
+            "startTime": 59155,
+            "duration": 725
+          },
+          {
+            "startTime": 59881,
+            "duration": 62
+          },
+          {
+            "startTime": 59944,
+            "duration": 104
+          },
+          {
+            "startTime": 60049,
+            "duration": 64
+          },
+          {
+            "startTime": 60141,
+            "duration": 1899
+          },
+          {
+            "startTime": 62042,
+            "duration": 56
+          },
+          {
+            "startTime": 62100,
+            "duration": 93
+          },
+          {
+            "startTime": 62193,
+            "duration": 55
+          },
+          {
+            "startTime": 62261,
+            "duration": 90
+          },
+          {
+            "startTime": 62352,
+            "duration": 53
+          },
+          {
+            "startTime": 62406,
+            "duration": 98
+          },
+          {
+            "startTime": 62505,
+            "duration": 52
+          },
+          {
+            "startTime": 62557,
+            "duration": 90
+          },
+          {
+            "startTime": 62648,
+            "duration": 53
+          },
+          {
+            "startTime": 62702,
+            "duration": 91
+          },
+          {
+            "startTime": 62795,
+            "duration": 56
+          },
+          {
+            "startTime": 62851,
+            "duration": 798
+          },
+          {
+            "startTime": 63650,
+            "duration": 52
+          },
+          {
+            "startTime": 63703,
+            "duration": 89
+          },
+          {
+            "startTime": 63793,
+            "duration": 52
+          },
+          {
+            "startTime": 63848,
+            "duration": 87
+          },
+          {
+            "startTime": 63936,
+            "duration": 54
+          },
+          {
+            "startTime": 63991,
+            "duration": 144
+          },
+          {
+            "startTime": 64136,
+            "duration": 62
+          },
+          {
+            "startTime": 64200,
+            "duration": 159
+          },
+          {
+            "startTime": 64370,
+            "duration": 99
+          }
+        ],
+        "layoutShift": 0.01137951896416307
+      }
+    }
+  ],
+  "resourceSummary": {
+    "script": {
+      "count": 22,
+      "transferSize": 7252434,
+      "decodedBodySize": 7245834,
+      "duration": 23
+    },
+    "link": {
+      "count": 1,
+      "transferSize": 1514,
+      "decodedBodySize": 21205,
+      "duration": 326
+    },
+    "img": {
+      "count": 33,
+      "transferSize": 8145745,
+      "decodedBodySize": 8135845,
+      "duration": 23
+    },
+    "video": {
+      "count": 4,
+      "transferSize": 610819,
+      "decodedBodySize": 609619,
+      "duration": 62
+    },
+    "xmlhttprequest": {
+      "count": 24,
+      "transferSize": 17856602,
+      "decodedBodySize": 25159297,
+      "duration": 29
+    },
+    "fetch": {
+      "count": 5,
+      "transferSize": 33279,
+      "decodedBodySize": 31779,
+      "duration": 3
+    }
+  },
+  "largestResources": [
+    {
+      "name": "http://127.0.0.1:4173/node_modules/.vite/deps/playcanvas.js?v=37c62688",
+      "initiatorType": "script",
+      "duration": 23,
+      "transferSize": 5580481,
+      "decodedBodySize": 5580181
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/hero/ssat_teaser.png",
+      "initiatorType": "img",
+      "duration": 23,
+      "transferSize": 5098896,
+      "decodedBodySize": 5098596
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/models/wooden-gallery-cabinet-v6.glb?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 28,
+      "transferSize": 4086404,
+      "decodedBodySize": 4086104
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/research-boat-v3-lod.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 4,
+      "transferSize": 2166608,
+      "decodedBodySize": 2166308
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/studio_small_08_1k.hdr",
+      "initiatorType": "xmlhttprequest",
+      "duration": 14,
+      "transferSize": 1509172,
+      "decodedBodySize": 1508872
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/landmarks/v3/harbor.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 6,
+      "transferSize": 1491448,
+      "decodedBodySize": 1491148
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/landmarks/v3/lighthouse.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 5,
+      "transferSize": 1409892,
+      "decodedBodySize": 1409592
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/landmarks/v3/dock.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 4,
+      "transferSize": 1290028,
+      "decodedBodySize": 1289728
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/landmarks/v3/prism.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 3,
+      "transferSize": 1174480,
+      "decodedBodySize": 1174180
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/voyage/models/landmarks/v3/gate.glb?v=20260722-webgl-lod-v3",
+      "initiatorType": "xmlhttprequest",
+      "duration": 4,
+      "transferSize": 1087168,
+      "decodedBodySize": 1086868
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/models/generated/trophy-ssat-v3-lod.glb?v=20260722-perf-v3-lod",
+      "initiatorType": "xmlhttprequest",
+      "duration": 4,
+      "transferSize": 975584,
+      "decodedBodySize": 975284
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_ao_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 17,
+      "transferSize": 628018,
+      "decodedBodySize": 627718
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/profile/nobita.png",
+      "initiatorType": "img",
+      "duration": 5,
+      "transferSize": 590062,
+      "decodedBodySize": 589762
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/hero/docdiff_fig.png",
+      "initiatorType": "img",
+      "duration": 5,
+      "transferSize": 413817,
+      "decodedBodySize": 413517
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_normal_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 14,
+      "transferSize": 391880,
+      "decodedBodySize": 391580
+    },
+    {
+      "name": "http://127.0.0.1:4173/src/voyage/VoyageSceneRenderer.ts?t=1784697623963",
+      "initiatorType": "script",
+      "duration": 3,
+      "transferSize": 342985,
+      "decodedBodySize": 342685
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/area-light-luts.json",
+      "initiatorType": "xmlhttprequest",
+      "duration": 6,
+      "transferSize": 307676,
+      "decodedBodySize": 307376
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/hero/eva01_teaser.webp",
+      "initiatorType": "img",
+      "duration": 5,
+      "transferSize": 248830,
+      "decodedBodySize": 248530
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_wall_basecolor_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 6,
+      "transferSize": 245484,
+      "decodedBodySize": 245184
+    },
+    {
+      "name": "http://127.0.0.1:4173/src/gallery/PlayCanvasGallery.ts?t=1784698730744",
+      "initiatorType": "script",
+      "duration": 1,
+      "transferSize": 240128,
+      "decodedBodySize": 239828
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_side_basecolor_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 6,
+      "transferSize": 234894,
+      "decodedBodySize": 234594
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_floor_basecolor_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 13,
+      "transferSize": 221188,
+      "decodedBodySize": 220888
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/materials/walnut_cabinet_v6/walnut_frame_basecolor_v6.jpg?v=20260701-walnut-cabinet-v6k-walnut-metal-floor",
+      "initiatorType": "xmlhttprequest",
+      "duration": 6,
+      "transferSize": 216524,
+      "decodedBodySize": 216224
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/hero/directl_preview.mp4",
+      "initiatorType": "video",
+      "duration": 2,
+      "transferSize": 214429,
+      "decodedBodySize": 214129
+    },
+    {
+      "name": "http://127.0.0.1:4173/assets/gallery/hero/directl_preview.mp4",
+      "initiatorType": "video",
+      "duration": 1,
+      "transferSize": 214429,
+      "decodedBodySize": 214129
+    }
+  ]
+}

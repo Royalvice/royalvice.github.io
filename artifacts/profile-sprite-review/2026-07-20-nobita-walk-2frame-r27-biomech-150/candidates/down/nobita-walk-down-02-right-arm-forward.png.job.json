@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 DOWN正面真实步态：右脚支撑落地，左腿从髋部向前摆并自然屈膝；左臂前摆、右臂后摆；肩线与骨盆轻微反向转动，手肘膝盖脚掌结构清楚，重心在右脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+    "prompt_upsampling": false,
+    "seed": 23102,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-e350aa06f6bf4261/sample.png",
+      "sha256": "836fd56d815c07ae770ad113a1c7837faf1568c5aa9f9ac010364138cef4f0ac",
+      "size_bytes": 773722,
+      "url": "/v1/artifacts/flux2-e350aa06f6bf4261/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784551936.2307994,
+  "error": null,
+  "finished_at": 1784551953.9998114,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-e350aa06f6bf4261/reference_0.png"
+  ],
+  "job_id": "flux2-e350aa06f6bf4261",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄方向图，保持同一脸型、圆形黑框眼镜、黑色短发、黄色上衣、深蓝短裤、白袜、浅蓝鞋与2D pixel sprite风格，身体比例和脚底pivot不变。 DOWN正面真实步态：右脚支撑落地，左腿从髋部向前摆并自然屈膝；左臂前摆、右臂后摆；肩线与骨盆轻微反向转动，手肘膝盖脚掌结构清楚，重心在右脚。 单个角色完整头到脚，纯色#00FF00 chroma-key背景，脚下保持纯绿色。",
+    "prompt_upsampling": false,
+    "seed": 23102,
+    "width": 1024
+  },
+  "started_at": 1784551936.2991056,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.055,
+    "denoise": 5.071,
+    "load_inputs": 0.022,
+    "reference_encode": 0.223,
+    "save_png": 0.731,
+    "text_encode": 0.336,
+    "total_wall": 17.701
+  },
+  "updated_at": 1784551953.9998262,
+  "worker_finished_at": 1784551953.2018094
+}

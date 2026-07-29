@@ -1,0 +1,15 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-correction-from-r2-04-r1",
+  "status": "rejected-by-user-arms-not-reversed",
+  "accepted": false,
+  "userReview": "胳膊还是不行，没有反转。",
+  "assessment": {
+    "C01": "手臂摆幅改变，但腿部退化为接近并腿，且没有可靠完成前后手臂交换。",
+    "C02": "腿序基本保留，但主要只是增加摆幅，没有可靠完成前后手臂交换。",
+    "C03": "腿和身体稳定，但手臂仍保持接近原参考的摆向。",
+    "C04": "双臂同时向前且腿部接近站立，不合格。"
+  },
+  "selection": null,
+  "supersededBy": "2026-07-23-nobita-left-arm-correction-from-r2-04-r2",
+  "nextMethod": "不再依赖解剖学左右描述，改用画面空间直接交换前后两条手臂的位置。"
+}

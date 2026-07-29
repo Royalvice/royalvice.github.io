@@ -1,0 +1,57 @@
+{
+  "version": "final-front-references-transparent-r2",
+  "createdAt": "2026-07-20",
+  "purpose": "固定五名角色的唯一正式 RGBA 身份参考图；仅用于后续逐帧 Flux i2i，不作为网站运行时资源",
+  "review": {
+    "visualInspection": "view_image",
+    "status": "approved",
+    "note": "用户确认透明处理版本作为唯一正式参考。五张图片均经过实际 view_image 检查和 chroma-key 去除；后续 i2i 只允许使用这五张 RGBA 文件，不再混入官方卡片、旧 canonical 或风格图。"
+  },
+  "characters": {
+    "nobita": {
+      "displayName": "大雄",
+      "file": "nobita-front-reference.png",
+      "size": [1024, 1024],
+      "format": "PNG RGBA",
+      "sha256": "d6801e13debab30a642b9ea62c2d2fe43ec6de4fa17c6af813b73e1f51d32922",
+      "source": "2026-07-20-i2i-single-frame-r1/processed/nobita-idle-i2i-r1-alpha-contract1.png",
+      "identityNotes": "黑色短发、圆形黑框眼镜、黄色上衣、深蓝短裤、白袜和浅蓝鞋；儿童体型。"
+    },
+    "doraemon": {
+      "displayName": "哆啦A梦",
+      "file": "doraemon-front-reference.png",
+      "size": [1024, 1024],
+      "format": "PNG RGBA",
+      "sha256": "4cf2234d652352ea3dd6375caf682cbd45cc1def75816a874904fc3212d692d5",
+      "source": "2026-07-20-i2i-single-frame-r1/processed/doraemon-idle-i2i-r1-alpha-contract1.png",
+      "identityNotes": "蓝白圆形机器人猫、无耳、红鼻子、红项圈和金铃铛；短圆四肢。"
+    },
+    "shizuka": {
+      "displayName": "静香",
+      "file": "shizuka-front-reference.png",
+      "size": [1024, 1024],
+      "format": "PNG RGBA",
+      "sha256": "93f61efe64552d67d9bf30198d82ef39dcf55f5fd384d966933bf3d6006aef13",
+      "source": "2026-07-20-i2i-single-frame-r1/processed/shizuka-idle-i2i-r1-alpha-contract1.png",
+      "identityNotes": "儿童比例、黑色双低辫、粉白上衣、红色格纹裙、白袜和红鞋。"
+    },
+    "gian": {
+      "displayName": "胖虎",
+      "file": "gian-front-reference.png",
+      "size": [1024, 1024],
+      "format": "PNG RGBA",
+      "sha256": "a901eccf51ef3f84148d9960ee995cf1e58004480be7af097cc0bc23c1db7d2d",
+      "source": "2026-07-20-i2i-single-frame-r1/processed/gian-idle-i2i-r1-alpha-contract1.png",
+      "identityNotes": "宽肩宽躯干、方下颌、短黑发、橙色上衣深色横条和蓝色下装；儿童体型。"
+    },
+    "suneo": {
+      "displayName": "小夫",
+      "file": "suneo-front-reference.png",
+      "size": [1024, 1024],
+      "format": "PNG RGBA",
+      "sha256": "996b2c4a2b669f15d8206d7525285ac6fcc7b444e2cbac194ab3148bb3830490",
+      "source": "2026-07-20-i2i-single-frame-r1/processed/suneo-idle-i2i-r2-alpha-contract1.png",
+      "identityNotes": "横向三尖黑发、尖鼻侧脸、绿色格纹上衣、橙棕短裤、白袜和绿色鞋；偏瘦小体型。"
+    }
+  }
+}

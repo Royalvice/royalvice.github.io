@@ -1,0 +1,20 @@
+{
+  "runId": "2026-07-22-nobita-up-two-frame-clean-r1",
+  "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png",
+  "referenceSha256": "d19ba29d82a6d89abf901f23853953b7089793060e7bc361a269675f5abb65aa",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "inputImageCount": 1,
+  "prompts": {
+    "frame-a": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身左腿在前、右腿在后、右臂在前、左臂在后，双脚着地。",
+    "frame-b": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。"
+  },
+  "promptUpsampling": false,
+  "maxCandidatesPerFrame": 16,
+  "batchSize": 4,
+  "direction": "up",
+  "leftRightConvention": "始终按角色自身解剖学左右，不按画面左右",
+  "inputPolicy": "每个候选只上传同一张对应方向的中立参考图；两帧互不作为输入。"
+}

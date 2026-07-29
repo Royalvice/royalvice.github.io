@@ -1,0 +1,22 @@
+{
+  "method": "single-image-structural-arm-swap-guide",
+  "source": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+  "sourceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c",
+  "sourceSize": [
+    1024,
+    1024
+  ],
+  "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+  "outputSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98",
+  "outputSize": [
+    1024,
+    1024
+  ],
+  "inputImageCountForNextI2I": 1,
+  "changes": [
+    "Only the two arm regions were locally redrawn.",
+    "The long visible arm shape was moved to the screen-left/front side.",
+    "The compact bent arm shape was moved to the screen-right/back side.",
+    "The legs, head and main torso pixels were not transformed."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "runId": "2026-07-22-nobita-left-two-frame-clean-r1",
+  "reference": {
+    "path": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png",
+    "sha256": "a999bad373a5b7e8aced59a826daf0502503942e32e0f64ab0e7981fd0121e9b",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "selection": {
+    "frameA": {
+      "candidate": 14,
+      "sourceFrame": "frame-a",
+      "sheetLabel": "A14",
+      "seed": 76013,
+      "jobId": "flux2-f8b7eed5bd1b4f7a",
+      "source": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-a/candidate-14.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/selected-frame-a.png",
+      "sha256": "97274ec46daaf94f412ebd8100bc22e8b5856b17464587d13082f80ff5399b83",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "frameB": {
+      "candidate": 1,
+      "sourceFrame": "arm-swap-cleanup-r1",
+      "sheetLabel": "R5-C01",
+      "seed": 86000,
+      "jobId": "flux2-6779f8c898f345c0",
+      "source": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-01.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/selected-frame-b.png",
+      "sha256": "bb435b7868b17984e9290574fb0e0d8e503b4fdcd15d42739033720a62c4e6b9",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "selectionStatus": "confirmed-by-user-a14-plus-r5-c01",
+  "reviewArtifacts": {
+    "contactSheet": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/two-frame-review-contact.png",
+      "sha256": "c727d643ee0ced1e2c154b257f0b13edd81d81b83df64ed677cbb3ea1e2578a1",
+      "size": [
+        2048,
+        1088
+      ]
+    },
+    "loopPreview": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/two-frame-preview.gif",
+      "sha256": "37fce77d66a4fdfc166ac4dec385b69b86b7d16db5e6e20d410d1e712e9926c6",
+      "frames": 2,
+      "durationMsPerFrame": 350
+    }
+  },
+  "generationCounts": {
+    "originalFrameA": 16,
+    "originalFrameB": 16,
+    "reverseR1": 4,
+    "reverseR2": 4,
+    "total": 40
+  },
+  "status": "accepted-by-user-selection-a14-plus-r5-c01"
+}

@@ -1,0 +1,365 @@
+{
+  "runId": "2026-07-22-nobita-single-frame-left-leg-forward-r1",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 72000,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-bfd1381383744a18",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-01.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 2,
+      "seed": 72001,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-b2cff854545844b7",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-02.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 3,
+      "seed": 72002,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-8382b61fd21d49cd",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-03.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 4,
+      "seed": 72003,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-ce7b9deb80374825",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-04.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 5,
+      "seed": 72004,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-ad79ea7a30b643ac",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-05.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 6,
+      "seed": 72005,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-64bf6929a352450d",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-06.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 7,
+      "seed": 72006,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-8349f0e3c71b4c6b",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-07.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 8,
+      "seed": 72007,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-9d375fd1875c4f42",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-08.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 9,
+      "seed": 72008,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-318f26c88cd248a3",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-09.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 10,
+      "seed": 72009,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-b4e43eb1a23f4af9",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-10.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 11,
+      "seed": 72010,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-2b39851ce7f6469f",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-11.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 12,
+      "seed": 72011,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-aa610b04d35a4497",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-12.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 13,
+      "seed": 72012,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-a86e5a4732c24b8d",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-13.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 14,
+      "seed": 72013,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-4daf534f54964b4d",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-14.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 15,
+      "seed": 72014,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-967cf04d6d93409a",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-15.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 16,
+      "seed": 72015,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-de8cb51b9c0f41ab",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-16.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 17,
+      "seed": 72016,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-3457378a54214d69",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-17.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 18,
+      "seed": 72017,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-75bab53e427d4086",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-18.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 19,
+      "seed": 72018,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-4771534a37664b6a",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-19.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 20,
+      "seed": 72019,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-6aafa85838a548dc",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-20.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 21,
+      "seed": 72020,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-1e2091e1da674d7d",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-21.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 22,
+      "seed": 72021,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-18594c46fe974653",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-22.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 23,
+      "seed": 72022,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-6440ae0889cd4de7",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-23.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 24,
+      "seed": 72023,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-148448b3ca4d48dc",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-24.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 25,
+      "seed": 72024,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-7a7350c8125e43f0",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-25.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 26,
+      "seed": 72025,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-4c3f302054c54c11",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-26.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 27,
+      "seed": 72026,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-2b5a800ce91342a7",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-27.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 28,
+      "seed": 72027,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-1a2c59abc3614db3",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-28.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 29,
+      "seed": 72028,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-4511c884b9f84e85",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-29.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 30,
+      "seed": 72029,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-8420bd200c814f6e",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-30.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 31,
+      "seed": 72030,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-b9196632f56a4fca",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-31.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 32,
+      "seed": 72031,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-8e53ca5a6e294e5a",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-32.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 33,
+      "seed": 72032,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-6750a2e85e4c4d94",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-33.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 34,
+      "seed": 72033,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-538b4e99230b4e05",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-34.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 35,
+      "seed": 72034,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-942c02eab0704f2b",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-35.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "candidate": 36,
+      "seed": 72035,
+      "prompt": "把参考图中的人物改成走路姿势，人物自身左腿向前、右腿向后、右臂向前、左臂向后。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-3ff20ad20a2f4ad9",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-single-frame-left-leg-forward-r1/candidate-36.png",
+      "reference": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    }
+  ]
+}

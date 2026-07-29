@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄左侧面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴侧脸、鼻尖朝左、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄做 contact pose：前侧鞋向画面左方落地，后侧鞋向右后方落地；前摆手臂朝左，后摆手臂朝右，步幅适中。 画布右边的大雄做紧接着的 passing pose：支撑脚位于身体正下方，另一只脚的脚尖从支撑脚旁贴地经过，两条腿靠拢；两只手臂经过身体两侧的中间位置。两格鼻尖都朝左，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 44200,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-6fe83a239ad44bf9/sample.png",
+      "sha256": "b6f54fe34ae708f5c7274365ccace5c16bf6d09d4bc38d6c302d0fc450ef6b7f",
+      "size_bytes": 290276,
+      "url": "/v1/artifacts/flux2-6fe83a239ad44bf9/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784562207.2417555,
+  "error": null,
+  "finished_at": 1784562223.571002,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-6fe83a239ad44bf9/reference_0.png"
+  ],
+  "job_id": "flux2-6fe83a239ad44bf9",
+  "metrics": {
+    "nvml_peak_used_mib": 54225,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 51382.3,
+    "torch_peak_reserved_mib": 51708
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄左侧面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴侧脸、鼻尖朝左、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄做 contact pose：前侧鞋向画面左方落地，后侧鞋向右后方落地；前摆手臂朝左，后摆手臂朝右，步幅适中。 画布右边的大雄做紧接着的 passing pose：支撑脚位于身体正下方，另一只脚的脚尖从支撑脚旁贴地经过，两条腿靠拢；两只手臂经过身体两侧的中间位置。两格鼻尖都朝左，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 44200,
+    "width": 1024
+  },
+  "started_at": 1784562207.3084078,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.563,
+    "denoise": 2.698,
+    "load_inputs": 0.013,
+    "reference_encode": 0.143,
+    "save_png": 0.249,
+    "text_encode": 0.336,
+    "total_wall": 16.263
+  },
+  "updated_at": 1784562223.5710158,
+  "worker_finished_at": 1784562221.403152
+}

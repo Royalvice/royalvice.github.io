@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 DOWN正面 contact pose：左脚承重落地，右腿向前摆；右臂前摆、左臂后摆，膝盖朝前，双脚接触线清楚。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+    "prompt_upsampling": false,
+    "seed": 23101,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-a9b8a91ce6774b01/sample.png",
+      "sha256": "5247dba65cda3f57743c072dcb04553fc49566123dc4113e82073a41cbdbd6b7",
+      "size_bytes": 729753,
+      "url": "/v1/artifacts/flux2-a9b8a91ce6774b01/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784552696.6285825,
+  "error": null,
+  "finished_at": 1784552713.710612,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-a9b8a91ce6774b01/reference_0.png"
+  ],
+  "job_id": "flux2-a9b8a91ce6774b01",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.4,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，保持同一脸型、圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋和2D pixel sprite风格。 DOWN正面 contact pose：左脚承重落地，右腿向前摆；右臂前摆、左臂后摆，膝盖朝前，双脚接触线清楚。 完整全身，anatomically correct，四肢自然，#00FF00 chroma-key绿幕。",
+    "prompt_upsampling": false,
+    "seed": 23101,
+    "width": 1024
+  },
+  "started_at": 1784552696.6988397,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.053,
+    "denoise": 5.073,
+    "load_inputs": 0.022,
+    "reference_encode": 0.223,
+    "save_png": 0.684,
+    "text_encode": 0.335,
+    "total_wall": 17.012
+  },
+  "updated_at": 1784552713.7106266,
+  "worker_finished_at": 1784552713.0084245
+}

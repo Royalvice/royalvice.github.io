@@ -1,0 +1,61 @@
+{
+  "schema": "royalvice.voyage.wildlife-trellis.v1",
+  "generator": {
+    "model": "TRELLIS.2-4B",
+    "resolution": "1024_cascade",
+    "mesh_decimation_target": 12000,
+    "texture_size": 1024,
+    "animation_preview": {
+      "frames": 96,
+      "fps": 12,
+      "duration_seconds": 8
+    }
+  },
+  "runtime_motion": "The GLBs are static TRELLIS meshes; VoyageWildlifeController supplies deterministic swim, breach, patrol, pitch, roll, and fade motion. The MP4 files are retained as TRELLIS animation evidence.",
+  "assets": {
+    "dolphin": {
+      "glb": "dolphin-trellis2-1024-cascade.glb",
+      "glb_sha256": "3ac76a88ac689604aa6011404a6e1be32f9fa647fdbc36cabb20d9feb50da76e",
+      "animation_preview": "dolphin-trellis2-1024-cascade.mp4",
+      "animation_preview_sha256": "a0836e81e47b7667b0143bc8725a0918d938c3747aecab022f540ba0cfd12337",
+      "trellis_job_id": "trellis2-e2bb2add4c58408b",
+      "seed": 81303,
+      "reference_generation": {
+        "t2i_job_id": "flux2-901e61ee7cb34b4d",
+        "t2i_seed": 81301,
+        "selected_i2i_job_id": "flux2-8add5b11728546b6",
+        "selected_i2i_seed": 81302
+      }
+    },
+    "gull": {
+      "glb": "gull-trellis2-1024-cascade.glb",
+      "glb_sha256": "e4b3c3e2d4752af85264785c52960bb2c498b2d75b1bcec5b0875d9b3a52d0dd",
+      "animation_preview": "gull-trellis2-1024-cascade.mp4",
+      "animation_preview_sha256": "8cef4bb0b73679853945638060c0061791c074c42514cc0e79eed2e9a068bf0e",
+      "trellis_job_id": "trellis2-ca5e9ea6ebcf49da",
+      "seed": 81319,
+      "reference_generation": {
+        "t2i_job_id": "flux2-2247831a4ad64e7b",
+        "t2i_seed": 81317,
+        "selected_i2i_job_id": "flux2-1d330f806f874290",
+        "selected_i2i_seed": 81320
+      }
+    },
+    "blue_whale": {
+      "glb": "blue-whale-trellis2-1024-cascade.glb",
+      "glb_sha256": "7aa564f006413dc51d021383c59afb81132db8659c6f75da4e822a4ca3fd3229",
+      "animation_preview": "blue-whale-trellis2-1024-cascade.mp4",
+      "animation_preview_sha256": "d88147f42491e904f8ea018b62a6509194059b72e4f1f75f92e9aa7315adb273",
+      "trellis_job_id": "trellis2-dbab76b772ee4ccc",
+      "seed": 81233
+    },
+    "shark": {
+      "glb": "shark-trellis2-1024-cascade.glb",
+      "glb_sha256": "fa156a489de0f27cc3b6d34efc66f910742dafb4547f1af53195d5773c178fa0",
+      "animation_preview": "shark-trellis2-1024-cascade.mp4",
+      "animation_preview_sha256": "ba62eecd4d88793e1588515546941b88ae641f85c1289a1e015513d8bf16ff73",
+      "trellis_job_id": "trellis2-072703ebb689460c",
+      "seed": 81249
+    }
+  }
+}

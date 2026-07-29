@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. One matching walnut research chair aligned straight north-south to the desk, high-overhead view, centered backrest, centered seat, two readable front legs sharing one baseline. No diagonal rotation and no cast shadow.",
+    "prompt_upsampling": false,
+    "seed": 94211,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c7216f7376224dbf/sample.png",
+      "sha256": "25bff2a923f229093d1ac53cf693384b7d39f1c0e351ac790c7418ce5e47cd45",
+      "size_bytes": 315308,
+      "url": "/v1/artifacts/flux2-c7216f7376224dbf/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300176.4940581,
+  "error": null,
+  "finished_at": 1784300202.53097,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c7216f7376224dbf/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c7216f7376224dbf/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-c7216f7376224dbf/reference_2.png"
+  ],
+  "job_id": "flux2-c7216f7376224dbf",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. One matching walnut research chair aligned straight north-south to the desk, high-overhead view, centered backrest, centered seat, two readable front legs sharing one baseline. No diagonal rotation and no cast shadow.",
+    "prompt_upsampling": false,
+    "seed": 94211,
+    "width": 1024
+  },
+  "started_at": 1784300176.6342914,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.564,
+    "denoise": 12.371,
+    "load_inputs": 0.061,
+    "reference_encode": 0.546,
+    "save_png": 0.447,
+    "text_encode": 0.335,
+    "total_wall": 25.897
+  },
+  "updated_at": 1784300202.5309834,
+  "worker_finished_at": 1784300201.756207
+}

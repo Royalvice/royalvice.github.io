@@ -1,0 +1,16 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r14-down-from-mirror-guide",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r14-down-from-mirror-guide/candidates/down/nobita-walk-down-02-right-arm-forward.png",
+      "prompt": "One isolated 2D pixel sprite frame of Nobita Nobi, the same slim Japanese schoolboy with round black glasses, short black hair, yellow shirt, navy shorts, white socks and pale blue shoes. Strict DOWN facing view from the supplied single reference image; preserve the exact identity, face, clothing, pixel density and foot baseline. The supplied single image is a deliberate mirrored opposite-contact pose guide. Preserve its exact DOWN-facing pose silhouette: the forward shoe is now on screen-right, the opposite leg trails on screen-left, and the arm swing is mirrored left-to-right. Keep this mirrored walking pose and the exact Nobita identity; do not return to the previous leg or arm positions. Exaggerated hand-drawn 2D animation key pose, clear opposite arm and leg swing, both arms and legs separate, full head-to-feet silhouette, crisp pixel clusters, dark outline, flat #00FF00 chroma-key background. Exactly one character, no room, no furniture, no text, no shadow.",
+      "jobId": "flux2-d999d3e878b24491",
+      "references": [
+        "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r13-down-mirror-guide/down-frame2-pose-guide.png"
+      ]
+    }
+  ]
+}

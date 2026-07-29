@@ -1,0 +1,70 @@
+{
+  "runId": "2026-07-22-nobita-up-two-frame-clean-r1",
+  "reviewedAt": "2026-07-22",
+  "leftRightConvention": "始终按角色自身解剖学左右，不按画面左右",
+  "acceptanceRevision": {
+    "source": "user feedback during review",
+    "rule": "用户查看完整带编号候选 Sheet 后明确判定：原始 Frame A 候选均不入选；原始 Frame B 的 B01 与 B04 是合格的两帧。"
+  },
+  "frameA": {
+    "target": "角色自身左腿在前",
+    "generatedCandidates": 4,
+    "acceptedCandidate": null,
+    "reason": "用户人工复核后判定原始 Frame A 的 A01-A04 均不入选。",
+    "reviews": [
+      {
+        "candidates": "1-4",
+        "accepted": false,
+        "reason": "以用户对完整候选 Sheet 的人工选择为准，全部淘汰。"
+      }
+    ]
+  },
+  "frameB": {
+    "target": "角色自身右腿在前",
+    "generatedCandidates": 4,
+    "acceptedCandidates": [
+      1,
+      4
+    ],
+    "acceptedSeeds": [
+      79000,
+      79003
+    ],
+    "acceptedJobIds": [
+      "flux2-93c1321227e4493e",
+      "flux2-1ea283280c3140f4"
+    ],
+    "reason": "用户人工复核确认 B01 与 B04 是合格的两张相反步态。",
+    "reviews": [
+      {
+        "candidate": 1,
+        "accepted": true,
+        "reason": "用户指定为最终循环第一帧。"
+      },
+      {
+        "candidates": "2-3",
+        "accepted": false,
+        "reason": "用户未选中。"
+      },
+      {
+        "candidate": 4,
+        "accepted": true,
+        "reason": "用户指定为最终循环第二帧。"
+      }
+    ]
+  },
+  "finalPairMapping": {
+    "selected-frame-a.png": "原始 frame-b/candidate-01.png（B01）",
+    "selected-frame-b.png": "原始 frame-b/candidate-04.png（B04）",
+    "note": "最终 A/B 只是循环帧文件名；两张源图都来自原始 Frame B 抽卡组，记录不改写其生成来源。"
+  },
+  "pairReview": {
+    "accepted": true,
+    "source": "user-selected-from-numbered-contact-sheet",
+    "bodyAlignment": "B01 与 B04 均保持稳定正背面，没有明显转体或侧斜。",
+    "strideAlternation": "B01 与 B04 的鞋底显露与腿部前后关系形成清楚交换。",
+    "scaleAndBaseline": "人物中心、头部高度、脚底范围与总体比例接近，可形成两帧循环。",
+    "nonBlockingDifference": "最终选择以用户人工视觉判断为准。"
+  },
+  "status": "accepted-by-user-selection-b01-b04"
+}

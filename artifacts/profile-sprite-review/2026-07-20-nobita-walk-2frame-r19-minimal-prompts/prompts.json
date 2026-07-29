@@ -1,0 +1,52 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r19-minimal-prompts",
+  "actor": "nobita",
+  "frameMode": "two",
+  "generation": "one independent Flux i2i job per frame",
+  "references": [
+    {
+      "direction": "down",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png"
+    },
+    {
+      "direction": "up",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+    },
+    {
+      "direction": "left",
+      "file": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-left-reference.png"
+    }
+  ],
+  "frames": [
+    {
+      "direction": "down",
+      "frame": "01-left-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，左臂前摆，右臂后摆，右腿前跨，左腿后收。"
+    },
+    {
+      "direction": "down",
+      "frame": "02-right-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，右臂前摆，左臂后摆，左腿前跨，右腿后收。"
+    },
+    {
+      "direction": "up",
+      "frame": "01-left-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，左臂前摆，右臂后摆，右腿前跨，左腿后收。"
+    },
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，右臂前摆，左臂后摆，左腿前跨，右腿后收。"
+    },
+    {
+      "direction": "left",
+      "frame": "01-left-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；左侧面，左臂左伸，右臂右摆，右腿左跨，左膝后抬。"
+    },
+    {
+      "direction": "left",
+      "frame": "02-right-arm-forward",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；左侧面，右臂左伸，左臂右摆，左腿左跨，右膝后抬。"
+    }
+  ]
+}

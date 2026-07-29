@@ -1,0 +1,94 @@
+{
+  "runId": "2026-07-23-doraemon-abc-clean-r1",
+  "actor": "doraemon",
+  "status": "failed-selection-gate",
+  "evaluatedAt": "2026-07-23T23:36:35+08:00",
+  "selectionPolicy": "首个严格合格候选即停止；每个动作最多 16 张；不得用近似帧顶替。",
+  "accepted": [
+    {
+      "direction": "down",
+      "pose": "a",
+      "candidate": 2,
+      "seed": 100001,
+      "jobId": "flux2-4c2bb5f29be343e5",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-a/candidate-02.png",
+      "outputSha256": "38d91617415d6be772a67763ff51165d52bc055a4430c35f76ac7e5547256b1c",
+      "reason": "正面竖直，角色自身左腿前迈，双脚分离，身份稳定。"
+    },
+    {
+      "direction": "down",
+      "pose": "c",
+      "candidate": 4,
+      "seed": 100103,
+      "jobId": "flux2-45373c24012f4c29",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/down/frame-c/candidate-04.png",
+      "outputSha256": "75108fdac747d9913e3921667c616b1510673c04e58ca8bda78bd8ddb5e73a18",
+      "reason": "正面竖直，角色自身右腿前迈，与 Down A 的腿部关系相反。"
+    },
+    {
+      "direction": "left",
+      "pose": "a",
+      "candidate": 2,
+      "seed": 100201,
+      "jobId": "flux2-1b1da2f1703e4c5a",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "outputSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "reason": "朝左竖直，跨步和前后臂轮廓清楚。"
+    },
+    {
+      "direction": "up",
+      "pose": "a",
+      "candidate": 1,
+      "seed": 100400,
+      "jobId": "flux2-1dea4fb9cfc14449",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-a/candidate-01.png",
+      "outputSha256": "fbe51d8889b2b71d9303cc514520e795775682d47df2b4b4546de0364003ed5f",
+      "reason": "背面竖直，角色自身左腿前迈，双脚轮廓清楚。"
+    },
+    {
+      "direction": "up",
+      "pose": "c",
+      "candidate": 2,
+      "seed": 100501,
+      "jobId": "flux2-56e1c51130c04756",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/up/frame-c/candidate-02.png",
+      "outputSha256": "2ca6b444ca193869d367760b53871f55f50329f08185355e0bc6570192af928d",
+      "reason": "背面竖直，角色自身右腿前迈，与 Up A 的腿部关系相反。"
+    }
+  ],
+  "failed": [
+    {
+      "direction": "left",
+      "pose": "c",
+      "candidateCount": 16,
+      "reviewSheet": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-c/candidate-review-contact.png",
+      "rejectedCandidates": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+      "rejectionReasons": {
+        "01": "腿与 Left A 同向前迈，前后臂未反转。",
+        "02": "腿与 Left A 同向前迈，前后臂未反转。",
+        "03": "腿与 Left A 同向前迈，前后臂未反转。",
+        "04": "腿与 Left A 同向前迈，前后臂未反转。",
+        "05": "腿与 Left A 同向前迈，前臂不清楚且未形成反相。",
+        "06": "腿与 Left A 同向前迈，前后臂未反转。",
+        "07": "腿与 Left A 同向前迈，前臂不清楚且未形成反相。",
+        "08": "腿与 Left A 同向前迈，前后臂未反转。",
+        "09": "腿与 Left A 同向前迈，前后臂未反转。",
+        "10": "腿与 Left A 同向前迈，前后臂未反转。",
+        "11": "腿与 Left A 同向前迈，前后臂未反转。",
+        "12": "腿与 Left A 同向前迈，并出现服装颜色漂移。",
+        "13": "腿与 Left A 同向前迈，前后臂未反转。",
+        "14": "腿与 Left A 同向前迈，步幅过小且前后臂未反转。",
+        "15": "腿与 Left A 同向前迈，前后臂未反转。",
+        "16": "腿与 Left A 同向前迈，前后臂未反转。"
+      },
+      "reason": "16 张都保持与 Left A 相同的向画面左侧前迈轮廓，手臂摆向也没有形成可信反相；不满足 A/C 相反步态。"
+    }
+  ],
+  "publishGate": {
+    "passed": false,
+    "reason": "Left C 在 16 张上限内无严格合格候选。",
+    "runtimeAssetsModified": false,
+    "repositoryCommitted": false,
+    "deployed": false
+  }
+}

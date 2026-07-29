@@ -1,0 +1,19 @@
+{
+  "method": "single-image-natural-arm-composite-guide",
+  "base": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/candidates/candidate-03.png",
+  "baseSha256": "3487be15e82a4170dd47f3769e227accfd66b5ccb73daa3a6694061b0cbadadc",
+  "armSource": "artifacts/profile-sprite-review/2026-07-22-nobita-left-two-frame-clean-r1/frame-a/candidate-14.png",
+  "armSourceSha256": "97274ec46daaf94f412ebd8100bc22e8b5856b17464587d13082f80ff5399b83",
+  "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-composite-r1/arm-swap-composite-guide-v2.png",
+  "outputSha256": "1685c31df8ae6f254aa68f1002b0780a347a18f845f074a98f78af6cc959f925",
+  "outputSize": [
+    1024,
+    1024
+  ],
+  "inputImageCountForNextI2I": 1,
+  "composition": {
+    "keptFromBase": "head, torso, legs and natural long screen-left/front arm",
+    "mirroredFromA14": "natural bent arm placed on the screen-right/back side",
+    "nextEditTarget": "only repair the screen-right shoulder connection"
+  }
+}

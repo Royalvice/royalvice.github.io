@@ -1,0 +1,72 @@
+{
+  "runId": "2026-07-23-suneo-abc-reverse-explicit-r3",
+  "actor": "suneo",
+  "direction": "left",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 130900,
+      "jobId": "flux2-5eb50bd215794f17",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+      "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+      "outputSha256": "cb4fee629ee7ae6dfee8544111d5e5f946538d942104ae3b8923b3428a73c898",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 130901,
+      "jobId": "flux2-3dd0300d3335494d",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+      "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-02.png",
+      "outputSha256": "0a9c660d4581f48d1998ea444d74d38272a7cb4e7cd6861265f884d339fa1a3e",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 130902,
+      "jobId": "flux2-9da31d9236fe4220",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+      "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-03.png",
+      "outputSha256": "f397841d781d09d72c283c1f75b63be627964bbc76af0cb8829e38e380617c16",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 130903,
+      "jobId": "flux2-b5d251a3f72f4e28",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-clean-r1/left/frame-a/candidate-04.png",
+      "referenceSha256": "292e0b7465c0f6d2613cd00a5960316337f80259c56c52f4a44244361239a823",
+      "output": "artifacts/profile-sprite-review/2026-07-23-suneo-abc-reverse-explicit-r3/left/frame-c/candidate-04.png",
+      "outputSha256": "bcee31e0de2acd59af6e9dc067d24590a2f85c8173a9193ca8b0b46ee363f0a6",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

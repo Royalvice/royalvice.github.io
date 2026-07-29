@@ -49,10 +49,10 @@ window.HOME_HERO = {
       id: "ssat",
       title: "SSAT",
       achievement: "SIGGRAPH 2026",
-      direction: "Realtime Light-field Path Tracing",
+      direction: "Realtime Neural Rendering",
       media: { type: "image", src: "img/ssat_teaser.png" },
       trophy: { material: "legendary-gold-crystal" },
-      summary: "Sparse spatial-angular-temporal reconstruction for real-time light-field path tracing.",
+      summary: "Sparse spatial-angular-temporal samples drive display-native views through real-time neural rendering.",
       links: [
         { label: "Page", href: "https://coronaengine.github.io/ssat-page/" },
         { label: "Paper", state: "coming-soon" },
@@ -254,12 +254,6 @@ window.SITE_CONTENT = {
     { date: "2024-now", title: "PhD Stage", text: "State Key Laboratory of Networking and Switching Technology, LIVIN Lab, BUPT." },
     { date: "2023-2024", title: "3D Display Route", text: "Exploring light-field rendering, naked-eye 3D, and display-native content pipelines." },
     { date: "2021-2023", title: "Document Enhancement Route", text: "Diffusion and restoration work for document and scene-text image enhancement." }
-  ],
-  awards: [
-    { title: "SIGGRAPH Technical Papers", text: "Legendary research item unlocked in 2026." },
-    { title: "ACM TOG", text: "Journal-level graphics trophy, presented at SIGGRAPH Asia 2024." },
-    { title: "ICCV", text: "Vision conference achievement unlocked in 2023 and 2025." },
-    { title: "ACM MM", text: "Multimedia achievement unlocked with DocDiff." }
   ],
   services: [
     { tag: "REVIEW", text: "Academic reviewing and community service placeholder." },

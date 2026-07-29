@@ -1,0 +1,69 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "t2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 0,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 2 帧：LEFT-facing strict profile 向画面左侧行走；大雄右臂完全伸直指向画面左方，左臂向画面右方后摆并在躯干后形成清楚的弯肘轮廓；左腿向画面左方大步前跨并伸直，右膝在画面右后方明显弯曲抬起；四肢与第 1 帧完全交换，身体不回转成三分之四。 Continuity: 这是 1 帧交替步态中的 02-right-arm-forward；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Action contrast: 两帧必须是明显相反的 walking silhouette，前伸手臂、后摆手臂、前跨腿和后腿弯曲都要清楚可见；不要 neutral idle、双臂对称下垂或几乎不动的姿势。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. A single 2D pixel sprite animation keyframe. Strict left-facing orthographic profile, face and toes toward screen-left. Exaggerated opposite arm-and-leg swing: right arm reaches straight forward to screen-left with locked elbow; left arm swings strongly backward to screen-right with high elbow and fist clearly behind the torso. Left leg reaches straight to screen-left in a long stride; right knee lifts high behind toward screen-right. Both arms and legs visibly separate. Warm top-down pixel sprite, crisp clusters, dark outline, transparent chroma background. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 42302,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bf6e864e91d64c6b/sample.png",
+      "sha256": "a7e1b35a345b3b91a0aff595ace50a29b1f4ada7889bea37490becd2e200954d",
+      "size_bytes": 709372,
+      "url": "/v1/artifacts/flux2-bf6e864e91d64c6b/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784540162.3100529,
+  "error": null,
+  "finished_at": 1784540176.3761244,
+  "input_files": [],
+  "job_id": "flux2-bf6e864e91d64c6b",
+  "metrics": {
+    "nvml_peak_used_mib": 57089,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53288.1,
+    "torch_peak_reserved_mib": 53832
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "t2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的唯一正式透明 canonical reference；本次 i2i 只上传这一张图，保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 2 帧：LEFT-facing strict profile 向画面左侧行走；大雄右臂完全伸直指向画面左方，左臂向画面右方后摆并在躯干后形成清楚的弯肘轮廓；左腿向画面左方大步前跨并伸直，右膝在画面右后方明显弯曲抬起；四肢与第 1 帧完全交换，身体不回转成三分之四。 Continuity: 这是 1 帧交替步态中的 02-right-arm-forward；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Action contrast: 两帧必须是明显相反的 walking silhouette，前伸手臂、后摆手臂、前跨腿和后腿弯曲都要清楚可见；不要 neutral idle、双臂对称下垂或几乎不动的姿势。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. A single 2D pixel sprite animation keyframe. Strict left-facing orthographic profile, face and toes toward screen-left. Exaggerated opposite arm-and-leg swing: right arm reaches straight forward to screen-left with locked elbow; left arm swings strongly backward to screen-right with high elbow and fist clearly behind the torso. Left leg reaches straight to screen-left in a long stride; right knee lifts high behind toward screen-right. Both arms and legs visibly separate. Warm top-down pixel sprite, crisp clusters, dark outline, transparent chroma background. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 42302,
+    "width": 1024
+  },
+  "started_at": 1784540162.3391929,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.564,
+    "denoise": 2.369,
+    "load_inputs": 0,
+    "reference_encode": 0,
+    "save_png": 0.66,
+    "text_encode": 0.336,
+    "total_wall": 14.037
+  },
+  "updated_at": 1784540176.3761382,
+  "worker_finished_at": 1784540175.5883038
+}

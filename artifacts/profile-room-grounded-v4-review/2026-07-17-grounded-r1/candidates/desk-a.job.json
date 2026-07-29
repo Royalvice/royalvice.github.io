@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A compact high-overhead research desk whose long front and rear edges are perfectly horizontal and parallel to the room tile grid. Restrained top-down depth only, symmetrical grounded legs touching one shared baseline, walnut construction, papers and one small teal research instrument on the top. No diagonal placement, no three-quarter rotation, no floating feet.",
+    "prompt_upsampling": false,
+    "seed": 94164,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-f3e199e0925547da/sample.png",
+      "sha256": "eca82d4ca8670497163d96fff5f6a41a08ccf538da4b5a114a6ad0e9fafddde6",
+      "size_bytes": 409334,
+      "url": "/v1/artifacts/flux2-f3e199e0925547da/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300123.3475018,
+  "error": null,
+  "finished_at": 1784300149.4182754,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-f3e199e0925547da/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-f3e199e0925547da/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-f3e199e0925547da/reference_2.png"
+  ],
+  "job_id": "flux2-f3e199e0925547da",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A compact high-overhead research desk whose long front and rear edges are perfectly horizontal and parallel to the room tile grid. Restrained top-down depth only, symmetrical grounded legs touching one shared baseline, walnut construction, papers and one small teal research instrument on the top. No diagonal placement, no three-quarter rotation, no floating feet.",
+    "prompt_upsampling": false,
+    "seed": 94164,
+    "width": 1024
+  },
+  "started_at": 1784300123.483409,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.567,
+    "denoise": 12.374,
+    "load_inputs": 0.061,
+    "reference_encode": 0.553,
+    "save_png": 0.503,
+    "text_encode": 0.336,
+    "total_wall": 25.935
+  },
+  "updated_at": 1784300149.4182894,
+  "worker_finished_at": 1784300148.8001454
+}

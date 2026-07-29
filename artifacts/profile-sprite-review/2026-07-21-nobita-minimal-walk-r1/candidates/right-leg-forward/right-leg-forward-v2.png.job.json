@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的野比大雄改成自然走路姿势，右腿向前、左腿向后、左臂向前、右臂向后。",
+    "prompt_upsampling": false,
+    "seed": 61001,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-674e134d181344e6/sample.png",
+      "sha256": "2ba4acd3fc7b20e4f395ca1ae2935ce358493054abb548baa24c9f9bfa25b0bd",
+      "size_bytes": 279419,
+      "url": "/v1/artifacts/flux2-674e134d181344e6/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784636657.8685591,
+  "error": null,
+  "finished_at": 1784636677.1925504,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-674e134d181344e6/reference_0.png"
+  ],
+  "job_id": "flux2-674e134d181344e6",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "把参考图中的野比大雄改成自然走路姿势，右腿向前、左腿向后、左臂向前、右臂向后。",
+    "prompt_upsampling": false,
+    "seed": 61001,
+    "width": 1024
+  },
+  "started_at": 1784636657.9381058,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.095,
+    "denoise": 5.08,
+    "load_inputs": 0.025,
+    "reference_encode": 0.421,
+    "save_png": 0.387,
+    "text_encode": 0.424,
+    "total_wall": 19.254
+  },
+  "updated_at": 1784636677.1925638,
+  "worker_finished_at": 1784636676.2477548
+}

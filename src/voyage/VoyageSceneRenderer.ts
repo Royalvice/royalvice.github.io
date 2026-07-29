@@ -1,6 +1,13 @@
 import * as pc from "playcanvas";
 import type { QualityTier, VoyageNode, VoyageNodeId } from "../content/site";
 import type { TransitionAwareSceneRenderer } from "../scenes/SceneRenderer";
+import {
+  VOYAGE_MARINE_UNIFORM_COUNT,
+  VOYAGE_SPLASH_UNIFORM_COUNT,
+  VoyageWildlifeController,
+  type VoyageWildlifeDebugState,
+  type VoyageWildlifeScenario
+} from "./VoyageWildlifeController";
 
 export type VoyageIntroPhase = "dissolve" | "route-survey" | "harbor-reveal" | "interactive";
 export type VoyageDayPhase = "morning" | "noon" | "sunset" | "night" | "dawn";
@@ -73,6 +80,7 @@ export interface VoyageDebugState {
   routeSpectrumStrength: number;
   waterMeanLevel: number;
   waterLuminance: number;
+  wildlife: VoyageWildlifeDebugState;
 }
 
 interface VoyageSceneOptions {
@@ -221,7 +229,7 @@ const WATER_HALF_WIDTH = 14;
 const WATER_HALF_LENGTH = 10;
 const RAD_TO_DEG = 180 / Math.PI;
 
-const BODY_ORDER: FloatingBodyId[] = ["docdiff", "neural", "directl", "eva01", "world", "boat"];
+const BODY_ORDER: FloatingBodyId[] = ["docdiff", "directl", "neural", "eva01", "world", "boat"];
 
 const WAVE_COMPONENTS: readonly WaveComponent[] = [
   { direction: [1, .18], wavelength: 7.8, amplitude: .110, speed: .48, steepness: .22 },
@@ -325,8 +333,8 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
 
 const DESKTOP_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]> = {
   docdiff: [-8, 0, 4.2],
-  neural: [-5, 0, 1.5],
-  directl: [-2.3, 0, -1.2],
+  directl: [-5, 0, 1.5],
+  neural: [-2.3, 0, -1.2],
   eva01: [.8, 0, 1.15],
   world: [.15, 0, -3.7],
   boat: [-.1, 0, 2.1]
@@ -334,8 +342,8 @@ const DESKTOP_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]> 
 
 const PORTRAIT_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]> = {
   docdiff: [-1.7, 0, 2.35],
-  neural: [1.4, 0, 1.15],
-  directl: [-1.4, 0, 0],
+  directl: [1.4, 0, 1.15],
+  neural: [-1.4, 0, 0],
   eva01: [1.2, 0, -1.15],
   world: [-1.65, 0, -2.35],
   boat: [.15, 0, -.72]
@@ -527,6 +535,16 @@ uniform vec4 uBody2; uniform vec4 uBodyState2;
 uniform vec4 uBody3; uniform vec4 uBodyState3;
 uniform vec4 uBody4; uniform vec4 uBodyState4;
 uniform vec4 uBody5; uniform vec4 uBodyState5;
+uniform vec4 uMarine0; uniform vec4 uMarineState0;
+uniform vec4 uMarine1; uniform vec4 uMarineState1;
+uniform vec4 uMarine2; uniform vec4 uMarineState2;
+uniform vec4 uMarine3; uniform vec4 uMarineState3;
+uniform vec4 uMarine4; uniform vec4 uMarineState4;
+uniform vec4 uMarine5; uniform vec4 uMarineState5;
+uniform vec4 uSplash0;
+uniform vec4 uSplash1;
+uniform vec4 uSplash2;
+uniform vec4 uSplash3;
 ${sharedWaveGLSL}
 
 float hash21(vec2 p) {
@@ -633,6 +651,111 @@ vec3 bodyContribution(vec2 p, vec4 body, vec4 state, vec3 lamp, float waveBreak)
   return result;
 }
 
+vec3 marineContribution(vec2 p, vec4 body, vec4 state, float motionTime) {
+  float visibility = state.y;
+  if (visibility <= .0001) return vec3(0.0);
+  vec2 direction = normalize(body.zw + vec2(.0001));
+  vec2 acrossAxis = vec2(-direction.y, direction.x);
+  vec2 delta = p - body.xy;
+  float along = dot(delta, direction);
+  float across = dot(delta, acrossAxis);
+  float whale = 1.0 - step(.49, abs(state.x - 2.0));
+  float shark = 1.0 - step(.49, abs(state.x - 3.0));
+  float dolphin = 1.0 - max(whale, shark);
+  float halfLength = mix(.72, 1.72, whale);
+  halfLength = mix(halfLength, .92, shark) * max(.35, state.z);
+  float halfWidth = mix(.20, .43, whale);
+  halfWidth = mix(halfWidth, .24, shark) * max(.35, state.z);
+  float radial = length(vec2(along / max(.001, halfLength), across / max(.001, halfWidth)));
+  float creatureBody = 1.0 - smoothstep(.68, 1.08, radial);
+  float tailAlong = along + halfLength * .86;
+  float flukeWidth = halfWidth * mix(1.14, 1.48, whale);
+  float leftFluke = length(vec2((tailAlong + across * .24) / max(.06, halfLength * .22), (across - flukeWidth * .62) / max(.03, halfWidth * .68)));
+  float rightFluke = length(vec2((tailAlong - across * .24) / max(.06, halfLength * .22), (across + flukeWidth * .62) / max(.03, halfWidth * .68)));
+  float flukes = 1.0 - smoothstep(.58, 1.05, min(leftFluke, rightFluke));
+  float marineCreature = max(creatureBody, flukes * .72);
+
+  // Sharks need a readable head-to-tail profile under the water. A single
+  // ellipse reads like a submarine, so build a pointed snout, broad torso,
+  // narrow caudal peduncle, tail lobes, and small pectoral fins separately.
+  float sharkAxis = along / max(.001, halfLength);
+  float sharkRearTaper = smoothstep(-1.04, -.30, sharkAxis);
+  float sharkFrontTaper = 1.0 - smoothstep(.26, 1.08, sharkAxis);
+  float sharkLongitudinal = smoothstep(-1.08, -.94, sharkAxis) * (1.0 - smoothstep(.98, 1.10, sharkAxis));
+  float sharkMidBulge = 1.0 + .12 * (1.0 - smoothstep(.0, .72, abs(sharkAxis - .04)));
+  float sharkWidthProfile = max(.10, min(sharkRearTaper, sharkFrontTaper)) * sharkMidBulge;
+  float sharkBodyDistance = abs(across) / max(.012, halfWidth * sharkWidthProfile);
+  float sharkBody = sharkLongitudinal * (1.0 - smoothstep(.72, 1.04, sharkBodyDistance));
+
+  float sharkTailGate = 1.0 - smoothstep(-.58, -.16, sharkAxis);
+  float sharkTailWave = sin(motionTime * 2.55 + dot(body.xy, vec2(.73, 1.17))) * halfWidth * .18 * sharkTailGate;
+  float sharkTailAcross = across - sharkTailWave;
+  float sharkPeduncleDistance = length(vec2(
+    (along + halfLength * .82) / max(.05, halfLength * .34),
+    sharkTailAcross / max(.025, halfWidth * .24)
+  ));
+  float sharkPeduncle = 1.0 - smoothstep(.62, 1.04, sharkPeduncleDistance);
+  float sharkTailAlong = along + halfLength * 1.07;
+  float sharkLeftTail = length(vec2(
+    (sharkTailAlong + sharkTailAcross * .34) / max(.05, halfLength * .19),
+    (sharkTailAcross - halfWidth * .64) / max(.025, halfWidth * .56)
+  ));
+  float sharkRightTail = length(vec2(
+    (sharkTailAlong - sharkTailAcross * .34) / max(.05, halfLength * .19),
+    (sharkTailAcross + halfWidth * .64) / max(.025, halfWidth * .56)
+  ));
+  float sharkTail = 1.0 - smoothstep(.54, 1.04, min(sharkLeftTail, sharkRightTail));
+
+  float sharkAcrossRatio = abs(across) / max(.02, halfWidth);
+  float sharkFinProgress = clamp((sharkAcrossRatio - .72) / 1.10, 0.0, 1.0);
+  float sharkFinCenter = halfLength * mix(.10, -.34, sharkFinProgress);
+  float sharkFinHalfLength = halfLength * mix(.22, .035, sharkFinProgress);
+  float sharkFinAcrossGate = smoothstep(.68, .82, sharkAcrossRatio)
+    * (1.0 - smoothstep(1.62, 1.84, sharkAcrossRatio));
+  float sharkPectorals = sharkFinAcrossGate
+    * (1.0 - smoothstep(sharkFinHalfLength * .58, sharkFinHalfLength, abs(along - sharkFinCenter)));
+  float sharkCreature = max(max(sharkBody, sharkPeduncle), max(sharkTail * .90, sharkPectorals * .82));
+  float creature = mix(marineCreature, sharkCreature, shark);
+  float marineEdge = smoothstep(.48, .88, radial) * (1.0 - smoothstep(.88, 1.10, radial));
+  float sharkEdge = smoothstep(.08, .64, sharkCreature) * (1.0 - smoothstep(.66, .94, sharkCreature));
+  float edge = mix(marineEdge, sharkEdge, shark);
+  vec3 depthColor = mix(vec3(.060, .145, .205), uWaterDeep * .78, .30);
+  float depthWeight = mix(.96, 1.30, whale);
+  depthWeight = mix(depthWeight, .82, shark);
+  vec3 result = -depthColor * creature * visibility * depthWeight;
+  result += vec3(.010, .034, .052) * creature * visibility * shark;
+  float spine = exp(-abs(across) * 10.0 / max(.35, state.z)) * (1.0 - smoothstep(.62, 1.0, abs(along) / max(.01, halfLength)));
+  result -= vec3(.025, .070, .105) * spine * visibility * (dolphin * .38 + whale * .62 + shark * .44);
+  float sharkDorsalRidge = exp(-abs(across) * 22.0 / max(.35, state.z))
+    * smoothstep(-.38, -.02, sharkAxis)
+    * (1.0 - smoothstep(.28, .56, sharkAxis));
+  result -= vec3(.018, .052, .078) * sharkDorsalRidge * visibility * shark;
+  vec3 moonEdge = mix(uMoonColor, vec3(.22, .62, .78), .38);
+  vec3 sharkEdgeColor = mix(vec3(.075, .30, .40), moonEdge, .48);
+  result += sharkEdgeColor * sharkDorsalRidge * visibility * shark * (.035 + uMoonStrength * .055);
+  result += sharkEdgeColor * sharkEdge * visibility * shark * (.16 + uMoonStrength * .28);
+  float moonRim = edge * smoothstep(-.72, .48, across / max(.02, halfWidth));
+  result += moonEdge * moonRim * visibility * shark * uMoonStrength * .34;
+  float behind = step(along, -.06) * (1.0 - smoothstep(.08, halfLength * 3.9, -along));
+  float wakeArms = exp(-abs(abs(across) - (-along * .16 + halfWidth * .24)) * 16.0 / max(.45, state.z));
+  float wakeBreak = smoothstep(.28, .82, valueNoise(p * 8.2 + motionTime * .06) + temporalCellNoise(floor(p * 17.0), motionTime * .32) * .30);
+  vec3 wakeColor = mix(vec3(.46, .70, .74), uWaterHighlight, .62);
+  float wakeStrength = mix(.10, .14, whale);
+  wakeStrength = mix(wakeStrength, .17, shark);
+  result += wakeColor * wakeArms * behind * state.w * visibility * wakeBreak * wakeStrength;
+  result += moonEdge * wakeArms * behind * state.w * visibility * shark * uMoonStrength * .055;
+  return result;
+}
+
+vec3 splashContribution(vec2 p, vec4 splash) {
+  if (splash.w <= .0001) return vec3(0.0);
+  float distanceFromCenter = length(p - splash.xy);
+  float ring = 1.0 - smoothstep(.025, .095, abs(distanceFromCenter - splash.z));
+  float spray = 1.0 - smoothstep(0.0, max(.08, splash.z * .62), distanceFromCenter);
+  float broken = smoothstep(.24, .78, valueNoise(p * 18.0 + uTime * .11) + temporalCellNoise(floor(p * 24.0), uTime * .48) * .36);
+  return mix(vec3(.58, .80, .82), uWaterHighlight, .72) * (ring * (.18 + broken * .34) + spray * broken * .12) * splash.w;
+}
+
 void main(void) {
   vec2 p = vWorldPosition.xz;
   float time = mix(uTime, ${STATIC_REDUCED_TIME.toFixed(1)}, uReducedMotion);
@@ -710,6 +833,16 @@ void main(void) {
   sea += bodyContribution(p, uBody3, uBodyState3, vec3(1.0, .64, .26), height * 3.0 + slopeEnergy);
   sea += bodyContribution(p, uBody4, uBodyState4, vec3(.12, 1.0, .40), height * 3.0 + slopeEnergy);
   sea += bodyContribution(p, uBody5, uBodyState5, vec3(1.0, .62, .24), height * 3.0 + slopeEnergy);
+  sea += marineContribution(p, uMarine0, uMarineState0, time);
+  sea += marineContribution(p, uMarine1, uMarineState1, time);
+  sea += marineContribution(p, uMarine2, uMarineState2, time);
+  sea += marineContribution(p, uMarine3, uMarineState3, time);
+  sea += marineContribution(p, uMarine4, uMarineState4, time);
+  sea += marineContribution(p, uMarine5, uMarineState5, time);
+  sea += splashContribution(p, uSplash0);
+  sea += splashContribution(p, uSplash1);
+  sea += splashContribution(p, uSplash2);
+  sea += splashContribution(p, uSplash3);
 
   vec2 gateDelta = p - uBody4.xy;
   float gateHalo = 1.0 - smoothstep(uBody4.z * .18, uBody4.z * 1.85, length(gateDelta));
@@ -1087,6 +1220,8 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     setEvidenceOpen: (open: boolean) => void;
     setEvidenceIndex: (index: number) => void;
     setTransitionProgress: (progress: number) => void;
+    setWildlifeScenario: (scenario: VoyageWildlifeScenario, progress?: number) => void;
+    clearWildlifeScenario: () => void;
   };
 
   private camera: pc.Entity | null = null;
@@ -1098,6 +1233,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
   private reflectionMode: VoyageReflectionMode = "analytic";
   private oceanPlane: pc.Entity | null = null;
   private oceanMaterial: pc.ShaderMaterial | null = null;
+  private wildlife: VoyageWildlifeController | null = null;
   private pixelEffect: VoyagePixelPostEffect | null = null;
   private boat: pc.Entity | null = null;
   private boatAsset: VoyageBoatAssetState = "procedural";
@@ -1173,12 +1309,31 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
         this.options.onEvidenceOpenChange?.(open);
       },
       setEvidenceIndex: (index: number) => this.setEvidenceIndex(index),
-      setTransitionProgress: (progress: number) => this.setTransitionProgress(progress)
+      setTransitionProgress: (progress: number) => this.setTransitionProgress(progress),
+      setWildlifeScenario: (scenario: VoyageWildlifeScenario, progress = .5) => {
+        this.pause();
+        this.introElapsed = INTRO_DURATION;
+        this.wildlife?.setScenario(scenario, progress);
+        this.updateFrame(0);
+      },
+      clearWildlifeScenario: () => {
+        this.wildlife?.clearScenario();
+        this.updateFrame(0);
+      }
     });
   }
 
   async init(): Promise<void> {
     this.configureScene();
+    this.wildlife = new VoyageWildlifeController({
+      app: this.app,
+      parent: this.sceneRoot,
+      reducedMotion: this.options.reducedMotion,
+      qualityTier: this.qualityTier,
+      worldLayers: [pc.LAYERID_WORLD],
+      reflectionLayers: this.modelLayerIds(),
+      sampleWaterHeight: (x, z, time) => this.sampleWave(x, z, time).height
+    });
     this.createOceanPlane();
     this.app.root.addChild(this.sceneRoot);
     this.app.on("update", this.updateFrame, this);
@@ -1266,6 +1421,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
 
   setQuality(tier: QualityTier): void {
     this.qualityTier = tier === "fallback" ? "low" : tier;
+    this.wildlife?.setQuality(this.qualityTier);
     this.pixelEffect?.setQuality(this.qualityTier);
     this.reflectionNeedsUpdate = true;
     this.shadowNeedsUpdate = true;
@@ -1336,6 +1492,8 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     if (window.__voyageDebug === this.debugHook) delete window.__voyageDebug;
     this.host?.classList.remove("is-voyage-ready");
     if (this.pixelEffect && this.camera?.camera) this.camera.camera.postEffects.removeEffect(this.pixelEffect);
+    this.wildlife?.destroy();
+    this.wildlife = null;
     this.destroyReflectionTarget();
     this.blankReflectionTexture?.destroy();
     if (this.reflectionLayer) this.app.scene.layers.remove(this.reflectionLayer);
@@ -1514,6 +1672,15 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       material.setParameter(`uBody${index}`, this.bodyUniforms[index].body);
       material.setParameter(`uBodyState${index}`, this.bodyUniforms[index].state);
     }
+    if (this.wildlife) {
+      for (let index = 0; index < VOYAGE_MARINE_UNIFORM_COUNT; index++) {
+        material.setParameter(`uMarine${index}`, this.wildlife.marineUniforms[index].body);
+        material.setParameter(`uMarineState${index}`, this.wildlife.marineUniforms[index].state);
+      }
+      for (let index = 0; index < VOYAGE_SPLASH_UNIFORM_COUNT; index++) {
+        material.setParameter(`uSplash${index}`, this.wildlife.splashUniforms[index]);
+      }
+    }
     material.update();
     this.oceanMaterial = material;
 
@@ -1553,6 +1720,13 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.updateEnvironment(renderTime);
     this.updateCamera(introTime);
     this.updateFloatingBodies(renderTime);
+    this.wildlife?.update({
+      sceneTime: renderTime,
+      introTime,
+      environmentPhase: this.environmentState.phase,
+      transitionProgress: this.transitionProgress,
+      portrait: this.portrait
+    });
     this.updateLocalLights(introTime, renderTime);
     this.scheduleRenderPassUpdates(dt, introTime, shouldRender);
     this.updateOceanUniforms(renderTime, introTime);
@@ -1929,7 +2103,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.oceanMaterial.setParameter("uReflectionEnabled", this.reflectionMode === "planar" ? 1 : 0);
 
     const layout = this.portrait ? PORTRAIT_LAYOUT : DESKTOP_LAYOUT;
-    const routeIds: VoyageNodeId[] = ["docdiff", "neural", "directl", "eva01", "world"];
+    const routeIds: VoyageNodeId[] = ["docdiff", "directl", "neural", "eva01", "world"];
     routeIds.forEach((id, index) => {
       this.routeUniforms[index][0] = layout[id][0];
       this.routeUniforms[index][1] = layout[id][2];
@@ -1954,6 +2128,16 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       this.oceanMaterial!.setParameter(`uBody${index}`, bodyUniform);
       this.oceanMaterial!.setParameter(`uBodyState${index}`, stateUniform);
     });
+
+    if (this.wildlife) {
+      for (let index = 0; index < VOYAGE_MARINE_UNIFORM_COUNT; index++) {
+        this.oceanMaterial.setParameter(`uMarine${index}`, this.wildlife.marineUniforms[index].body);
+        this.oceanMaterial.setParameter(`uMarineState${index}`, this.wildlife.marineUniforms[index].state);
+      }
+      for (let index = 0; index < VOYAGE_SPLASH_UNIFORM_COUNT; index++) {
+        this.oceanMaterial.setParameter(`uSplash${index}`, this.wildlife.splashUniforms[index]);
+      }
+    }
 
     if (this.reflectionCamera?.camera) {
       this.reflectionMatrix.mul2(this.reflectionCamera.camera.projectionMatrix, this.reflectionCamera.camera.viewMatrix);
@@ -2369,7 +2553,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     const layout = this.portrait ? PORTRAIT_LAYOUT : DESKTOP_LAYOUT;
     this.floatingBodies.forEach((body, id) => body.anchor.set(...layout[id]));
     for (let index = 0; index < 5; index++) {
-      const id = (["docdiff", "neural", "directl", "eva01", "world"] as VoyageNodeId[])[index];
+      const id = (["docdiff", "directl", "neural", "eva01", "world"] as VoyageNodeId[])[index];
       this.routeUniforms[index][0] = layout[id][0];
       this.routeUniforms[index][1] = layout[id][2];
       this.oceanMaterial?.setParameter(`uRoute${index}`, this.routeUniforms[index]);
@@ -2604,7 +2788,23 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       oasisGhostStrength: this.oasisGhostStrength,
       routeSpectrumStrength: lerp(this.environmentState.routeSpectrumStrength, .92, this.transitionProgress),
       waterMeanLevel: this.waterMeanLevel,
-      waterLuminance: this.environmentState.waterLuminance
+      waterLuminance: this.environmentState.waterLuminance,
+      wildlife: this.wildlife?.getDebugState() ?? {
+        seed: 0,
+        currentCycle: 0,
+        nextWhaleCycle: 1,
+        whaleIntervalCycles: 2,
+        activeScenario: "none",
+        overrideScenario: null,
+        daylightVisibility: 0,
+        nightVisibility: 0,
+        reducedMotion: this.options.reducedMotion,
+        portrait: this.portrait,
+        gulls: [],
+        dolphins: [],
+        whales: [],
+        sharks: []
+      }
     };
   }
 }
@@ -2620,6 +2820,8 @@ declare global {
       setEvidenceOpen(open: boolean): void;
       setEvidenceIndex(index: number): void;
       setTransitionProgress(progress: number): void;
+      setWildlifeScenario(scenario: VoyageWildlifeScenario, progress?: number): void;
+      clearWildlifeScenario(): void;
     };
   }
 }

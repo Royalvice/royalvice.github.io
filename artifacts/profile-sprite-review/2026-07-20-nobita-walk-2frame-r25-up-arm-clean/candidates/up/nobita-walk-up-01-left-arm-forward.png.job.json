@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，右臂前摆，左臂后摆，右腿直向上跨，左膝明显后抬。；绿幕。；纯色绿幕背景，右臂自然前摆，左臂自然后摆，脚底无阴影",
+    "prompt_upsampling": false,
+    "seed": 23701,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1a15378a84404d63/sample.png",
+      "sha256": "e94305330e03e0e4bf589226f3b551019e917a658597c53e5763f120c23ae6e6",
+      "size_bytes": 842767,
+      "url": "/v1/artifacts/flux2-1a15378a84404d63/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784550536.8311121,
+  "error": null,
+  "finished_at": 1784550554.143264,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1a15378a84404d63/reference_0.png"
+  ],
+  "job_id": "flux2-1a15378a84404d63",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，右臂前摆，左臂后摆，右腿直向上跨，左膝明显后抬。；绿幕。；纯色绿幕背景，右臂自然前摆，左臂自然后摆，脚底无阴影",
+    "prompt_upsampling": false,
+    "seed": 23701,
+    "width": 1024
+  },
+  "started_at": 1784550536.9017813,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.058,
+    "denoise": 5.071,
+    "load_inputs": 0.021,
+    "reference_encode": 0.228,
+    "save_png": 0.818,
+    "text_encode": 0.335,
+    "total_wall": 17.241
+  },
+  "updated_at": 1784550554.1432774,
+  "worker_finished_at": 1784550553.462067
+}

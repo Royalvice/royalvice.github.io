@@ -1,0 +1,264 @@
+{
+  "runId": "2026-07-23-doraemon-abc-reverse-explicit-r3",
+  "actor": "doraemon",
+  "direction": "left",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 100900,
+      "jobId": "flux2-bfb2f75ea3fd47a8",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-01.png",
+      "outputSha256": "4ae1ae18f9c8afc81fbb168ca55d543e3b59382a3eae30f5a8e25bdc2eedcae2",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 100901,
+      "jobId": "flux2-cda734cffa684eba",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-02.png",
+      "outputSha256": "f6e9f942cd6052a1260375d4f93d4894e213217b11cc41ffc713c0ea18841d8c",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 100902,
+      "jobId": "flux2-b88284b9dc254b2a",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-03.png",
+      "outputSha256": "d98036bd36e72795f5edae772b14ca04e4866d194b4fd6b797045eff36678d3e",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 100903,
+      "jobId": "flux2-97992668c06d4763",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-04.png",
+      "outputSha256": "7fc08ccf89181ba6fa5afd306025d8d9025b384e7c228117d23cb66742b74db5",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 5,
+      "seed": 100904,
+      "jobId": "flux2-8373198b19f340fd",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-05.png",
+      "outputSha256": "b7461ef08cea7ccee8ba550ee19d11724539c61ccc102c61934efeb80b9bffe7",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 6,
+      "seed": 100905,
+      "jobId": "flux2-40fed94f53d743ab",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-06.png",
+      "outputSha256": "6671764aa7a9f9fc71a84dd68bab6cd7623cbaebcc80e079dbc1d278dd624759",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 7,
+      "seed": 100906,
+      "jobId": "flux2-a9674418c10b41ac",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-07.png",
+      "outputSha256": "301d853b12d1851414e02c93c66246645477717517ec30b5b6c311694f681f32",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 8,
+      "seed": 100907,
+      "jobId": "flux2-241f30579bd143b8",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-08.png",
+      "outputSha256": "bcf0517d95562ce6c002c2a0aa60a2913197e3cba9fefd6c2e6cd3c8a7b59a18",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 9,
+      "seed": 100908,
+      "jobId": "flux2-2f11d266b7484990",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-09.png",
+      "outputSha256": "22f403424e145e276afe5afb2a5a5d4b952ad3cfa0889ad3ad2e4a28cf258b06",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 10,
+      "seed": 100909,
+      "jobId": "flux2-20a6169238c5495b",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-10.png",
+      "outputSha256": "41f821f217c12099d458fab8e1233b29f79205b6179521b5ecb34e5b016a18a1",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 11,
+      "seed": 100910,
+      "jobId": "flux2-6edc2e69084e4d16",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-11.png",
+      "outputSha256": "2275ef956d09ff1ed3b30854e3f2cf8955deed05fffa1e62934743eb88e1be41",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 12,
+      "seed": 100911,
+      "jobId": "flux2-3dd998945dda4876",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-12.png",
+      "outputSha256": "4357251df1a25ea7d2352e1d8b2796638da2225297f7d20ee9ae9758ad0d782d",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 13,
+      "seed": 100912,
+      "jobId": "flux2-9152c4c384d544cb",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-13.png",
+      "outputSha256": "08226c0cf08c16314e83b70b86766e0ce8d6db0ad4968fc0a0488d07f84ea1c2",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 14,
+      "seed": 100913,
+      "jobId": "flux2-e75da37d38884a66",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-14.png",
+      "outputSha256": "148112c0829ffa0cbc44713ba2173feaa34b3b428c7e769502f5f6ee40e85a28",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 15,
+      "seed": 100914,
+      "jobId": "flux2-1675e1895e434d0a",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-15.png",
+      "outputSha256": "7d5678e019eee854528081ddb45ab16f554a9e0190ab7e475eec3fa31367410e",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 16,
+      "seed": 100915,
+      "jobId": "flux2-06f8b514e9a74c0d",
+      "prompt": "把参考图中人物原来向前的腿和胳膊改到后面，原来向后的腿和胳膊改到前面，身子保持朝左竖直，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-clean-r1/left/frame-a/candidate-02.png",
+      "referenceSha256": "e20ce8cf3babed19e16eec917f17ab43fd5ec1079c8754fe8801c1f06c190c21",
+      "output": "artifacts/profile-sprite-review/2026-07-23-doraemon-abc-reverse-explicit-r3/left/frame-c/candidate-16.png",
+      "outputSha256": "578221781b631593ab45b4800698710af8bb1a15e7cb5c6c4ca5ff88669d06a1",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

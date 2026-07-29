@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A deep-teal two-seat sofa seen from high overhead and facing north toward a television. Perfectly horizontal backrest along the lower/south edge, two seat cushions directly above it, symmetric arms, short feet sharing one baseline. It must clearly face upward, not sideways and not toward the viewer.",
+    "prompt_upsampling": false,
+    "seed": 94258,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d0fbdbe572c04705/sample.png",
+      "sha256": "96b891a4786ab976b5f5ee4be84e27ab8c7074da2e31b8aac34d3e55e4f50c2c",
+      "size_bytes": 415257,
+      "url": "/v1/artifacts/flux2-d0fbdbe572c04705/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300229.371938,
+  "error": null,
+  "finished_at": 1784300255.9039047,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d0fbdbe572c04705/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d0fbdbe572c04705/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-d0fbdbe572c04705/reference_2.png"
+  ],
+  "job_id": "flux2-d0fbdbe572c04705",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A deep-teal two-seat sofa seen from high overhead and facing north toward a television. Perfectly horizontal backrest along the lower/south edge, two seat cushions directly above it, symmetric arms, short feet sharing one baseline. It must clearly face upward, not sideways and not toward the viewer.",
+    "prompt_upsampling": false,
+    "seed": 94258,
+    "width": 1024
+  },
+  "started_at": 1784300229.5061817,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.564,
+    "denoise": 12.374,
+    "load_inputs": 0.06,
+    "reference_encode": 0.564,
+    "save_png": 0.507,
+    "text_encode": 0.337,
+    "total_wall": 26.398
+  },
+  "updated_at": 1784300255.903923,
+  "worker_finished_at": 1784300255.1259606
+}

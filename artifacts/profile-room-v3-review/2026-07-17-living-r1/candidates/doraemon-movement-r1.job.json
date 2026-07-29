@@ -1,0 +1,72 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 2,
+    "num_steps": 4,
+    "prompt": "A production-ready top-down pixel game sprite sheet. Exactly one character repeated exactly nine times in an exact 3 by 3 layout with nine equal invisible cells. Approximately seventy-degree high three-quarter overhead view, compact readable silhouette, visible crown, shoulders and feet, consistent scale and foot pivot. Crisp deliberate pixel clusters, dark one-to-two-pixel outline at final game resolution, limited palette, warm upper-left room light. Preserve the exact same identity, face, body proportions, clothing and colors in every cell. Perfectly flat solid #00FF00 chroma-key background. No floor, no cast shadow, no scenery, no furniture, no text, no labels, no grid lines, no card frame, no logo, no watermark, no cropped head or feet, no overlap between cells, no extra people, no duplicated limbs. Use image one as canonical identity and image two as the already approved pixel rendering reference. Subject: Doraemon, the same round blue-and-white robotic cat from the identity reference: no ears, one red nose, white muzzle and belly, red collar, small gold bell, short round limbs and white feet. The character walks with the same small natural stride in all cells. Exact reading order: row one contains three walk-down frames facing toward the lower edge (left foot contact, passing pose, right foot contact); row two contains three walk-side frames facing screen-right (left foot contact, passing pose, right foot contact); row three contains three walk-up frames facing away toward the top edge (left foot contact, passing pose, right foot contact). The top/down/side directions must be unmistakable at thumbnail size. No props.",
+    "prompt_upsampling": false,
+    "seed": 81131,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bc15685ac8f64b70/sample.png",
+      "sha256": "144f0ae27f57decd5acab4980581cb3395120a21eb9300816a4c15068ab798d7",
+      "size_bytes": 816722,
+      "url": "/v1/artifacts/flux2-bc15685ac8f64b70/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784285512.709404,
+  "error": null,
+  "finished_at": 1784285530.9112265,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bc15685ac8f64b70/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bc15685ac8f64b70/reference_1.png"
+  ],
+  "job_id": "flux2-bc15685ac8f64b70",
+  "metrics": {
+    "nvml_peak_used_mib": 56845,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53288.4,
+    "torch_peak_reserved_mib": 53828
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "A production-ready top-down pixel game sprite sheet. Exactly one character repeated exactly nine times in an exact 3 by 3 layout with nine equal invisible cells. Approximately seventy-degree high three-quarter overhead view, compact readable silhouette, visible crown, shoulders and feet, consistent scale and foot pivot. Crisp deliberate pixel clusters, dark one-to-two-pixel outline at final game resolution, limited palette, warm upper-left room light. Preserve the exact same identity, face, body proportions, clothing and colors in every cell. Perfectly flat solid #00FF00 chroma-key background. No floor, no cast shadow, no scenery, no furniture, no text, no labels, no grid lines, no card frame, no logo, no watermark, no cropped head or feet, no overlap between cells, no extra people, no duplicated limbs. Use image one as canonical identity and image two as the already approved pixel rendering reference. Subject: Doraemon, the same round blue-and-white robotic cat from the identity reference: no ears, one red nose, white muzzle and belly, red collar, small gold bell, short round limbs and white feet. The character walks with the same small natural stride in all cells. Exact reading order: row one contains three walk-down frames facing toward the lower edge (left foot contact, passing pose, right foot contact); row two contains three walk-side frames facing screen-right (left foot contact, passing pose, right foot contact); row three contains three walk-up frames facing away toward the top edge (left foot contact, passing pose, right foot contact). The top/down/side directions must be unmistakable at thumbnail size. No props.",
+    "prompt_upsampling": false,
+    "seed": 81131,
+    "width": 1024
+  },
+  "started_at": 1784285512.8111851,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.16,
+    "denoise": 5.58,
+    "load_inputs": 0.02,
+    "reference_encode": 0.245,
+    "save_png": 0.635,
+    "text_encode": 0.338,
+    "total_wall": 18.1
+  },
+  "updated_at": 1784285530.911242,
+  "worker_finished_at": 1784285530.105023
+}

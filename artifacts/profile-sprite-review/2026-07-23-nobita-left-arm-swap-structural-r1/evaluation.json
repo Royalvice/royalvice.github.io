@@ -1,0 +1,7 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-structural-r1",
+  "status": "rejected-model-normalized-both-arms-down",
+  "accepted": false,
+  "selection": null,
+  "reason": "粗结构图已交换长臂与弯臂，但四张清理结果都把手臂归一化为同时下垂，没有保留目标结构。"
+}

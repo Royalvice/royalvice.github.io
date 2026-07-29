@@ -1,0 +1,69 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-correction-from-r2-04-r1",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 82000,
+      "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-28fa90bcb4c44e0e",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-correction-from-r2-04-r1/candidates/candidate-01.png",
+      "outputSha256": "65e13ebfd8a6a22123627f21e8f99e486d4a19636ee272eabd9c3fc777476854",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+      "referenceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c"
+    },
+    {
+      "candidate": 2,
+      "seed": 82001,
+      "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-860f2eef77cc4d3e",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-correction-from-r2-04-r1/candidates/candidate-02.png",
+      "outputSha256": "a2657568756f527ec33ccfc7afc8baff6b9911ee186af7f623c43bbb529e85db",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+      "referenceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c"
+    },
+    {
+      "candidate": 3,
+      "seed": 82002,
+      "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-7eaef14ecb7b494a",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-correction-from-r2-04-r1/candidates/candidate-03.png",
+      "outputSha256": "7e285492324a56aac17b221e7de3307e05ad023bbbffc28e7aea3c9fcd926cdd",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+      "referenceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c"
+    },
+    {
+      "candidate": 4,
+      "seed": 82003,
+      "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-8393164eead84e81",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-correction-from-r2-04-r1/candidates/candidate-04.png",
+      "outputSha256": "ddc4bcb57fa93fa6f4f03ac1bfde04cbffdeb419f3efa1f34cd320eff8c07886",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+      "referenceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c"
+    }
+  ]
+}

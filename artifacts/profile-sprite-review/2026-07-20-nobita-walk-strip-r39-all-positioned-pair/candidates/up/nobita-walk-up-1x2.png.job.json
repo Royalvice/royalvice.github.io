@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "严格沿用上传参考图的大雄背面：同一后脑轮廓、黑短发、黄色上衣背面、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 UP back orthographic camera，大雄都背对镜头朝画面上方，后脑中心、肩宽、衣背中轴和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：左脚向画面上方前伸并承重，右脚向画面下方后伸；右臂向画面上方前摆，左臂向画面下方后摆，双腿与双臂彼此分离，背部中轴笔直。两只鞋都保持参考图的浅蓝色和白袜。 右半格是下一瞬间的 walking passing：左脚在身体正下方支撑，右膝从左腿旁向画面上方抬起，右小腿向下垂，左腿向后；左臂向前、右臂向后，衣背和后脑完全不变，保持背面视角和自然重心转移。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄背面，使用统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。",
+    "prompt_upsampling": false,
+    "seed": 28100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1a70629ccef64277/sample.png",
+      "sha256": "55ac3c3a5c0e17060ddb57d7da45d202593d07b3dcd015966e4d217fdc160c13",
+      "size_bytes": 497938,
+      "url": "/v1/artifacts/flux2-1a70629ccef64277/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784556328.6296108,
+  "error": null,
+  "finished_at": 1784556344.079062,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-1a70629ccef64277/reference_0.png"
+  ],
+  "job_id": "flux2-1a70629ccef64277",
+  "metrics": {
+    "nvml_peak_used_mib": 55805,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 52000.5,
+    "torch_peak_reserved_mib": 52548
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "严格沿用上传参考图的大雄背面：同一后脑轮廓、黑短发、黄色上衣背面、深蓝短裤、白袜、浅蓝鞋、同一像素轮廓和同一人物比例。 制作一张 1024×576 横向 1×2 2D pixel sprite strip。第一个动作人物位于画布横向约 25% 处，第二个动作人物位于约 75% 处；两个动作都用同一 UP back orthographic camera，大雄都背对镜头朝画面上方，后脑中心、肩宽、衣背中轴和脚底 baseline 保持同一位置，只改变手臂和腿。 左半格呈自然 walking contact：左脚向画面上方前伸并承重，右脚向画面下方后伸；右臂向画面上方前摆，左臂向画面下方后摆，双腿与双臂彼此分离，背部中轴笔直。两只鞋都保持参考图的浅蓝色和白袜。 右半格是下一瞬间的 walking passing：左脚在身体正下方支撑，右膝从左腿旁向画面上方抬起，右小腿向下垂，左腿向后；左臂向前、右臂向后，衣背和后脑完全不变，保持背面视角和自然重心转移。 整张图铺满连续均匀的 #00FF00 chroma-key 绿幕，两个动作之间的中央区域也是纯绿色；画面中有两个完整头到脚的大雄背面，使用统一有限色板和清晰 pixel clusters，形成可直接拆分的 game-ready sprite strip。",
+    "prompt_upsampling": false,
+    "seed": 28100,
+    "width": 1024
+  },
+  "started_at": 1784556328.6976173,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.808,
+    "denoise": 3.907,
+    "load_inputs": 0.021,
+    "reference_encode": 0.254,
+    "save_png": 0.476,
+    "text_encode": 0.336,
+    "total_wall": 15.381
+  },
+  "updated_at": 1784556344.0790787,
+  "worker_finished_at": 1784556343.377838
+}

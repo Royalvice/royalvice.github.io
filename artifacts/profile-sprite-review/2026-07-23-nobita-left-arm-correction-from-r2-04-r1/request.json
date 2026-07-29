@@ -1,0 +1,27 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-correction-from-r2-04-r1",
+  "method": "single-image-arm-position-reversal",
+  "reference": "artifacts/profile-sprite-review/2026-07-22-nobita-left-reverse-from-a14-r2/candidates/candidate-04.png",
+  "referenceSha256": "1412e15f5ffc655f51980fd80710936cb658d267944162d99ad14c49f3aa930c",
+  "referenceSize": [
+    1024,
+    1024
+  ],
+  "referencePose": "右腿在前、左腿在后；双臂尚未形成对应的对侧摆动",
+  "targetPose": "右腿在前、左腿在后；左臂向前、右臂向后",
+  "inputImageCount": 1,
+  "prompt": "双腿保持不变，身子保持朝左竖直；反转人物双臂的前后位置：人物自身左臂向前摆、右臂向后摆。",
+  "requestParams": {
+    "mode": "i2i",
+    "width": 1024,
+    "height": 1024,
+    "num_steps": 4,
+    "guidance": 1,
+    "prompt_upsampling": false,
+    "num_images": 1,
+    "format": "png"
+  },
+  "seedBase": 82000,
+  "maxCandidates": 16,
+  "inputPolicy": "每个候选只上传同一张 R2-04，不上传其他帧、其他方向或其他资产。"
+}

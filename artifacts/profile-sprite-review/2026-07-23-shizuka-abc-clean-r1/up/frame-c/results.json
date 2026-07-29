@@ -1,0 +1,136 @@
+{
+  "runId": "2026-07-23-shizuka-abc-clean-r1",
+  "actor": "shizuka",
+  "direction": "up",
+  "pose": "c",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 110500,
+      "jobId": "flux2-d0c6b66eeada4da0",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-01.png",
+      "outputSha256": "41b83f8650be65275e719a68f18d245790ca835b8848f0d8bc297127e50641e4",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 2,
+      "seed": 110501,
+      "jobId": "flux2-6ec129a0c9b94a4c",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-02.png",
+      "outputSha256": "f6b7c25afd2507d09bdde36f3ecfca7a4d8dca60c44d07b98b12e57d9124a30b",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 3,
+      "seed": 110502,
+      "jobId": "flux2-ea4ff1bb70c84514",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-03.png",
+      "outputSha256": "6f4e0ebe1643620cf3796fe296cb8ffc8675327e3d4da714d8a42e1ce5f391f0",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 4,
+      "seed": 110503,
+      "jobId": "flux2-6262eb2ad9be4a9d",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-04.png",
+      "outputSha256": "b58ada5134b445f4e170804b1c3867d15fdd80ccc7f7ed961aab423a421a6b7d",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 5,
+      "seed": 110504,
+      "jobId": "flux2-537cae7946cb4f73",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-05.png",
+      "outputSha256": "09baccc3365298eec46645d4204a92cd3675c5289d2ee640e311dbdcf5f9674b",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 6,
+      "seed": 110505,
+      "jobId": "flux2-bd72406f49574285",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-06.png",
+      "outputSha256": "3579e2b179e091790a665c3020fb773dd68b8f5edbf2213e2b8abfd5e8bc4233",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 7,
+      "seed": 110506,
+      "jobId": "flux2-46b81e3d4dae4576",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-07.png",
+      "outputSha256": "4a03af558b6cd724e65f8ea8d057ffc31c0ef81e1f2652a574a08362a64c1995",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "candidate": 8,
+      "seed": 110507,
+      "jobId": "flux2-5a0ad3a91ffe4ddf",
+      "prompt": "把参考图中的人物改成走路姿势，身子保持背面竖直，人物自身右腿在前、左腿在后、左臂在前、右臂在后，双脚着地。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "reference": "artifacts/profile-sprite-review/final-directional-references/shizuka/shizuka-direction-up-reference.png",
+      "referenceSha256": "ad70f2cf98f6d786b98c74f1a9259d506368df877a79de8c22bcd2fd4923778c",
+      "output": "artifacts/profile-sprite-review/2026-07-23-shizuka-abc-clean-r1/up/frame-c/candidate-08.png",
+      "outputSha256": "29431a7fcb2f16f47c2fdd6bcc26e5a081cda8cfdbff8da8aedb5f7ba4e3de33",
+      "outputSize": [
+        1024,
+        1024
+      ]
+    }
+  ]
+}

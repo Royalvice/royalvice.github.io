@@ -1,0 +1,21 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-cleanup-r1",
+  "status": "accepted-by-user-for-profile",
+  "accepted": true,
+  "selection": "R5-C01",
+  "provisionalCandidate": {
+    "label": "R5-C01",
+    "candidate": 1,
+    "seed": 86000,
+    "jobId": "flux2-6779f8c898f345c0",
+    "source": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-cleanup-r1/candidates/candidate-01.png",
+    "sha256": "bb435b7868b17984e9290574fb0e0d8e503b4fdcd15d42739033720a62c4e6b9"
+  },
+  "assessment": {
+    "armCount": "两条，没有多余手掌或断肢。",
+    "armReversal": "相对 A14，长臂移到画面左侧，弯臂移到画面右侧，形成可见反转。",
+    "legs": "保持右脚在前、左脚在后。",
+    "body": "保持朝左竖直，没有明显倾斜。",
+    "remainingJudgment": "弯曲臂位于胸前且抬得较高，需要用户确认动作观感。"
+  }
+}

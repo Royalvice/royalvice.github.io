@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，右臂前摆，左臂后摆，左腿前跨，右腿后收。",
+    "prompt_upsampling": false,
+    "seed": 23102,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bcfa99d8c22f410d/sample.png",
+      "sha256": "733c1e8b5bdae6a5c08f3e3ba3986d7e735da134f7da9a6ad34a436e495bd2bd",
+      "size_bytes": 301379,
+      "url": "/v1/artifacts/flux2-bcfa99d8c22f410d/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784548358.2305589,
+  "error": null,
+  "finished_at": 1784548375.0445604,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-bcfa99d8c22f410d/reference_0.png"
+  ],
+  "job_id": "flux2-bcfa99d8c22f410d",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53289.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考大雄图，人物不变，2D sprite风格不变；正面，右臂前摆，左臂后摆，左腿前跨，右腿后收。",
+    "prompt_upsampling": false,
+    "seed": 23102,
+    "width": 1024
+  },
+  "started_at": 1784548358.2946012,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.052,
+    "denoise": 5.07,
+    "load_inputs": 0.022,
+    "reference_encode": 0.22,
+    "save_png": 0.401,
+    "text_encode": 0.335,
+    "total_wall": 16.75
+  },
+  "updated_at": 1784548375.044575,
+  "worker_finished_at": 1784548374.3625367
+}

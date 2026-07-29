@@ -1,0 +1,72 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 2,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的正式透明 canonical reference；保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Image 2 是同一方向的上一帧，仅用于保持头部比例、脚底 baseline、服装轮廓和 pixel density 连续；在此基础上改变四肢位置，不复制上一帧。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 3 帧 opposite contact：右腿向画面左侧伸出并落地，左腿向画面右后方拖后；左臂向左前方摆，右臂向右后方摆并被躯干部分遮挡；重心落在右脚，侧脸和眼镜高度与第 1 帧一致。 Continuity: 这是四帧连续步态中的 03-right-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 23303,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cbc100c796f74fc3/sample.png",
+      "sha256": "97f6d2fa1ab30282ccffe97ee2fc18c30216d5b78674dc6ebb702f0cc09df6c8",
+      "size_bytes": 659694,
+      "url": "/v1/artifacts/flux2-cbc100c796f74fc3/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784535294.0659773,
+  "error": null,
+  "finished_at": 1784535315.8292863,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cbc100c796f74fc3/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cbc100c796f74fc3/reference_1.png"
+  ],
+  "job_id": "flux2-cbc100c796f74fc3",
+  "metrics": {
+    "nvml_peak_used_mib": 57087,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.3,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: stylized-concept. Asset type: one isolated 2D pixel sprite animation frame, a single PNG on a 1:1 1024x1024 canvas. Image 1 role: 向画面左侧行走 的正式透明 canonical reference；保持其 view、脸型、发型、服装、身体比例和脚底 pivot。 Image 2 是同一方向的上一帧，仅用于保持头部比例、脚底 baseline、服装轮廓和 pixel density 连续；在此基础上改变四肢位置，不复制上一帧。 Subject: 大雄（Nobita）：儿童体型，黑色短发，圆形黑框眼镜，黄色短袖上衣，深蓝短裤，白袜和浅蓝鞋；保持与参考图完全相同的脸型、发型、服装配色、身体高度、像素密度和脚底 pivot。 View: 严格 LEFT-facing orthographic profile，鼻子和嘴朝画面左侧，只显示一只眼睛和合理的圆形眼镜侧框；身体、胸口和脚尖保持纯侧面，不回转成三分之四。 Animation pose: 第 3 帧 opposite contact：右腿向画面左侧伸出并落地，左腿向画面右后方拖后；左臂向左前方摆，右臂向右后方摆并被躯干部分遮挡；重心落在右脚，侧脸和眼镜高度与第 1 帧一致。 Continuity: 这是四帧连续步态中的 03-right-contact；完整显示头到脚，角色高度、脚底 baseline、头部中心和衣服颜色保持稳定；动作轮廓清楚、重心自然、四肢互不融合。 Style: warm top-down 2D pixel sprite, crisp intentional pixel clusters, limited palette, stable dark outline, readable at 128px, no perspective drift. Background: perfectly flat solid #00FF00 chroma-key, clean gap around the silhouette, no cast shadow or floor plane. Output exactly one character and one frame; do not create a sprite sheet, grid, contact sheet, room, furniture, prop, text, logo, watermark or extra character.",
+    "prompt_upsampling": false,
+    "seed": 23303,
+    "width": 1024
+  },
+  "started_at": 1784535294.172768,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 1.769,
+    "denoise": 8.557,
+    "load_inputs": 0.052,
+    "reference_encode": 0.36,
+    "save_png": 0.638,
+    "text_encode": 0.359,
+    "total_wall": 21.657
+  },
+  "updated_at": 1784535315.8292978,
+  "worker_finished_at": 1784535315.1323054
+}

@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A bunker bulkhead wall lamp, front-facing and vertically mounted: dark-copper rear wall plate, short top hook, protective copper cage, amber glass and compact flame. It must unmistakably hang on a wall, not stand on a table or floor. Same strict centered silhouette.",
+    "prompt_upsampling": false,
+    "seed": 94352,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9d9da0f7fe5e422e/sample.png",
+      "sha256": "39ded0f88dc082fc689083889442b8c607027f4eef253d60dc5e16687198da4d",
+      "size_bytes": 544158,
+      "url": "/v1/artifacts/flux2-9d9da0f7fe5e422e/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300339.710198,
+  "error": null,
+  "finished_at": 1784300366.1445534,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9d9da0f7fe5e422e/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9d9da0f7fe5e422e/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9d9da0f7fe5e422e/reference_2.png"
+  ],
+  "job_id": "flux2-9d9da0f7fe5e422e",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A bunker bulkhead wall lamp, front-facing and vertically mounted: dark-copper rear wall plate, short top hook, protective copper cage, amber glass and compact flame. It must unmistakably hang on a wall, not stand on a table or floor. Same strict centered silhouette.",
+    "prompt_upsampling": false,
+    "seed": 94352,
+    "width": 1024
+  },
+  "started_at": 1784300339.854101,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.565,
+    "denoise": 12.372,
+    "load_inputs": 0.06,
+    "reference_encode": 0.548,
+    "save_png": 0.6,
+    "text_encode": 0.336,
+    "total_wall": 26.29
+  },
+  "updated_at": 1784300366.1445832,
+  "worker_finished_at": 1784300365.3469324
+}

@@ -1,0 +1,69 @@
+{
+  "runId": "2026-07-23-nobita-left-arm-swap-structural-r1",
+  "results": [
+    {
+      "candidate": 1,
+      "seed": 84000,
+      "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-3f7be605ee194375",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/candidates/candidate-01.png",
+      "outputSha256": "b5c094456e866620021e68708cd1685f0c6b492f8ad17ea5fe8b6f2d3cd9bea8",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+      "referenceSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98"
+    },
+    {
+      "candidate": 2,
+      "seed": 84001,
+      "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-5ef9f5a45ab94938",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/candidates/candidate-02.png",
+      "outputSha256": "6685c6fd0f5654b3cfed098c06e89bb4a72e7d642109f3c0a619fe1d04a5cff8",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+      "referenceSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98"
+    },
+    {
+      "candidate": 3,
+      "seed": 84002,
+      "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-1ab0d0f30b304d23",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/candidates/candidate-03.png",
+      "outputSha256": "3487be15e82a4170dd47f3769e227accfd66b5ccb73daa3a6694061b0cbadadc",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+      "referenceSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98"
+    },
+    {
+      "candidate": 4,
+      "seed": 84003,
+      "prompt": "修复人物双臂的自然连接，双腿和身子保持不变。",
+      "promptUpsampling": false,
+      "inputImageCount": 1,
+      "jobId": "flux2-a3bf83b4a76e40aa",
+      "output": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/candidates/candidate-04.png",
+      "outputSha256": "99cd2a9b7ebdd4cbc4b369f64b370c2f42ef7cae5c537c9f6598d4118a5bca5b",
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "reference": "artifacts/profile-sprite-review/2026-07-23-nobita-left-arm-swap-structural-r1/arm-swap-rough-guide.png",
+      "referenceSha256": "835948409601b4aeddefced2c81cc75ac355a087575946ded1774f1838ec0a98"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "runId": "2026-07-21-nobita-walk-strip-r48-pose-first-down",
+  "actor": "nobita",
+  "layout": "1x2 horizontal strip",
+  "width": 1024,
+  "height": 576,
+  "seedBase": 48000,
+  "poseGuideRoot": "artifacts/profile-sprite-review/nobita-walk-pose-guides-r1",
+  "poseGuideFirst": true,
+  "generation": "one independent Flux i2i job per direction; one paired canonical plus one identity-free pose diagram",
+  "strips": [
+    {
+      "direction": "down",
+      "reference": "artifacts/profile-sprite-review/nobita-walk-pair-references-r1/nobita-direction-down-reference.png",
+      "prompt": "输入图 1 是无身份的 pose diagram，只负责两个人物的关节与四肢方向，图 1 的黑底和骨架颜色不进入最终图；输入图 2 只负责野比大雄的身份、像素风格、固定视角和左右布局。 上传图已经在横向 1×2 画布中放好两个完全相同的《哆啦A梦》野比大雄正面。把它们编辑成两张 2D pixel walking key poses；严格保留两边原有的闭嘴正脸、眼镜、发型、躯干、服装、尺寸、位置和 baseline，只重新摆放手臂与腿。 画布左边的大雄做自然小步 contact pose：画面左侧鞋向下前方落地，画面右侧鞋向上后方落地；画面右侧手臂向前，画面左侧手臂向后。 画布右边的大雄采用左边姿势的精确 horizontal mirror：画面右侧鞋向下前方落地，画面左侧鞋向上后方落地，双臂也左右互换；头脸仍严格正面。两幅双脚着地，连续纯色 #00FF00 chroma-key 背景。"
+    }
+  ]
+}

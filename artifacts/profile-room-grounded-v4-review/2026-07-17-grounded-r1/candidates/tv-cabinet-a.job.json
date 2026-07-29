@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A front-aligned CRT television integrated into a low horizontal walnut cabinet and facing south. The CRT bezel is thick, symmetric and level. The screen aperture is a perfectly rectangular #00FF00 opening with a clear continuous bezel around all four sides so a live game can be drawn behind it. Cabinet feet share one baseline. Include a stable flat cabinet-top area on the right for a separate game console, but do not draw the console. No perspective skew.",
+    "prompt_upsampling": false,
+    "seed": 94305,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4033e98330d248ab/sample.png",
+      "sha256": "0df376f9ab9094f04ed29449b085e2751ca196028dd975d945f37675fa07c807",
+      "size_bytes": 476341,
+      "url": "/v1/artifacts/flux2-4033e98330d248ab/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300284.9929655,
+  "error": null,
+  "finished_at": 1784300311.1995642,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4033e98330d248ab/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4033e98330d248ab/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-4033e98330d248ab/reference_2.png"
+  ],
+  "job_id": "flux2-4033e98330d248ab",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A front-aligned CRT television integrated into a low horizontal walnut cabinet and facing south. The CRT bezel is thick, symmetric and level. The screen aperture is a perfectly rectangular #00FF00 opening with a clear continuous bezel around all four sides so a live game can be drawn behind it. Cabinet feet share one baseline. Include a stable flat cabinet-top area on the right for a separate game console, but do not draw the console. No perspective skew.",
+    "prompt_upsampling": false,
+    "seed": 94305,
+    "width": 1024
+  },
+  "started_at": 1784300285.1256857,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.565,
+    "denoise": 12.372,
+    "load_inputs": 0.06,
+    "reference_encode": 0.548,
+    "save_png": 0.571,
+    "text_encode": 0.336,
+    "total_wall": 26.074
+  },
+  "updated_at": 1784300311.1995785,
+  "worker_finished_at": 1784300310.536789
+}

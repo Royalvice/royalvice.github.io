@@ -1,0 +1,16 @@
+{
+  "runId": "2026-07-20-nobita-walk-2frame-r26-up-arm-swap",
+  "actor": "nobita",
+  "frames": [
+    {
+      "direction": "up",
+      "frame": "02-right-arm-forward",
+      "output": "artifacts/profile-sprite-review/2026-07-20-nobita-walk-2frame-r26-up-arm-swap/candidates/up/nobita-walk-up-02-right-arm-forward.png",
+      "prompt": "参考大雄图，人物不变，2D sprite风格不变；背面，左臂前摆，右臂后摆，左腿直向上跨，右膝明显后抬。；绿幕。；纯色绿幕背景，左臂抬高弯曲，右臂向下后摆，脚底无阴影",
+      "jobId": "flux2-62a938cc098241b6",
+      "references": [
+        "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-up-reference.png"
+      ]
+    }
+  ]
+}

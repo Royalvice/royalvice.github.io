@@ -1,0 +1,73 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 3,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A deep-teal two-seat sofa seen from high overhead and facing north toward a television located above it. Show the rear/top of the backrest as one horizontal bar along the lower/south edge; place both seat cushions above/north of that bar. The viewer must not see a front-facing upright pair of back cushions. Symmetric arms, short grounded feet, exact horizontal axis. It must read as an upward-facing gameplay sprite, never as a furniture catalog front view.",
+    "prompt_upsampling": false,
+    "seed": 96238,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cfe7bdbcf6ea4e30/sample.png",
+      "sha256": "259996296aaf9a251f51d99798913111d802c31aef0680987d34e04cf8124a29",
+      "size_bytes": 491381,
+      "url": "/v1/artifacts/flux2-cfe7bdbcf6ea4e30/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784300860.889409,
+  "error": null,
+  "finished_at": 1784300888.2727337,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cfe7bdbcf6ea4e30/reference_0.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cfe7bdbcf6ea4e30/reference_1.png",
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-cfe7bdbcf6ea4e30/reference_2.png"
+  ],
+  "job_id": "flux2-cfe7bdbcf6ea4e30",
+  "metrics": {
+    "nvml_peak_used_mib": 56847,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 53290.5,
+    "torch_peak_reserved_mib": 53830
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 1024,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "Use case: style-transfer. Asset type: production pixel-game furniture sprite. Input image one is the current object and controls material language. Input image two is a strict axis-and-silhouette guide and controls geometry, alignment and orientation. Input image three is the current room screenshot and controls only palette, pixel density and upper-left warm lighting. Create exactly one isolated object centered with generous padding on a perfectly flat solid #00FF00 chroma-key background. Crisp deliberate pixel clusters, one-to-two-pixel dark outline at final 128px game scale, limited warm walnut, aged copper, deep teal and amber palette. No room, floor, cast shadow, text, label, border, grid, watermark, extra object or cropping. Do not copy the geometric tilt of input image one when it conflicts with input image two. A deep-teal two-seat sofa seen from high overhead and facing north toward a television located above it. Show the rear/top of the backrest as one horizontal bar along the lower/south edge; place both seat cushions above/north of that bar. The viewer must not see a front-facing upright pair of back cushions. Symmetric arms, short grounded feet, exact horizontal axis. It must read as an upward-facing gameplay sprite, never as a furniture catalog front view.",
+    "prompt_upsampling": false,
+    "seed": 96238,
+    "width": 1024
+  },
+  "started_at": 1784300861.023897,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 2.58,
+    "denoise": 12.462,
+    "load_inputs": 0.059,
+    "reference_encode": 0.549,
+    "save_png": 0.577,
+    "text_encode": 0.336,
+    "total_wall": 27.249
+  },
+  "updated_at": 1784300888.2727456,
+  "worker_finished_at": 1784300887.6035023
+}

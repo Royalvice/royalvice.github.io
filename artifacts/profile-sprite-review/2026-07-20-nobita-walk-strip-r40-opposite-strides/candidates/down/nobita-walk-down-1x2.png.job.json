@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "参考上传的大雄正面标准图，生成一张 1024×576 横向 1×2 2D pixel sprite strip。两个大雄分别位于画布横向 25% 和 75%，都严格正面直视镜头，闭嘴中性表情；圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋、头身比例和 pixel clusters 完全一致。 左侧动作：画面左边的腿向下前方迈出，画面右边的腿向上后方送；画面右边的手臂向下前方摆，画面左边的手臂向上后方摆。 右侧动作：四肢自然换边，画面右边的腿向下前方迈出，画面左边的腿向上后方送；画面左边的手臂向下前方摆，画面右边的手臂向上后方摆。 两幅都是普通慢走的相反落脚姿势，躯干直立，肩膀水平，膝盖轻微弯曲，双脚贴近地面，头部中心和脚底 baseline 对齐。整张画布使用连续均匀的 #00FF00 chroma-key 背景，中央区域保持纯绿色。",
+    "prompt_upsampling": false,
+    "seed": 30000,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-a0a9879fc6834b67/sample.png",
+      "sha256": "c1b9424b7ce5f7daff61bda59bbc90054f00f78a39403be26537ece56f6237e3",
+      "size_bytes": 442884,
+      "url": "/v1/artifacts/flux2-a0a9879fc6834b67/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784560645.7405634,
+  "error": null,
+  "finished_at": 1784560664.0757766,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-a0a9879fc6834b67/reference_0.png"
+  ],
+  "job_id": "flux2-a0a9879fc6834b67",
+  "metrics": {
+    "nvml_peak_used_mib": 55805,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 52000.5,
+    "torch_peak_reserved_mib": 52548
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "参考上传的大雄正面标准图，生成一张 1024×576 横向 1×2 2D pixel sprite strip。两个大雄分别位于画布横向 25% 和 75%，都严格正面直视镜头，闭嘴中性表情；圆眼镜、黑短发、黄上衣、蓝短裤、白袜、浅蓝鞋、头身比例和 pixel clusters 完全一致。 左侧动作：画面左边的腿向下前方迈出，画面右边的腿向上后方送；画面右边的手臂向下前方摆，画面左边的手臂向上后方摆。 右侧动作：四肢自然换边，画面右边的腿向下前方迈出，画面左边的腿向上后方送；画面左边的手臂向下前方摆，画面右边的手臂向上后方摆。 两幅都是普通慢走的相反落脚姿势，躯干直立，肩膀水平，膝盖轻微弯曲，双脚贴近地面，头部中心和脚底 baseline 对齐。整张画布使用连续均匀的 #00FF00 chroma-key 背景，中央区域保持纯绿色。",
+    "prompt_upsampling": false,
+    "seed": 30000,
+    "width": 1024
+  },
+  "started_at": 1784560645.8118439,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.805,
+    "denoise": 3.863,
+    "load_inputs": 0.023,
+    "reference_encode": 0.291,
+    "save_png": 0.388,
+    "text_encode": 0.337,
+    "total_wall": 18.264
+  },
+  "updated_at": 1784560664.075792,
+  "worker_finished_at": 1784560660.6350152
+}

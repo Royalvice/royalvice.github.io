@@ -1,0 +1,69 @@
+{
+  "version": "2026-07-17.profile-adventure.v1",
+  "license": "private non-commercial portfolio sequence",
+  "characterAtlas": {
+    "url": "/assets/profile/adventure/atlases/profile-adventure-characters.webp",
+    "size": [1360, 3840],
+    "frameSize": [340, 768],
+    "columns": 4,
+    "rows": {
+      "nobita": 0,
+      "doraemon": 1,
+      "shizuka": 2,
+      "gian": 3,
+      "suneo": 4
+    }
+  },
+  "actorStrips": {
+    "nobita": "/assets/profile/adventure/sprites/nobita.webp",
+    "doraemon": "/assets/profile/adventure/sprites/doraemon.webp",
+    "shizuka": "/assets/profile/adventure/sprites/shizuka.webp",
+    "gian": "/assets/profile/adventure/sprites/gian.webp",
+    "suneo": "/assets/profile/adventure/sprites/suneo.webp"
+  },
+  "frame": {
+    "fps": 8,
+    "pivot": [0.5, 0.94],
+    "baseline": 0.94
+  },
+  "actors": {
+    "nobita": {
+      "core": ["idle", "run", "brake-stumble", "victory"],
+      "interactions": ["receive-gadget-from-doraemon", "wave-to-shizuka"],
+      "props": ["take-copter-mount-and-hover", "air-cannon-aim-and-recoil"]
+    },
+    "doraemon": {
+      "core": ["idle", "walk-turn", "pocket-search", "cheer"],
+      "interactions": ["open-door-for-nobita", "hand-gadget-to-nobita"],
+      "props": ["four-dimensional-pocket-draw", "shrink-light-flash"]
+    },
+    "shizuka": {
+      "core": ["idle", "wave", "clap", "surprised"],
+      "interactions": ["high-five-with-nobita", "react-to-portal"],
+      "props": []
+    },
+    "gian": {
+      "core": ["idle-arms-crossed", "laugh", "stomp", "victory-fist"],
+      "interactions": ["nudge-suneo", "cheer-for-nobita"],
+      "props": []
+    },
+    "suneo": {
+      "core": ["idle", "point", "smirk", "recoil"],
+      "interactions": ["whisper-to-gian", "point-at-portal"],
+      "props": []
+    }
+  },
+  "door": {
+    "url": "/assets/profile/adventure/props/anywhere-door.webp",
+    "clips": ["closed", "opening", "charged", "closing", "portal-energy-loop", "dimension-flash", "pixel-dissolve"]
+  },
+  "props": {
+    "url": "/assets/profile/adventure/atlases/profile-adventure-props.webp",
+    "clips": ["bamboo-copter", "air-cannon", "four-dimensional-pocket", "shrink-light"]
+  },
+  "riggedNobita": {
+    "url": "/assets/profile/adventure/models/nobita-adventure.glb",
+    "deformBones": 30,
+    "clips": ["portal_emerge", "portal_landing", "run", "brake", "slot_transfer", "trophy_pickup", "trophy_raise", "victory_hold"]
+  }
+}

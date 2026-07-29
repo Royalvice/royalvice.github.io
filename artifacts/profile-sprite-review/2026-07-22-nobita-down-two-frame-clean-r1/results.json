@@ -1,0 +1,59 @@
+{
+  "runId": "2026-07-22-nobita-down-two-frame-clean-r1",
+  "reference": {
+    "path": "artifacts/profile-sprite-review/final-directional-references/nobita/nobita-direction-down-reference.png",
+    "sha256": "c5153e06eff9e628483b29570c7400672030c355bc6c0b0518c2c600c6de2022",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  "selection": {
+    "frameA": {
+      "candidate": 9,
+      "seed": 74008,
+      "jobId": "flux2-5bdb7009822c4e97",
+      "source": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/frame-a/candidate-09.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/selected-frame-a.png",
+      "sha256": "881466177c783a406a1c384a656e41dd2a9e1050609ecc888d0ce804e1538325",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    "frameB": {
+      "candidate": 1,
+      "seed": 75000,
+      "jobId": "flux2-c00bf79c90dc4d54",
+      "source": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/frame-b/candidate-01.png",
+      "output": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/selected-frame-b.png",
+      "sha256": "bbcb90e9aed94e730d33c4e17d3df6b80976f7fcf7f647936d1a2be011ef0afd",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "reviewArtifacts": {
+    "contactSheet": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/two-frame-review-contact.png",
+      "sha256": "24e32b863d5ca53584167e15b64f918a74329ac95c473e08bcdfc75ff73acce1",
+      "size": [
+        2048,
+        1088
+      ]
+    },
+    "loopPreview": {
+      "path": "artifacts/profile-sprite-review/2026-07-22-nobita-down-two-frame-clean-r1/two-frame-preview.gif",
+      "sha256": "e91c26d6c14b52136fef41f0cf28cf789ba33d90e74694383d10da39a9342741",
+      "frames": 2,
+      "durationMsPerFrame": 350
+    }
+  },
+  "generationCounts": {
+    "frameA": 16,
+    "frameB": 4,
+    "total": 20
+  },
+  "status": "accepted"
+}

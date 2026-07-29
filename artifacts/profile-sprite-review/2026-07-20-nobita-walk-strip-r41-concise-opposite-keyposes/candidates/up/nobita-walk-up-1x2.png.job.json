@@ -1,0 +1,71 @@
+{
+  "actual_parameters": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "model_name": "black-forest-labs/FLUX.2-klein-9B",
+    "num_images": 1,
+    "num_reference_images": 1,
+    "num_steps": 4,
+    "prompt": "根据参考图的大雄背面形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正背面并朝画面上方，同一后脑、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向上前踏、右腿向下后伸，画面右臂向上前摆、左臂向下后摆。Pose B：画面右腿向上前踏、左腿向下后伸，画面左臂向上前摆、右臂向下后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，两只浅蓝鞋靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 32100,
+    "width": 1024
+  },
+  "artifacts": [
+    {
+      "content_type": "image/png",
+      "filename": "sample.png",
+      "path": "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9eb213a93dfa4efb/sample.png",
+      "sha256": "057e35ac33f84ae30e8799b126ebfadddc79f21ea6f1fe7b83483594736afb5d",
+      "size_bytes": 383857,
+      "url": "/v1/artifacts/flux2-9eb213a93dfa4efb/sample.png"
+    }
+  ],
+  "cancel_requested": false,
+  "created_at": 1784560828.4302297,
+  "error": null,
+  "finished_at": 1784560843.7913098,
+  "input_files": [
+    "/mnt/cfs/5vr0p6/yzy/game/artifacts/flux2-9eb213a93dfa4efb/reference_0.png"
+  ],
+  "job_id": "flux2-9eb213a93dfa4efb",
+  "metrics": {
+    "nvml_peak_used_mib": 55805,
+    "placement": "full_resident",
+    "startup_diagnostics": {
+      "full_resident": "ok",
+      "model_name": "black-forest-labs/FLUX.2-klein-9B",
+      "text_encoder_dir": "/mnt/cfs/5vr0p6/yzy/models/FLUX.2-klein-9B-qwen3-8b-fp8-local"
+    },
+    "torch_peak_allocated_mib": 52000.5,
+    "torch_peak_reserved_mib": 52548
+  },
+  "model": "flux2",
+  "request": {
+    "format": "png",
+    "guidance": 1,
+    "height": 576,
+    "mode": "i2i",
+    "num_images": 1,
+    "num_steps": 4,
+    "prompt": "根据参考图的大雄背面形象，绘制横向 1×2 2D pixel sprite animation strip，1024×576。两格均为严格正背面并朝画面上方，同一后脑、同一服装、同一尺寸和同一 baseline。 Pose A：画面左腿向上前踏、右腿向下后伸，画面右臂向上前摆、左臂向下后摆。Pose B：画面右腿向上前踏、左腿向下后伸，画面左臂向上前摆、右臂向下后摆。 两个 key poses 表现普通慢走，步幅小，膝盖微弯，两只浅蓝鞋靠近地面。两个角色位于画布 25% 与 75%，连续纯色 #00FF00 chroma-key 背景。",
+    "prompt_upsampling": false,
+    "seed": 32100,
+    "width": 1024
+  },
+  "started_at": 1784560828.4937234,
+  "state": "succeeded",
+  "timings_s": {
+    "decode": 0.807,
+    "denoise": 3.889,
+    "load_inputs": 0.02,
+    "reference_encode": 0.224,
+    "save_png": 0.36,
+    "text_encode": 0.335,
+    "total_wall": 15.298
+  },
+  "updated_at": 1784560843.7913244,
+  "worker_finished_at": 1784560843.0999064
+}
