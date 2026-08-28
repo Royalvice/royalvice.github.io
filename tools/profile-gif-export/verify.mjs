@@ -84,6 +84,10 @@ for (const card of manifest.cards) {
   if (Math.abs(Number(stream.nb_read_frames) / duration - card.fps) > .08) throw new Error(`${card.file} effective frame rate differs from manifest.`);
   if (![256, 224, 192].includes(card.encoding.colors)) throw new Error(`${card.file} uses an unapproved palette size.`);
   if (card.fidelity.threshold !== .975 || card.fidelity.minimum < .975) throw new Error(`${card.file} fails the keyframe color-fidelity threshold.`);
+  if (card.id === "profile-card") {
+    if (card.semantic?.geometry?.summaryHidden !== true) throw new Error("profile-card.gif still exposes the summary/avatar column.");
+    if (card.semantic?.geometry?.contentInsideDossier !== true) throw new Error("profile-card.gif clips dossier content.");
+  }
   const first = await decodedPixelHash(file, 0);
   const last = await decodedPixelHash(file, card.frames - 1);
   if (first !== last) throw new Error(`${card.file} decoded first and last pixels differ.`);

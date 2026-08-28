@@ -15,11 +15,13 @@ npm run export:profile-gifs -- \
   --max-bytes 36700160
 ```
 
-The publication command creates two looping GIFs, `profile-card.gif` at
-`1920x816` and `news-terminal.gif` at `1920x934`, plus a schema-v2
-`manifest.json`, source and encoded contact sheets, and selected diagnostic PNG
-keyframes. Browser screenshots are supersampled before Lanczos normalization so
-GitHub Camo always downsamples rather than enlarges the cards.
+The publication command creates two looping GIFs: `profile-card.gif` at
+`1920x816`, containing only the full-width research dossier (the homepage's
+left avatar/identity summary is intentionally excluded), and
+`news-terminal.gif` at `1920x934`. It also writes a schema-v2 `manifest.json`,
+source and encoded contact sheets, and selected diagnostic PNG keyframes.
+Browser screenshots are supersampled before Lanczos normalization so GitHub
+Camo always downsamples rather than enlarges the cards.
 
 Each GIF is encoded with a global 256-color, full-animation palette and no
 dithering, then retried at 224 and 192 colors only if needed. Width and frame

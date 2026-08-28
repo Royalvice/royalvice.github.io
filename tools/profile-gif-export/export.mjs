@@ -29,7 +29,7 @@ const CARD_SPECS = {
   profile: {
     id: "profile-card",
     file: "profile-card.gif",
-    selector: ".profile-top",
+    selector: ".profile-dossier",
     layoutWidth: 800,
     layoutHeight: 340,
     captureScale: 3,
@@ -254,12 +254,21 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
     html[data-profile-gif-export="main"] .profile-top {
       position:relative !important;
       z-index:20 !important;
+      display:grid !important;
+      grid-template-columns:minmax(0,1fr) !important;
+      gap:0 !important;
+      width:800px !important;
+      min-width:800px !important;
+      max-width:800px !important;
       background:radial-gradient(ellipse at 20% 12%,rgba(237,196,119,.105),transparent 16rem),linear-gradient(180deg,rgba(10,17,12,.99),rgba(3,8,6,.995));
     }
-    html[data-profile-gif-export="main"] .profile-top .profile-telemetry-row { grid-template-columns:minmax(0,1fr) 112px !important; gap:8px !important; }
-    html[data-profile-gif-export="main"] .profile-top .visitor-telemetry { width:112px !important; min-width:112px !important; max-width:112px !important; margin-right:0 !important; padding-inline:0 !important; }
-    html[data-profile-gif-export="main"] .profile-top .visitor-telemetry img { width:110px !important; max-width:110px !important; }
-    html[data-profile-gif-export="main"] .profile-top .social-dock { transform:translateY(-4px) !important; }
+    html[data-profile-gif-export="main"] .profile-summary { display:none !important; }
+    html[data-profile-gif-export="main"] .profile-dossier {
+      grid-column:1 !important;
+      width:100% !important;
+      min-width:0 !important;
+      max-width:none !important;
+    }
     html[data-profile-gif-export="main"] .avatar-curtain,
     html[data-profile-gif-export="main"] .spotlight-beam,
     html[data-profile-gif-export="main"] .spotlight-ring,
@@ -351,58 +360,33 @@ async function validateProfileGeometry(page) {
         height: value.height
       };
     };
-    const top = document.querySelector(".profile-top");
+    const dossier = document.querySelector(".profile-dossier");
     const summary = document.querySelector(".profile-summary");
-    const visitor = document.querySelector(".visitor-telemetry");
-    const routeLabels = [...document.querySelectorAll(".research-route b")];
-    const socialLinks = [...document.querySelectorAll(".social-dock a")];
-    if (!top || !summary || !visitor || routeLabels.length !== 3 || socialLinks.length !== 3) {
+    const content = [
+      document.querySelector(".profile-intro"),
+      document.querySelector(".dossier-research"),
+      document.querySelector("[data-siggraph-machine]"),
+      document.querySelector(".interest-rail"),
+      document.querySelector(".godot-status")
+    ];
+    if (!dossier || !summary || content.some((element) => !element)) {
       throw new Error("Profile export geometry could not resolve all required elements.");
     }
-    const topRect = rect(top);
-    const summaryRect = rect(summary);
-    const visitorRect = rect(visitor);
-    const routeRects = routeLabels.map((label) => {
-      const range = document.createRange();
-      range.selectNodeContents(label);
-      const value = range.getBoundingClientRect();
-      return {
-        left: value.left,
-        right: value.right,
-        top: value.top,
-        bottom: value.bottom,
-        width: value.width,
-        height: value.height,
-        lineCount: range.getClientRects().length,
-        text: label.textContent?.trim() || ""
-      };
-    });
-    const socialRects = socialLinks.map(rect);
-    const routeRight = Math.max(...routeRects.map((value) => value.right));
+    const dossierRect = rect(dossier);
+    const contentRects = content.map((element) => rect(element));
     const inside = (outer, inner) => inner.left >= outer.left - .5
       && inner.right <= outer.right + .5
       && inner.top >= outer.top - .5
       && inner.bottom <= outer.bottom + .5;
     return {
-      top: topRect,
-      summary: summaryRect,
-      visitor: visitorRect,
-      routeLabels: routeRects,
-      socialLinks: socialRects,
-      routeVisitorGap: visitorRect.left - routeRight,
-      visitorSocialGap: Math.min(...socialRects.map((value) => value.top)) - visitorRect.bottom,
-      routeLabelsInsideSummary: routeRects.every((value) => inside(summaryRect, value)),
-      visitorInsideSummary: inside(summaryRect, visitorRect),
-      socialInsideTop: socialRects.every((value) => inside(topRect, value))
+      dossier: dossierRect,
+      content: contentRects,
+      summaryHidden: getComputedStyle(summary).display === "none",
+      contentInsideDossier: contentRects.every((value) => inside(dossierRect, value))
     };
   });
-  if (geometry.routeVisitorGap < 4) {
-    throw new Error(`Profile research labels overlap the visitor badge (gap ${geometry.routeVisitorGap.toFixed(2)}px).`);
-  }
-  if (!geometry.routeLabelsInsideSummary) throw new Error("Profile research-route text escapes the summary card.");
-  if (!geometry.visitorInsideSummary) throw new Error("Profile visitor badge escapes the summary card.");
-  if (geometry.visitorSocialGap < 0) throw new Error("Profile visitor badge overlaps the social controls.");
-  if (!geometry.socialInsideTop) throw new Error("Profile social controls are clipped by the export card.");
+  if (!geometry.summaryHidden) throw new Error("Profile summary/avatar column is visible in the README export.");
+  if (!geometry.contentInsideDossier) throw new Error("Profile dossier content is clipped by the export card.");
   return geometry;
 }
 
