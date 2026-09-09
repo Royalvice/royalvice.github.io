@@ -33,6 +33,7 @@ export class TerminalScene {
   private visible=true; private lost=false; private destroyed=false; private dirty=true;
   private elapsed=0; private screenClock=0; private yaw=.08;
   private readingView=false;
+  private captureActive=false;
   private hovered: Cap|null=null; private pointerCap: Cap|null=null;
   private drag: {x:number;y:number;yaw:number; moved:boolean}|null=null;
   private pressed = new Set<string>();
@@ -94,6 +95,7 @@ export class TerminalScene {
       (window as any).__terminal3D.capture={
         newsIds:this.program.news.map(item=>item.id),
         begin:()=>{
+          this.captureActive=true;
           this.app.off('update',this.update);
           window.removeEventListener('cabin:window-frame',this.cabinFrame);
           this.resizeObserver.disconnect();
@@ -109,6 +111,7 @@ export class TerminalScene {
           this.update(1/24);
           this.program.draw(time,false,false);this.displayTexture.upload();
           this.app.render();
+          this.app.renderNextFrame=false;
           return this.snapshot();
         }
       };
@@ -140,6 +143,13 @@ export class TerminalScene {
   setStatus(status:string): void {this.program.status=status;this.dirty=true;}
   refresh(index:number): void {if(!this.program.input && document.activeElement!==this.canvas)this.program.selected=index;this.dirty=true;}
   resize(): void {
+    if(this.captureActive){
+      this.app.graphicsDevice.resizeCanvas(1920,1080);
+      this.camera.camera!.aspectRatioMode=pc.ASPECT_MANUAL;
+      this.camera.camera!.aspectRatio=1920/1080;
+      this.camera.camera!.orthoHeight=3.15;
+      this.readingView=false;this.positionCamera();this.dirty=true;return;
+    }
     const {width,height}=this.canvas.getBoundingClientRect(); if(!width || !height)return;
     // Square pixels, capped resolution; the camera fits the world to CSS aspect.
     const scale=Math.min(1.35,1000/width);
@@ -370,7 +380,7 @@ export class TerminalScene {
   snapshot():unknown {
     const rect=this.canvas.getBoundingClientRect();
     return {ready:!this.lost,docked:this.docked,atmosphere:this.atmosphere,cwd:this.program.filesystem.cwd,hint:this.program.hint,output:this.program.output.map(line=>line.text),keyCount:this.caps.length,input:this.program.input,cursor:this.program.cursor,selected:this.program.selected,mode:this.program.mode,caps:this.program.caps,shift:this.program.shift,lastKey:this.program.lastKey,yaw:this.yaw,
-      buffer:[this.canvas.width,this.canvas.height],css:[rect.width,rect.height],aspect:this.camera.camera!.aspectRatio,screenMeshVertices:this.screen.render!.meshInstances[0].mesh.vertexBuffer.numVertices,
+      buffer:[this.canvas.width,this.canvas.height],cabinFrameReady:!!this.latestCabinCanvas,css:[rect.width,rect.height],aspect:this.camera.camera!.aspectRatio,screenMeshVertices:this.screen.render!.meshInstances[0].mesh.vertexBuffer.numVertices,
       keys:this.caps.map(c=>{const point=this.camera.camera!.worldToScreen(c.root.getPosition().clone().add(new pc.Vec3(0,.08,0)),this.cursor);return {code:c.spec.code,label:c.spec.label,x:point.x,y:point.y,travel:c.travel,held:c.held,scale:c.root.getLocalScale().toArray()};})};
   }
   destroy():void {

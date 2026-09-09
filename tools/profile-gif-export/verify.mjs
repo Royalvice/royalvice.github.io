@@ -89,6 +89,7 @@ for (const card of manifest.cards) {
   if(card.id === 'news-terminal') {
     if(card.semantic?.renderer !== 'web3d' || card.semantic?.timeline !== 'pwd-ls-cd-research')throw new Error('Expected actual Web3D terminal');
     if(!card.semantic.states.some(s=>s.mode==='output') || !card.semantic.newsIds.length)throw new Error('Missing terminal content');
+    if(!card.semantic.states.every(s=>s.buffer?.[0]===card.width&&s.buffer?.[1]===card.height&&s.cabinFrameReady))throw new Error('Terminal capture has a reduced drawing buffer or missing cabin view');
   }
   const first = await decodedPixelHash(file, 0);
   const last = await decodedPixelHash(file, card.frames - 1);

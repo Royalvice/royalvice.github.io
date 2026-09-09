@@ -426,10 +426,11 @@ async function captureRoomFrames(page, framesDir, spec) {
 }
 
 async function captureNewsFrames(page, framesDir, spec) {
+  await page.waitForFunction(() => window.__terminal3D?.getState().cabinFrameReady, null, {timeout:120000});
   // Invoke the production button handler without pointer hit-testing the
   // animated room: software WebGL can delay Playwright's stability checks.
   await page.evaluate(() => document.querySelector('[data-profile-terminal]').click());
-  await page.waitForFunction(() => window.__terminal3D?.getState().ready, null, {timeout:120000});
+  await page.waitForFunction(() => document.querySelector('.terminal-shell')?.dataset.renderer==='web3d', null, {timeout:120000});
   await page.addStyleTag({content: `
     #profile {display:none!important;}
     .terminal-focus {max-width:none!important;max-height:none!important;width:1920px!important;height:1080px!important;padding:0!important;border:0!important;overflow:hidden!important;}
@@ -449,6 +450,7 @@ async function captureNewsFrames(page, framesDir, spec) {
       const state=window.__terminalTimeline(frame);
       return {state,png:document.querySelector('.terminal-canvas').toDataURL('image/png')};
     },frame);
+    if(state.buffer[0]!==spec.width||state.buffer[1]!==spec.height)throw new Error('Web3D drawing buffer changed during capture');
     if(spec.keyframes.includes(frame)) states.push({frame,...state});
     await writeFile(framePath(framesDir,frame),Buffer.from(png.split(",")[1],"base64"));
     if(frame && frame%48===0)process.stdout.write(`[news-terminal] ${frame}/${spec.frames}\n`);

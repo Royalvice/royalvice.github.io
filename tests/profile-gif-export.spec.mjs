@@ -27,6 +27,11 @@ test('the export drives real commands, visits every news item and resets the 3D 
  for(const key of ['input','mode','cwd','cursor','selected','lastKey','yaw'])expect(result.last[key]).toEqual(result.first[key]);
  expect(result.last.keys.every(k=>k.travel===0&&!k.held)).toBe(true);
  expect(result.last.screenMeshVertices).toBeGreaterThan(100);
+ expect(result.first.buffer).toEqual([1920,1080]);
+ expect(result.last.buffer).toEqual([1920,1080]);
+ await page.setViewportSize({width:1000,height:800});
+ await page.waitForTimeout(250);
+ expect(await page.evaluate(()=>window.__terminal3D.capture.render(0).buffer)).toEqual([1920,1080]);
 });
 
 test('normal homepage does not enable GIF capture controls',async({page})=>{
