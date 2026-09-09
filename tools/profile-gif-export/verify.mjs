@@ -1,5 +1,5 @@
-import { CARD_SPECS } from "./specs.mjs";
 #!/usr/bin/env node
+import { CARD_SPECS } from "./specs.mjs";
 
 import { createHash } from "node:crypto";
 import { access, readFile, stat } from "node:fs/promises";
