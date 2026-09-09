@@ -426,8 +426,10 @@ async function captureRoomFrames(page, framesDir, spec) {
 }
 
 async function captureNewsFrames(page, framesDir, spec) {
-  await page.locator('[data-profile-terminal]').click();
-  await page.waitForFunction(() => window.__terminal3D?.getState().ready);
+  // Invoke the production button handler without pointer hit-testing the
+  // animated room: software WebGL can delay Playwright's stability checks.
+  await page.evaluate(() => document.querySelector('[data-profile-terminal]').click());
+  await page.waitForFunction(() => window.__terminal3D?.getState().ready, null, {timeout:120000});
   await page.addStyleTag({content: `
     #profile {display:none!important;}
     .terminal-focus {max-width:none!important;max-height:none!important;width:1920px!important;height:1080px!important;padding:0!important;border:0!important;overflow:hidden!important;}
@@ -604,7 +606,7 @@ async function exportCard(key, browser, mainPage, options, directories, visitor)
     errors=[];page.on("pageerror",e=>errors.push(e.message));
     await page.route("https://api.visitorbadge.io/**",r=>r.fulfill({body:visitorSvg(visitor),contentType:"image/svg+xml"}));
     await page.goto(`${options.baseUrl}/?profile-gif-export=1#profile`,{waitUntil:"domcontentloaded"});
-    await page.waitForFunction(()=>window.__profileAdventureDebug?.getState().ready);
+    await page.waitForFunction(()=>window.__profileAdventureDebug?.getState().ready,null,{timeout:120000});
   }
   if (key === "room") {
     const roomPage = await prepareRoomPage(browser, options);
