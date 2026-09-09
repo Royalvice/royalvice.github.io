@@ -161,20 +161,20 @@ export const siteContent: SiteContent = {
     name: "Zongyuan Yang",
     avatar: "/assets/profile/nobita.png",
     intro: "I am Zongyuan Yang, a Second-year PhD at BUPT.",
-    researchSummary: "Neural Graphics & 3D AIGC & Interactive World Models",
+    researchSummary: "Building Agents That Make 3A Games",
     contributions: [
-      "Real-time light-field rendering for naked-eye 3D displays",
-      "Native 3D MLLM pre-training and post-training",
-      "3D memory latent development for Interactive World Models"
+      "Agentic game development: harnesses, tools & evaluation",
+      "Native 3D understanding, generation & editing",
+      "Real-time neural rendering & light-field graphics"
     ],
-    skills: ["Deep Learning", "Agent Harnessing", "Computer Graphics"],
+    skills: ["Harness Engineering", "Multimodal LLMs", "Computer Graphics"],
     interests: [
       { id: "game", label: "Game Dev" },
       { id: "fitness", label: "Fitness" },
       { id: "music", label: "Music" },
       { id: "metaphysics", label: "Metaphysics" }
     ],
-    status: "Currently exploring game development with Godot.",
+    status: "Making games that bring people joy.",
     social: [
       { id: "github", label: "GitHub", href: "https://github.com/Royalvice" },
       { id: "scholar", label: "Google Scholar", href: "https://scholar.google.com.hk/citations?user=2IYvwdwAAAAJ&hl=zh-CN" },

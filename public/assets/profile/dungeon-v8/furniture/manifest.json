@@ -1,0 +1,146 @@
+{
+  "desk": {
+    "size": [
+      152,
+      95
+    ],
+    "pivot": [
+      0.5,
+      1
+    ],
+    "sourceCrop": [
+      21,
+      49,
+      1489,
+      970
+    ],
+    "source": "artifacts/grounded-cabin/desk-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "A single solid walnut research desk sprite. Exact HIGH 45-degree downward orthographic view from directly in front, yaw 0. Physical dimensions WIDTH150 DEPTH72 HEIGHT74. The projected tabletop must measure 150 pixels horizontally and 51 pixels vertically; the legs extend another52 pixels DOWN from tabletop front edge. Overall furniture silhouette width:height approximately 150:103 (about 1.46), NOT a wide shallow desk. Show the very broad TOP, about HALF of total silhouette height, its rectangle left and right edges parallel vertical (no trapezoid). Front edge horizontal, all vertical legs parallel vertical. Right drawer pedestal, two left legs, old brass drawer handles. Empty tabletop. Dark walnut wood, warm brass, restrained jade reflected fill. Finest warm indie-game pixel material rendering, clean alpha background, no floor, no cast shadow. Output true RGBA transparency, NEVER a checkerboard image. Entire furniture with all feet visible, no clipping."
+  },
+  "sofa": {
+    "size": [
+      184,
+      88
+    ],
+    "pivot": [
+      0.5,
+      1
+    ],
+    "sourceCrop": [
+      5,
+      104,
+      1608,
+      870
+    ],
+    "source": "artifacts/grounded-cabin/sofa-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "A single cozy jade three-seat sofa sprite. Exact HIGH 45-degree downward orthographic camera, directly in front yaw0. Physical width210 depth92 height84. Overall projected silhouette WIDTH210 HEIGHT124: approximately 1.69 aspect ratio, NOT a shallow front-facing sofa. Large visible seat cushion TOPS and the broad TOP edges of the backrest and arms. Ground depth axis projects vertically upwards, with0.7071 foreshortening, parallel projection, NO vanishing points or trapezoid. Dense deep-jade upholstery, walnut frame, four short thick wooden feet touching one ground plane, ivory pillow left, green checker pillow right, mustard throw folded over left arm. Warm fine pixel-art material rendering with clear volume and dark underside. True RGBA transparent background with NO checkerboard, no ground, no detached shadow. Entire asset, front feet meet clean bottom edge."
+  },
+  "tea-table": {
+    "size": [
+      88,
+      55
+    ],
+    "pivot": [
+      0.5,
+      1
+    ],
+    "sourceCrop": [
+      73,
+      100,
+      1421,
+      935
+    ],
+    "source": "artifacts/grounded-cabin/tea-table-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "One low walnut tea table game sprite. HIGH45-degree downward ORTHOGRAPHIC camera directly in front, yaw0 roll0. Physical WIDTH100 DEPTH60 HEIGHT38. Projected outer silhouette width100 height69 (ratio1.45). Broad rectangular TOP should be100wide42high: clearly more than HALF the overall object height. Legs project another27pixels down. No perspective convergence: left/right edges of top run parallel vertical, front edge perfectly horizontal. Four solid short thick walnut legs, old brass corners, sage runner, small ivory teapot and TWO small teacups, navy notebook on top. Proportions are important: depict from high above, not a shallow frontal product photograph. Rich material-aware cozy indie-game pixel rendering, warm directional upper-left lighting, dark undersides. TRUE transparent RGBA background, do not paint a checkerboard, no floor or detached shadow. Entire object and feet visible."
+  },
+  "sideboard": {
+    "size": [
+      74,
+      47
+    ],
+    "pivot": [
+      0.5,
+      1
+    ],
+    "sourceCrop": [
+      45,
+      90,
+      1421,
+      962
+    ],
+    "source": "artifacts/grounded-cabin/sideboard-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "A single low walnut music sideboard sprite. Exact HIGH45-degree downward orthographic view directly from front, yaw0. World dimensions width90 depth42 height48. Projected silhouette width90 height64 (aspect1.4). Empty rectangular horizontal TOP has projected width90 height30, occupying nearly HALF overall silhouette height. Front cabinet body and feet occupy the remaining34pixels. Tabletop's left/right depth edges vertical and parallel, NOT perspective trapezoid. Walnut carved trim, jade glass storage doors, brass handles, four solid little feet. Warm physical pixel-art indie-game asset with clean distinct planes. Entire object alone on TRUE transparent RGBA alpha. No checkerboard, no background, no floor plane or cast shadow. No objects on top."
+  },
+  "plant": {
+    "size": [
+      36,
+      40
+    ],
+    "pivot": [
+      0.5,
+      0.89
+    ],
+    "sourceCrop": [
+      15,
+      10,
+      1176,
+      1306
+    ],
+    "source": "artifacts/grounded-cabin/plant-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "Regenerate reference with orthographic front camera pitched down45 degrees, true alpha, visible solid floor contact; jade leaves / ivory-brass water dispenser, warm upper-left lighting."
+  },
+  "cooler": {
+    "size": [
+      22,
+      67
+    ],
+    "pivot": [
+      0.5,
+      1
+    ],
+    "sourceCrop": [
+      146,
+      42,
+      702,
+      1736
+    ],
+    "source": "artifacts/grounded-cabin/cooler-source.png",
+    "generator": "ImageGen built-in",
+    "camera": {
+      "pitch": 45,
+      "yaw": 0,
+      "projection": "orthographic art reference"
+    },
+    "prompt": "Regenerate reference with orthographic front camera pitched down45 degrees, true alpha, visible solid floor contact; jade leaves / ivory-brass water dispenser, warm upper-left lighting."
+  }
+}

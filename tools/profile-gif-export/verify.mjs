@@ -1,3 +1,4 @@
+import { CARD_SPECS } from "./specs.mjs";
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
@@ -8,11 +9,8 @@ import { spawn } from "node:child_process";
 
 const outDir = path.resolve(process.argv[2] || "dist/profile-gifs");
 const manifest = JSON.parse(await readFile(path.join(outDir, "manifest.json"), "utf8"));
-const expectedCards = {
-  "profile-card": { width: 1920, height: 816, frames: 192, duration: 8, layoutWidth: 800, layoutHeight: 340, captureScale: 3, resample: "lanczos" },
-  "news-terminal": { width: 1920, height: 934, frames: 240, duration: 10, layoutWidth: 720, layoutHeight: 350, captureScale: 3, resample: "lanczos" },
-  "sprite-room": { width: 720, height: 350, frames: 1_440, duration: 60, layoutWidth: 720, layoutHeight: 350, captureScale: 1, resample: null }
-};
+const expectedCards = Object.fromEntries(Object.values(CARD_SPECS).map(spec=>[spec.id,spec]));
+
 if (manifest.schemaVersion !== 2) throw new Error(`Expected manifest schema v2, received ${manifest.schemaVersion}.`);
 const cardIds = manifest.cards.map((card) => card.id);
 if (JSON.stringify(cardIds) !== JSON.stringify(manifest.publication.order)) {
@@ -87,6 +85,10 @@ for (const card of manifest.cards) {
   if (card.id === "profile-card") {
     if (card.semantic?.geometry?.summaryHidden !== true) throw new Error("profile-card.gif still exposes the summary/avatar column.");
     if (card.semantic?.geometry?.contentInsideDossier !== true) throw new Error("profile-card.gif clips dossier content.");
+  }
+  if(card.id === 'news-terminal') {
+    if(card.semantic?.renderer !== 'web3d' || card.semantic?.timeline !== 'pwd-ls-cd-research')throw new Error('Expected actual Web3D terminal');
+    if(!card.semantic.states.some(s=>s.mode==='output') || !card.semantic.newsIds.length)throw new Error('Missing terminal content');
   }
   const first = await decodedPixelHash(file, 0);
   const last = await decodedPixelHash(file, card.frames - 1);

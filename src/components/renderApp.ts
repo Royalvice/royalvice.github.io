@@ -1,3 +1,6 @@
+import { SeascapeState } from "../seascape/SeascapeState";
+import { HomeMusic, renderMusicCloud } from "../music/HomeMusic";
+import type { CabinWindowController } from "../seascape/CabinWindowController";
 import githubSvg from "simple-icons/icons/github.svg?raw";
 import scholarSvg from "simple-icons/icons/googlescholar.svg?raw";
 import huggingFaceSvg from "simple-icons/icons/huggingface.svg?raw";
@@ -8,6 +11,7 @@ import type { PlayCanvasGallery } from "../gallery/PlayCanvasGallery";
 import type { ProfileAdventureDirector } from "../profile/ProfileAdventureDirector";
 import type { PacLabArcade } from "../profile/PacLabArcade";
 import { TerminalController } from "./TerminalController";
+import { renderTerminal } from "./renderTerminal";
 
 type InitOptions = {
   content: SiteContent;
@@ -126,14 +130,6 @@ function renderProfile(content: SiteContent): string {
   const p = content.profile;
   const brandIcons: Record<string, string> = { github: githubSvg, scholar: scholarSvg, huggingface: huggingFaceSvg };
   const reelDigits = Array.from({ length: SIGGRAPH_REEL_CYCLES + 1 }, () => Array.from({ length: SIGGRAPH_REEL_DIGITS }, (_, digit) => digit)).flat();
-  const telemetryColumns = [
-    "SIG<br>0x7F<br>GPU<br>0110<br>TOG",
-    "MLLM<br>1011<br>EVA<br>0x2A<br>ICCV",
-    "GPU<br>TOG<br>0010<br>SIG<br>0x91",
-    "EVA<br>0x4C<br>MLLM<br>1101<br>ACM",
-    "ICCV<br>0101<br>GPU<br>0xD3<br>SIG",
-    "TOG<br>MLLM<br>0x6E<br>1001<br>EVA"
-  ];
   return `
     <section class="scene profile-scene" id="profile" aria-labelledby="profile-title" data-section="profile">
       <div class="profile-console">
@@ -149,11 +145,7 @@ function renderProfile(content: SiteContent): string {
             <h1 id="profile-title">${escapeHtml(p.name)}</h1>
             <p class="profile-signature">Happy Wife! Happy Life!</p>
             <div class="profile-telemetry-row">
-              <ol class="research-route" aria-label="Research route">
-                <li class="is-complete"><span></span><b>Neural Graphics</b></li>
-                <li class="is-current" aria-current="step"><span></span><b>3D MLLM</b></li>
-                <li class="is-future"><span></span><b>Game World Model</b></li>
-              </ol>
+              <p class="research-identity"><strong>Agentic GameDev</strong><span>Researcher</span></p>
               <a class="visitor-telemetry" data-visitor-telemetry data-state="preview" href="https://visitorbadge.io/status?path=https%3A%2F%2Froyalvice.github.io%2F" target="_blank" rel="noreferrer" aria-label="View today's and total visitor counts for royalvice.github.io">
                 <span class="visitor-heading"><i class="visitor-signal" aria-hidden="true"></i><b>LIVE COUNT</b></span>
                 <span class="visitor-preview" data-visitor-fallback>-- / ----</span>
@@ -176,8 +168,8 @@ function renderProfile(content: SiteContent): string {
               <div class="dossier-label"><span>Research</span><b>Evidence / 01</b></div>
               <p class="research-summary">${escapeHtml(p.researchSummary)}</p>
               <div class="research-evidence-grid">
-                <section class="contribution-group" aria-label="Research contributions">
-                  <header><b>01</b><span>Research Contributions</span></header>
+                <section class="contribution-group" aria-label="Research focus">
+                  <header><b>01</b><span>Research Focus</span></header>
                   <ol class="contribution-list">
                     ${p.contributions.map((item, index) => `<li><b>0${index + 1}</b><span>${escapeHtml(item)}</span></li>`).join("")}
                   </ol>
@@ -267,49 +259,7 @@ function renderProfile(content: SiteContent): string {
 
         <div class="future-slot" data-future-slot>${renderProfileRoomFallback()}</div>
 
-        <section class="terminal-shell profile-reveal" style="--reveal-index:2" aria-label="Live research news terminal" data-paused="false">
-          <div class="terminal-atmosphere" aria-hidden="true">
-            <div class="terminal-telemetry-rain">
-              ${telemetryColumns.map((tokens, index) => `<span style="--rain-x:${8 + index * 17}%;--rain-duration:${15 + index * 1.7}s;--rain-delay:-${index * 2.35}s">${tokens}</span>`).join("")}
-            </div>
-          </div>
-          <header class="terminal-session">
-            <div class="terminal-session-id">
-              <span class="terminal-app-icon" aria-hidden="true">›_</span>
-              <b>TTY / RESEARCH-TAIL</b>
-              <small>PTS-01</small>
-            </div>
-            <div class="terminal-session-meta">
-              <span data-terminal-buffer>BUFFER ${String(Math.min(content.news.length, 9)).padStart(2, "0")}/09</span>
-              <button class="terminal-follow-toggle" type="button" aria-pressed="false" aria-label="Pause live research log" data-terminal-toggle>
-                <i aria-hidden="true"></i><span data-terminal-state>FOLLOW</span>
-              </button>
-            </div>
-          </header>
-          <div class="terminal-domain-bar" aria-label="Research signal domains">
-            <span class="terminal-domain-badge domain-neural-graphics is-online" data-terminal-domain="neural-graphics" data-active="true"><i aria-hidden="true">◇</i><b>Neural Graphics</b></span>
-            <span class="terminal-domain-badge domain-agent-harness is-online" data-terminal-domain="agent-harness" data-active="true"><i aria-hidden="true">⌘</i><b>Agent Harness</b></span>
-            <span class="terminal-domain-badge domain-mllm is-online" data-terminal-domain="mllm" data-active="true"><i aria-hidden="true">◫</i><b>MLLM</b></span>
-            <span class="terminal-domain-badge domain-game-world-model is-offline" data-terminal-domain="game-world-model" data-active="false"><i aria-hidden="true">▦</i><b>Game World Model</b></span>
-          </div>
-          <div class="terminal-command">
-            <span class="terminal-user">zongyuan@oasis</span>
-            <span class="terminal-path">~/research</span>
-            <b>$</b>
-            <code>tail -f news.log</code>
-          </div>
-          <div class="terminal-columns" aria-hidden="true"><span>DATE</span><span>STREAM</span><span>EVENT</span></div>
-          <div class="terminal-viewport">
-            <div class="terminal-lines" data-terminal-lines role="log" aria-live="off" tabindex="0"></div>
-            <div class="terminal-output-cursor terminal-cycle-boundary" aria-hidden="true">
-              <i></i><b>END OF NEWS</b><code>LOOP ↻</code><i></i>
-            </div>
-          </div>
-          <footer class="terminal-status">
-            <span><i aria-hidden="true"></i><b data-terminal-footer>follow mode · waiting for append</b></span>
-            <code>UTF-8 / RO</code>
-          </footer>
-        </section>
+        ${renderTerminal()}
       </div>
 
       <section class="gallery-stage profile-reveal" style="--reveal-index:1" aria-label="Selected research cabinet">
@@ -386,10 +336,11 @@ function renderVoyage(content: SiteContent): string {
       <div class="voyage-right-rail" data-voyage-right-rail>
         <aside class="captains-log" data-captains-log aria-label="Captain’s research log">
           <span class="journal-binding" aria-hidden="true"></span>
-          <div class="journal-heading"><span>Captain’s Log</span><b data-log-entry>Entry ${escapeHtml(currentLog.entry)}</b></div>
+          <div class="journal-heading"><a href="/assets/voyage/wildlife-credits.html" target="_blank" rel="noopener" aria-label="Wildlife art credits">Captain’s Log <small>· Art credits ↗</small></a><b data-log-entry>Entry ${escapeHtml(currentLog.entry)}</b></div>
           <div class="journal-status"><i></i><span data-log-status>Current berth · EVA01</span></div>
           <h3 data-log-title>${escapeHtml(currentLog.title)}</h3>
           <strong data-log-subtitle>${escapeHtml(currentLog.subtitle)}</strong>
+          <div class="journal-research"><span>Research note</span><p data-log-research>${escapeHtml(content.projects.find((project) => project.id === currentLog.projectIds[0])?.summary ?? current.log)}</p></div>
           <dl class="journal-instruments">
             <div><dt>Watch</dt><dd data-log-watch>${escapeHtml(currentLog.watch)}</dd></div>
             <div><dt>Bearing</dt><dd data-log-bearing>${escapeHtml(currentLog.bearing)}</dd></div>
@@ -397,7 +348,7 @@ function renderVoyage(content: SiteContent): string {
             <div><dt>Date</dt><dd data-log-date>${escapeHtml(currentLog.date)}</dd></div>
           </dl>
           <div class="journal-copy" data-log-copy>
-            ${currentLog.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+            ${currentLog.paragraphs.filter(Boolean).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
           </div>
           <nav class="captain-actions" data-captain-actions aria-label="Selected log links"></nav>
           <div class="journal-controls">
@@ -446,6 +397,7 @@ function renderHorizon(content: SiteContent): string {
         <img src="/assets/horizon/horizon-fallback-desktop.webp" alt="" loading="lazy" decoding="async" />
       </picture>
       <canvas class="horizon-canvas" data-horizon-scene aria-hidden="true"></canvas>
+      ${renderMusicCloud()}
       <header class="horizon-heading"><span>03 / HORIZON</span><h2 id="horizon-title">${escapeHtml(content.ending.kicker)}</h2></header>
       <ol class="horizon-chapters" aria-label="Future chapters">
         ${content.ending.chapters.map((chapter, index) => `<li><span>0${index + 1}</span><i aria-hidden="true"></i><h3>${escapeHtml(chapter.title)}</h3></li>`).join("")}
@@ -815,8 +767,9 @@ function initializeVoyage(content: SiteContent, state: AppState): VoyageUiContro
     log.querySelector<HTMLElement>("[data-log-bearing]")!.textContent = entry.bearing;
     log.querySelector<HTMLElement>("[data-log-sea]")!.textContent = entry.seaState;
     log.querySelector<HTMLElement>("[data-log-date]")!.textContent = entry.date;
-    log.querySelector<HTMLElement>("[data-log-copy]")!.innerHTML = entry.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
+    log.querySelector<HTMLElement>("[data-log-copy]")!.innerHTML = entry.paragraphs.filter(Boolean).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
     const projects = entry.projectIds.map((id) => content.projects.find((project) => project.id === id)).filter((project): project is Project => Boolean(project));
+    log.querySelector<HTMLElement>("[data-log-research]")!.textContent = projects[0]?.summary ?? node.log;
     const actions = log.querySelector<HTMLElement>("[data-captain-actions]")!;
     actions.innerHTML = node.id === "world"
       ? `<a href="#horizon">Enter Horizon <span>→</span></a>`
@@ -1017,6 +970,11 @@ export async function initializeApplication({ content, state, onSectionChange }:
   initializeDrawers();
   const voyageUi = initializeVoyage(content, state);
 
+  const seaState = new SeascapeState({reducedMotion:state.reducedMotion});
+  const music = new HomeMusic(document.querySelector<HTMLElement>('[data-music-cloud]')!,()=>seaState.elapsed);
+  let cabinWindow:CabinWindowController|null=null;
+  let cabinOpen=false;
+  let ultraCabinet:import("../profile/UltraCabinet").UltraCabinet|null=null;
   const renderers = new Map<SectionId, SceneRenderer[]>();
   const registerRenderer = (section: SectionId, renderer: SceneRenderer): void => {
     const sectionRenderers = renderers.get(section) ?? [];
@@ -1036,6 +994,8 @@ export async function initializeApplication({ content, state, onSectionChange }:
     if (!horizonCanvas || horizonInitialization) return;
     horizonInitialization = import("../horizon/HorizonSceneRenderer").then(async ({ HorizonSceneRenderer }) => {
       const renderer = new HorizonSceneRenderer(horizonCanvas, {
+        state:seaState,
+        music: music.cloudSurface,
         reducedMotion: state.reducedMotion,
         qualityTier: state.qualityTier,
         boatAtlasUrl: "/assets/horizon/research-boat-night-atlas.webp",
@@ -1101,6 +1061,9 @@ export async function initializeApplication({ content, state, onSectionChange }:
     } })();
   }
 
+  // Compile this additional 3D scene after the cabinet, before Voyage.
+  galleryInitialization = galleryInitialization.then(() => terminal?.mount3D()).then(() => undefined);
+
   // The room is already represented by the authored static poster. Hydrate
   // its Canvas2D simulation in an independent idle slice: it must remain
   // available even when the optional PlayCanvas cabinet is slow or falls
@@ -1133,6 +1096,29 @@ export async function initializeApplication({ content, state, onSectionChange }:
       });
       await director.init();
       profileAdventure = director;
+      music.attachRoom(({playing,time})=>director.setMusicState(playing,time));
+      const dock=adventureRoot.querySelector<HTMLElement>("[data-terminal-dock]");
+      if(dock)terminal?.attachDock(dock,signal=>{
+        if(signal==="door")director.setDoorOpen(true);
+        else director.setTerminalLighting(signal);
+      },open=>{
+        if(open)director.pause();
+        else if(state.activeSection==="profile" && state.documentVisible)director.resume();
+      });
+      // Serialize the new PlayCanvas context after the existing cabinet and terminal.
+      galleryInitialization=galleryInitialization.then(async()=>{
+        const trigger=adventureRoot.querySelector<HTMLButtonElement>('[data-profile-window]');
+        if(!trigger)return;
+        const {CabinWindowController}=await import('../seascape/CabinWindowController');
+        cabinWindow=new CabinWindowController(trigger,seaState,state.reducedMotion,c=>director.setWindowFrame(c),open=>{
+          cabinOpen=open;
+          if(open){director.pause();gallery?.pause();}
+          else if(state.activeSection==='profile'&&state.documentVisible){director.resume();gallery?.resume();}
+        });
+        await cabinWindow.init();
+        const cabinetTrigger=adventureRoot.querySelector<HTMLButtonElement>('[data-profile-ultra]');
+        if(cabinetTrigger){const {UltraCabinet}=await import('../profile/UltraCabinet');ultraCabinet=new UltraCabinet(cabinetTrigger,c=>director.setCabinetFrame(c),open=>{cabinOpen=open;if(open){director.pause();gallery?.pause();}else if(state.activeSection==='profile'&&state.documentVisible){director.resume();gallery?.resume();}});await ultraCabinet.init();}
+      }).catch(error=>console.warn('Cabin window unavailable',error));
       adventureRoot.classList.add("is-ready");
       if (state.activeSection === "profile" && state.documentVisible && !state.reducedMotion) director.resume();
       else director.pause();
@@ -1141,9 +1127,9 @@ export async function initializeApplication({ content, state, onSectionChange }:
       adventureRoot.classList.add("is-fallback");
       console.warn("Profile sprite room fallback active", error);
     }).finally(() => {
-      // The cabinet's generated trophies are decorative upgrades over the
-      // already-visible authored meshes. Release their idle warmup only after
-      // this heavier sprite room has either initialized or chosen its poster.
+      // Keep readiness on the mount too: the sprite room can finish before
+      // the asynchronously imported gallery has installed its event listener.
+      if (galleryRoot) galleryRoot.dataset.profileCompanionReady = "true";
       galleryRoot?.dispatchEvent(new CustomEvent("gallery:companion-ready"));
     });
   };
@@ -1237,6 +1223,10 @@ export async function initializeApplication({ content, state, onSectionChange }:
   if (voyageSection) voyagePrewarmObserver?.observe(voyageSection);
   let transitionRaf = 0;
   let navigationTimer = 0;
+  let lastScrollY = window.scrollY;
+  let scrollDirection = 0;
+  // Responsive profile reflow can precede the browser's initial hash scroll.
+  let initialHorizonEntry = window.location.hash === "#horizon";
 
   const scheduleNavigationSettle = (): void => {
     window.clearTimeout(navigationTimer);
@@ -1275,6 +1265,9 @@ export async function initializeApplication({ content, state, onSectionChange }:
   };
 
   const wakeNavigation = (): void => {
+    const scrollY = window.scrollY;
+    if (Math.abs(scrollY - lastScrollY) > 1) scrollDirection = Math.sign(scrollY - lastScrollY);
+    lastScrollY = scrollY;
     scheduleNavigationSettle();
     requestTransitionUpdate();
   };
@@ -1292,11 +1285,21 @@ export async function initializeApplication({ content, state, onSectionChange }:
   chapterNav?.addEventListener("focusout", scheduleNavigationSettle);
   requestTransitionUpdate();
 
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    const active = (visible.target as HTMLElement).dataset.section as SectionId;
+  const sectionObserver = new IntersectionObserver(() => {
+    // Observer entries contain only changed targets. Compare all sections'
+    // visible heights so a receding Horizon cannot masquerade as a new entry.
+    const visible = sections.map(section => {
+      const rect = section.getBoundingClientRect();
+      return { section, height: Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)) };
+    }).sort((a, b) => b.height - a.height)[0];
+    if (!visible?.height) return;
+    // A compact profile can be shorter than the viewport. At its top, the
+    // visible preview of Voyage must not steal navigation or pause the room.
+    const atProfileTop=sections.some(section=>section.dataset.section==="profile"&&Math.abs(section.getBoundingClientRect().top)<1);
+    const active = atProfileTop ? "profile" : visible.section.dataset.section as SectionId;
     onSectionChange(active);
+    music.setSection(active, active === "horizon" && initialHorizonEntry ? 1 : scrollDirection);
+    if (active === "horizon") initialHorizonEntry = false;
     sections.forEach((section) => section.classList.toggle("is-active", section.dataset.section === active));
     navLinks.forEach((link) => {
       const current = link.dataset.navSection === active;
@@ -1312,7 +1315,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
     if (active === "voyage") ensureVoyageRenderer();
     if (active === "horizon") ensureHorizonRenderer();
     scheduleNavigationSettle();
-    if (active === "profile") {
+    if (active === "profile" && !cabinOpen) {
       gallery?.resume();
       profileAdventure?.resume();
     } else {
@@ -1335,8 +1338,8 @@ export async function initializeApplication({ content, state, onSectionChange }:
       document.querySelectorAll("video").forEach((video) => video.pause());
     } else if (!state.reducedMotion) {
       renderers.get(state.activeSection)?.forEach((renderer) => renderer.resume());
-      if (state.activeSection === "profile") gallery?.resume?.();
-      if (state.activeSection === "profile") profileAdventure?.resume();
+      if (state.activeSection === "profile" && !cabinOpen) gallery?.resume?.();
+      if (state.activeSection === "profile" && !cabinOpen) profileAdventure?.resume();
     }
   });
 
@@ -1364,6 +1367,9 @@ export async function initializeApplication({ content, state, onSectionChange }:
   });
 
   window.addEventListener("beforeunload", () => {
+    music.destroy();
+    cabinWindow?.destroy();
+    ultraCabinet?.destroy();
     terminal?.destroy();
     destroySiggraphMachine();
     voyageUi?.destroy();

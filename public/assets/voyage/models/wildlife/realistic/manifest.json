@@ -1,0 +1,54 @@
+{
+  "retrieved": "2026-09-05",
+  "scope": "Each original license applies to its model and derived version. These files are not relicensed by the site source-code license.",
+  "assets": [
+    {
+      "file": "seagull.glb",
+      "author": "The lighthouse keeper (https://sketchfab.com/geminga)",
+      "license": "CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)",
+      "source": "https://sketchfab.com/3d-models/flying-seagull-07dde3ea7d9048588d3c4edfd37ac20d",
+      "title": "Flying Seagull",
+      "downloadedFrom": "https://raw.githubusercontent.com/bob6664569/open-water/main/site/assets/animals/flying_seagull.glb",
+      "sourceSha256": "7e4f1a707aa4693b07312fa4f9c32faba485945a7f7c40657dbb4dd81e5a96be",
+      "sha256": "7e4f1a707aa4693b07312fa4f9c32faba485945a7f7c40657dbb4dd81e5a96be",
+      "bytes": 516392,
+      "adaptation": "Original geometry, skeleton, and animation retained. GLB unchanged. Runtime scale, orientation, PBR lighting, refraction and pixel post-processing adapted for Voyage."
+    },
+    {
+      "file": "shark.glb",
+      "author": "Optic_idealist (https://sketchfab.com/nandupofficial)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/shark-8bcd4d861bd84e87b2832e83c9cb898b",
+      "title": "Shark",
+      "downloadedFrom": "https://raw.githubusercontent.com/bob6664569/open-water/main/site/assets/animals/fish/shark.glb",
+      "sourceSha256": "1056b1bc09f11e259aca73f7d56e7b614ddff64299c2530990e792878a6a6610",
+      "sha256": "7a1a44000edb999e79104951d94f0414b3d43aa1ab4097b22fa1380d96b20f7a",
+      "bytes": 1357452,
+      "adaptation": "Original geometry, skeleton, and animation retained. Base-color textures JPEG-compressed; textures capped at 1024px. Runtime scale, orientation, PBR lighting, refraction and pixel post-processing adapted for Voyage."
+    },
+    {
+      "file": "blue-whale.glb",
+      "author": "Bohdan Lvov (https://sketchfab.com/ostapblendercg)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/blue-whale-textured-d24d19021c724c3a9134eebcb76b0e0f",
+      "title": "Blue Whale - Textured",
+      "downloadedFrom": "https://raw.githubusercontent.com/bob6664569/open-water/main/site/assets/animals/blue_whale_-_textured.glb",
+      "sourceSha256": "9e1f6eb4d8ace554d8cc324925ae7141c2505419587a2062d218c66208b5f8d0",
+      "sha256": "f2fbe2cad4bb7fa2a213f6311f343cd336da92e9f639132574ecc9b7757af432",
+      "bytes": 2720524,
+      "adaptation": "Original geometry, skeleton, and animation retained. Base-color textures JPEG-compressed; textures capped at 1024px. Runtime scale, orientation, PBR lighting, refraction and pixel post-processing adapted for Voyage."
+    },
+    {
+      "file": "bottlenose-dolphin.glb",
+      "author": "DigitalLife3D (https://sketchfab.com/DigitalLife3D)",
+      "license": "CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)",
+      "source": "https://sketchfab.com/3d-models/model-61a-bottlenose-dolphin-2ec20f15b08c4c2fb16e4df5d837b893",
+      "title": "Model 61A - Bottlenose Dolphin",
+      "downloadedFrom": "https://raw.githubusercontent.com/bob6664569/open-water/main/site/assets/animals/fish/dolphin.glb",
+      "sourceSha256": "446f2e25cab49bc7bcdbcc8d24554fd477ef7b95d29fb67ac035bec1c1d0291a",
+      "sha256": "6d49e29182aec94a3643bdf422c84f5d45352e0b17d170992b8e9b3e2e51f6ee",
+      "bytes": 2819960,
+      "adaptation": "Original geometry, skeleton, and animation retained. Base-color textures JPEG-compressed; textures capped at 1024px. Runtime scale, orientation, PBR lighting, refraction and pixel post-processing adapted for Voyage."
+    }
+  ]
+}

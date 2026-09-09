@@ -1,0 +1,92 @@
+[
+  {
+    "id": "oasis",
+    "name": "OASIS 月夜港",
+    "url": "/assets/profile/anywhere-door-v2/oasis.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "wisteria",
+    "name": "紫藤山径",
+    "url": "/assets/profile/anywhere-door-v2/wisteria.webp",
+    "focusX": 0.35
+  },
+  {
+    "id": "cedar",
+    "name": "雨后杉林",
+    "url": "/assets/profile/anywhere-door-v2/cedar.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "alpine",
+    "name": "雪山晨光",
+    "url": "/assets/profile/anywhere-door-v2/alpine.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "lantern",
+    "name": "雨夜小镇",
+    "url": "/assets/profile/anywhere-door-v2/lantern.webp",
+    "focusX": 0.72
+  },
+  {
+    "id": "desert",
+    "name": "沙海遗迹",
+    "url": "/assets/profile/anywhere-door-v2/desert.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "aurora",
+    "name": "极光峡湾",
+    "url": "/assets/profile/anywhere-door-v2/aurora.webp",
+    "focusX": 0.25
+  },
+  {
+    "id": "reef",
+    "name": "珊瑚浅湾",
+    "url": "/assets/profile/anywhere-door-v2/reef.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "sakura",
+    "name": "春日车站",
+    "url": "/assets/profile/anywhere-door-v2/sakura.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "autumn",
+    "name": "秋日书屋",
+    "url": "/assets/profile/anywhere-door-v2/autumn.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "ringworld",
+    "name": "星环冰原",
+    "url": "/assets/profile/anywhere-door-v2/ringworld.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "redplanet",
+    "name": "赤星峡谷",
+    "url": "/assets/profile/anywhere-door-v2/redplanet.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "biolum",
+    "name": "荧光异星林",
+    "url": "/assets/profile/anywhere-door-v2/biolum.webp",
+    "focusX": 0.5
+  },
+  {
+    "id": "oceanmoon",
+    "name": "双月潮汐",
+    "url": "/assets/profile/anywhere-door-v2/oceanmoon.webp",
+    "focusX": 0.85
+  },
+  {
+    "id": "cloudcity",
+    "name": "云海浮岛",
+    "url": "/assets/profile/anywhere-door-v2/cloudcity.webp",
+    "focusX": 0.5
+  }
+]

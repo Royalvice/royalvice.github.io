@@ -18,10 +18,14 @@ npm run export:profile-gifs -- \
 The publication command creates two looping GIFs: `profile-card.gif` at
 `1920x816`, containing only the full-width research dossier (the homepage's
 left avatar/identity summary is intentionally excluded), and
-`news-terminal.gif` at `1920x934`. It also writes a schema-v2 `manifest.json`,
+`news-terminal.gif` at `1920x1080` (20 seconds, actual Web3D computer). It also writes a schema-v2 `manifest.json`,
 source and encoded contact sheets, and selected diagnostic PNG keyframes.
-Browser screenshots are supersampled before Lanczos normalization so GitHub
-Camo always downsamples rather than enlarges the cards.
+The research card is supersampled before Lanczos normalization; the computer
+is rendered directly at 1920x1080. Both use 24fps. The shared specification is
+`specs.mjs`. `terminal-timeline.mjs` drives real keyboard commands with a fixed
+clock through capture controls enabled only by `?profile-gif-export=1`.
+The 20-second sequence shows research, pwd, ls, cd research, each news item,
+and a stationary return to the exact opening state.
 
 Each GIF is encoded with a global 256-color, full-animation palette and no
 dithering, then retried at 224 and 192 colors only if needed. Width and frame
@@ -43,7 +47,8 @@ npm run export:profile-gifs -- \
   --max-bytes 36700160
 ```
 
-The deployment workflow also mirrors the two verified binaries into the GitHub
+A failed export or fidelity check blocks Pages deployment; old GIFs are never
+substituted. The deployment workflow also mirrors the two verified binaries into the GitHub
 Profile repository before replacing its README. Repository-relative image URLs
 keep the full-resolution GIFs on GitHub's trusted raw-content path instead of
 the size-limited external Camo proxy; both images still link to the homepage and

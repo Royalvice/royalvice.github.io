@@ -12,6 +12,9 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:4173",
     browserName: "chromium",
     headless: true,
+    // The macOS headless shell defaults to SwiftShader, which stalls these
+    // real-time scenes. Exercise the same Metal backend as a local browser.
+    launchOptions: { args: process.platform === "darwin" ? ["--use-angle=metal"] : [] },
     viewport: { width: 1920, height: 1080 },
     colorScheme: "dark",
     trace: "retain-on-failure"

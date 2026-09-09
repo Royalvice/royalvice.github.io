@@ -1,21 +1,19 @@
+import { AnywhereDoorDestinations } from "./AnywhereDoorDestinations";
+import { ROOM_FURNITURE } from "./roomFurniture";
+import { ROOM_PROJECTION } from "./roomProjection";
+import { CabinSpriteLibrary } from "./CabinSpriteLibrary";
 import {
   PROFILE_ACTORS,
   PROFILE_ACTOR_IDS,
-  PROFILE_BASE_FRAME_ORDER,
-  PROFILE_LIFE_FRAME_ORDER,
-  PROFILE_MOVEMENT_FRAME_ORDER,
   PROFILE_ROOM_V4_ASSETS,
-  type ProfileActorId,
-  type ProfileSpriteFrameId
+  type ProfileActorId
 } from "./profileAdventureAssets";
 import type { ProfileRoomSimulationState, ProfileActorRuntime } from "./ProfileRoomSimulation";
 import type { ProfileRoomTv } from "./ProfileRoomTv";
 import {
-  PROFILE_ROOM_DESK_ACCESS,
   PROFILE_ROOM_LAMP_ANCHORS,
   PROFILE_ROOM_PROPS,
   PROFILE_ROOM_SPRITE_META,
-  type ProfileRoomDeskStation,
   type ProfileRoomPoint,
   type ProfileRoomSpriteKey
 } from "./profileRoomLayout";
@@ -24,12 +22,6 @@ type LoadedImage = {
   image: HTMLImageElement | null;
   ready: boolean;
   failed: boolean;
-};
-
-type ActorImageSet = {
-  base: LoadedImage;
-  movement: LoadedImage;
-  life: LoadedImage;
 };
 
 export type ProfileRoomAssetState = {
@@ -64,28 +56,46 @@ type DrawRect = { left: number; top: number; width: number; height: number; anch
 const emptyImage = (): LoadedImage => ({ image: null, ready: false, failed: false });
 const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
 
-// `secondaryDesk` is a 128x128 cell in the reviewed furniture atlas.  Its
-// central aperture begins just after source row 96; stop the actor before that
-// row so no lower-body pixels can leak between the desk legs.  Keep a small
-// safety margin for browser resampling and the 1px atlas edge.
-const DESK_ACTOR_CLIP_BOTTOM_RATIO = 0.74;
-
 export class ProfileSpriteStage {
+  private sprites=new CabinSpriteLibrary();
+  private destinations = new AnywhereDoorDestinations(() => this.redraw());
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private resizeObserver: ResizeObserver;
   private width = 576;
   private height = 288;
   private mobile = false;
+  private referenceWidth = 640;
+  private referenceHeight = 320;
   private listeners: Array<() => void> = [];
-  private actorImages = new Map<ProfileActorId, ActorImageSet>();
   private furniture = emptyImage();
+  private cabinFurniture:Record<string,LoadedImage>={primaryDesk:emptyImage(),secondaryDesk:emptyImage(),sofa:emptyImage(),waterCooler:emptyImage(),flowers:emptyImage(),coffeeTable:emptyImage()};
   private door = emptyImage();
+  private doorLabelKey = "";
   private lamps = emptyImage();
+  private kimetsu = emptyImage();
   private posterLeft = emptyImage();
   private posterRight = emptyImage();
   private snapshot: ProfileRoomSimulationState | null = null;
   private tv: ProfileRoomTv | null = null;
+  private windowCanvas: HTMLCanvasElement | null = null;
+  private musicPlaying = false;
+  private musicTime = 0;
+  private terminalFrame:HTMLCanvasElement|null=null;
+  setMusicState(playing:boolean,time:number):void {
+    const changed=this.musicPlaying!==playing;
+    this.musicPlaying=playing;this.musicTime=time;
+    if(changed)this.redraw();
+  }
+  setWindowFrame(canvas:HTMLCanvasElement):void {
+    if(!canvas.width||!canvas.height)return;
+    this.windowCanvas??=document.createElement('canvas');
+    if(this.windowCanvas.width!==288){this.windowCanvas.width=288;this.windowCanvas.height=120;}
+    this.windowCanvas.getContext('2d')!.drawImage(canvas,0,0,288,120);
+    window.dispatchEvent(new CustomEvent('cabin:window-frame',{detail:this.windowCanvas}));
+  }
+  private get wallExtension(){return 0;}
+  private windowRect(){return {left:222,top:60,width:216,height:90};}
   private tvPowerPhase: ProfileTvPowerPhase = "idle";
   private actionCounters = new Map<ProfileActorId, number>();
   private lastState: ProfileSpriteStageState = {
@@ -106,25 +116,36 @@ export class ProfileSpriteStage {
     this.root.innerHTML = `
       <section class="profile-adventure-stage" aria-label="Living top-down pixel research dungeon with five autonomous friends">
         <div class="profile-adventure-heading">
-          <span>ACT I · LIVING SIDE ROOM</span>
+          <span>ACT I · OASIS CABIN</span>
           <h3>THE LIVING RESEARCH DUNGEON</h3>
-          <small>AUTONOMOUS SPRITE HABITAT / 05 ACTORS</small>
+          <small>FIVE FRIENDS · ONE WAY HOME</small>
         </div>
         <canvas class="profile-sprite-canvas" width="576" height="288" aria-hidden="true"></canvas>
         <div class="profile-actor-controls" aria-label="Character interactions">
-          ${PROFILE_ACTOR_IDS.map((id) => `<button type="button" data-profile-actor="${id}" aria-label="Trigger ${PROFILE_ACTORS[id].label} room action"><span>${PROFILE_ACTORS[id].label}</span></button>`).join("")}
+          ${PROFILE_ACTOR_IDS.map((id) => `<button type="button" data-profile-actor="${id}" aria-label="Control ${PROFILE_ACTORS[id].label}"><span>${PROFILE_ACTORS[id].label}</span></button>`).join("")}
         </div>
         <button class="profile-door-control" type="button" data-profile-door aria-label="Toggle the Anywhere Door inside the sprite room"><span>DOOR</span></button>
         <button class="profile-tv-control" type="button" data-profile-tv aria-label="Open the playable Pac-Lab maze arcade inside the television" aria-controls="paclab-dialog" aria-expanded="false"><span>PLAY</span></button>
+        <div class="profile-terminal-dock" data-terminal-dock>
+          <div class="profile-terminal-visual" data-terminal-visual></div>
+          <button type="button" class="profile-terminal-trigger" data-profile-terminal disabled aria-label="Use the YZY computer on the research desk" aria-haspopup="dialog" aria-controls="yzy-terminal-dialog" aria-expanded="false">
+            <span class="terminal-glove" aria-hidden="true"><svg viewBox="0 0 24 28" shape-rendering="crispEdges"><path fill="#161b17" d="M8 0h6v9h6v3h4v11h-3v5H7v-5H4v-4H1v-7h5v2h2z"/><path fill="#f4ead0" d="M10 2h2v13h2v-4h4v3h4v7h-3v5H9v-5H6v-4H3v-3h2v2h5z"/><path fill="#b7b399" d="M14 15h2v6h-2zm4 0h2v6h-2zM9 23h10v3H9z"/></svg></span>
+            <span class="terminal-dock-hint">YZY <b>USE COMPUTER</b></span>
+          </button>
+        </div>
         <button class="profile-adventure-replay" type="button" data-profile-reset data-profile-replay><i aria-hidden="true">↻</i> RESET ROOM</button>
         <p class="profile-adventure-caption"><span data-room-status>ROOM ONLINE</span><b>PAC-LAB TV / 05</b></p>
         <ul class="profile-room-inventory sr-only" aria-label="Objects in the living research dungeon">
-          <li>Hanging chandelier</li><li>Blackboard and blackboard eraser</li><li>Two research desks and chairs</li>
+          <li>Hanging chandelier</li><li>Blackboard and blackboard eraser</li><li>Research workstation and music cabinet</li>
           <li>Teal sofa</li><li>Water cooler</li><li>Television playing a silent maze chase</li><li>Game console</li>
           <li>Six fuel lamps</li><li>Two framed pixel posters</li><li>Anywhere Door</li>
+          <li>Wooden music box playing Returning Home by Parijat</li>
         </ul>
       </section>
     `;
+    this.root.querySelector('.profile-adventure-stage')!.insertAdjacentHTML('beforeend','<button type="button" class="profile-window-trigger" data-profile-window disabled aria-label="Look through the ship cabin window" aria-haspopup="dialog" aria-expanded="false"><span>LOOK OUTSIDE ↗</span></button>');
+    this.root.querySelector('.profile-adventure-stage')!.insertAdjacentHTML('beforeend','<button type="button" class="profile-music-box" data-music-box data-music-toggle aria-label="Play Returning Home by Parijat" aria-pressed="false"><span class="music-box-hint"><b>Returning Home</b><small>Parijat · <i data-music-room-action>Play</i></small></span></button>');
+    this.root.querySelector('.profile-adventure-stage')!.insertAdjacentHTML('beforeend','<button type="button" class="profile-ultra-trigger" data-profile-ultra disabled aria-label="Open the Showa Ultraman collection" aria-haspopup="dialog"><span>光之记忆 ↗</span></button><button type="button" class="profile-ruru-trigger" data-profile-ruru aria-label="Say hello to Ruru"><span>HELLO, RURU</span></button>');
     const canvas = this.root.querySelector<HTMLCanvasElement>(".profile-sprite-canvas");
     const context = canvas?.getContext("2d", { alpha: false });
     if (!canvas || !context) throw new Error("Profile sprite Canvas2D is unavailable.");
@@ -140,10 +161,11 @@ export class ProfileSpriteStage {
       this.bind(button, "click", () => {
         const count = (this.actionCounters.get(actor) || 0) + 1;
         this.actionCounters.set(actor, count);
-        this.options.onActorInteraction(actor, count % 2 ? "room-reaction" : "signature");
+        this.options.onActorInteraction(actor, "control");
       });
     });
     this.bind(this.root, "focusin", () => this.redraw());
+    this.bind(this.root,'terminal:dock-frame',((event:CustomEvent)=>{this.terminalFrame=event.detail;this.root.classList.add('has-terminal-frame');}) as EventListener);
     this.bind(this.root, "focusout", () => requestAnimationFrame(() => this.redraw()));
 
     this.resizeObserver = new ResizeObserver(() => this.resize());
@@ -153,26 +175,21 @@ export class ProfileSpriteStage {
 
   async init(): Promise<void> {
     await Promise.all([
-      ...PROFILE_ACTOR_IDS.map(async (id) => {
-        const definition = PROFILE_ACTORS[id];
-        const images: ActorImageSet = { base: emptyImage(), movement: emptyImage(), life: emptyImage() };
-        this.actorImages.set(id, images);
-        await Promise.all([
-          this.loadImage(definition.baseAssetUrl, images.base, [384, 384]),
-          this.loadImage(definition.movementAssetUrl, images.movement, [384, 384]),
-          this.loadImage(definition.lifeAssetUrl, images.life, [384, 384])
-        ]);
-      }),
+      this.sprites.init(),
+      this.destinations.init(),
       this.loadImage(PROFILE_ROOM_V4_ASSETS.furniture, this.furniture, [384, 384]),
       this.loadImage(PROFILE_ROOM_V4_ASSETS.door, this.door, [256, 128]),
       this.loadImage(PROFILE_ROOM_V4_ASSETS.lamps, this.lamps, [256, 96]),
       this.loadImage(PROFILE_ROOM_V4_ASSETS.spiritedAwayPoster, this.posterLeft),
-      this.loadImage(PROFILE_ROOM_V4_ASSETS.onePiecePoster, this.posterRight)
+      this.loadImage(PROFILE_ROOM_V4_ASSETS.onePiecePoster, this.posterRight),
+      this.loadImage("/assets/profile/dungeon-v5/props/kimetsu.webp",this.kimetsu),
+      ...Object.entries(ROOM_FURNITURE).map(([id,asset])=>this.loadImage(asset.url,this.cabinFurniture[id]))
     ]);
     this.redraw();
   }
 
   destroy(): void {
+    this.destinations.destroy();
     this.resizeObserver.disconnect();
     this.listeners.splice(0).forEach((dispose) => dispose());
     this.actorImages.clear();
@@ -223,43 +240,40 @@ export class ProfileSpriteStage {
   }
 
   private resize(): void {
-    const rect = this.root.getBoundingClientRect();
+    const rect = this.canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return;
     this.mobile = rect.width < 560 || window.matchMedia("(max-width: 760px)").matches;
-    const nextWidth = this.mobile ? 320 : rect.width >= 650 ? 640 : 576;
-    const nextHeight = this.mobile ? 352 : nextWidth === 640 ? 320 : 288;
-    if (this.canvas.width !== nextWidth || this.canvas.height !== nextHeight) {
-      this.width = nextWidth;
-      this.height = nextHeight;
-      this.canvas.width = nextWidth;
-      this.canvas.height = nextHeight;
-      this.ctx.imageSmoothingEnabled = false;
-    }
+    this.referenceWidth=640;this.referenceHeight=480;this.width=640;this.height=480;
+    this.canvas.width=640;this.canvas.height=480;
     this.redraw();
   }
 
   private redraw(): ProfileSpriteStageState {
     const ctx = this.ctx;
     const snapshot = this.snapshot;
+    ctx.setTransform(this.canvas.width / this.width, 0, 0, this.canvas.height / this.height, 0, 0);
     ctx.imageSmoothingEnabled = false;
     this.drawRoomBase(ctx, snapshot);
+    this.drawWindow(ctx);
     this.drawWallLayer(ctx, snapshot);
-    this.drawFloorProps(ctx, snapshot);
-
-    const actors = snapshot
-      ? PROFILE_ACTOR_IDS.map((id) => snapshot.actors[id]).filter((actor) => actor.visible)
-      : [];
-    const ordered = actors.sort((a, b) => this.mapPoint(a.position)[1] - this.mapPoint(b.position)[1]);
-    const focusedActor = this.focusedActor();
-    for (const actor of ordered) {
-      const deskOcclusionStation = this.deskOcclusionStation(actor);
-      // A desk user is behind the furniture until it exits through the front
-      // lane. Its ground shadow would otherwise survive below the chair after
-      // the body was correctly hidden, reading as a detached second half.
-      if (!deskOcclusionStation) this.drawActorShadow(ctx, actor);
-      if (focusedActor === actor.id && !deskOcclusionStation) this.drawGroundFocus(ctx, actor.position);
-      this.drawActor(ctx, actor, deskOcclusionStation);
+    const actors=snapshot?PROFILE_ACTOR_IDS.map(id=>snapshot.actors[id]).filter(a=>a.visible):[];
+    const ordered=actors.sort((a,b)=>a.position[1]-b.position[1]);
+    const focusedActor=snapshot?.controlledActor||this.focusedActor();
+    this.drawFloorInlays(ctx);
+    // Every shadow belongs to the floor, before actors and furniture are sorted.
+    for(const id of ['primaryDesk','secondaryDesk','sofa','tv','waterCooler','door','ultraCabinet','flowers','modelBench','coffeeTable'])this.drawFurnitureGrounding(ctx,id);
+    this.drawPropShadow(ctx,155,317,12,4);
+    const drawables:Array<{y:number;draw:()=>void}>=[];
+    for(const id of ['primaryDesk','secondaryDesk','sofa','tv','waterCooler','door','ultraCabinet','flowers','modelBench','coffeeTable']){
+      drawables.push({y:PROFILE_ROOM_PROPS[id].worldAnchor[1],draw:()=>this.drawCabinProp(ctx,id,snapshot)});
     }
-    this.drawForegroundProps(ctx, snapshot);
+    drawables.push({y:317/480,draw:()=>this.drawFurniture(ctx,'chair',155,317,36,48)});
+    for(const actor of actors)drawables.push({y:actor.position[1],draw:()=>{this.drawActorShadow(ctx,actor);if(focusedActor===actor.id)this.drawGroundFocus(ctx,actor.position);this.drawActor(ctx,actor);}});
+    if(snapshot)drawables.push({y:snapshot.ruru.position[1],draw:()=>this.drawRuru(ctx,snapshot)});
+    drawables.sort((a,b)=>a.y-b.y).forEach(d=>d.draw());
+    this.drawForegroundProps(ctx,snapshot);
+    this.drawCabinEvent(ctx,snapshot);
+    if(this.root.dataset.cabinDebug==='true'&&snapshot)this.drawDebug(ctx,snapshot);
     this.drawLightingAndAtmosphere(ctx, snapshot);
     this.syncControls(snapshot);
 
@@ -283,9 +297,9 @@ export class ProfileSpriteStage {
 
   private drawRoomBase(ctx: CanvasRenderingContext2D, snapshot: ProfileRoomSimulationState | null): void {
     const { width, height } = this;
-    const wallTop = Math.round(height * 0.105);
-    const floorTop = Math.round(height * 0.305);
-    const floorBottom = Math.round(height * 0.94);
+    const wallTop = Math.round(this.roomY(.105));
+    const floorTop = Math.round(this.roomY(.335));
+    const floorBottom = Math.round(this.roomY(.94));
     ctx.fillStyle = "#030807";
     ctx.fillRect(0, 0, width, height);
 
@@ -307,6 +321,8 @@ export class ProfileSpriteStage {
         ctx.fillRect(x, y + 5, 12, 1);
       }
     }
+    for(const x of [12,121,451,616]){ctx.fillStyle='#332318';ctx.fillRect(x,wallTop,8,floorTop-wallTop);ctx.fillStyle='#866137';ctx.fillRect(x,wallTop,2,floorTop-wallTop);}
+    ctx.fillStyle='#5c4029';ctx.fillRect(13,wallTop,615,7);ctx.fillStyle='#9b7747';ctx.fillRect(13,wallTop,615,1);
     ctx.fillStyle = "#0b1512";
     ctx.fillRect(8, floorTop - 5, width - 16, 6);
     ctx.fillStyle = "#7a5930";
@@ -314,21 +330,22 @@ export class ProfileSpriteStage {
 
     ctx.fillStyle = "#17372f";
     ctx.fillRect(16, floorTop, width - 32, floorBottom - floorTop);
-    const tile = this.mobile ? 24 : 28;
-    for (let y = floorTop; y < floorBottom; y += tile) {
+    const tile = ROOM_PROJECTION.tileWidth, tileDepth = ROOM_PROJECTION.tileDepth;
+    for (let row = 0; floorTop + row * tileDepth < floorBottom; row++) {
+      const y = Math.round(floorTop + row * tileDepth);
+      const cellHeight = Math.min(Math.round(floorTop + (row + 1) * tileDepth), floorBottom) - y;
       for (let x = 16; x < width - 16; x += tile) {
         const column = Math.floor((x - 16) / tile);
-        const row = Math.floor((y - floorTop) / tile);
         ctx.fillStyle = (column + row) % 2 ? "#183a31" : "#1d4137";
-        ctx.fillRect(x + 1, y + 1, tile - 2, tile - 2);
+        ctx.fillRect(x + 1, y + 1, Math.min(tile - 2, width - 17 - x), cellHeight - 2);
         ctx.fillStyle = "rgba(135,190,151,.11)";
         ctx.fillRect(x + 2, y + 2, tile - 4, 1);
         ctx.fillStyle = "rgba(2,9,8,.28)";
-        ctx.fillRect(x + tile - 2, y + 3, 1, tile - 5);
+        ctx.fillRect(x + tile - 2, y + 3, 1, Math.max(0, cellHeight - 5));
         if ((column * 11 + row * 7) % 8 === 0) {
           ctx.fillStyle = "rgba(181,116,55,.25)";
-          ctx.fillRect(x + 5, y + tile - 5, 5, 1);
-          ctx.fillRect(x + 9, y + tile - 6, 1, 3);
+          ctx.fillRect(x + 5, y + cellHeight - 5, 5, 1);
+          ctx.fillRect(x + 9, y + cellHeight - 6, 1, 3);
         }
       }
     }
@@ -352,8 +369,9 @@ export class ProfileSpriteStage {
       ctx.fillRect(Math.round(center[0] + Math.cos(angle) * 37), Math.round(center[1] + Math.sin(angle) * 21), 2, 2);
     }
 
-    const chandelier = this.mapPoint(PROFILE_ROOM_PROPS.chandelier.worldAnchor);
-    const warmPool = ctx.createRadialGradient(chandelier[0], height * 0.64, 2, chandelier[0], height * 0.64, height * 0.34);
+    const chandelier = this.propRect("chandelier");
+    const poolY = chandelier.anchorY + height * 0.12;
+    const warmPool = ctx.createRadialGradient(chandelier.anchorX, poolY, 2, chandelier.anchorX, poolY, height * 0.34);
     warmPool.addColorStop(0, "rgba(255,203,116,.22)");
     warmPool.addColorStop(0.55, "rgba(240,151,59,.075)");
     warmPool.addColorStop(1, "rgba(240,151,59,0)");
@@ -374,8 +392,18 @@ export class ProfileSpriteStage {
       portal.addColorStop(0.45, "rgba(239,83,174,.11)");
       portal.addColorStop(1, "rgba(80,255,220,0)");
       ctx.fillStyle = portal;
-      ctx.fillRect(door[0] - height * 0.32, door[1] - height * 0.32, height * 0.64, height * 0.64);
+      ctx.fillRect(door[0] - height * 0.32, door[1] - height * 0.32, height * 0.52, height * 0.52);
     }
+  }
+
+  private drawWindow(ctx:CanvasRenderingContext2D):void {
+    const r=this.windowRect();
+    ctx.fillStyle='#07121b';ctx.fillRect(r.left,r.top,r.width,r.height);
+    if(this.windowCanvas?.width && this.windowCanvas?.height)ctx.drawImage(this.windowCanvas,r.left,r.top,r.width,r.height);
+    else {ctx.strokeStyle='#765537';ctx.lineWidth=4;ctx.strokeRect(r.left,r.top,r.width,r.height);}
+    const glow=ctx.createLinearGradient(0,r.top+r.height,0,r.top+r.height+35);
+    glow.addColorStop(0,'rgba(133,166,174,.12)');glow.addColorStop(1,'rgba(133,166,174,0)');
+    ctx.fillStyle=glow;ctx.fillRect(r.left+4,r.top+r.height,r.width-8,35);
   }
 
   private drawWallLayer(ctx: CanvasRenderingContext2D, snapshot: ProfileRoomSimulationState | null): void {
@@ -401,12 +429,12 @@ export class ProfileSpriteStage {
 
     // Copper pipes, archive shelf and small research clutter remain true pixel layers.
     ctx.fillStyle = "#6a4222";
-    ctx.fillRect(Math.round(this.width * 0.70), Math.round(this.height * 0.12), Math.round(this.width * 0.18), 3);
-    ctx.fillRect(Math.round(this.width * 0.88), Math.round(this.height * 0.12), 3, Math.round(this.height * 0.12));
+    ctx.fillRect(Math.round(this.width * 0.73), Math.round(this.referenceHeight * 0.12), Math.round(this.width * 0.21), 3);
+    ctx.fillRect(Math.round(this.width * 0.88), Math.round(this.referenceHeight * 0.12), 3, Math.round(this.referenceHeight * 0.12));
     ctx.fillStyle = "#aa7240";
-    ctx.fillRect(Math.round(this.width * 0.70), Math.round(this.height * 0.12), Math.round(this.width * 0.18), 1);
-    const shelfX = Math.round(this.width * 0.46);
-    const shelfY = Math.round(this.height * 0.18);
+    ctx.fillRect(Math.round(this.width * 0.73), Math.round(this.referenceHeight * 0.12), Math.round(this.width * 0.21), 1);
+    const shelfX = Math.round(this.width * 0.75);
+    const shelfY = Math.round(this.roomY(.285));
     ctx.fillStyle = "#160f0a";
     ctx.fillRect(shelfX - 25, shelfY - 8, 50, 21);
     ctx.fillStyle = "#6c4724";
@@ -417,131 +445,112 @@ export class ProfileSpriteStage {
       ctx.fillRect(shelfX - 20 + index * 6, shelfY - 2 + index % 2, 4, 6);
     }
 
-    PROFILE_ROOM_LAMP_ANCHORS.forEach((point, index) => this.drawLamp(ctx, point, index, snapshot?.simulationElapsed || 0));
+    PROFILE_ROOM_LAMP_ANCHORS.forEach((point,index)=>{this.drawLamp(ctx,point,index,snapshot?.simulationElapsed||0);});
   }
 
-  private drawFloorProps(ctx: CanvasRenderingContext2D, snapshot: ProfileRoomSimulationState | null): void {
-    const water = this.propRect("waterCooler");
-    const door = this.propRect("door");
-    const primary = this.propRect("primaryDesk");
-    const secondary = this.propRect("secondaryDesk");
-    const tv = this.propRect("tv");
-    const sofa = this.propRect("sofa");
-
-    this.drawGroundedShadow(ctx, secondary, 0.34, 0.035);
-    this.drawFurniture(ctx, "secondaryDesk", secondary.anchorX, secondary.anchorY, secondary.width, secondary.height);
-    const secondaryChair = this.mapPoint([0.23, 0.735]);
-    this.drawPropShadow(ctx, secondaryChair[0], secondaryChair[1] + 1, this.mobile ? 10 : 13, 3);
-    this.drawFurniture(ctx, "chair", secondaryChair[0], secondaryChair[1], this.mobile ? 24 : 29, this.mobile ? 31 : 38);
-
-    this.drawGroundedShadow(ctx, primary, 0.36, 0.038);
-    this.drawFurniture(ctx, "secondaryDesk", primary.anchorX, primary.anchorY, primary.width, primary.height);
-    const primaryChair = this.mapPoint([0.48, 0.735]);
-    this.drawPropShadow(ctx, primaryChair[0], primaryChair[1] + 1, this.mobile ? 10 : 13, 3);
-    this.drawFurniture(ctx, "chair", primaryChair[0], primaryChair[1], this.mobile ? 24 : 29, this.mobile ? 31 : 38);
-    this.drawDeskClutter(ctx, primary.anchorX, primary.anchorY, snapshot?.simulationElapsed || 0);
-
-    this.drawGroundedShadow(ctx, sofa, 0.41, 0.036);
-    this.drawFurniture(ctx, "sofa", sofa.anchorX, sofa.anchorY, sofa.width, sofa.height);
-
-    this.drawGroundedShadow(ctx, tv, 0.38, 0.034);
-    this.drawTvScreen(ctx, tv);
-    this.drawFurniture(ctx, "tvCabinet", tv.anchorX, tv.anchorY, tv.width, tv.height);
-    const ps5Anchor = PROFILE_ROOM_SPRITE_META.tvCabinet.childAnchors?.ps5 || [0.73, 0.61];
-    const ps5X = tv.left + tv.width * ps5Anchor[0];
-    const ps5Y = tv.top + tv.height * ps5Anchor[1];
-    ctx.fillStyle = "rgba(2,8,8,.38)";
-    ctx.beginPath();
-    ctx.ellipse(Math.round(ps5X), Math.round(ps5Y + 1), this.mobile ? 5 : 7, 2, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // The source is a vertical console, but it is a small cabinet-top child.
-    // Keep its footprint inside the TV rect so it reads as one grounded
-    // furniture assembly instead of a second floor prop.
-    this.drawFurniture(ctx, "ps5", ps5X, ps5Y, this.mobile ? 11 : 14, this.mobile ? 17 : 21);
-
-    this.drawGroundedShadow(ctx, water, 0.25, 0.028);
-    this.drawFurniture(ctx, "waterCooler", water.anchorX, water.anchorY, water.width, water.height);
-    if (snapshot) {
-      const user = snapshot.stationOccupancy["water-cooler"][0];
-      if (user && snapshot.actors[user].state === "drinking") {
-        ctx.fillStyle = "rgba(192,241,255,.72)";
-        const bubble = Math.floor(snapshot.simulationElapsed * 5) % 8;
-        ctx.fillRect(Math.round(water.anchorX - 2 + bubble % 3), Math.round(water.top + water.height * 0.25 - bubble), 2, 2);
-      }
+  private drawFloorInlays(ctx:CanvasRenderingContext2D){
+    // Small flax-and-walnut weave anchors the lounge, leaving the walkway bare.
+    const x=90,y=312,w=202,h=134;
+    ctx.fillStyle='rgba(1,9,7,.20)';ctx.fillRect(x+1,y+2,w,h);
+    ctx.fillStyle='#514838';ctx.fillRect(x,y,w,h);
+    for(let row=0;row<h;row+=2)for(let col=0;col<w;col+=3){
+      ctx.fillStyle=(Math.floor(row/2)+Math.floor(col/3))%2?'#615442':'#4b4436';
+      ctx.fillRect(x+col,y+row,2,1);
     }
+    ctx.fillStyle='#756347';ctx.fillRect(x+5,y+4,w-10,2);ctx.fillRect(x+5,y+h-6,w-10,2);
+    ctx.fillStyle='#423d30';ctx.fillRect(x+5,y+8,w-10,1);ctx.fillRect(x+5,y+h-10,w-10,1);
+    for(let col=3;col<w-3;col+=5){ctx.fillStyle='#8b7654';ctx.fillRect(x+col,y-2,1,2);ctx.fillRect(x+col,y+h,1,2);}
+    // Ruru's nap station remains in the simulation, without a visible floor ring.
 
-    this.drawDoor(ctx, door.anchorX, door.anchorY, door.width, door.height, snapshot);
-
-    // Floor crates and loose papers make the side room feel inhabited.  Keep
-    // the central navigation lane open: a dark rectangular rug here used to
-    // read as a floating shadow when the actors crossed it.
-    this.drawCrate(ctx, this.width * 0.09, this.height * 0.66, 18);
-    this.drawCrate(ctx, this.width * 0.92, this.height * 0.83, 15);
-    ctx.strokeStyle = "rgba(214,162,81,.22)";
-    ctx.strokeRect(Math.round(this.width * 0.38), Math.round(this.height * 0.78), Math.round(this.width * 0.12), Math.round(this.height * 0.055));
-    ctx.fillStyle = "rgba(214,162,81,.38)";
-    ctx.fillRect(Math.round(this.width * 0.38), Math.round(this.height * 0.78), 3, 1);
-    ctx.fillRect(Math.round(this.width * 0.50) - 3, Math.round(this.height * 0.78), 3, 1);
-    ctx.fillStyle = "#b9a477";
-    ctx.fillRect(Math.round(this.width * 0.56), Math.round(this.height * 0.75), 8, 5);
-    ctx.fillRect(Math.round(this.width * 0.58), Math.round(this.height * 0.77), 6, 4);
   }
+  private drawCabinProp(ctx:CanvasRenderingContext2D,id:string,snapshot:ProfileRoomSimulationState|null){
+    const r=this.propRect(id),prop=PROFILE_ROOM_PROPS[id];
+    if(id==='door'){this.drawDoor(ctx,r.anchorX,r.anchorY,r.width,r.height,snapshot);return;}
+    if(id==='tv')this.drawTvScreen(ctx,r);
+    const generated=this.cabinFurniture[id];
+    if(generated?.image)ctx.drawImage(generated.image,r.left,r.top,r.width,r.height);
+    else if(prop.sprite)this.drawFurniture(ctx,prop.sprite,r.anchorX,r.anchorY,r.width,r.height);
+    if(id==='primaryDesk'){
 
-  private drawForegroundProps(ctx: CanvasRenderingContext2D, snapshot: ProfileRoomSimulationState | null): void {
-    const primary = this.propRect("primaryDesk");
-    const secondary = this.propRect("secondaryDesk");
-    const sofa = this.propRect("sofa");
-
-    // Re-draw a desk only for its own aligned user.  Using a broad world-space
-    // band here used to paint the desk over unrelated foreground walkers,
-    // making a passing large sprite look as if it had been sliced into the
-    // furniture.
-    if (this.shouldOccludeDesk(snapshot, "primary-desk")) {
-      this.drawFurniture(ctx, "secondaryDesk", primary.anchorX, primary.anchorY, primary.width, primary.height);
-      this.drawDeskClutter(ctx, primary.anchorX, primary.anchorY, snapshot?.simulationElapsed || 0);
+      // Brass task lamp, warm paper, rolled chart, and four-dimensional drawer.
+      const x=r.left+22,y=r.top+r.height*.24;ctx.fillStyle='#ad8747';ctx.fillRect(x,y-30,3,27);ctx.fillRect(x-8,y-32,21,4);ctx.fillStyle='#e4c67e';ctx.fillRect(x-6,y-28,17,3);ctx.fillStyle='#56442b';ctx.fillRect(x-8,y-3,23,4);
+      ctx.fillStyle='#cec09a';ctx.fillRect(x+14,y-4,23,11);ctx.fillStyle='#698578';ctx.fillRect(x+18,y-1,12,1);ctx.fillRect(x+20,y+2,9,1);
+      const e=snapshot?.event;if(e?.kind==='drawer'){ctx.fillStyle='#061328';ctx.fillRect(r.left+15,r.anchorY-21,42,14);for(let i=0;i<12;i++){ctx.fillStyle=i%3?'#829fb7':'#eee4b8';ctx.fillRect(r.left+18+(i*13)%35,r.anchorY-19+(i*7)%10,1,1);}}
+      if(this.terminalFrame?.width&&this.terminalFrame.height){const w=r.width*.40,h=w*.88;ctx.drawImage(this.terminalFrame,r.anchorX+r.width*.12-w/2,r.top+r.height*.24-h,w,h);}
     }
-    if (this.shouldOccludeDesk(snapshot, "secondary-desk")) {
-      this.drawFurniture(ctx, "secondaryDesk", secondary.anchorX, secondary.anchorY, secondary.width, secondary.height);
+    if(id==='secondaryDesk'){this.drawMusicBox(ctx);if(this.kimetsu.image)ctx.drawImage(this.kimetsu.image,r.left+r.width*.60,r.top+r.height*.24-22,31,22);}
+    if(id==='tv'){const a=PROFILE_ROOM_SPRITE_META.tvCabinet.childAnchors!.ps5;this.drawFurniture(ctx,'ps5',r.left+r.width*a[0],r.top+r.height*a[1],14,21);}
+    if(id==='sofa'&&!this.cabinFurniture.sofa.ready){
+      const x=r.left+r.width*.15,y=r.top+r.height*.56;
+      // Tanjiro's woven cushion, next to Nezuko's travel-box collectible.
+      for(let iy=0;iy<4;iy++)for(let ix=0;ix<4;ix++){ctx.fillStyle=(ix+iy)%2?'#152521':'#3b795b';ctx.fillRect(x+ix*4,y+iy*4,4,4);}
+      ctx.fillStyle='#745035';ctx.fillRect(r.left+r.width*.69,y-2,15,20);ctx.strokeStyle='#ad875c';ctx.strokeRect(r.left+r.width*.69+2,y,11,16);ctx.fillStyle='#271d1b';ctx.fillRect(r.left+r.width*.69+6,y+7,3,4);
     }
-
-    // Redraw only the physical front rails, at the same place as the furniture surface.
-    ctx.fillStyle = "#2c1b10";
-    ctx.fillRect(Math.round(primary.left + primary.width * 0.08), Math.round(primary.top + primary.height * 0.55), Math.round(primary.width * 0.84), 5);
-    ctx.fillRect(Math.round(secondary.left + secondary.width * 0.08), Math.round(secondary.top + secondary.height * 0.55), Math.round(secondary.width * 0.84), 5);
-    ctx.fillStyle = "#95633a";
-    ctx.fillRect(Math.round(primary.left + primary.width * 0.1), Math.round(primary.top + primary.height * 0.55), Math.round(primary.width * 0.8), 1);
-    ctx.fillRect(Math.round(secondary.left + secondary.width * 0.1), Math.round(secondary.top + secondary.height * 0.55), Math.round(secondary.width * 0.8), 1);
-    ctx.fillStyle = "#0d2c29";
-    ctx.fillRect(Math.round(sofa.left + sofa.width * 0.07), Math.round(sofa.top + sofa.height * 0.73), Math.round(sofa.width * 0.86), 6);
-    ctx.fillStyle = "#23605a";
-    ctx.fillRect(Math.round(sofa.left + sofa.width * 0.11), Math.round(sofa.top + sofa.height * 0.72), Math.round(sofa.width * 0.78), 2);
-
-    const chandelier = this.propRect("chandelier");
-    ctx.fillStyle = "#21140c";
-    ctx.fillRect(Math.round(chandelier.anchorX - 1), 0, 3, Math.max(2, Math.round(chandelier.top + chandelier.height * 0.18)));
-    ctx.fillStyle = "#d6a04f";
-    ctx.fillRect(Math.round(chandelier.anchorX), 0, 1, Math.max(2, Math.round(chandelier.top + chandelier.height * 0.18)));
-    this.drawFurniture(ctx, "chandelier", chandelier.anchorX, chandelier.anchorY, chandelier.width, chandelier.height);
-
-    const railY = Math.round(this.height * 0.925);
-    ctx.fillStyle = "#130d09";
-    ctx.fillRect(8, railY, this.width - 16, 12);
-    ctx.fillStyle = "#714b28";
-    ctx.fillRect(11, railY, this.width - 22, 3);
-    for (let x = 18; x < this.width - 15; x += this.mobile ? 20 : 25) {
-      ctx.fillStyle = "#95653a";
-      ctx.fillRect(x, railY - 4, 4, 13);
-      ctx.fillStyle = "#28190f";
-      ctx.fillRect(x + 4, railY - 2, 2, 11);
+    if(id==='coffeeTable'&&!this.cabinFurniture.coffeeTable.ready){
+      ctx.save();ctx.translate(r.anchorX,r.anchorY);ctx.scale(1,1);const x=0,y=0;ctx.fillStyle='#302318';ctx.fillRect(x-36,y-10,72,18);ctx.fillStyle='#94683f';ctx.fillRect(x-39,y-15,78,17);ctx.fillStyle='#bc9159';ctx.fillRect(x-38,y-15,76,2);ctx.fillStyle='#211c16';ctx.fillRect(x-32,y+5,5,9);ctx.fillRect(x+27,y+5,5,9);
+      ctx.fillStyle='#42594a';ctx.fillRect(x-24,y-13,48,11);ctx.fillStyle='#e1d1a7';ctx.fillRect(x-8,y-18,12,9);ctx.fillRect(x-5,y-21,6,3);ctx.fillRect(x+4,y-16,6,3);ctx.fillRect(x-22,y-13,6,5);ctx.fillRect(x+17,y-11,6,5);ctx.fillStyle='#77533c';ctx.fillRect(x-21,y-13,4,2);ctx.fillRect(x+18,y-11,4,2);ctx.restore();
     }
+    if(id==='flowers'&&!this.cabinFurniture.flowers.ready){
+      ctx.fillStyle='#63472c';ctx.fillRect(r.anchorX-9,r.anchorY-7,18,15);ctx.fillStyle='#9a7448';ctx.fillRect(r.anchorX-11,r.anchorY-9,22,4);
+      for(let i=0;i<8;i++){const x=r.anchorX+Math.sin(i*2)*10,y=r.anchorY-12-i*3;ctx.fillStyle=i%2?'#6c8c67':'#3b6451';ctx.fillRect(x-4,y-4,8,5);ctx.fillStyle='#bcadd0';if(i%2===0)ctx.fillRect(x,y,3,5);}
+    }
+    if(id==='modelBench'){
+      const top=r.anchorY-26,depth=15;
+      ctx.fillStyle='#2b2119';ctx.fillRect(r.left+5,top+4,4,22);ctx.fillRect(r.left+r.width-9,top+4,4,22);
+      ctx.fillStyle='#715033';ctx.fillRect(r.left+3,top+depth,5,26-depth);ctx.fillRect(r.left+r.width-8,top+depth,5,26-depth);
+      ctx.fillStyle='#a2743e';ctx.fillRect(r.left-2,top,r.width+4,depth);
+      ctx.fillStyle='#483122';ctx.fillRect(r.left-2,top+depth,r.width+4,4);
+      ctx.fillStyle='#c29758';ctx.fillRect(r.left-2,top,r.width+4,1);
+      ctx.fillStyle='#25473c';ctx.fillRect(r.left+5,top+3,r.width-10,depth-6);
+      for(let i=0;i<4;i++){ctx.fillStyle='#b0ad94';ctx.fillRect(r.left+7+i*6,top-4-(i%2)*4,2,7);}
+    }
+    if(id==='ultraCabinet')this.drawCabinet(ctx,r);
   }
-
-  private shouldOccludeDesk(
-    snapshot: ProfileRoomSimulationState | null,
-    station: "primary-desk" | "secondary-desk"
-  ): boolean {
-    if (!snapshot) return false;
-    return PROFILE_ACTOR_IDS.some((id) => this.actorNeedsDeskOcclusion(snapshot.actors[id], station));
+  private drawCabinet(ctx:CanvasRenderingContext2D,r:DrawRect){
+    if(this.cabinetCanvas?.width&&this.cabinetCanvas.height){ctx.drawImage(this.cabinetCanvas,r.left,r.top,r.width,r.height);return;}
+    // The physical cabinet can exist before models load; no substitute figures.
+    ctx.fillStyle='#211b14';ctx.fillRect(r.left,r.top,r.width,r.height);ctx.strokeStyle='#ae8d51';ctx.lineWidth=2;ctx.strokeRect(r.left+2,r.top+2,r.width-4,r.height-4);
+    ctx.fillStyle='#102522';ctx.fillRect(r.left+8,r.top+8,r.width-16,r.height-18);for(let row=1;row<3;row++){const y=r.top+row*(r.height-12)/2;ctx.fillStyle='#967544';ctx.fillRect(r.left+6,y,r.width-12,3);}ctx.fillStyle='#e7d095';ctx.fillRect(r.left+12,r.top+8,r.width-24,2);
+    ctx.fillStyle='#d4e6dd0b';ctx.beginPath();ctx.moveTo(r.left+9,r.top+12);ctx.lineTo(r.left+r.width*.40,r.top+12);ctx.lineTo(r.left+r.width*.75,r.top+r.height-10);ctx.lineTo(r.left+r.width*.48,r.top+r.height-10);ctx.fill();
+  }
+  private cabinetCanvas:HTMLCanvasElement|null=null;
+  setCabinetFrame(canvas:HTMLCanvasElement){this.cabinetCanvas=canvas;}
+  private drawRuru(ctx:CanvasRenderingContext2D,s:ProfileRoomSimulationState){
+    const r=s.ruru,[x,y]=this.mapPoint(r.position),dir=r.facing==='right'?'left':r.facing;
+    const clip=r.state==='walk'?`ruru/walk-${dir}`:`ruru/${r.state}`;
+    if(this.sprites.has(clip)){this.drawPropShadow(ctx,x,y+1,10,3);this.sprites.draw(ctx,clip,r.elapsed,x,y,62,r.state==='walk'&&r.facing==='right');}
+  }
+  private drawDebug(ctx:CanvasRenderingContext2D,s:ProfileRoomSimulationState){ctx.save();ctx.lineWidth=1;ctx.font='7px monospace';
+    for(const p of Object.values(PROFILE_ROOM_PROPS)){if(!p.collisionBounds)continue;const [l,t,r,b]=p.collisionBounds;ctx.strokeStyle='#ffb773';ctx.strokeRect(l*640,t*480,(r-l)*640,(b-t)*480);}
+    for(const a of Object.values(s.actors)){const [x,y]=this.mapPoint(a.position);ctx.strokeStyle='#a9e0e0';ctx.beginPath();ctx.ellipse(x,y,13.4,13.4,0,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(x,y);for(const p of a.route.slice(a.routeIndex)){const [px,py]=p.split(',').map(Number);ctx.lineTo(px*640,py*480);}ctx.stroke();ctx.fillStyle='#e8d7a5';ctx.fillText(`${a.id} ${a.speed.toFixed(3)}`,x-20,y+12);}ctx.restore();
+  }
+  private drawCabinEvent(ctx:CanvasRenderingContext2D,s:ProfileRoomSimulationState|null){
+    if(!s?.event)return;const e=s.event,t=s.simulationElapsed-e.startedAt;
+    if(e.kind==='string'){const r=this.propRect('primaryDesk');ctx.fillStyle=`rgba(219,201,125,${.45+.25*Math.sin(t*2)})`;ctx.fillRect(r.left+41,r.anchorY-63,3,3);}
+    if(e.kind==='concert'){const [x,y]=this.mapPoint(s.actors.gian.position);ctx.fillStyle='#e4cc8f';ctx.font='12px monospace';for(let i=0;i<3;i++)ctx.fillText('♪',x+20+i*7,y-52-((t*7+i*9)%28));}
+  }
+  private drawForegroundProps(ctx:CanvasRenderingContext2D,_snapshot:ProfileRoomSimulationState|null){
+    const r=this.propRect('chandelier');
+    const chainX=Math.round(r.anchorX),chainEnd=Math.round(r.top+r.height*.2);
+    ctx.fillStyle='#694a2b';ctx.fillRect(chainX-5,42,11,4);
+    ctx.fillStyle='#513b23';ctx.fillRect(chainX,46,2,Math.max(0,chainEnd-46));
+    for(let y=47;y<chainEnd;y+=5){
+      ctx.fillStyle='#a37e3f';ctx.fillRect(chainX,y,1,3);
+      ctx.fillStyle='#cfaa62';ctx.fillRect(chainX+1,y+1,1,1);
+    }
+    const glowX=r.anchorX,glowY=r.top+r.height*.6;
+    const pulse=this.options.reducedMotion?1:1+Math.sin((_snapshot?.simulationElapsed||0)*2.1)*.035;
+    ctx.save();ctx.globalCompositeOperation='screen';
+    const halo=ctx.createRadialGradient(glowX,glowY,3,glowX,glowY,r.width*1.05);
+    halo.addColorStop(0,`rgba(255,201,99,${.28*pulse})`);
+    halo.addColorStop(.4,'rgba(255,180,65,.10)');halo.addColorStop(1,'rgba(255,167,54,0)');
+    ctx.fillStyle=halo;ctx.fillRect(glowX-r.width*1.1,glowY-r.width*1.1,r.width*2.2,r.width*2.2);ctx.restore();
+    this.drawFurniture(ctx,'chandelier',r.anchorX,r.anchorY,r.width,r.height);
+    // Tiny bright cores preserve the pixel silhouette instead of blurring it.
+    ctx.save();ctx.globalCompositeOperation='screen';ctx.fillStyle='rgba(255,237,175,.65)';
+    for(const offset of [-.25,-.12,.12,.25])ctx.fillRect(Math.round(glowX+r.width*offset),Math.round(glowY-r.height*.10),1,2);
+    ctx.restore();
+    ctx.fillStyle='#1a100b';ctx.fillRect(9,453,622,14);ctx.fillStyle='#815c32';ctx.fillRect(12,453,616,3);ctx.fillStyle='#b48a52';ctx.fillRect(12,453,616,1);
   }
 
   private drawLightingAndAtmosphere(ctx: CanvasRenderingContext2D, snapshot: ProfileRoomSimulationState | null): void {
@@ -567,6 +576,11 @@ export class ProfileSpriteStage {
       }
       ctx.restore();
     }
+    if(this.root.dataset.terminalLight==="night") {
+      ctx.save();ctx.globalCompositeOperation="multiply";ctx.fillStyle="#8d9fbd";
+      ctx.fillRect(0,0,this.width,this.height);ctx.restore();
+    }
+    ctx.save();ctx.globalCompositeOperation='screen';for(const [x,y,rad,strength]of [[165,235,90,.095],[175,365,100,.065],[478,214,76,.06]]){const glow=ctx.createRadialGradient(x,y,3,x,y,rad);glow.addColorStop(0,`rgba(225,159,66,${strength})`);glow.addColorStop(1,'rgba(225,159,66,0)');ctx.fillStyle=glow;ctx.fillRect(x-rad,y-rad,rad*2,rad*2);}ctx.restore();
     const vignette = ctx.createRadialGradient(this.width * 0.5, this.height * 0.59, this.height * 0.27, this.width * 0.5, this.height * 0.59, this.width * 0.62);
     vignette.addColorStop(0, "rgba(0,0,0,0)");
     vignette.addColorStop(1, "rgba(0,0,0,.32)");
@@ -600,130 +614,21 @@ export class ProfileSpriteStage {
     ctx.fillRect(Math.round(x + w / 2 - 1), Math.round(y + h / 2 - 3), 1, 4);
   }
 
-  private drawActor(
-    ctx: CanvasRenderingContext2D,
-    actor: ProfileActorRuntime,
-    deskOcclusionStation: ProfileRoomDeskStation | null
-  ): void {
-    const [x, y] = this.mapPoint(actor.position);
-    const size = this.actorSize(actor.id);
-    const deskOccludedActorClipBottom = deskOcclusionStation
-      ? this.deskOccludedActorClipBottom(deskOcclusionStation)
-      : null;
-    let opacity = 1;
-    let portalOffset = 0;
-    if (actor.state === "portal-entering") {
-      const progress = clamp01(actor.stateElapsed / Math.max(0.01, actor.activityDuration || 1.4));
-      opacity = 1 - progress * 0.94;
-      portalOffset = progress * 10;
-    } else if (actor.state === "portal-returning") {
-      const progress = clamp01(actor.stateElapsed / Math.max(0.01, actor.activityDuration || 1.4));
-      opacity = 0.06 + progress * 0.94;
-      portalOffset = (1 - progress) * 9;
-    }
-    const idle = this.options.reducedMotion || actor.state === "walking" ? 0 : Math.sin((this.snapshot?.simulationElapsed || 0) * 1.7 + PROFILE_ACTOR_IDS.indexOf(actor.id)) * 0.35;
+  private drawActor(ctx:CanvasRenderingContext2D,actor:ProfileActorRuntime):void {
+    const [x,y]=this.mapPoint(actor.position),size=this.actorSize(actor.id),direction=actor.facing==='right'?'left':actor.facing;
+    const time=this.options.reducedMotion&&this.snapshot?.controlledActor!==actor.id?0:actor.animationElapsed;
     ctx.save();
-    if (deskOccludedActorClipBottom !== null) {
-      // The reviewed desk sprite intentionally has transparent space between
-      // its legs.  A worker is seated behind the desk, so the actor atlas must
-      // be clipped at the desk's lower apron edge; otherwise the lower half of
-      // the sprite leaks through that transparent opening and looks embedded
-      // in the furniture.
-      ctx.beginPath();
-      ctx.rect(0, 0, this.width, deskOccludedActorClipBottom);
-      ctx.clip();
-    }
-    ctx.globalAlpha = opacity;
-    ctx.translate(Math.round(x + portalOffset), Math.round(y + idle));
-    const flip = actor.facing === "left" && actor.frame.includes("movement:side");
-    if (flip) ctx.scale(-1, 1);
-    const images = this.actorImages.get(actor.id);
-    const [group, frameName, indexValue] = actor.frame.split(":");
-    let drawn = false;
-    if (group === "movement" && images?.movement.ready && images.movement.image) {
-      const direction = frameName as "down" | "side" | "up";
-      const index = Math.min(2, Math.max(0, Number(indexValue) || 0));
-      const frameIndex = (direction === "down" ? 0 : direction === "side" ? 3 : 6) + index;
-      this.drawActorCell(ctx, images.movement.image, frameIndex, size);
-      drawn = true;
-    } else if (group === "life" && images?.life.ready && images.life.image) {
-      const frameIndex = PROFILE_LIFE_FRAME_ORDER.indexOf(frameName as (typeof PROFILE_LIFE_FRAME_ORDER)[number]);
-      if (frameIndex >= 0) {
-        this.drawActorCell(ctx, images.life.image, frameIndex, size);
-        drawn = true;
-      }
-    } else if (group === "base" && images?.base.ready && images.base.image) {
-      const frameIndex = PROFILE_BASE_FRAME_ORDER.indexOf(frameName as ProfileSpriteFrameId);
-      if (frameIndex >= 0) {
-        this.drawActorCell(ctx, images.base.image, frameIndex, size);
-        drawn = true;
-      }
-    }
-    if (!drawn && images?.base.ready && images.base.image) {
-      const fallback = group === "movement" ? 1 + (Number(indexValue) || 0) % 3 : frameName === "room-reaction" ? 6 : frameName.startsWith("think") ? 4 : frameName.startsWith("drink") ? 5 : frameName.startsWith("sit") ? 8 : 0;
-      this.drawActorCell(ctx, images.base.image, fallback, size);
-      drawn = true;
-    }
-    if (!drawn) this.drawFallbackActor(ctx, actor.id, size, actor.frame);
+    if(actor.state==='portal-entering')ctx.globalAlpha=Math.max(0,1-actor.stateElapsed);
+    if(actor.state==='portal-returning')ctx.globalAlpha=Math.min(1,actor.stateElapsed);
+    const special=actor.manualAction&&this.sprites.has(`${actor.id}/${actor.manualAction}`);
+    const clip=special?`${actor.id}/${actor.manualAction}`:`${actor.id}/${direction}-${actor.locomotion}`;
+    // Visual seating is a short settling motion from a collision-safe approach.
+    let seatLift=0;
+    if(special&&actor.manualAction==='computer')seatLift=32;
+    if(special&&actor.manualAction==='nap'&&actor.station?.startsWith('sofa'))seatLift=32;
+    const settle=Math.min(1,actor.stateElapsed/.35);
+    this.sprites.draw(ctx,clip,time,x,y-seatLift*settle,size,!special&&actor.facing==='right');
     ctx.restore();
-  }
-
-  private deskOccludedActorClipBottom(station: ProfileRoomDeskStation): number {
-    const desk = this.propRect(PROFILE_ROOM_DESK_ACCESS[station].propKey);
-    // The central opening starts at roughly source row 97/128. Stop three
-    // source pixels earlier so a scaled edge or antialiased actor pixel can
-    // never enter the opening during the final approach to a desk either.
-    return desk.top + desk.height * DESK_ACTOR_CLIP_BOTTOM_RATIO;
-  }
-
-  private deskOcclusionStation(actor: ProfileActorRuntime): ProfileRoomDeskStation | null {
-    for (const station of ["primary-desk", "secondary-desk"] as const) {
-      if (this.actorNeedsDeskOcclusion(actor, station)) return station;
-    }
-    return null;
-  }
-
-  private actorNeedsDeskOcclusion(actor: ProfileActorRuntime, station: "primary-desk" | "secondary-desk"): boolean {
-    if (!actor.visible) return false;
-    const access = PROFILE_ROOM_DESK_ACCESS[station];
-    const bounds = PROFILE_ROOM_PROPS[access.propKey].collisionBounds;
-    if (!bounds) return false;
-    // This is a render-depth corridor rather than a station-state test. It
-    // covers both approach and the mandatory forward exit, including the
-    // first frames after an actor has reserved its next station.
-    return Math.abs(actor.position[0] - access.frontLane[0]) <= access.alignmentHalfWidth + 0.004
-      && actor.position[1] >= bounds[1] - 0.02
-      && actor.position[1] <= access.ingressGuardBottom + 0.008;
-  }
-
-  private drawActorCell(ctx: CanvasRenderingContext2D, image: HTMLImageElement, index: number, size: number): void {
-    const sx = (index % 3) * 128;
-    const sy = Math.floor(index / 3) * 128;
-    ctx.drawImage(image, sx, sy, 128, 128, -size / 2, -size, size, size);
-  }
-
-  private drawFallbackActor(ctx: CanvasRenderingContext2D, actor: ProfileActorId, size: number, frame: string): void {
-    const unit = Math.max(2, Math.round(size / 20));
-    const stocky = actor === "gian" ? 1.24 : actor === "doraemon" ? 1.17 : actor === "suneo" ? 0.8 : 1;
-    ctx.fillStyle = PROFILE_ACTORS[actor].fallbackColor;
-    ctx.fillRect(-unit * 4 * stocky, -unit * 8, unit * 8 * stocky, unit * 6);
-    ctx.beginPath();
-    ctx.arc(0, -unit * 10, unit * (actor === "doraemon" ? 5 : 4), 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = actor === "doraemon" ? "#f4f2e8" : "#efc39c";
-    ctx.fillRect(-unit * 2.6, -unit * 11, unit * 5.2, unit * 3.7);
-    ctx.fillStyle = "#111513";
-    ctx.fillRect(-unit * 1.7, -unit * 10.2, unit, unit);
-    ctx.fillRect(unit * 0.7, -unit * 10.2, unit, unit);
-    const raised = frame.includes("reaction") || frame.includes("signature");
-    ctx.strokeStyle = PROFILE_ACTORS[actor].fallbackColor;
-    ctx.lineWidth = unit * 1.7;
-    ctx.beginPath();
-    ctx.moveTo(-unit * 3, -unit * 7);
-    ctx.lineTo(-unit * 5, raised ? -unit * 12 : -unit * 4);
-    ctx.moveTo(unit * 3, -unit * 7);
-    ctx.lineTo(unit * 5, raised ? -unit * 12 : -unit * 4);
-    ctx.stroke();
   }
 
   private drawFurniture(ctx: CanvasRenderingContext2D, key: ProfileRoomSpriteKey, x: number, y: number, width: number, height: number): DrawRect {
@@ -739,20 +644,12 @@ export class ProfileSpriteStage {
 
   private furnitureRect(key: ProfileRoomSpriteKey, x: number, y: number, width: number, height: number): DrawRect {
     const pivot = PROFILE_ROOM_SPRITE_META[key].pivot;
-    let adjustedY = y;
-    if (PROFILE_ROOM_SPRITE_META[key].mount === "wall") {
-      // Wall-mounted props stop just above the wall/floor seam.  This keeps a
-      // tall mobile projection from making the lower frame look like it is
-      // standing on the floor.
-      const seam = Math.round(this.height * 0.305) - 2;
-      const bottom = y + height * pivot[1];
-      if (bottom > seam) adjustedY -= bottom - seam;
-    }
+    const adjustedY=y;
     return {
       left: Math.round(x - width * pivot[0]),
       top: Math.round(adjustedY - height * pivot[1]),
-      width: Math.round(width),
-      height: Math.round(height),
+      width,
+      height,
       anchorX: x,
       anchorY: adjustedY
     };
@@ -778,7 +675,7 @@ export class ProfileSpriteStage {
       ctx.fillStyle = "#0b2422";
       ctx.fillRect(x, y + 2, width, height - 4);
       ctx.fillStyle = "#17615b";
-      ctx.fillRect(x + 5, y + 5, width - 10, Math.round(height * 0.64));
+      ctx.fillRect(x + 5, y + 5, width - 10, Math.round(height * 0.52));
       ctx.fillStyle = "#248078";
       ctx.fillRect(x + 8, y + 7, Math.round(width / 2) - 10, Math.round(height * 0.42));
       ctx.fillRect(x + Math.round(width / 2) + 2, y + 7, Math.round(width / 2) - 10, Math.round(height * 0.42));
@@ -898,6 +795,18 @@ export class ProfileSpriteStage {
 
   private drawDoor(ctx: CanvasRenderingContext2D, x: number, baseline: number, width: number, height: number, snapshot: ProfileRoomSimulationState | null): void {
     const open = snapshot?.doorFrame === "open";
+    this.destinations.setOpen(open);
+    const doorControl = this.root.querySelector<HTMLButtonElement>("[data-profile-door]");
+    const destination = this.destinations.getState();
+    const labelKey = `${open}:${destination.index}:${destination.loaded}`;
+    if (doorControl && labelKey !== this.doorLabelKey) {
+      this.doorLabelKey = labelKey;
+      doorControl.dataset.destination = destination.destination.id;
+      doorControl.dataset.destinationsLoaded = String(destination.loaded);
+      doorControl.setAttribute("aria-expanded", String(open));
+      doorControl.title = open ? `${destination.destination.name} · 关门再开，探索下一站` : "任意门 · 15 个世界";
+      doorControl.setAttribute("aria-label", open ? `关闭任意门：${destination.destination.name}` : "打开任意门，探索另一个世界");
+    }
     this.drawPropShadow(ctx, x, baseline + 1, width * 0.43, Math.max(2, height * 0.035));
     if (this.door.ready && this.door.image) {
       ctx.drawImage(this.door.image, open ? 128 : 0, 0, 128, 128, Math.round(x - width / 2), Math.round(baseline - height), width, height);
@@ -927,6 +836,12 @@ export class ProfileSpriteStage {
       ctx.fillRect(width * 0.2, -height * 0.48, 3, 3);
       ctx.restore();
     }
+    if(open&&snapshot)this.drawDoorDestination(ctx,x,baseline,width,height,snapshot);
+  }
+
+  private drawDoorDestination(ctx:CanvasRenderingContext2D,x:number,baseline:number,width:number,height:number,snapshot:ProfileRoomSimulationState){
+    const left=x-width*.30,top=baseline-height*.87,w=width*.58,h=height*.80;
+    this.destinations.draw(ctx,left,top,w,h);
   }
 
   private drawLamp(ctx: CanvasRenderingContext2D, point: Point, index: number, elapsed: number): void {
@@ -944,7 +859,7 @@ export class ProfileSpriteStage {
     ctx.fillRect(Math.round(x), Math.round(y - (this.mobile ? 18 : 22)), 1, this.mobile ? 4 : 5);
     if (this.lamps.ready && this.lamps.image) {
       const lampWidth = this.mobile ? 17 : 21;
-      const lampHeight = this.mobile ? 27 : 33;
+      const lampHeight = lampWidth * 33 / 21;
       ctx.drawImage(this.lamps.image, frame * 64, 0, 64, 96, Math.round(x - lampWidth / 2), Math.round(y - lampHeight / 2), lampWidth, lampHeight);
       return;
     }
@@ -991,11 +906,7 @@ export class ProfileSpriteStage {
     ctx.fillRect(Math.round(x - 19), Math.round(y - 33), 13, 8);
     ctx.fillStyle = "#b98750";
     ctx.fillRect(Math.round(x - 17), Math.round(y - 31), 9, 1);
-    ctx.fillStyle = "#122c29";
-    ctx.fillRect(Math.round(x + 5), Math.round(y - 36), 18, 11);
-    ctx.fillStyle = "#76d0c0";
-    const scan = this.options.reducedMotion ? 5 : Math.floor(elapsed * 8) % 12;
-    ctx.fillRect(Math.round(x + 8 + scan), Math.round(y - 33), 3, 2);
+
     ctx.fillStyle = "#c9894a";
     ctx.fillRect(Math.round(x - 3), Math.round(y - 29), 3, 5);
   }
@@ -1018,47 +929,102 @@ export class ProfileSpriteStage {
     ctx.fill();
   }
 
-  private drawGroundedShadow(ctx: CanvasRenderingContext2D, rect: DrawRect, widthScale: number, heightScale: number): void {
-    this.drawPropShadow(
-      ctx,
-      rect.anchorX,
-      rect.anchorY + 1,
-      Math.max(2, rect.width * widthScale),
-      Math.max(2, rect.height * heightScale)
-    );
+  private groundingMasks=new Map<string,{image:HTMLImageElement;canvas:HTMLCanvasElement}>();
+  private drawFurnitureGrounding(ctx:CanvasRenderingContext2D,id:string){
+    const r=this.propRect(id),bounds=PROFILE_ROOM_PROPS[id].collisionBounds;
+    if(!bounds)return;
+    const [l,t,rr,b]=bounds,back=t*480,front=r.anchorY;
+    const left=l*640,right=rr*640,depth=Math.max(4,front-back);
+    // Occlusion under the physical footprint: broad and soft, not a floating oval.
+    ctx.fillStyle='rgba(2,12,10,.17)';ctx.fillRect(left,back,right-left,depth+1);
+    ctx.fillStyle='rgba(2,10,8,.14)';ctx.fillRect(left+2,back+2,right-left-4,Math.max(2,depth-3));
+    const image=this.cabinFurniture[id]?.image;
+    if(image){
+      let entry=this.groundingMasks.get(id);
+      if(!entry||entry.image!==image){
+        const canvas=document.createElement('canvas');canvas.width=image.naturalWidth;canvas.height=image.naturalHeight;
+        const mask=canvas.getContext('2d')!;mask.drawImage(image,0,0);mask.globalCompositeOperation='source-in';mask.fillStyle='#010c09';mask.fillRect(0,0,canvas.width,canvas.height);
+        entry={image,canvas};this.groundingMasks.set(id,entry);
+      }
+      ctx.save();ctx.globalAlpha=.20;
+      // Project the silhouette away from the shared upper-left room light.
+      const baseline=front-r.top;
+      ctx.translate(r.left+baseline*ROOM_PROJECTION.shadowX,front+baseline*ROOM_PROJECTION.shadowY);
+      ctx.transform(1,0,-ROOM_PROJECTION.shadowX,-ROOM_PROJECTION.shadowY,0,0);
+      ctx.drawImage(entry.canvas,0,0,r.width,r.height);ctx.restore();
+    }
+    // Tight occlusion at the individual feet / solid plinth, never detached.
+    const solid=['ultraCabinet','door'].includes(id);
+    ctx.fillStyle='rgba(1,7,5,.55)';
+    if(solid){
+      const w=id==='flowers'?r.width*.40:id==='waterCooler'?r.width*.72:right-left;
+      ctx.beginPath();ctx.ellipse(r.anchorX,front,Math.max(3,w*.5),2.5,0,0,Math.PI*2);ctx.fill();
+    }else{
+      const feet=ROOM_FURNITURE[id]?.feet;
+      if(feet)for(const [x,y] of feet){ctx.beginPath();ctx.ellipse(r.left+x*r.width,r.top+y*r.height,id==='flowers'?3:3.5,1.5,0,0,Math.PI*2);ctx.fill();}
+      else for(const x of [left+3,right-3]){ctx.beginPath();ctx.ellipse(x,front,4,2,0,0,Math.PI*2);ctx.fill();}
+    }
+  }
+
+  private musicBoxRect() {
+    const desk=this.propRect('secondaryDesk'),width=desk.width*.42,height=width*.8;
+    return {left:desk.anchorX-desk.width*.16-width/2,top:desk.top+desk.height*.18-height,width,height};
+  }
+
+  private drawMusicBox(ctx:CanvasRenderingContext2D):void {
+    const r=this.musicBoxRect(),scale=r.width/40;
+    ctx.save();ctx.translate(Math.round(r.left),Math.round(r.top));ctx.scale(scale,scale);
+    const box=(x:number,y:number,w:number,h:number,color:string)=>{ctx.fillStyle=color;ctx.fillRect(x,y,w,h);};
+    // Open walnut lid, moon inlay, brass pinned cylinder, comb and winding key.
+    box(3,30,34,2,'#08100bd0');box(4,2,30,16,'#1c130f');box(6,0,26,2,'#bc9051');
+    box(4,2,2,15,'#76502e');box(32,2,2,15,'#684328');box(6,2,26,13,'#815930');
+    box(8,4,22,9,'#122d2a');box(8,13,22,2,'#b28b48');
+    box(22,5,3,6,'#e4d2a2');box(20,6,5,4,'#e4d2a2');box(19,5,4,4,'#122d2a');
+    box(12,7,1,1,'#b7b6a0');box(16,10,1,1,'#b7b6a0');
+    box(6,16,27,2,'#a2773b');box(3,18,33,10,'#3e281c');box(5,18,29,7,'#bd8e47');
+    box(7,19,25,5,'#292721');box(8,21,22,2,'#766039');
+    box(9,18,12,7,'#735627');box(10,18,10,1,'#f1d99b');box(10,19,10,2,'#cba557');box(10,21,10,2,'#a17a35');box(10,23,10,1,'#e1bc67');
+    const phase=this.musicPlaying&&!this.options.reducedMotion?Math.floor(this.musicTime*6)%4:0;
+    for(let i=0;i<5;i++)box(10+i*2,19+(i+phase)%4,1,1,'#fff0b8');
+    for(let i=0;i<5;i++)box(23+i*2,18,1,6-i%2,'#d3c79b');
+    box(5,25,29,6,'#603d25');box(5,25,29,1,'#d2a15b');box(7,27,24,1,'#825830');
+    box(17,27,5,3,'#b38e4d');box(19,28,1,1,'#332a20');
+    box(3,25,2,6,'#8e6537');box(34,24,2,6,'#312217');box(8,31,5,1,'#b08348');box(28,31,5,1,'#b08348');
+    box(35,22,4,1,'#c5a56c');box(38,20,1,3,'#e9d49c');box(37,19,3,2,'#855f33');
+    box(29,27,2,1,this.musicPlaying?'#e4d795':'#89724b');
+    if(this.musicPlaying&&!this.options.reducedMotion){
+      for(let i=0;i<2;i++){const y=-3-((Math.floor(this.musicTime*3)+i*5)%9),x=13+i*14;box(x,y,1,5,'#e1c38b');box(x-2,y+4,2,2,'#e1c38b');box(x+1,y,2,1,'#e1c38b');}
+    }
+    ctx.restore();
   }
 
   private propRect(id: keyof typeof PROFILE_ROOM_PROPS): DrawRect {
-    const prop = PROFILE_ROOM_PROPS[id];
-    const [anchorX, anchorY] = this.mapPoint(prop.worldAnchor);
-    const size = this.mobile ? prop.mobileSize : prop.desktopSize;
-    const width = size[0] * this.width;
-    const height = size[1] * this.height;
-    const pivot = prop.sprite ? PROFILE_ROOM_SPRITE_META[prop.sprite].pivot : [0.5, 0.5];
+    const prop=PROFILE_ROOM_PROPS[id];const [anchorX,anchorY]=this.mapPoint(prop.worldAnchor);
+    const width=prop.desktopSize[0]*640,height=id==='ultraCabinet'&&this.cabinetCanvas?.width?width*this.cabinetCanvas.height/this.cabinetCanvas.width:prop.desktopSize[1]*480;
+    const pivot=ROOM_FURNITURE[id]?.pivot??(this.cabinFurniture[id]?[.5,1]:prop.sprite?PROFILE_ROOM_SPRITE_META[prop.sprite].pivot:(id==='door'?[.5,1]:id==='ultraCabinet'?[.5,1]:[.5,.5]));
+    return {left:Math.round(anchorX-width*pivot[0]),top:Math.round(anchorY-height*pivot[1]),width,height,anchorX,anchorY};
+  }
+  private roomY(value:number){return value*480;}
+  private mapPoint(p:Point):Point{return [p[0]*640,p[1]*480];}
+
+  getViewportState() {
     return {
-      left: Math.round(anchorX - width * pivot[0]),
-      top: Math.round(anchorY - height * pivot[1]),
-      width: Math.round(width),
-      height: Math.round(height),
-      anchorX,
-      anchorY
+      mode: this.mobile ? "mobile" : "desktop",
+      worldSize: [this.width, this.height],
+      referenceSize: [this.referenceWidth, this.referenceHeight],
+      projection:ROOM_PROJECTION,
+      doorDestination:this.destinations.getState(),
+      groundContacts:Object.fromEntries(Object.entries(ROOM_FURNITURE).map(([id,a])=>{const r=this.propRect(id);return[id,a.feet.map(([x,y])=>[r.left+x*r.width,r.top+y*r.height])]})),
+      window:this.windowRect(),
+      musicBox:this.musicBoxRect(),
+      furnitureAssets:Object.fromEntries(Object.entries(this.cabinFurniture).map(([id,a])=>[id,a.ready?"ready":a.failed?"failed":"loading"])),
+      props: Object.fromEntries(Object.keys(PROFILE_ROOM_PROPS).map(id => [id, this.propRect(id)])),
+      actorSize: Object.fromEntries(PROFILE_ACTOR_IDS.map(id => [id, this.actorSize(id)]))
     };
   }
 
-  private mapPoint(point: Point): Point {
-    if (!this.mobile) return [point[0] * this.width, point[1] * this.height];
-    // The tall mobile room keeps three clear vertical bands and wider edge corridors.
-    const x = 0.05 + point[0] * 0.9;
-    const y = point[1] < 0.34
-      ? 0.04 + point[1] * 0.95
-      : point[1] < 0.64
-        ? 0.02 + point[1] * 1.02
-        : -0.02 + point[1] * 1.06;
-    return [x * this.width, y * this.height];
-  }
-
   private actorSize(id: ProfileActorId): number {
-    const base = this.mobile ? 50 : this.width >= 640 ? 60 : 58;
+    const base = 94;
     return Math.round(base * PROFILE_ACTORS[id].scale);
   }
 
@@ -1068,6 +1034,15 @@ export class ProfileSpriteStage {
   }
 
   private syncControls(snapshot: ProfileRoomSimulationState | null): void {
+    const cabinet=this.root.querySelector<HTMLElement>('[data-profile-ultra]'),cr=this.propRect('ultraCabinet');
+    if(cabinet){cabinet.style.left=`${cr.left/640*100}%`;cabinet.style.top=`${cr.top/480*100}%`;cabinet.style.width=`${cr.width/640*100}%`;cabinet.style.height=`${cr.height/480*100}%`;cabinet.style.zIndex='76';}
+    const ruru=this.root.querySelector<HTMLElement>('[data-profile-ruru]');
+    if(ruru&&snapshot){ruru.style.left=`${snapshot.ruru.position[0]*100-3}%`;ruru.style.top=`${snapshot.ruru.position[1]*100-9}%`;ruru.style.width='6%';ruru.style.height='10%';ruru.style.zIndex=String(20+Math.round(snapshot.ruru.position[1]*100));}
+    const win=this.root.querySelector<HTMLElement>('[data-profile-window]');const wr=this.windowRect();
+    if(win){win.style.left=`${wr.left/this.width*100}%`;win.style.top=`${wr.top/this.height*100}%`;win.style.width=`${wr.width/this.width*100}%`;win.style.height=`${wr.height/this.height*100}%`;}
+    const music=this.root.querySelector<HTMLElement>('[data-music-box]'),mr=this.musicBoxRect();
+    if(music){music.style.left=`${(mr.left+mr.width/2)/this.width*100}%`;music.style.top=`${(mr.top+mr.height/2)/this.height*100}%`;music.style.width=`${mr.width/this.width*100}%`;music.style.height=`${mr.height/this.height*100}%`;}
+
     for (const id of PROFILE_ACTOR_IDS) {
       const button = this.root.querySelector<HTMLButtonElement>(`[data-profile-actor="${id}"]`);
       const actor = snapshot?.actors[id];
@@ -1084,27 +1059,38 @@ export class ProfileSpriteStage {
       const [x, y] = this.mapPoint(actor.position);
       const size = this.actorSize(id);
       button.style.left = `${x / this.width * 100}%`;
-      button.style.top = `${(y - size) / this.height * 100}%`;
-      button.style.width = `${Math.max(38, size)}px`;
-      button.style.height = `${Math.max(44, size)}px`;
+      button.style.top = `${(y - size*.85) / this.height * 100}%`;
+      button.style.zIndex=String(20+Math.round(actor.position[1]*100));
+      button.style.width = `${size / this.width * 100}%`;
+      button.style.height = `${size / this.height * 100}%`;
       button.dataset.actorState = actor.state;
+    }
+    const dock = this.root.querySelector<HTMLElement>("[data-terminal-dock]");
+    if (dock) {
+      const desk = this.propRect("primaryDesk");
+      const w = desk.width * .40, h = w * .88;
+      dock.style.left = `${(desk.anchorX + desk.width * .12 - w / 2) / this.width * 100}%`;
+      dock.style.top = `${(desk.top + desk.height * .24 - h) / this.height * 100}%`;
+      dock.style.width = `${w / this.width * 100}%`;
+      dock.style.height = `${h / this.height * 100}%`;
+      dock.style.zIndex=String(20+Math.round(PROFILE_ROOM_PROPS.primaryDesk.worldAnchor[1]*100));
     }
     const doorButton = this.root.querySelector<HTMLElement>("[data-profile-door]");
     if (doorButton) {
       const door = this.propRect("door");
       doorButton.style.left = `${door.anchorX / this.width * 100}%`;
       doorButton.style.top = `${door.top / this.height * 100}%`;
-      doorButton.style.width = `${door.width}px`;
-      doorButton.style.height = `${door.height}px`;
+      doorButton.style.width = `${door.width / this.width * 100}%`;
+      doorButton.style.height = `${door.height / this.height * 100}%`;
     }
     const tvButton = this.root.querySelector<HTMLElement>("[data-profile-tv]");
     if (tvButton) {
       const tv = this.propRect("tv");
       const screen = PROFILE_ROOM_SPRITE_META.tvCabinet.screenRect as [number, number, number, number];
-      tvButton.style.left = `${tv.left / this.width * 100}%`;
-      tvButton.style.top = `${tv.top / this.height * 100}%`;
-      tvButton.style.width = `${tv.width / this.width * 100}%`;
-      tvButton.style.height = `${tv.height / this.height * 100}%`;
+      tvButton.style.left = `${(tv.left+tv.width*screen[0]) / this.width * 100}%`;
+      tvButton.style.top = `${(tv.top+tv.height*screen[1]) / this.height * 100}%`;
+      tvButton.style.width = `${tv.width*screen[2] / this.width * 100}%`;
+      tvButton.style.height = `${tv.height*screen[3] / this.height * 100}%`;
       tvButton.style.setProperty("--profile-tv-screen-left", `${screen[0] * 100}%`);
       tvButton.style.setProperty("--profile-tv-screen-top", `${screen[1] * 100}%`);
       tvButton.style.setProperty("--profile-tv-screen-width", `${screen[2] * 100}%`);
@@ -1113,22 +1099,7 @@ export class ProfileSpriteStage {
     }
   }
 
-  private assetState(): ProfileRoomAssetState {
-    const actors = {} as Record<ProfileActorId, "ready" | "partial-fallback" | "failed">;
-    for (const id of PROFILE_ACTOR_IDS) {
-      const images = this.actorImages.get(id);
-      actors[id] = images?.base.ready && images.movement.ready && images.life.ready
-        ? "ready"
-        : images?.base.ready || images?.movement.ready || images?.life.ready
-          ? "partial-fallback"
-          : "failed";
-    }
-    return {
-      actors,
-      furniture: this.furniture.ready ? "ready" : "fallback",
-      door: this.door.ready ? "ready" : "fallback",
-      lamps: this.lamps.ready ? "ready" : "fallback",
-      posters: this.posterLeft.ready && this.posterRight.ready ? "ready" : "fallback"
-    };
+  private assetState():ProfileRoomAssetState {
+    return {actors:Object.fromEntries(PROFILE_ACTOR_IDS.map(id=>[id,this.sprites.has(`${id}/down-idle`)?'ready':'failed'])) as ProfileRoomAssetState['actors'],furniture:this.furniture.ready?'ready':'fallback',door:this.door.ready?'ready':'fallback',lamps:this.lamps.ready?'ready':'fallback',posters:this.posterLeft.ready&&this.posterRight.ready?'ready':'fallback'};
   }
 }

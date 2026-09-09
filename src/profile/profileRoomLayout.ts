@@ -1,3 +1,4 @@
+import { ROOM_FURNITURE } from "./roomFurniture";
 export type ProfileRoomStationId =
   | "blackboard"
   | "water-cooler"
@@ -8,7 +9,8 @@ export type ProfileRoomStationId =
   | "tv-console"
   | "poster-left"
   | "poster-right"
-  | "anywhere-door";
+  | "anywhere-door"
+  | "ultra-cabinet" | "flowers" | "ruru" | "performance" | "model-bench";
 
 export type ProfileRoomDeskStation = "primary-desk" | "secondary-desk";
 
@@ -51,9 +53,9 @@ export interface ProfileRoomPropDefinition {
   }>;
 }
 
-export const PROFILE_ROOM_LAYOUT_VERSION = "grounded-v4" as const;
-export const PROFILE_ROOM_WALK_BOUNDS: ProfileRoomBounds = [0.06, 0.36, 0.94, 0.91];
-export const PROFILE_ROOM_NAV_GRID = { columns: 36, rows: 18 } as const;
+export const PROFILE_ROOM_LAYOUT_VERSION = "cabin-v6" as const;
+export const PROFILE_ROOM_WALK_BOUNDS: ProfileRoomBounds = [0.055, 0.35, 0.945, 0.928];
+export const PROFILE_ROOM_NAV_GRID = { columns: 48, rows: 36 } as const;
 
 export const PROFILE_ROOM_SPRITE_META: Record<ProfileRoomSpriteKey, ProfileRoomSpriteMeta> = {
   chandelier: {
@@ -97,86 +99,31 @@ export const PROFILE_ROOM_SPRITE_META: Record<ProfileRoomSpriteKey, ProfileRoomS
   }
 };
 
+// All positions and footprints use one 640 x 480 room. Both viewports share it.
 export const PROFILE_ROOM_PROPS: Record<string, ProfileRoomPropDefinition> = {
-  posterLeft: {
-    id: "poster-left", worldAnchor: [0.145, 0.225], desktopSize: [0.06, 0.16], mobileSize: [0.098, 0.126],
-    interactionAnchors: [{ station: "poster-left", position: [0.145, 0.39], facing: "up" }]
-  },
-  blackboard: {
-    id: "blackboard", sprite: "blackboard", worldAnchor: [0.325, 0.22], desktopSize: [0.165, 0.17], mobileSize: [0.235, 0.12],
-    interactionAnchors: [{ station: "blackboard", position: [0.325, 0.39], facing: "up" }]
-  },
-  posterRight: {
-    id: "poster-right", worldAnchor: [0.675, 0.225], desktopSize: [0.06, 0.16], mobileSize: [0.098, 0.126],
-    interactionAnchors: [{ station: "poster-right", position: [0.675, 0.39], facing: "up" }]
-  },
-  chandelier: {
-    id: "chandelier", sprite: "chandelier", worldAnchor: [0.5, 0.39], desktopSize: [0.122, 0.216], mobileSize: [0.194, 0.156]
-  },
-  waterCooler: {
-    id: "water-cooler", sprite: "waterCooler", worldAnchor: [0.79, 0.475], desktopSize: [0.073, 0.203], mobileSize: [0.122, 0.156],
-    collisionBounds: [0.75, 0.405, 0.83, 0.49],
-    interactionAnchors: [{ station: "water-cooler", position: [0.79, 0.515], facing: "up" }]
-  },
-  door: {
-    id: "anywhere-door", worldAnchor: [0.92, 0.52], desktopSize: [0.074, 0.225], mobileSize: [0.122, 0.173],
-    collisionBounds: [0.89, 0.405, 0.945, 0.515],
-    interactionAnchors: [{ station: "anywhere-door", position: [0.875, 0.535], facing: "right" }]
-  },
-  secondaryDesk: {
-    id: "secondary-desk", sprite: "secondaryDesk", worldAnchor: [0.23, 0.665], desktopSize: [0.118, 0.197], mobileSize: [0.19, 0.147],
-    collisionBounds: [0.14, 0.585, 0.32, 0.69],
-    interactionAnchors: [{ station: "secondary-desk", position: [0.23, 0.72], facing: "up" }]
-  },
-  primaryDesk: {
-    id: "primary-desk", sprite: "secondaryDesk", worldAnchor: [0.48, 0.665], desktopSize: [0.132, 0.207], mobileSize: [0.205, 0.153],
-    collisionBounds: [0.385, 0.58, 0.575, 0.69],
-    interactionAnchors: [{ station: "primary-desk", position: [0.48, 0.72], facing: "up" }]
-  },
-  tv: {
-    id: "tv-cabinet", sprite: "tvCabinet", worldAnchor: [0.77, 0.655], desktopSize: [0.13, 0.207], mobileSize: [0.205, 0.153],
-    collisionBounds: [0.685, 0.565, 0.855, 0.675],
-    interactionAnchors: [{ station: "tv-console", position: [0.87, 0.69], facing: "left" }]
-  },
-  sofa: {
-    id: "sofa", sprite: "sofa", worldAnchor: [0.77, 0.86], desktopSize: [0.158, 0.213], mobileSize: [0.245, 0.168],
-    collisionBounds: [0.675, 0.835, 0.865, 0.905],
-    interactionAnchors: [
-      { station: "sofa-left", position: [0.72, 0.815], facing: "up" },
-      { station: "sofa-right", position: [0.8, 0.815], facing: "up" }
-    ]
-  }
+  posterLeft: {id:"poster-left",worldAnchor:[0.103125,0.212500],desktopSize:[0.100000,0.179167],mobileSize:[0.100000,0.179167],interactionAnchors:[{station:"poster-left",position:[0.118750,0.370833],facing:"up"}]},
+  posterRight: {id:"poster-right",worldAnchor:[0.859375,0.208333],desktopSize:[0.096875,0.175000],mobileSize:[0.096875,0.175000],interactionAnchors:[{station:"poster-right",position:[0.839063,0.370833],facing:"up"}]},
+  blackboard: {id:"blackboard",sprite:"blackboard",worldAnchor:[0.256250,0.285417],desktopSize:[0.128125,0.070833],mobileSize:[0.128125,0.070833],interactionAnchors:[{station:"blackboard",position:[0.259375,0.375000],facing:"up"}]},
+  chandelier: {id:"chandelier",sprite:"chandelier",worldAnchor:[0.5,0.46],desktopSize:[0.071875,0.110417],mobileSize:[0.071875,0.110417]},
+  primaryDesk: {id:"primary-desk",sprite:"secondaryDesk",worldAnchor:[0.242188,0.585417],desktopSize:[ROOM_FURNITURE.primaryDesk.size[0]/640,ROOM_FURNITURE.primaryDesk.size[1]/480],mobileSize:[ROOM_FURNITURE.primaryDesk.size[0]/640,ROOM_FURNITURE.primaryDesk.size[1]/480],collisionBounds:[0.135937,0.522917,0.350000,0.585417],interactionAnchors:[{station:"primary-desk",position:[0.242188,0.627083],facing:"up"}]},
+  secondaryDesk: {id:"secondary-desk",sprite:"secondaryDesk",worldAnchor:[0.082812,0.775000],desktopSize:[ROOM_FURNITURE.secondaryDesk.size[0]/640,ROOM_FURNITURE.secondaryDesk.size[1]/480],mobileSize:[ROOM_FURNITURE.secondaryDesk.size[0]/640,ROOM_FURNITURE.secondaryDesk.size[1]/480],collisionBounds:[0.035937,0.735417,0.131250,0.775000],interactionAnchors:[{station:"secondary-desk",position:[0.082812,0.818750],facing:"up"}]},
+  sofa: {id:"sofa",sprite:"sofa",worldAnchor:[0.296875,0.793750],desktopSize:[ROOM_FURNITURE.sofa.size[0]/640,ROOM_FURNITURE.sofa.size[1]/480],mobileSize:[ROOM_FURNITURE.sofa.size[0]/640,ROOM_FURNITURE.sofa.size[1]/480],collisionBounds:[0.168750,0.725000,0.425000,0.793750],interactionAnchors:[{station:"sofa-left",position:[0.237500,0.837500],facing:"down"},{station:"sofa-right",position:[0.362500,0.837500],facing:"down"}]},
+  tv: {id:"tv-console",sprite:"tvCabinet",worldAnchor:[0.725000,0.862500],desktopSize:[0.200000,0.266667],mobileSize:[0.200000,0.266667],collisionBounds:[0.637500,0.791667,0.814063,0.862500],interactionAnchors:[{station:"tv-console",position:[0.725000,0.910417],facing:"up"}]},
+  door: {id:"anywhere-door",worldAnchor:[0.923438,0.468750],desktopSize:[0.076563,0.191667],mobileSize:[0.076563,0.191667],collisionBounds:[0.893750,0.447917,0.960938,0.483333],interactionAnchors:[{station:"anywhere-door",position:[0.923438,0.527083],facing:"up"}]},
+  waterCooler: {id:"water-cooler",sprite:"waterCooler",worldAnchor:[0.903125,0.677083],desktopSize:[ROOM_FURNITURE.waterCooler.size[0]/640,ROOM_FURNITURE.waterCooler.size[1]/480],mobileSize:[ROOM_FURNITURE.waterCooler.size[0]/640,ROOM_FURNITURE.waterCooler.size[1]/480],collisionBounds:[0.885938,0.637500,0.920312,0.677083],interactionAnchors:[{station:"water-cooler",position:[0.903125,0.725000],facing:"up"}]},
+  ultraCabinet: {id:"ultra-cabinet",worldAnchor:[0.726562,0.583333],desktopSize:[0.234375,0.245833],mobileSize:[0.234375,0.245833],collisionBounds:[0.623437,0.525000,0.829688,0.583333],interactionAnchors:[{station:"ultra-cabinet",position:[0.726562,0.631250],facing:"up"}]},
+  flowers: {id:"flowers",worldAnchor:[0.428125,0.462500],desktopSize:[ROOM_FURNITURE.flowers.size[0]/640,ROOM_FURNITURE.flowers.size[1]/480],mobileSize:[ROOM_FURNITURE.flowers.size[0]/640,ROOM_FURNITURE.flowers.size[1]/480],collisionBounds:[0.412500,0.441667,0.443750,0.472917],interactionAnchors:[{station:"flowers",position:[0.468750,0.493750],facing:"left"}]},
+  modelBench: {id:"model-bench",worldAnchor:[0.904687,0.860417],desktopSize:[0.081250,0.083333],mobileSize:[0.081250,0.083333],collisionBounds:[0.868750,0.816667,0.940625,0.868750],interactionAnchors:[{station:"model-bench",position:[0.904687,0.914583],facing:"up"}]},
+  ruruBed: {id:"ruru-bed",worldAnchor:[0.501563,0.883333],desktopSize:[0.075000,0.062500],mobileSize:[0.075000,0.062500],interactionAnchors:[{station:"ruru",position:[0.551562,0.881250],facing:"left"}]},
+  coffeeTable: {id:"coffee-table",worldAnchor:[0.300000,0.916667],desktopSize:[ROOM_FURNITURE.coffeeTable.size[0]/640,ROOM_FURNITURE.coffeeTable.size[1]/480],mobileSize:[ROOM_FURNITURE.coffeeTable.size[0]/640,ROOM_FURNITURE.coffeeTable.size[1]/480],collisionBounds:[0.237500,0.889583,0.362500,0.935417]},
+  performance: {id:"performance",worldAnchor:[0.540625,0.679167],desktopSize:[0.100000,0.070833],mobileSize:[0.100000,0.070833],interactionAnchors:[{station:"performance",position:[0.540625,0.679167],facing:"down"}]}
 };
-
-/**
- * Desk users do not enter a workstation diagonally through its side.  They
- * first reach the clear front lane, align with the chair/desk centre, then
- * walk straight into the interaction anchor.  The ingress guard extends
- * below the foot-point collision box because a tall sprite's visible torso
- * reaches the desk before its feet do.
- */
-export const PROFILE_ROOM_DESK_ACCESS: Record<ProfileRoomDeskStation, {
-  propKey: "primaryDesk" | "secondaryDesk";
-  frontLane: ProfileRoomPoint;
-  ingressGuardBottom: number;
-  alignmentHalfWidth: number;
-}> = {
-  "secondary-desk": {
-    propKey: "secondaryDesk",
-    frontLane: [0.23, 0.88],
-    ingressGuardBottom: 0.88,
-    alignmentHalfWidth: 0.025
-  },
-  "primary-desk": {
-    propKey: "primaryDesk",
-    frontLane: [0.48, 0.88],
-    ingressGuardBottom: 0.88,
-    alignmentHalfWidth: 0.025
-  }
+// Compatibility metadata only: no workstation can bypass physical collision.
+export const PROFILE_ROOM_DESK_ACCESS: Record<ProfileRoomDeskStation,{propKey:"primaryDesk"|"secondaryDesk";frontLane:ProfileRoomPoint;ingressGuardBottom:number;alignmentHalfWidth:number}> = {
+ "primary-desk":{propKey:"primaryDesk",frontLane:[.29,.597],ingressGuardBottom:.597,alignmentHalfWidth:.02},
+ "secondary-desk":{propKey:"secondaryDesk",frontLane:[.12,.774],ingressGuardBottom:.774,alignmentHalfWidth:.02}
 };
-
-export const PROFILE_ROOM_LAMP_ANCHORS: ProfileRoomPoint[] = [0.055, 0.233, 0.411, 0.589, 0.767, 0.945]
-  .map((x) => [x, 0.145] as ProfileRoomPoint);
+export const PROFILE_ROOM_LAMP_ANCHORS: ProfileRoomPoint[] = [[.052,.20],[.205,.13],[.795,.13],[.947,.20]];
 
 export const PROFILE_ROOM_STATION_POSITIONS = Object.values(PROFILE_ROOM_PROPS)
   .flatMap((prop) => prop.interactionAnchors || [])

@@ -31,6 +31,9 @@ export interface VoyageWildlifeActorDebugState {
   breachPhase: VoyageWildlifeBreachPhase;
   finVisible: boolean;
   wakeStrength: number;
+  modelReady: boolean;
+  animationTime: number;
+  animationDuration: number;
 }
 
 export interface VoyageWildlifeDebugState {
@@ -61,7 +64,7 @@ export interface VoyageWildlifeUpdateOptions {
 type CreatureRig = {
   root: pc.Entity;
   debug: VoyageWildlifeActorDebugState;
-  trellisVisual?: pc.Entity;
+  animation?: { evaluator: pc.AnimEvaluator; clip: pc.AnimClip; speed: number; offset: number };
 };
 
 type GullRig = CreatureRig & {
@@ -80,7 +83,8 @@ type WildlifeControllerOptions = {
   reducedMotion: boolean;
   qualityTier: QualityTier;
   worldLayers: number[];
-  reflectionLayers: number[];
+  marineLayers: number[];
+  onAssetsChanged: () => void;
   sampleWaterHeight: (x: number, z: number, time: number) => number;
 };
 
@@ -93,8 +97,14 @@ export const VOYAGE_SPLASH_UNIFORM_COUNT = 4;
 const CYCLE_DURATION = 60;
 const RAD_TO_DEG = 180 / Math.PI;
 const WILDLIFE_SEED = 0x4c574b45;
-const GULL_TRELLIS_URL = "/assets/voyage/models/wildlife/gull-trellis2-1024-cascade.glb?v=20260729-trellis-gull-e4b3c3e2";
-const DOLPHIN_TRELLIS_URL = "/assets/voyage/models/wildlife/dolphin-trellis2-1024-cascade.glb?v=20260729-trellis-dolphin-3ac76a88";
+// Original authors and per-asset licenses: /assets/voyage/wildlife-credits.html.
+// Centers are measured from the skinned pose at t = 0.1s, after world transforms update.
+const WILDLIFE_MODELS = {
+  gull: { file: "seagull", center: [.00609, .32484, .20352], extent: 2.92724, size: .64, yaw: 0, speed: 1.15 },
+  dolphin: { file: "bottlenose-dolphin", center: [-.01008, .09199, -.50513], extent: 2.50187, size: 1.65, yaw: 0, speed: .85 },
+  whale: { file: "blue-whale", center: [.39536, 10.88946, -91.32325], extent: 1470.24954, size: 5.8, yaw: 0, speed: .68 },
+  shark: { file: "shark", center: [-.16350, -19.93091, .08036], extent: 8.13381, size: 2.55, yaw: 90, speed: .85 }
+} as const;
 
 const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
 const lerp = (start: number, end: number, amount: number): number => start + (end - start) * amount;
@@ -116,7 +126,10 @@ function makeDebugActor(id: string): VoyageWildlifeActorDebugState {
     motion: "hidden",
     breachPhase: "none",
     finVisible: false,
-    wakeStrength: 0
+    wakeStrength: 0,
+    modelReady: false,
+    animationTime: 0,
+    animationDuration: 0
   };
 }
 
@@ -354,7 +367,7 @@ export class VoyageWildlifeController {
     this.qualityTier = options.qualityTier === "fallback" ? "low" : options.qualityTier;
     options.parent.addChild(this.root);
     this.createRigs();
-    this.loadTrellisVisuals();
+    if (!options.reducedMotion) void this.loadRealisticVisuals();
     this.hideAll();
   }
 
@@ -371,7 +384,23 @@ export class VoyageWildlifeController {
     this.overrideScenario = null;
   }
 
-  update({ sceneTime, introTime, environmentPhase, transitionProgress, portrait }: VoyageWildlifeUpdateOptions): void {
+  update(options: VoyageWildlifeUpdateOptions): void {
+    this.updateSchedule(options);
+    for (const rig of [...this.gulls, ...this.dolphins, ...this.whales, ...this.sharks]) {
+      if (!rig.root.enabled || !rig.animation) continue;
+      const { evaluator, clip, speed, offset } = rig.animation;
+      // One clock owns positions and bones, including debug seeking and inactive-page pauses.
+      clip.time = modulo(options.sceneTime * speed + offset, clip.track.duration);
+      evaluator.update(0);
+      rig.debug.animationTime = clip.time;
+    }
+  }
+
+  get marineVisible(): boolean {
+    return [...this.dolphins, ...this.whales, ...this.sharks].some(rig => rig.root.enabled);
+  }
+
+  private updateSchedule({ sceneTime, introTime, environmentPhase, transitionProgress, portrait }: VoyageWildlifeUpdateOptions): void {
     this.portrait = portrait;
     this.currentCycle = Math.max(0, Math.floor(sceneTime / CYCLE_DURATION));
     const localTime = modulo(sceneTime, CYCLE_DURATION);
@@ -440,6 +469,7 @@ export class VoyageWildlifeController {
 
   destroy(): void {
     this.destroyed = true;
+    for (const rig of [...this.gulls, ...this.dolphins, ...this.whales, ...this.sharks]) rig.animation?.evaluator.removeClips();
     this.root.destroy();
     this.materials.forEach((material) => material.destroy());
     this.meshes.forEach((mesh) => mesh.destroy());
@@ -500,95 +530,96 @@ export class VoyageWildlifeController {
 
     for (let index = 0; index < MAX_DOLPHINS; index++) {
       const root = new pc.Entity(`voyage-dolphin-${index}`);
-      addMeshPart(root, "body", dolphinBodyMesh, dolphin, this.options.reflectionLayers);
-      addMeshPart(root, "connected-flippers-and-flukes", dolphinFinMesh, dolphinFin, this.options.reflectionLayers);
-      addMeshPart(root, "dorsal-fin", dolphinDorsalMesh, dolphinFin, this.options.reflectionLayers);
+      addMeshPart(root, "body", dolphinBodyMesh, dolphin, this.options.marineLayers);
+      addMeshPart(root, "connected-flippers-and-flukes", dolphinFinMesh, dolphinFin, this.options.marineLayers);
+      addMeshPart(root, "dorsal-fin", dolphinDorsalMesh, dolphinFin, this.options.marineLayers);
       this.root.addChild(root);
       this.dolphins.push({ root, debug: makeDebugActor(`dolphin-${index}`) });
     }
 
     for (let index = 0; index < MAX_WHALES; index++) {
       const root = new pc.Entity(`voyage-blue-whale-${index}`);
-      addMeshPart(root, "body", whaleBodyMesh, whale, this.options.reflectionLayers);
-      addMeshPart(root, "connected-pectoral-fins-and-flukes", whaleFinMesh, whaleFin, this.options.reflectionLayers);
-      addPart(root, "blowhole", "sphere", whaleBlowhole, this.options.reflectionLayers, [.065, .018, .042], [0, .30, .72]);
+      addMeshPart(root, "body", whaleBodyMesh, whale, this.options.marineLayers);
+      addMeshPart(root, "connected-pectoral-fins-and-flukes", whaleFinMesh, whaleFin, this.options.marineLayers);
+      addPart(root, "blowhole", "sphere", whaleBlowhole, this.options.marineLayers, [.065, .018, .042], [0, .30, .72]);
       this.root.addChild(root);
       this.whales.push({ root, debug: makeDebugActor(`blue-whale-${index}`) });
     }
 
     for (let index = 0; index < MAX_SHARKS; index++) {
       const root = new pc.Entity(`voyage-shark-fin-${index}`);
-      addMeshPart(root, "dorsal-fin", sharkFinMesh, shark, this.options.reflectionLayers);
+      addMeshPart(root, "dorsal-fin", sharkFinMesh, shark, this.options.marineLayers);
       this.root.addChild(root);
       this.sharks.push({ root, debug: makeDebugActor(`shark-${index}`) });
     }
   }
 
-  private loadTrellisVisuals(): void {
-    for (let index = 0; index < this.gulls.length; index++) {
-      this.loadTrellisVisual(
-        GULL_TRELLIS_URL,
-        this.gulls[index],
-        .62,
-        [0, 0, 0],
-        `gull-trellis2-${index}`
-      );
-    }
-    for (let index = 0; index < this.dolphins.length; index++) {
-      this.loadTrellisVisual(
-        DOLPHIN_TRELLIS_URL,
-        this.dolphins[index],
-        1.18,
-        [0, 0, 0],
-        `dolphin-trellis2-${index}`
-      );
-    }
-    this.loadTrellisVisual(
-      "/assets/voyage/models/wildlife/blue-whale-trellis2-1024-cascade.glb?v=20260729-trellis-whale-7aa564f0",
-      this.whales[0],
-      2.02,
-      [0, 0, 0],
-      "blue-whale-trellis2"
-    );
-    this.loadTrellisVisual(
-      "/assets/voyage/models/wildlife/shark-trellis2-1024-cascade.glb?v=20260729-trellis-shark-fa156a48",
-      this.sharks[0],
-      .98,
-      [0, -.19, 0],
-      "shark-trellis2"
-    );
-    if (this.sharks[1]) {
-      this.loadTrellisVisual(
-        "/assets/voyage/models/wildlife/shark-trellis2-1024-cascade.glb?v=20260729-trellis-shark-fa156a48",
-        this.sharks[1],
-        1.08,
-        [0, -.21, 0],
-        "shark-trellis2-secondary"
-      );
-    }
-  }
-
-  private loadTrellisVisual(
-    url: string,
-    rig: CreatureRig | undefined,
-    scale: number,
-    position: [number, number, number],
-    name: string
-  ): void {
-    if (!rig) return;
-    this.options.app.assets.loadFromUrl(url, "container", (error, asset) => {
-      if (error || this.destroyed || !asset?.resource) return;
-      const visual = asset.resource.instantiateRenderEntity({
-        castShadows: false,
-        receiveShadows: false
+  private async loadRealisticVisuals(): Promise<void> {
+    const species = [
+      [WILDLIFE_MODELS.gull, this.gulls, false],
+      [WILDLIFE_MODELS.dolphin, this.dolphins, true],
+      [WILDLIFE_MODELS.shark, this.sharks, true],
+      [WILDLIFE_MODELS.whale, this.whales, true]
+    ] as const;
+    for (const [model, rigs, marine] of species) {
+      if (this.destroyed) return;
+      // Load a species once, then instance its geometry and textures for the group.
+      await new Promise<void>((resolve) => {
+        this.options.app.assets.loadFromUrl(`/assets/voyage/models/wildlife/realistic/${model.file}.glb`, "container", (error, asset) => {
+          if (this.destroyed) { resolve(); return; }
+          if (error || !asset?.resource) {
+            console.warn(`Voyage wildlife asset unavailable: ${model.file}`, error);
+            resolve(); return;
+          }
+          const layers = marine ? this.options.marineLayers : this.options.worldLayers;
+          const materialCopies = new Map<pc.Material, pc.StandardMaterial>();
+          rigs.forEach((rig, index) => {
+            const visual = asset.resource.instantiateRenderEntity({ castShadows: false, receiveShadows: false });
+            const normalized = new pc.Entity(`${model.file}-normalized`);
+            const centered = new pc.Entity(`${model.file}-centered`);
+            centered.setLocalPosition(-model.center[0], -model.center[1], -model.center[2]);
+            const scale = model.size / model.extent;
+            normalized.setLocalScale(scale, scale, scale);
+            normalized.setLocalEulerAngles(0, model.yaw, 0);
+            normalized.addChild(centered);
+            centered.addChild(visual);
+            for (const component of visual.findComponents("render") as pc.RenderComponent[]) {
+              component.layers = layers;
+              for (const instance of component.meshInstances) {
+                const source = instance.material as pc.StandardMaterial;
+                let material = materialCopies.get(source);
+                if (!material) {
+                  material = source.clone();
+                  material.useMetalness = true;
+                  material.metalness = 0;
+                  material.gloss = marine ? .42 : .20;
+                  material.emissive.set(0, 0, 0);
+                  material.emissiveIntensity = 0;
+                  material.update();
+                  materialCopies.set(source, material);
+                  this.materials.push(material);
+                }
+                instance.material = material;
+              }
+            }
+            const track = asset.resource.animations[0]?.resource as pc.AnimTrack | undefined;
+            if (track) {
+              const evaluator = new pc.AnimEvaluator(new pc.DefaultAnimBinder(visual));
+              const clip = new pc.AnimClip(track, .1, 1, true, true);
+              evaluator.addClip(clip);
+              evaluator.update(0);
+              rig.animation = { evaluator, clip, speed: model.speed, offset: index * .37 };
+              rig.debug.animationDuration = track.duration;
+            }
+            for (const child of rig.root.children) child.enabled = false;
+            rig.root.addChild(normalized);
+            rig.debug.modelReady = true;
+          });
+          this.options.onAssetsChanged();
+          resolve();
+        });
       });
-      visual.name = name;
-      visual.setLocalScale(scale, scale, scale);
-      visual.setLocalPosition(...position);
-      for (const child of rig.root.children) child.enabled = false;
-      rig.root.addChild(visual);
-      rig.trellisVisual = visual;
-    });
+    }
   }
 
   private trackMesh(mesh: pc.Mesh): pc.Mesh {
@@ -627,9 +658,9 @@ export class VoyageWildlifeController {
   }
 
   private capacity(): { gulls: number; dolphins: number; sharks: number } {
-    if (this.portrait || this.qualityTier === "low") return { gulls: 3, dolphins: 2, sharks: 1 };
-    if (this.qualityTier === "balanced") return { gulls: 4, dolphins: 3, sharks: 2 };
-    return { gulls: 5, dolphins: 3, sharks: 2 };
+    if (this.portrait || this.qualityTier === "low") return { gulls: 2, dolphins: 2, sharks: 1 };
+    if (this.qualityTier === "balanced") return { gulls: 3, dolphins: 3, sharks: 2 };
+    return { gulls: 3, dolphins: 3, sharks: 2 };
   }
 
   private updateOverride(sceneTime: number, gate: number): void {
@@ -651,8 +682,8 @@ export class VoyageWildlifeController {
     const baseProgress = clamp01(progress);
     const startX = this.portrait ? -3.7 : -10.2;
     const endX = this.portrait ? 3.7 : 5.2;
-    const startZ = this.portrait ? -1.85 : -3.6;
-    const endZ = this.portrait ? 1.9 : 2.7;
+    const startZ = this.portrait ? -.8 : -.9;
+    const endZ = this.portrait ? 2.2 : 4.1;
     const distance = Math.hypot(endX - startX, endZ - startZ) || 1;
     const directionX = (endX - startX) / distance;
     const directionZ = (endZ - startZ) / distance;
@@ -673,7 +704,7 @@ export class VoyageWildlifeController {
       const x = lerp(startX, endX, actorProgress) - directionX * trail + acrossX * spread;
       const z = lerp(startZ, endZ, actorProgress) - directionZ * trail + acrossZ * spread
         + Math.sin(actorProgress * Math.PI * 2 + index) * .07;
-      const y = (this.portrait ? 2.55 : 3.35) + row * .11 + Math.sin(sceneTime * .55 + index * 1.7) * .10;
+      const y = (this.portrait ? 1.75 : 2.15) + row * .11 + Math.sin(sceneTime * .55 + index * 1.7) * .10;
       rig.root.enabled = true;
       rig.root.setPosition(x, y, z);
       const soaringPitch = Math.sin(sceneTime * 2.05 + index * 1.31) * 2.6;
@@ -682,11 +713,6 @@ export class VoyageWildlifeController {
       const flap = Math.sin(sceneTime * 7.2 + index * 1.35) * 30;
       rig.leftWing.setLocalEulerAngles(0, 0, -5 - flap);
       rig.rightWing.setLocalEulerAngles(0, 0, 5 + flap);
-      if (rig.trellisVisual) {
-        const livingMotion = Math.sin(sceneTime * 3.65 + index * 1.17);
-        rig.trellisVisual.setLocalEulerAngles(livingMotion * 1.8, 0, livingMotion * 2.4);
-        rig.trellisVisual.setLocalPosition(0, livingMotion * .012, 0);
-      }
       setDebugPose(rig.debug, true, x, y, z, heading, "flying", "none", 0);
     }
   }
@@ -717,16 +743,13 @@ export class VoyageWildlifeController {
       const phase: VoyageWildlifeBreachPhase = !aboveWater
         ? "none"
         : breachProgress < .38 ? "takeoff" : breachProgress < .63 ? "apex" : "landing";
-      if (aboveWater) {
-        rig.root.enabled = true;
-        rig.root.setPosition(x, water + breachHeight + .08, z);
-        rig.root.setEulerAngles(lerp(-27, 31, breachProgress), heading, Math.sin(breachProgress * Math.PI) * 8 * (index % 2 ? -1 : 1));
-        const scale = this.portrait ? .90 : 1.05;
-        rig.root.setLocalScale(scale, scale, scale);
-        if (rig.trellisVisual) {
-          rig.trellisVisual.setLocalEulerAngles(0, Math.sin(sceneTime * 7.4 + index * 1.9) * 3.2, 0);
-        }
-      }
+      rig.root.enabled = true;
+      const depth = .34 + Math.sin(sceneTime * .6 + index) * .055;
+      rig.root.setPosition(x, water + (aboveWater ? breachHeight + .08 : -depth), z);
+      rig.root.setEulerAngles(aboveWater ? lerp(-27, 31, breachProgress) : Math.sin(sceneTime + index) * 2, heading,
+        aboveWater ? Math.sin(breachProgress * Math.PI) * 8 * (index % 2 ? -1 : 1) : 0);
+      const scale = this.portrait ? .80 : 1;
+      rig.root.setLocalScale(scale, scale, scale);
       const underwaterVisibility = visibility * (1 - smoothstep(.02, .24, breachHeight));
       this.writeMarine(x, z, heading, 1, underwaterVisibility, .78, .56 + visibility * .24);
       if (inBreachWindow) this.writeSplash(x, z, breachProgress, .52, visibility);
@@ -734,13 +757,13 @@ export class VoyageWildlifeController {
         rig.debug,
         true,
         x,
-        aboveWater ? water + breachHeight : water - .20,
+        aboveWater ? water + breachHeight : water - depth,
         z,
         heading,
         aboveWater ? (phase === "landing" ? "splashdown" : "breaching") : "submerged",
         phase,
         .56 + visibility * .24,
-        aboveWater ? 0 : .20
+        aboveWater ? 0 : depth
       );
     }
   }
@@ -753,26 +776,25 @@ export class VoyageWildlifeController {
     const rig = this.whales[0];
     const startX = this.portrait ? 3.6 : 5.8;
     const endX = this.portrait ? -3.6 : -9.4;
-    const startZ = this.portrait ? 1.8 : 3.7;
-    const endZ = this.portrait ? -.8 : -.9;
+    const startZ = this.portrait ? 1.8 : 2.2;
+    const endZ = this.portrait ? -.8 : -1.6;
     const x = lerp(startX, endX, actorProgress);
     const z = lerp(startZ, endZ, actorProgress) + Math.sin(actorProgress * Math.PI) * (this.portrait ? -.35 : -.7);
     const heading = Math.atan2(endX - startX, endZ - startZ) * RAD_TO_DEG;
     const water = this.options.sampleWaterHeight(x, z, sceneTime);
     const breachProgress = allowBreach ? clamp01((actorProgress - .31) / .38) : 0;
     const inBreachWindow = allowBreach && actorProgress >= .31 && actorProgress <= .69;
-    const breachHeight = inBreachWindow ? Math.sin(breachProgress * Math.PI) * (this.portrait ? 1.28 : 1.72) : 0;
+    const breachHeight = inBreachWindow ? Math.sin(breachProgress * Math.PI) * (this.portrait ? .38 : .45) : 0;
     const aboveWater = breachHeight > .04;
     const phase: VoyageWildlifeBreachPhase = !aboveWater
       ? "none"
       : breachProgress < .38 ? "takeoff" : breachProgress < .63 ? "apex" : "landing";
-    if (aboveWater) {
-      rig.root.enabled = true;
-      rig.root.setPosition(x, water + breachHeight + .18, z);
-      rig.root.setEulerAngles(lerp(-22, 27, breachProgress), heading, Math.sin(breachProgress * Math.PI) * 5);
-      const scale = this.portrait ? .62 : .68;
-      rig.root.setLocalScale(scale, scale, scale);
-    }
+    rig.root.enabled = true;
+    const depth = .68 + Math.sin(sceneTime * .35) * .08;
+    rig.root.setPosition(x, water + (aboveWater ? breachHeight - .45 : -depth), z);
+    rig.root.setEulerAngles(aboveWater ? lerp(-58, 12, breachProgress) : 0, heading, aboveWater ? Math.sin(breachProgress * Math.PI) * 5 : 0);
+    const scale = this.portrait ? .53 : .78;
+    rig.root.setLocalScale(scale, scale, scale);
     const underwaterVisibility = visibility * (1 - smoothstep(.02, .28, breachHeight));
     this.writeMarine(x, z, heading, 2, underwaterVisibility, this.portrait ? .96 : 1.08, .72 + visibility * .25);
     if (inBreachWindow) this.writeSplash(x, z, breachProgress, 1.22, visibility);
@@ -780,13 +802,13 @@ export class VoyageWildlifeController {
       rig.debug,
       true,
       x,
-      aboveWater ? water + breachHeight : water - .42,
+      rig.root.getPosition().y,
       z,
       heading,
       aboveWater ? (phase === "landing" ? "splashdown" : "breaching") : "submerged",
       phase,
       .72 + visibility * .25,
-      aboveWater ? 0 : .42
+      aboveWater ? 0 : depth
     );
   }
 
@@ -810,19 +832,16 @@ export class VoyageWildlifeController {
       const water = this.options.sampleWaterHeight(x, z, sceneTime);
       const moonBand = Math.sin(angle * 2.25 + index * 1.9) * .5 + .5;
       const finVisibility = smoothstep(.78, .91, moonBand) * gate;
-      if (finVisibility > .02) {
-        rig.root.enabled = true;
-        rig.root.setPosition(x, water - .015, z);
-        rig.root.setEulerAngles(Math.sin(sceneTime * 1.4 + index) * 1.8, heading, index % 2 === 0 ? 6 : -6);
-        rig.root.setLocalScale(.94 + index * .08, .94 + index * .08, .94 + index * .08);
-        if (rig.trellisVisual) {
-          rig.trellisVisual.setLocalEulerAngles(0, Math.sin(sceneTime * 2.8 + index * 1.7) * 2.4, 0);
-        }
-      }
+      rig.root.enabled = true;
+      const depth = lerp(.66, .28, finVisibility);
+      rig.root.setPosition(x, water - depth, z);
+      rig.root.setEulerAngles(Math.sin(sceneTime * 1.4 + index) * 1.8, heading, index % 2 === 0 ? 6 : -6);
+      const scale = (this.portrait ? .78 : 1) * (.94 + index * .08);
+      rig.root.setLocalScale(scale, scale, scale);
       const underwaterScale = (this.portrait ? 1.28 : 1.14) + index * .10;
       const wakeStrength = .38 + finVisibility * .52;
       this.writeMarine(x, z, heading, 3, gate, underwaterScale, wakeStrength);
-      setDebugPose(rig.debug, true, x, water - .18, z, heading, "patrolling", "none", wakeStrength, .18, finVisibility > .02);
+      setDebugPose(rig.debug, true, x, water - depth, z, heading, "patrolling", "none", wakeStrength, depth, finVisibility > .02);
     }
   }
 

@@ -1,0 +1,142 @@
+/* One room, one aspect ratio. Controls live below the scene rather than over it. */
+.profile-console:has(.cabin-v5){grid-template-rows:auto auto;align-content:start;}
+.future-slot.cabin-v5{min-height:0;aspect-ratio:auto;height:auto;align-self:start;overflow:hidden;}
+.cabin-v5 .profile-adventure-stage{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;}
+.cabin-v5 .profile-sprite-canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;}
+.cabin-v5::before{background:repeating-linear-gradient(180deg,transparent 0 3px,#dbbd8110 3px 4px);box-shadow:inset 0 0 0 1px #e7bc6f0a;}
+.cabin-v5 .profile-adventure-heading{top:2.2%;left:3%;max-width:74%;}
+.cabin-v5 .profile-adventure-heading h3{font-size:clamp(10px,1.05vw,17px);line-height:1.1;letter-spacing:.035em;}
+.cabin-v5 .profile-adventure-heading small{display:none;}
+.cabin-v5 .profile-adventure-replay{top:2.2%;right:2%;bottom:auto;font-size:6px;padding:7px;}
+.cabin-v5 .profile-adventure-caption{bottom:2%;font-size:5px;}
+.cabin-v5 .terminal-dock-hint{font-size:5px;opacity:0;transition:opacity .2s;}
+.cabin-v5 .profile-terminal-trigger:hover .terminal-dock-hint,.cabin-v5 .profile-terminal-trigger:focus-visible .terminal-dock-hint{opacity:1;}
+.cabin-v5 .terminal-glove{width:18px;}
+.cabin-v5 .profile-actor-controls button{transform:translateX(-50%);}
+.cabin-controls{position:relative;z-index:150;background:#0b1613;border-top:1px solid #80653755;padding:10px 12px;color:#b5b69a;font:8px/1.5 var(--mono);}
+.cabin-control-summary{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:24px;letter-spacing:.08em;}
+.cabin-controls button{font:inherit;color:#d9c595;background:#213329;border:1px solid #89744766;cursor:pointer;padding:7px 9px;}
+.cabin-controls button:hover,.cabin-controls button[aria-pressed=true]{background:#4a4830;color:#fff0be;border-color:#bf9b56;}
+.cabin-controls button:focus-visible{outline:2px solid #e0c986;outline-offset:2px;}
+.cabin-character-switcher{display:flex;gap:5px;flex-wrap:wrap;padding-top:8px;}
+.cabin-character-switcher button{flex:1;}
+.cabin-touch-controls{display:none;}
+.cabin-key-hint{margin:9px 0 0;color:#849689;}
+.profile-ultra-trigger,.profile-ruru-trigger{position:absolute;z-index:110;display:block;border:0;background:none;cursor:pointer;padding:0;}
+.profile-ultra-trigger span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);white-space:nowrap;background:#101b17e8;border:1px solid #a08244;color:#eddaa9;font:7px var(--mono);padding:5px;opacity:0;}
+.profile-ultra-trigger:hover span,.profile-ultra-trigger:focus-visible span{opacity:1;}
+.profile-ultra-trigger:focus-visible,.profile-ruru-trigger:focus-visible{outline:1px solid #e0c986;}
+@media(max-width:760px){.cabin-touch-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;}.cabin-key-hint{display:none;}.cabin-controls{font-size:7px;}.cabin-stick{--stick-x:0px;--stick-y:0px;position:relative;width:84px;height:84px;flex:0 0 84px;border-radius:50%;border:1px solid #9f845452;background:radial-gradient(#284337,#13261e);touch-action:none;box-shadow:inset 0 0 0 14px #1c3428;}.cabin-stick span{position:absolute;left:27px;top:27px;width:30px;height:30px;background:#bca16b;border-radius:50%;box-shadow:inset 0 2px #e7d6a3,0 3px 5px #0008;transform:translate(var(--stick-x),var(--stick-y));}.cabin-touch-controls>button{min-width:54px;min-height:54px;}.cabin-v5 .profile-adventure-heading span{font-size:5px;}.cabin-v5 .profile-adventure-replay{font-size:5px;padding:5px;}}
+@media(prefers-reduced-motion:reduce){.cabin-v5 *{animation:none!important;transition:none!important;}}
+.cabin-v5.has-terminal-frame .profile-terminal-dock .profile-terminal-visual { opacity:0; }
+.ultra-render-dock{position:absolute;left:66%;top:27%;width:180px;height:196px;opacity:0;pointer-events:none}
+.ultra-render-dock canvas{width:180px;height:196px}
+.ultra-dialog{width:min(920px,94vw);max-height:94dvh;padding:18px;border:1px solid #99743e;border-radius:4px;background:#101a17;color:#e5d6af;box-shadow:0 25px 100px #000b;overflow:auto}
+.ultra-dialog::backdrop{background:#040c09df;backdrop-filter:blur(5px)}
+.ultra-dialog header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #795c32;padding-bottom:10px}
+.ultra-dialog small{font:10px monospace;letter-spacing:2px;color:#a89b78}
+.ultra-dialog h2{font:20px serif;margin:6px 0}
+.ultra-dialog button{background:#19251d;color:#e2c994;border:1px solid #79633d;padding:8px 12px;cursor:pointer}
+.ultra-dialog button:hover:not(:disabled){border-color:#dbc385;background:#283529}
+.ultra-dialog button:disabled{opacity:.4;cursor:default}
+.ultra-view{height:min(62dvh,570px);min-height:250px;background:radial-gradient(ellipse at 50% 65%,#33443a,#0b1210 70%)}
+.ultra-view canvas{width:100%;height:100%;image-rendering:pixelated;touch-action:none;display:block}
+.ultra-dialog nav{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-top:12px}
+.ultra-dialog nav small{display:block;font:9px monospace;letter-spacing:0;margin-top:5px}
+.ultra-inspection{display:flex;align-items:center;gap:12px;min-height:35px;font:12px monospace}
+.ultra-availability{color:#948e77;font:11px/1.6 monospace;margin-bottom:0}
+.profile-ultra-trigger,.profile-ruru-trigger{position:absolute;transform:none!important;cursor:pointer;border:0;background:transparent}
+.profile-ultra-trigger span,.profile-ruru-trigger span{opacity:0;white-space:nowrap;background:#15221e;color:#dcca8f;border:1px solid #96733e;font:8px monospace;padding:4px;position:absolute;bottom:100%;left:50%;transform:translateX(-50%)}
+.profile-ultra-trigger:hover span,.profile-ultra-trigger:focus-visible span,.profile-ruru-trigger:hover span,.profile-ruru-trigger:focus-visible span{opacity:1}
+@media(max-width:600px){.ultra-dialog nav{grid-template-columns:repeat(4,1fr)}.ultra-dialog{padding:10px}.ultra-view{height:50dvh}.ultra-dialog h2{font-size:17px}.ultra-inspection{font-size:10px}}
+/* Keep the room's artwork crisp: its own lighting supplies the atmosphere. */
+.cabin-v5::before{opacity:.28}
+.cabin-v5 .profile-adventure-stage::after{opacity:.20}
+/* Content-driven profile: biography and cabin are always present. */
+#profile.profile-scene{display:grid;height:auto;min-height:100vh;min-height:100dvh;align-content:start;grid-template-columns:var(--profile-left,44%) minmax(0,1fr);grid-template-rows:auto;padding-top:calc(var(--nav-height) + 24px);padding-bottom:14px;align-items:stretch;overflow:hidden}
+#profile .profile-console{height:auto;min-height:0;padding:9px;grid-template-rows:auto auto;gap:8px;align-content:start;overflow:hidden}
+.profile-card-viewport{min-height:0;position:relative;overflow:hidden}
+#profile:not(.profile-compact) .profile-top{position:absolute;left:0;top:0;width:640px;min-height:0;grid-template-columns:184px minmax(0,1fr);gap:12px;transform-origin:top left}
+#profile .profile-summary{min-height:0;grid-template-rows:120px auto auto 1fr 32px;gap:5px}
+#profile .profile-dossier{min-height:0;padding:9px;grid-template-rows:auto auto 57px 33px 26px;gap:7px}
+#profile .profile-intro{font-size:18px}
+#profile .profile-summary h1{font-size:22px}
+#profile .research-route{gap:5px}
+#profile .social-dock a{width:30px;height:30px}
+#profile .avatar-spotlight{height:120px}
+#profile .avatar-spotlight img{width:100%;height:calc(100% - 10px);object-fit:contain}
+#profile .gallery-stage{height:100%;min-height:0;align-self:stretch;grid-template-rows:30px minmax(0,1fr);overflow:hidden}
+#profile .gallery-mount{min-height:0;height:100%;aspect-ratio:auto}
+#profile .future-slot{width:100%;max-width:none;margin:0;min-height:0}
+#profile .cabin-controls{height:auto;min-height:34px;padding:3px 8px;box-sizing:border-box;display:flex;align-items:center;gap:8px;font-size:6px}
+#profile .cabin-control-summary{min-height:24px;flex:1}
+#profile .cabin-controls button{padding:4px 6px}
+#profile .cabin-character-switcher{padding:0;gap:3px;flex-wrap:nowrap}
+#profile .cabin-key-hint{display:none}
+#profile .contribution-list li{font-size:11px;line-height:1.25}
+#profile .skill-chip{font-size:10px;line-height:1.2}
+#profile .research-summary{font-size:12px;line-height:1.3}
+#profile .contribution-group header,#profile .capability-group header{font-size:7px;letter-spacing:.03em}
+/* When a second column becomes too small, give its space to the essentials. */
+#profile.profile-compact{grid-template-columns:minmax(0,1fr);gap:0;padding-inline:12px;padding-top:calc(var(--nav-height) + 18px)}
+#profile.profile-compact .gallery-stage{display:none}
+#profile.profile-compact .profile-top{position:relative;width:100%;min-height:0;grid-template-columns:minmax(140px,.8fr) minmax(0,2fr);gap:12px;transform:none}
+#profile.profile-compact .profile-card-viewport{height:auto;overflow:visible}
+#profile.profile-compact .profile-dossier{grid-template-rows:auto auto 57px auto auto}
+#profile.profile-compact .research-evidence-grid{grid-template-columns:minmax(0,1.6fr) minmax(90px,1fr);gap:8px}
+#profile.profile-compact .research-connector{display:none}
+#profile.profile-compact .profile-telemetry-row{width:100%;grid-template-columns:1fr;gap:6px}
+#profile.profile-compact .cabin-controls{display:block;font-size:7px}
+#profile.profile-compact .cabin-character-switcher{padding-top:8px;flex-wrap:wrap}
+@media(max-width:560px){
+ #profile.profile-compact{padding-inline:8px}
+ #profile.profile-compact .profile-console{padding:6px;gap:8px}
+ #profile.profile-compact .profile-top{grid-template-columns:1fr;gap:8px}
+ #profile.profile-compact .profile-summary{grid-template-columns:90px minmax(0,1fr);grid-template-rows:auto auto auto auto;gap:3px 10px;padding:0}
+ #profile.profile-compact .avatar-spotlight{grid-column:1;grid-row:1/4;width:90px;height:100%;min-height:102px}
+ #profile.profile-compact .profile-summary h1{grid-column:2;font-size:20px;align-self:end}
+ #profile.profile-compact .profile-signature{grid-column:2;font-size:13px;margin:0}
+ #profile.profile-compact .profile-telemetry-row{grid-column:2;grid-template-columns:minmax(0,1fr) 86px;padding:2px 0;gap:5px}
+ #profile.profile-compact .research-route{margin-left:7px;gap:4px}
+ #profile.profile-compact .research-route li{font-size:7px;line-height:1.2}
+ #profile.profile-compact .visitor-telemetry{min-height:40px;margin:0;padding:4px}
+ #profile.profile-compact .visitor-heading{font-size:5px}
+ #profile.profile-compact .visitor-preview{font-size:8px;white-space:normal;overflow-wrap:anywhere}
+ #profile.profile-compact .visitor-telemetry small{font-size:5px}
+ #profile.profile-compact .social-dock{grid-column:1/3;height:26px;gap:10px}
+ #profile.profile-compact .social-dock a{height:26px;width:26px}
+ #profile.profile-compact .profile-dossier{padding:8px;gap:6px;grid-template-rows:auto auto 46px auto auto}
+ #profile.profile-compact .profile-intro{font-size:16px}
+ #profile.profile-compact .research-summary{font-size:11px}
+ #profile.profile-compact .contribution-list li{font-size:10px;line-height:1.3;grid-template-columns:12px 1fr;gap:3px;padding-inline:2px}
+ #profile.profile-compact .skill-stack{grid-template-columns:1fr}
+ #profile.profile-compact .skill-chip{font-size:8px;padding:4px;min-height:25px}
+ #profile.profile-compact .interest-rail{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ #profile.profile-compact .interest-label{display:none}
+ #profile.profile-compact .interest-item{height:25px;padding:3px;font-size:7px;gap:3px}
+ #profile.profile-compact .current-focus{font-size:12px;min-height:22px}
+}
+
+/* Broad, shallow windows place the three pieces alongside one another. */
+#profile.profile-panorama{grid-template-columns:minmax(0,.92fr) minmax(0,1.3fr) minmax(0,1.08fr);align-items:start;gap:14px}
+#profile.profile-panorama .profile-console{display:contents}
+#profile.profile-panorama .profile-console::before{display:none}
+#profile.profile-panorama .gallery-stage{height:var(--profile-row-height);align-self:start}
+
+#profile.profile-panorama .profile-top{position:relative;width:100%;height:100%;grid-template-columns:1fr;grid-template-rows:minmax(0,.38fr) minmax(0,.62fr);gap:12px;transform:none}
+#profile.profile-panorama .profile-summary{grid-template-columns:minmax(110px,.75fr) minmax(0,1fr);grid-template-rows:auto auto 1fr 32px;gap:5px 12px}
+#profile.profile-panorama .avatar-spotlight{grid-column:1;grid-row:1/5;width:100%;height:100%;max-height:none;align-self:stretch}
+#profile.profile-panorama .profile-summary h1,#profile.profile-panorama .profile-signature,#profile.profile-panorama .profile-telemetry-row,#profile.profile-panorama .social-dock{grid-column:2}
+#profile.profile-panorama .profile-summary h1{font-size:clamp(20px,1.1vw,30px)}
+#profile.profile-panorama .profile-dossier{grid-template-rows:auto minmax(0,1fr) 57px 33px 26px;gap:8px}
+#profile.profile-panorama .profile-intro{font-size:clamp(18px,1vw,26px)}
+#profile.profile-panorama .dossier-research{display:flex;flex-direction:column;justify-content:space-evenly}
+#profile.profile-panorama .research-summary{font-size:clamp(12px,.65vw,16px)}
+#profile.profile-panorama .contribution-list li{font-size:clamp(11px,.6vw,15px);line-height:1.35}
+#profile.profile-panorama .research-evidence-grid{grid-template-columns:minmax(0,1.65fr) minmax(100px,1fr);gap:8px}
+#profile.profile-panorama .research-connector{display:none}
+#profile.profile-panorama .profile-telemetry-row{grid-template-columns:minmax(0,1fr) 86px;gap:5px;padding-block:3px}
+#profile.profile-panorama .research-route li{font-size:clamp(10px,.55vw,14px);line-height:1.2}
+#profile.profile-panorama .visitor-telemetry{padding:4px;min-height:42px}
+#profile.profile-panorama .visitor-preview{font-size:8px;white-space:normal;overflow-wrap:anywhere}
+#profile.profile-panorama .visitor-heading,#profile.profile-panorama .visitor-telemetry small{font-size:5px}

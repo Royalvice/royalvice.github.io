@@ -1,3 +1,4 @@
+import { CabinControls } from "./CabinControls";
 import { PROFILE_ACTOR_IDS, type ProfileActorId } from "./profileAdventureAssets";
 import {
   ProfileRoomSimulation,
@@ -50,7 +51,11 @@ export type ProfileRoomDebugState = {
     reservedCells: Array<{ cell: string; actor: ProfileActorId }>;
   };
   layout: ReturnType<typeof profileRoomLayoutSnapshot>;
+  viewport: ReturnType<ProfileSpriteStage["getViewportState"]>;
   assets: ProfileRoomAssetState;
+  controlledActor:ProfileActorId|null;
+  event:unknown;
+  ruru:unknown;
 };
 
 declare global {
@@ -68,6 +73,9 @@ declare global {
       triggerActor: (actor: ProfileActorId, action?: string) => void;
       sendActorTo: (actor: ProfileActorId, station: ProfileRoomStationId) => boolean;
       setDoorOpen: (open: boolean) => void;
+      control: (id:ProfileActorId|null)=>void;
+      setInput:(x:number,y:number,run?:boolean)=>void;
+      setDebug:(enabled:boolean)=>void;
       setTvPowerPhase: (phase: ProfileTvPowerPhase) => void;
     };
   }
@@ -87,12 +95,18 @@ const emptyAssets = (): ProfileRoomAssetState => ({
 });
 
 export class ProfileAdventureDirector {
+  setWindowFrame(canvas:HTMLCanvasElement):void {this.stage.setWindowFrame(canvas);}
+  setCabinetFrame(canvas:HTMLCanvasElement):void {this.stage.setCabinetFrame(canvas);}
+  setMusicState(playing:boolean,time:number):void {this.stage.setMusicState(playing,time);this.simulation.setMusicState(playing);}
   private simulation: ProfileRoomSimulation;
+  private controls:CabinControls;
   private tv: ProfileRoomTv;
   private stage: ProfileSpriteStage;
   private running = false;
   private paused = true;
   private ready = false;
+  private roomVisible=true;
+  private visibilityObserver:IntersectionObserver;
   private raf = 0;
   private lastFrame = 0;
   private accumulator = 0;
@@ -117,12 +131,15 @@ export class ProfileAdventureDirector {
       onReset: () => this.reset(),
       onDoorInteraction: () => this.toggleDoor(),
       onTvInteraction: () => this.activateTvArcade(),
-      onActorInteraction: (actor, action) => this.triggerActor(actor, action)
+      onActorInteraction: (actor, action) => action==="control"?this.controls.select(actor):this.triggerActor(actor, action)
     });
+    this.controls=new CabinControls(root,this.simulation,()=>{this.render();this.resume();});
+    this.bind(root.querySelector('[data-profile-ruru]')!,'click',()=>{this.simulation.greetRuru();this.render();});
     this.bind(document, "keydown", ((event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
+      if (event.key !== "Escape" || document.querySelector('dialog[open]')) return;
       this.cancelManualActions();
     }) as EventListener);
+    this.visibilityObserver=new IntersectionObserver(entries=>{this.roomVisible=entries[0].isIntersecting;if(!this.roomVisible)this.pause();else if(!document.hidden&&!document.querySelector('dialog[open]'))this.resume();});this.visibilityObserver.observe(root);
     this.installDebugHook();
   }
 
@@ -136,12 +153,15 @@ export class ProfileAdventureDirector {
   destroy(): void {
     this.pause();
     this.clearTvBootTimers();
+    this.controls.destroy();
+    this.visibilityObserver.disconnect();
     this.stage.destroy();
     this.listeners.splice(0).forEach((dispose) => dispose());
     delete window.__profileAdventureDebug;
   }
 
   pause(): void {
+    this.controls?.clear();
     this.paused = true;
     this.running = false;
     cancelAnimationFrame(this.raf);
@@ -150,7 +170,7 @@ export class ProfileAdventureDirector {
   }
 
   resume(): void {
-    if (this.options.reducedMotion || !this.ready || this.running) return;
+    if (!this.roomVisible || document.hidden || (this.options.reducedMotion&&!this.simulation.getState().controlledActor) || !this.ready || this.running) return;
     this.paused = false;
     this.running = true;
     this.lastFrame = performance.now();
@@ -161,6 +181,7 @@ export class ProfileAdventureDirector {
 
   reset(): void {
     this.simulation.reset();
+    this.controls.sync();
     this.tv.reset();
     this.accumulator = 0;
     this.render();
@@ -208,6 +229,11 @@ export class ProfileAdventureDirector {
     return assigned;
   }
 
+  setTerminalLighting(mode:"day"|"night"):void {
+    this.root.dataset.terminalLight=mode;
+    this.render();
+  }
+
   setDoorOpen(open: boolean): void {
     this.simulation.setDoorOpen(open);
     this.render();
@@ -216,6 +242,7 @@ export class ProfileAdventureDirector {
 
   cancelManualActions(): void {
     this.simulation.cancelManualActions();
+    this.controls.sync();
     this.render();
   }
 
@@ -272,16 +299,17 @@ export class ProfileAdventureDirector {
 
   private tick(now: number): void {
     if (!this.running || this.paused) return;
-    const dt = Math.min(0.25, Math.max(0, (now - this.lastFrame) / 1000));
+    const dt = Math.min(0.05, Math.max(0, (now - this.lastFrame) / 1000));
     this.lastFrame = now;
     this.accumulator += dt;
-    while (this.accumulator >= this.simulation.fixedStep) {
+    let steps=0;
+    while (this.accumulator >= this.simulation.fixedStep && steps++<3) {
       this.simulation.step(this.simulation.fixedStep);
       this.accumulator -= this.simulation.fixedStep;
     }
     const elapsed = this.simulation.getState().simulationElapsed;
     this.tv.setTime(elapsed);
-    if (now - this.lastRenderAt >= 1000 / 15) {
+    if (now - this.lastRenderAt >= 1000 / (innerWidth<760?30:60)-1) {
       this.lastRenderAt = now;
       this.render();
     }
@@ -289,7 +317,7 @@ export class ProfileAdventureDirector {
   }
 
   private render(): void {
-    this.stageState = this.stage.render(this.simulation.getState(), this.tv);
+    this.stageState = this.stage.render(this.running?this.simulation.getRenderState(Math.min(1,this.accumulator/this.simulation.fixedStep)):this.simulation.getState(), this.tv);
   }
 
   private getState(): ProfileRoomDebugState {
@@ -347,16 +375,23 @@ export class ProfileAdventureDirector {
         reservedCells: simulation.navigation.reservedCells.map((entry) => ({ ...entry }))
       },
       layout: profileRoomLayoutSnapshot(),
+      viewport: this.stage.getViewportState(),
+      controlledActor:simulation.controlledActor,
+      event:simulation.event,
+      ruru:simulation.ruru,
       assets: this.stageState.assets
     };
   }
 
   private installDebugHook(): void {
     window.__profileAdventureDebug = {
+      control:(id:ProfileActorId|null)=>this.controls.select(id),
+      setInput:(x:number,y:number,run=false)=>this.simulation.setInput(x,y,run),
       getState: () => this.getState(),
       setTime: (seconds) => this.setTime(seconds),
       advanceTime: (seconds) => this.advanceTime(seconds),
       getLayout: () => profileRoomLayoutSnapshot(),
+      setDebug:(enabled:boolean)=>{this.root.dataset.cabinDebug=String(enabled);this.render();},
       setSeed: (seed) => this.setSeed(seed),
       play: () => this.resume(),
       pause: () => this.pause(),

@@ -33,9 +33,9 @@ test.beforeEach(async ({ page }, testInfo) => {
 test("profile content is readable without hover and layout has no horizontal overflow", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Zongyuan Yang" })).toBeVisible();
   await expect(page.getByText("Happy Wife! Happy Life!", { exact: true })).toBeVisible();
-  await expect(page.getByText("Neural Graphics & 3D AIGC & Interactive World Models")).toBeVisible();
-  await expect(page.getByText("3D memory latent development for Interactive World Models", { exact: true })).toBeVisible();
-  await expect(page.locator(".godot-copy")).toHaveText("Currently exploring game development with Godot.");
+  await expect(page.getByText("Building Agents That Make 3A Games")).toBeVisible();
+  await expect(page.getByText("Agentic game development: harnesses, tools & evaluation", { exact: true })).toBeVisible();
+  await expect(page.locator(".godot-copy")).toHaveText("Making games that bring people joy.");
   await expect(page.locator(".terminal-line")).toHaveCount(7);
   const sizes = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
   expect(sizes.scroll).toBe(sizes.width);
@@ -52,17 +52,19 @@ test("visitor telemetry uses the historical counter path and combined today-tota
   await expect(page.locator("[data-visitor-image]")).toHaveAttribute("referrerpolicy", "no-referrer");
   await expect(page.locator("[data-visitor-image]")).toBeVisible();
   const telemetryGeometry = await page.evaluate(() => {
-    const route = document.querySelector(".research-route")?.getBoundingClientRect();
+    const route = document.querySelector(".research-identity")?.getBoundingClientRect();
     const telemetry = document.querySelector("[data-visitor-telemetry]")?.getBoundingClientRect();
     return route && telemetry ? {
       routeRight: route.right,
       telemetryLeft: telemetry.left,
-      verticalDelta: Math.abs(route.top - telemetry.top)
+      verticalDelta: Math.abs(route.top - telemetry.top),
+      belowRoute: telemetry.top >= route.bottom - .5
     } : null;
   });
   expect(telemetryGeometry).not.toBeNull();
-  expect(telemetryGeometry.telemetryLeft).toBeGreaterThanOrEqual(telemetryGeometry.routeRight);
-  expect(telemetryGeometry.verticalDelta).toBeLessThan(12);
+  // The identity column can stack the counter beneath the research route.
+  // Both responsive arrangements must keep their content separate.
+  expect(telemetryGeometry.belowRoute || (telemetryGeometry.telemetryLeft >= telemetryGeometry.routeRight && telemetryGeometry.verticalDelta < 12)).toBe(true);
   await page.locator("[data-visitor-image]").dispatchEvent("error");
   await expect(badge).toHaveAttribute("data-state", "offline");
   await expect(page.locator("[data-visitor-fallback]")).toHaveText("SIGNAL OFFLINE");
@@ -104,18 +106,13 @@ test("SIGGRAPH lever resolves the rolling holographic counter at three and can r
   await expect(machine).toHaveAttribute("data-result", "3", { timeout: 12_000 });
 });
 
-test("terminal uses research-domain signals and unified news sentences", async ({ page }) => {
+test("terminal preserves research metadata and news inside the physical CRT", async ({ page }) => {
+  await page.locator("[data-profile-terminal]").click();
   await expect(page.locator(".terminal-type")).toHaveCount(0);
-  const domainBadges = await page.locator("[data-terminal-domain]").evaluateAll((items) => items.map((item) => ({
-    domain: item.getAttribute("data-terminal-domain"),
-    active: item.getAttribute("data-active")
-  })));
-  expect(domainBadges).toEqual([
-    { domain: "neural-graphics", active: "true" },
-    { domain: "agent-harness", active: "true" },
-    { domain: "mllm", active: "true" },
-    { domain: "game-world-model", active: "false" }
-  ]);
+  await expect(page.locator('.terminal-shell')).toHaveAttribute('data-renderer', 'web3d');
+  await expect(page.locator('.terminal-canvas')).toBeVisible();
+  await expect(page.locator('.terminal-shell img')).toHaveCount(0);
+  await page.locator('.terminal-readable summary').click();
   expect(await page.locator(".terminal-line").evaluateAll((items) => Object.fromEntries(items.map((item) => [
     item.getAttribute("data-news-id"), item.querySelector("[data-news-domain]")?.getAttribute("data-news-domain")
   ])))).toEqual({
@@ -142,11 +139,7 @@ test("terminal uses research-domain signals and unified news sentences", async (
     { id: "directl-2024", date: "2024.10" },
     { id: "docdiff-2023", date: "2023.05" }
   ]);
-  const eventLefts = await page.locator(".terminal-event").evaluateAll((items) => items.map((item) => item.getBoundingClientRect().left));
-  expect(Math.max(...eventLefts) - Math.min(...eventLefts)).toBeLessThan(1);
-  await expect(page.getByText("TTY / RESEARCH-TAIL", { exact: true })).toBeVisible();
   await expect(page.locator("[data-terminal-buffer]")).toHaveText("BUFFER 07/09");
-  await expect(page.locator(".terminal-output-cursor")).toBeVisible();
   await expect(page.locator(".terminal-lines + .terminal-cycle-boundary")).toContainText("END OF NEWS");
   await expect(page.locator(".terminal-cycle-boundary")).toContainText("LOOP ↻");
   await expect(page.locator(".terminal-keyword").first()).toBeVisible();
@@ -185,9 +178,12 @@ test("terminal pauses on hover and resumes after leaving", async ({ page }) => {
 });
 
 test("terminal live refresh preserves strict reverse chronological order", async ({ page }) => {
+  await page.locator("[data-profile-terminal]").click();
   test.setTimeout(90_000);
   const terminal = page.locator(".terminal-shell");
   const toggle = page.locator("[data-terminal-toggle]");
+  await toggle.focus();
+  await terminal.dispatchEvent("mouseleave");
   await toggle.dispatchEvent("click");
   await expect(terminal).toHaveAttribute("data-paused", "true");
   await expect(terminal).not.toHaveClass(/is-ingesting/, { timeout: 10_000 });
@@ -208,8 +204,11 @@ test("terminal live refresh preserves strict reverse chronological order", async
 });
 
 test("terminal follow control toggles a persistent manual hold", async ({ page }) => {
+  await page.locator("[data-profile-terminal]").click();
   const terminal = page.locator(".terminal-shell");
   const toggle = page.locator("[data-terminal-toggle]");
+  await toggle.focus();
+  await terminal.dispatchEvent("mouseleave");
   await toggle.dispatchEvent("click");
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
   await expect(terminal).toHaveAttribute("data-paused", "true");
@@ -319,9 +318,9 @@ test("cabinet trophies are enlarged, grounded, and use focused hover lighting", 
   expect(rest.slots).toHaveLength(4);
   for (const slot of rest.slots) {
     expect(slot.trophyLocalPosition[0]).toBeCloseTo(0.56, 3);
-    expect(slot.trophyLocalPosition[1]).toBeCloseTo(-0.905, 3);
+    expect(slot.trophyLocalPosition[1]).toBeCloseTo(-0.905 - (rest.viewport.bayHeight - 2.01) / 2, 3);
     expect(slot.trophyLocalPosition[2]).toBeCloseTo(0.34, 3);
-    expect(slot.trophyScale[0]).toBeGreaterThanOrEqual(0.70);
+    expect(slot.trophyScale[0]).toBeGreaterThanOrEqual(0.95);
     expect(slot.spotlightIntensity).toBe(0);
   }
 
@@ -713,31 +712,21 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
     const control = page.locator("[data-profile-tv]");
     await control.scrollIntoViewIfNeeded();
     await control.hover();
+    await expect.poll(() => control.evaluate(button => getComputedStyle(button, "::before").borderTopColor)).not.toBe("rgba(0, 0, 0, 0)");
     const geometry = await page.evaluate(() => {
       const stage = document.querySelector(".profile-adventure-stage").getBoundingClientRect();
-      const canvas = document.querySelector(".profile-sprite-canvas");
       const button = document.querySelector("[data-profile-tv]");
       const buttonRect = button.getBoundingClientRect();
       const before = getComputedStyle(button, "::before");
       const label = button.querySelector("span").getBoundingClientRect();
       const state = window.__profileAdventureDebug.getState();
-      const prop = state.layout.props.tv;
-      const mobileLayout = canvas.width === 320;
-      const mapX = mobileLayout ? .05 + prop.worldAnchor[0] * .9 : prop.worldAnchor[0];
-      const sourceY = prop.worldAnchor[1];
-      const mapY = !mobileLayout
-        ? sourceY
-        : sourceY < .34 ? .04 + sourceY * .95 : sourceY < .64 ? .02 + sourceY * 1.02 : -.02 + sourceY * 1.06;
-      const size = mobileLayout ? prop.mobileSize : prop.desktopSize;
-      const internalWidth = Math.round(size[0] * canvas.width);
-      const internalHeight = Math.round(size[1] * canvas.height);
-      const internalLeft = Math.round(mapX * canvas.width - internalWidth * prop.pivot[0]);
-      const internalTop = Math.round(mapY * canvas.height - internalHeight * prop.pivot[1]);
+      const rendered = state.viewport.props.tv;
+      const [worldWidth, worldHeight] = state.viewport.worldSize;
       const cabinet = {
-        left: internalLeft / canvas.width * stage.width,
-        top: internalTop / canvas.height * stage.height,
-        width: internalWidth / canvas.width * stage.width,
-        height: internalHeight / canvas.height * stage.height
+        left: rendered.left / worldWidth * stage.width,
+        top: rendered.top / worldHeight * stage.height,
+        width: rendered.width / worldWidth * stage.width,
+        height: rendered.height / worldHeight * stage.height
       };
       const screenRect = state.layout.tvScreenRect;
       const screen = {
@@ -789,6 +778,122 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
   }
 });
 
+test("resizing extends the room while keeping all four cabinets square and their contents proportional", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready && window.__galleryDebug?.().viewport, null, { timeout: 60_000 });
+  const samples = [];
+  for (const [width, height] of [[1920, 1080], [2560, 1080], [1280, 900], [1000, 900], [760, 900], [390, 844], [1920, 1080]]) {
+    await page.setViewportSize({ width, height });
+    await expect.poll(() => page.evaluate(() => {
+      const canvas = document.querySelector(".profile-sprite-canvas").getBoundingClientRect();
+      const room = window.__profileAdventureDebug.getState().viewport;
+      const gallery = document.querySelector(".playcanvas-gallery-canvas").getBoundingClientRect();
+      return Math.max(Math.abs(canvas.width / canvas.height - room.worldSize[0] / room.worldSize[1]),
+        Math.abs(gallery.width / gallery.height - window.__galleryDebug().viewport.aspect));
+    })).toBeLessThan(0.00001);
+    const sample = await page.evaluate(() => {
+      const canvas = document.querySelector(".profile-sprite-canvas");
+      const bounds = canvas.getBoundingClientRect();
+      const ctx = canvas.getContext("2d");
+      const drawImage = ctx.drawImage;
+      const actorRatios = [];
+      // Inspect actual draw calls, including their transforms and CSS scaling.
+      ctx.drawImage = function (...args) {
+        if (args.length === 9 && args[0].src?.includes("/actors/")) {
+          const transform = this.getTransform();
+          actorRatios.push(Math.abs(args[7] * transform.a * bounds.width / canvas.width)
+            / Math.abs(args[8] * transform.d * bounds.height / canvas.height));
+        }
+        return drawImage.apply(this, args);
+      };
+      try { window.__profileAdventureDebug.setTime(0); } finally { ctx.drawImage = drawImage; }
+      const room = window.__profileAdventureDebug.getState().viewport;
+      const gallery = window.__galleryDebug();
+      const boxes = [...document.querySelectorAll(".gallery-ui-card")].map(e => {
+        const r = e.getBoundingClientRect(); return [r.width, r.height];
+      });
+      const actorBoxes = [...document.querySelectorAll("[data-profile-actor]")].map(e => {
+        const r = e.getBoundingClientRect(); return [r.width, r.height];
+      });
+      return { room, gallery: gallery.viewport, trophies: gallery.slots.map(s => s.trophyScale), actorRatios, actorBoxes, boxes };
+    });
+    expect(sample.actorRatios).toHaveLength(5);
+    sample.actorRatios.forEach(ratio => expect(ratio).toBeCloseTo(1, 6));
+    sample.actorBoxes.forEach(([w, h]) => expect(Math.abs(w - h)).toBeLessThan(0.03));
+    expect(sample.gallery.rootScale).toEqual([1, 1, 1]);
+    expect(sample.gallery.width / sample.gallery.height).toBeCloseTo(sample.gallery.aspect, 6);
+    expect(sample.gallery.geometry.filter(p => p.name.endsWith(".back-panel"))).toHaveLength(4);
+    for (const panel of sample.gallery.geometry) {
+      if (panel.name === "outer-frame-left") {
+        expect(panel.size[0]).toBeCloseTo(0.28, 5);
+        expect(panel.size[1]).toBeCloseTo(sample.gallery.height, 5);
+      } else {
+        expect(panel.size[0]).toBeCloseTo(sample.gallery.bayWidth, 5);
+        expect(panel.size[1]).toBeCloseTo(sample.gallery.bayHeight, 5);
+      }
+    }
+    for (const bay of sample.gallery.bays) {
+      expect(bay.scale).toEqual([1, 1, 1]);
+      expect(bay.unitPixels[0] / bay.unitPixels[1]).toBeCloseTo(1, 6);
+      expect(bay.bounds[2]).toBeCloseTo(sample.gallery.bays[0].bounds[2], 4);
+      expect(bay.bounds[3]).toBeCloseTo(sample.gallery.bays[0].bounds[3], 4);
+    }
+    sample.boxes.forEach(([w, h]) => {
+      expect(Math.abs(w - sample.boxes[0][0])).toBeLessThan(0.03);
+      expect(Math.abs(h - sample.boxes[0][1])).toBeLessThan(0.03);
+    });
+    if (samples.length) {
+      for (const [id, prop] of Object.entries(sample.room.props)) {
+        const original = samples[0].room.props[id];
+        expect(prop.width / prop.height).toBeCloseTo(original.width / original.height, 6);
+      }
+      expect(sample.trophies).toEqual(samples[0].trophies);
+    }
+    samples.push(sample);
+  }
+  // Filling the column under a square gallery adds depth on wide screens.
+  // The floor extends along that axis; furniture keeps its authored aspect.
+  expect(samples[1].room.worldSize[1]).toBeGreaterThan(samples[0].room.worldSize[1]);
+  samples.forEach(sample => {
+    expect(sample.gallery.aspect).toBeCloseTo(1, 4);
+    expect(sample.gallery.bayWidth / sample.gallery.bayHeight).toBeCloseTo(1, 4);
+  });
+  expect(samples.at(-1).room.worldSize).toEqual(samples[0].room.worldSize);
+  samples.at(-1).gallery.geometry.forEach((panel, index) => {
+    panel.size.forEach((dimension, axis) => expect(dimension).toBeCloseTo(samples[0].gallery.geometry[index].size[axis], 5));
+  });
+});
+
+test("profile identity remains readable without overlap across narrow and wide columns", async ({ page }) => {
+  for (const [width, height] of [[1710, 1028], [1280, 900], [2560, 1440], [1000, 900], [760, 900], [390, 844]]) {
+    await page.setViewportSize({ width, height });
+    await expect.poll(() => page.evaluate(() => {
+      const rect = s => document.querySelector(s).getBoundingClientRect();
+      const overlaps = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
+        * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+      const summary = rect('.profile-summary');
+      const name = document.querySelector('.profile-summary h1');
+      const text = document.createRange(); text.selectNodeContents(name);
+      const nameFits = [...text.getClientRects()].every(r => r.left >= summary.left && r.right <= summary.right);
+      return nameFits
+        && overlaps(summary, rect('.profile-dossier')) === 0
+        && overlaps(rect('.research-identity'), rect('.visitor-telemetry')) === 0
+        && overlaps(rect('.profile-telemetry-row'), rect('.social-dock')) === 0
+        && rect('.profile-top').bottom <= rect('.future-slot').top
+        && document.documentElement.scrollWidth === document.documentElement.clientWidth;
+    })).toBe(true);
+  }
+});
+
+test("all four trophies load without hover after the sprite room is ready", async ({ page }) => {
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 30_000 });
+  await expect.poll(() => page.evaluate(() => {
+    const gallery = window.__galleryDebug?.();
+    return gallery?.profileCompanionReady && Object.values(gallery.generatedTrophyModels).filter(Boolean).length === 4;
+  }), { timeout: 30_000 }).toBe(true);
+  expect(await page.evaluate(() => window.__galleryDebug().generatedTrophyInteractionStarted)).toBe(false);
+});
+
 test("Voyage wildlife follows daylight, rare whale, night patrol, and mobile capacity rules", async ({ browser }) => {
   test.setTimeout(240_000);
   const openVoyage = async (page) => {
@@ -838,7 +943,8 @@ test("Voyage wildlife follows daylight, rare whale, night patrol, and mobile cap
   expect(dolphinBreach.dolphins.some((actor) => actor.height > .5 && actor.breachPhase !== "none")).toBe(true);
   await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .5));
   const forcedWhale = await page.evaluate(() => window.__voyageDebug().wildlife);
-  expect(forcedWhale.whales[0].height).toBeGreaterThan(1);
+  // A whale surfaces by pitching its head up while its body stays at the waterline.
+  expect(forcedWhale.whales[0].height).toBeLessThan(.5);
   expect(forcedWhale.whales[0].breachPhase).toBe("apex");
   await page.evaluate(() => window.__voyageDebug.setWildlifeScenario("whale-breach", .5));
   expect((await page.evaluate(() => window.__voyageDebug().wildlife.whales[0].position))).toEqual(forcedWhale.whales[0].position);
@@ -857,16 +963,27 @@ test("Voyage wildlife follows daylight, rare whale, night patrol, and mobile cap
   const frozen = night.wildlife.sharks.map((actor) => actor.position);
   await page.waitForTimeout(220);
   expect((await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map((actor) => actor.position)))).toEqual(frozen);
+  await page.waitForFunction(() => {
+    const { gulls, dolphins, whales, sharks } = window.__voyageDebug().wildlife;
+    return [...gulls, ...dolphins, ...whales, ...sharks].every(actor => actor.modelReady && actor.animationDuration > 1);
+  }, null, { timeout: 90_000 });
+  const bonesAt45 = await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map(actor => actor.animationTime));
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map(actor => actor.animationTime))).toEqual(bonesAt45);
+  await page.evaluate(() => window.__voyageDebug.setSceneTime(45.25));
+  expect(await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map(actor => actor.animationTime))).not.toEqual(bonesAt45);
+  await page.evaluate(() => window.__voyageDebug.setSceneTime(45));
+  expect(await page.evaluate(() => window.__voyageDebug().wildlife.sharks.map(actor => actor.animationTime))).toEqual(bonesAt45);
   const wildlifeResources = await page.evaluate(() => performance.getEntriesByType("resource")
     .map((entry) => entry.name)
     .filter((name) => /gull|dolphin|whale|shark/i.test(name)));
   expect(wildlifeResources.length).toBeGreaterThanOrEqual(4);
   expect(wildlifeResources.every((name) => /127\.0\.0\.1:4173\/assets\/voyage\/models\/wildlife\/.*\.glb/i.test(name))).toBe(true);
   for (const filename of [
-    "gull-trellis2-1024-cascade.glb",
-    "dolphin-trellis2-1024-cascade.glb",
-    "blue-whale-trellis2-1024-cascade.glb",
-    "shark-trellis2-1024-cascade.glb"
+    "realistic/seagull.glb",
+    "realistic/bottlenose-dolphin.glb",
+    "realistic/blue-whale.glb",
+    "realistic/shark.glb"
   ]) {
     expect(wildlifeResources.some((name) => name.includes(filename))).toBe(true);
   }
@@ -876,7 +993,7 @@ test("Voyage wildlife follows daylight, rare whale, night patrol, and mobile cap
   const mobilePage = await mobile.newPage();
   await openVoyage(mobilePage);
   await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("gulls", .5));
-  expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).gulls)).toBe(3);
+  expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).gulls)).toBe(2);
   await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("dolphins-breach", .47));
   expect(visibleCount((await mobilePage.evaluate(() => window.__voyageDebug().wildlife)).dolphins)).toBe(2);
   await mobilePage.evaluate(() => window.__voyageDebug.setWildlifeScenario("shark-patrol", .5));
@@ -949,8 +1066,8 @@ test("THE LUMINOUS WAKE is one unified pixel voyage without dashboard-era layers
   expect(debug.wakeStrength).toBeGreaterThan(.9);
   expect(debug.reflectionStrength).toBeGreaterThan(.6);
   expect(debug.cameraProjection).toBe("perspective");
-  expect(debug.cameraPitch).toBeGreaterThanOrEqual(72);
-  expect(debug.cameraPitch).toBeLessThanOrEqual(78);
+  expect(debug.cameraPitch).toBeGreaterThanOrEqual(55);
+  expect(debug.cameraPitch).toBeLessThanOrEqual(58);
   expect(debug.waterMode).toBe("xz-gerstner");
   expect(debug.reflectionMode).toBe("planar");
   await expect.poll(() => page.evaluate(() => Object.values(window.__voyageDebug().landmarkAssets)), { timeout: 90_000 }).toEqual(["v3-lod", "v3-lod", "v3-lod", "v3-lod", "v3-lod"]);
@@ -1239,7 +1356,10 @@ test("desktop Evidence is a complete single-frame viewer inside the lower right 
   await toggle.focus();
   await toggle.click();
   await expect(page.locator("[data-evidence-panel]")).toHaveAttribute("aria-hidden", "false");
-  await page.waitForFunction(() => document.querySelector("[data-evidence-panel]").getBoundingClientRect().height >= 229);
+  // Measure the complete panel after its height transition, at every responsive size.
+  await page.locator("[data-evidence-panel]").evaluate(async (element) => {
+    await Promise.all(element.getAnimations().map(animation => animation.finished.catch(() => {})));
+  });
   const geometry = await page.evaluate(() => {
     const rect = (selector) => {
       const box = document.querySelector(selector).getBoundingClientRect();

@@ -1,4 +1,6 @@
 import "./styles/arcade.css";
+import "./styles/cabin-room.css";
+import { initializeProfileViewport } from "./profile/ProfileViewportLayout";
 import { siteContent } from "./content/site";
 import { appState, setActiveSection } from "./app/state";
 import { renderApplication, initializeApplication } from "./components/renderApp";
@@ -10,6 +12,7 @@ if (!appRoot) {
 }
 
 appRoot.innerHTML = renderApplication(siteContent);
+initializeProfileViewport();
 
 initializeApplication({
   content: siteContent,

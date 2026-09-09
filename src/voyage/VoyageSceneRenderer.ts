@@ -1,3 +1,4 @@
+import { WAVE_COMPONENTS, sharedWaveGLSL, oceanBrdfGLSL, NIGHT } from "../seascape/Ocean";
 import * as pc from "playcanvas";
 import type { QualityTier, VoyageNode, VoyageNodeId } from "../content/site";
 import type { TransitionAwareSceneRenderer } from "../scenes/SceneRenderer";
@@ -231,21 +232,14 @@ const RAD_TO_DEG = 180 / Math.PI;
 
 const BODY_ORDER: FloatingBodyId[] = ["docdiff", "directl", "neural", "eva01", "world", "boat"];
 
-const WAVE_COMPONENTS: readonly WaveComponent[] = [
-  { direction: [1, .18], wavelength: 7.8, amplitude: .110, speed: .48, steepness: .22 },
-  { direction: [.36, .93], wavelength: 4.2, amplitude: .052, speed: .72, steepness: .18 },
-  { direction: [-.74, .67], wavelength: 2.1, amplitude: .024, speed: 1.05, steepness: .14 },
-  { direction: [.58, -.82], wavelength: .7, amplitude: .008, speed: 1.6, steepness: .08 }
-] as const;
-
 const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
   {
     time: 0, phase: "morning", sunAzimuth: 118, sunElevation: 28,
     sunColor: [1.0, .78, .50], sunStrength: 1.62,
     moonAzimuth: 300, moonElevation: 8, moonColor: [.46, .63, .92], moonStrength: .04,
-    ambientColor: [.34, .50, .58], ambientStrength: 1,
-    exposure: 1.42, fogColor: [.32, .52, .59],
-    waterDeep: [.012, .185, .300], waterMid: [.035, .395, .585], waterHighlight: [.78, .95, .96],
+    ambientColor: [.22, .34, .36], ambientStrength: 1,
+    exposure: 1.28, fogColor: [.12, .24, .26],
+    waterDeep: [.014, .084, .102], waterMid: [.055, .205, .217], waterHighlight: [.78, .87, .76],
     sunReflectionStrength: 1.08, moonReflectionStrength: .03,
     lighthouseStrength: .38, routeSpectrumStrength: .78, waterLuminance: .34
   },
@@ -253,9 +247,9 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
     time: 12, phase: "noon", sunAzimuth: 166, sunElevation: 72,
     sunColor: [1.0, .95, .82], sunStrength: 1.90,
     moonAzimuth: 330, moonElevation: -8, moonColor: [.42, .58, .88], moonStrength: 0,
-    ambientColor: [.42, .62, .70], ambientStrength: 1,
-    exposure: 1.37, fogColor: [.48, .70, .76],
-    waterDeep: [.016, .235, .380], waterMid: [.052, .490, .690], waterHighlight: [.91, 1.0, .99],
+    ambientColor: [.29, .43, .45], ambientStrength: 1,
+    exposure: 1.27, fogColor: [.16, .30, .32],
+    waterDeep: [.018, .110, .135], waterMid: [.065, .265, .280], waterHighlight: [.85, .92, .84],
     sunReflectionStrength: .96, moonReflectionStrength: 0,
     lighthouseStrength: .11, routeSpectrumStrength: .65, waterLuminance: .43
   },
@@ -263,9 +257,9 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
     time: 22, phase: "noon", sunAzimuth: 196, sunElevation: 59,
     sunColor: [1.0, .92, .76], sunStrength: 1.75,
     moonAzimuth: 16, moonElevation: -4, moonColor: [.40, .57, .88], moonStrength: .02,
-    ambientColor: [.37, .56, .64], ambientStrength: 1,
-    exposure: 1.35, fogColor: [.41, .61, .67],
-    waterDeep: [.014, .215, .350], waterMid: [.047, .445, .640], waterHighlight: [.87, .98, .96],
+    ambientColor: [.25, .39, .42], ambientStrength: 1,
+    exposure: 1.26, fogColor: [.14, .27, .29],
+    waterDeep: [.017, .098, .122], waterMid: [.062, .240, .254], waterHighlight: [.81, .89, .80],
     sunReflectionStrength: 1.0, moonReflectionStrength: 0,
     lighthouseStrength: .14, routeSpectrumStrength: .69, waterLuminance: .39
   },
@@ -275,7 +269,7 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
     moonAzimuth: 58, moonElevation: 6, moonColor: [.38, .55, .88], moonStrength: .12,
     ambientColor: [.23, .34, .39], ambientStrength: 1,
     exposure: 1.29, fogColor: [.29, .33, .35],
-    waterDeep: [.014, .135, .220], waterMid: [.035, .270, .360], waterHighlight: [1.0, .62, .34],
+    waterDeep: [.017, .065, .081], waterMid: [.052, .164, .168], waterHighlight: [1.0, .62, .34],
     sunReflectionStrength: 1, moonReflectionStrength: .06,
     lighthouseStrength: .75, routeSpectrumStrength: .86, waterLuminance: .24
   },
@@ -292,20 +286,20 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
   {
     time: 40, phase: "night", sunAzimuth: 270, sunElevation: -10,
     sunColor: [.62, .24, .10], sunStrength: .03,
-    moonAzimuth: 76, moonElevation: 43, moonColor: [.38, .58, .92], moonStrength: .84,
+    moonAzimuth: 76, moonElevation: 43, moonColor: NIGHT.moon, moonStrength: .84,
     ambientColor: [.052, .085, .145], ambientStrength: 1,
-    exposure: 1.12, fogColor: [.030, .065, .110],
-    waterDeep: [.005, .024, .056], waterMid: [.012, .074, .130], waterHighlight: [.40, .64, .86],
+    exposure: 1.12, fogColor: NIGHT.fog,
+    waterDeep: NIGHT.deep, waterMid: NIGHT.mid, waterHighlight: NIGHT.highlight,
     sunReflectionStrength: .02, moonReflectionStrength: .88,
     lighthouseStrength: 1.35, routeSpectrumStrength: .94, waterLuminance: .075
   },
   {
     time: 45, phase: "night", sunAzimuth: 282, sunElevation: -16,
     sunColor: [.52, .20, .08], sunStrength: .01,
-    moonAzimuth: 104, moonElevation: 54, moonColor: [.42, .63, .98], moonStrength: .92,
+    moonAzimuth: 104, moonElevation: 54, moonColor: NIGHT.moon, moonStrength: .92,
     ambientColor: [.046, .078, .142], ambientStrength: 1,
-    exposure: 1.13, fogColor: [.026, .057, .106],
-    waterDeep: [.004, .021, .052], waterMid: [.010, .066, .124], waterHighlight: [.43, .69, .94],
+    exposure: 1.13, fogColor: NIGHT.fog,
+    waterDeep: NIGHT.deep, waterMid: NIGHT.mid, waterHighlight: NIGHT.highlight,
     sunReflectionStrength: 0, moonReflectionStrength: .96,
     lighthouseStrength: 1.45, routeSpectrumStrength: .96, waterLuminance: .07
   },
@@ -323,21 +317,21 @@ const ENVIRONMENT_KEYFRAMES: readonly EnvironmentKeyframe[] = [
     time: 60, phase: "morning", sunAzimuth: 118, sunElevation: 28,
     sunColor: [1.0, .78, .50], sunStrength: 1.62,
     moonAzimuth: 300, moonElevation: 8, moonColor: [.46, .63, .92], moonStrength: .04,
-    ambientColor: [.34, .50, .58], ambientStrength: 1,
-    exposure: 1.42, fogColor: [.32, .52, .59],
-    waterDeep: [.012, .185, .300], waterMid: [.035, .395, .585], waterHighlight: [.78, .95, .96],
+    ambientColor: [.22, .34, .36], ambientStrength: 1,
+    exposure: 1.28, fogColor: [.12, .24, .26],
+    waterDeep: [.014, .084, .102], waterMid: [.055, .205, .217], waterHighlight: [.78, .87, .76],
     sunReflectionStrength: 1.08, moonReflectionStrength: .03,
     lighthouseStrength: .38, routeSpectrumStrength: .78, waterLuminance: .34
   }
 ] as const;
 
 const DESKTOP_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]> = {
-  docdiff: [-8, 0, 4.2],
-  directl: [-5, 0, 1.5],
-  neural: [-2.3, 0, -1.2],
-  eva01: [.8, 0, 1.15],
-  world: [.15, 0, -3.7],
-  boat: [-.1, 0, 2.1]
+  docdiff: [-6.5, 0, 3.5],
+  directl: [-5.2, 0, -.2],
+  neural: [-2.3, 0, -2.4],
+  eva01: [.05, 0, 2.1],
+  world: [1.15, 0, -3.1],
+  boat: [-1.12, 0, 3.25]
 };
 
 const PORTRAIT_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]> = {
@@ -345,7 +339,7 @@ const PORTRAIT_LAYOUT: Record<FloatingBodyId, readonly [number, number, number]>
   directl: [1.4, 0, 1.15],
   neural: [-1.4, 0, 0],
   eva01: [1.2, 0, -1.15],
-  world: [-1.65, 0, -2.35],
+  world: [-1.65, 0, -1.95],
   boat: [.15, 0, -.72]
 };
 
@@ -360,8 +354,8 @@ const LANDMARK_CONFIG: Record<LandmarkKind, LandmarkConfig> = {
   reef: {
     v1Url: `/assets/voyage/models/landmarks/neural.glb?v=${V1_VERSION}`,
     posterUrl: "/assets/voyage/landmarks/posters/v2/prism-cutout.webp",
-    worldHeight: .95,
-    v2WorldHeight: .95,
+    worldHeight: 1.20,
+    v2WorldHeight: 1.20,
     yaw: 10
   },
   lighthouse: {
@@ -374,8 +368,8 @@ const LANDMARK_CONFIG: Record<LandmarkKind, LandmarkConfig> = {
   harbor: {
     v1Url: `/assets/voyage/models/landmarks/eva01.glb?v=${V1_VERSION}`,
     posterUrl: "/assets/voyage/landmarks/posters/v2/harbor-cutout.webp",
-    worldHeight: 1.36,
-    v2WorldHeight: 1.36,
+    worldHeight: 1.66,
+    v2WorldHeight: 1.66,
     yaw: 8
   },
   gate: {
@@ -421,46 +415,6 @@ const BODY_ROTATION_LIMITS: Record<FloatingBodyId, readonly [pitch: number, roll
   boat: [4, 6]
 };
 
-const waveHeightTerms = WAVE_COMPONENTS.map((wave) => {
-  const [dx, dz] = wave.direction;
-  return `sin(dot(normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})), p) * ${(Math.PI * 2 / wave.wavelength).toFixed(7)} + t * ${wave.speed.toFixed(5)}) * ${wave.amplitude.toFixed(6)}`;
-}).join(" + ");
-
-const waveSlopeTermsX = WAVE_COMPONENTS.map((wave) => {
-  const [dx, dz] = wave.direction;
-  const k = Math.PI * 2 / wave.wavelength;
-  return `normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})).x * ${(k * wave.amplitude).toFixed(7)} * cos(dot(normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})), p) * ${k.toFixed(7)} + t * ${wave.speed.toFixed(5)})`;
-}).join(" + ");
-
-const waveSlopeTermsZ = WAVE_COMPONENTS.map((wave) => {
-  const [dx, dz] = wave.direction;
-  const k = Math.PI * 2 / wave.wavelength;
-  return `normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})).y * ${(k * wave.amplitude).toFixed(7)} * cos(dot(normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})), p) * ${k.toFixed(7)} + t * ${wave.speed.toFixed(5)})`;
-}).join(" + ");
-
-const waveHorizontalTermsX = WAVE_COMPONENTS.map((wave) => {
-  const [dx, dz] = wave.direction;
-  const length = Math.hypot(dx, dz) || 1;
-  return `${(dx / length * wave.steepness * wave.amplitude).toFixed(7)} * cos(dot(normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})), p) * ${(Math.PI * 2 / wave.wavelength).toFixed(7)} + t * ${wave.speed.toFixed(5)})`;
-}).join(" + ");
-
-const waveHorizontalTermsZ = WAVE_COMPONENTS.map((wave) => {
-  const [dx, dz] = wave.direction;
-  const length = Math.hypot(dx, dz) || 1;
-  return `${(dz / length * wave.steepness * wave.amplitude).toFixed(7)} * cos(dot(normalize(vec2(${dx.toFixed(5)}, ${dz.toFixed(5)})), p) * ${(Math.PI * 2 / wave.wavelength).toFixed(7)} + t * ${wave.speed.toFixed(5)})`;
-}).join(" + ");
-
-const sharedWaveGLSL = `
-float sharedWaveHeight(vec2 p, float t) {
-  return ${waveHeightTerms};
-}
-vec2 sharedWaveSlope(vec2 p, float t) {
-  return vec2(${waveSlopeTermsX}, ${waveSlopeTermsZ});
-}
-vec2 sharedWaveHorizontal(vec2 p, float t) {
-  return vec2(${waveHorizontalTermsX}, ${waveHorizontalTermsZ});
-}`;
-
 const vertexGLSL = `
 attribute vec3 aPosition;
 attribute vec2 aUv0;
@@ -496,6 +450,8 @@ varying vec3 vWorldPosition;
 varying vec3 vWorldNormal;
 varying vec4 vReflectionClip;
 uniform sampler2D uReflectionTexture;
+uniform sampler2D uMarineTexture;
+uniform float uMarineTextureEnabled;
 uniform vec2 uResolution;
 uniform vec3 uCameraWorld;
 uniform float uTime;
@@ -584,31 +540,35 @@ float signedSegmentDistance(vec2 p, vec2 a, vec2 b, out float along) {
   return length(offset) * mix(1.0, side, step(.00001, length(offset)));
 }
 
+// Catmull-Rom segments share tangents at the research landmarks. The same
+// world-space curve drives the light trail through every wave phase.
+float routeCurveDistance(vec2 p, vec2 a, vec2 b, vec2 c, vec2 d, out float along) {
+  float nearest = 1000.0;
+  float signedNearest = nearest;
+  vec2 previous = b;
+  along = 0.0;
+  for (int i = 1; i <= 12; i++) {
+    float t = float(i) / 12.0;
+    vec2 current = .5 * ((2.0 * b) + (-a + c) * t
+      + (2.0 * a - 5.0 * b + 4.0 * c - d) * t * t
+      + (-a + 3.0 * b - 3.0 * c + d) * t * t * t);
+    float localT;
+    float distance = signedSegmentDistance(p, previous, current, localT);
+    if (abs(distance) < nearest) {
+      nearest = abs(distance);
+      signedNearest = distance;
+      along = (float(i - 1) + localT) / 12.0;
+    }
+    previous = current;
+  }
+  return signedNearest;
+}
+
 float ellipse(vec2 p, vec2 center, vec2 radius) {
   return 1.0 - smoothstep(.78, 1.08, length((p - center) / max(radius, vec2(.001))));
 }
 
-float distributionGGX(float noH, float roughness) {
-  float a = roughness * roughness;
-  float a2 = a * a;
-  float d = noH * noH * (a2 - 1.0) + 1.0;
-  return a2 / max(.0001, 3.14159265 * d * d);
-}
-
-float geometrySchlick(float noV, float roughness) {
-  float r = roughness + 1.0;
-  float k = r * r * .125;
-  return noV / max(.0001, noV * (1.0 - k) + k);
-}
-
-float ggxSpecular(vec3 normal, vec3 viewDir, vec3 lightDir, float roughness) {
-  vec3 halfDir = normalize(viewDir + lightDir);
-  float noV = max(.001, dot(normal, viewDir));
-  float noL = max(0.0, dot(normal, lightDir));
-  float noH = max(0.0, dot(normal, halfDir));
-  return distributionGGX(noH, roughness) * geometrySchlick(noV, roughness) * geometrySchlick(noL, roughness) * noL;
-}
-
+${oceanBrdfGLSL}
 float reflectionRoad(vec2 p, vec2 axis, float elevation, float seed) {
   vec2 direction = normalize(axis + vec2(.0001));
   vec2 normal = vec2(-direction.y, direction.x);
@@ -624,17 +584,11 @@ float reflectionRoad(vec2 p, vec2 axis, float elevation, float seed) {
 }
 
 vec3 spectrumWake(float signedDistance, float along, float phase, float oasisMix) {
-  float center = exp(-abs(signedDistance) * 17.0);
-  float cyan = exp(-abs(signedDistance + .095) * 28.0);
-  float gold = exp(-abs(signedDistance - .095) * 27.0);
-  float magenta = exp(-abs(signedDistance - .175) * 34.0);
-  float flow = .72 + .28 * sin(phase + along * 15.0);
-  vec3 spectrum = vec3(.90, .94, .83) * center * .88;
-  spectrum += vec3(.13, .82, .94) * cyan * .78;
-  spectrum += vec3(1.0, .55, .16) * gold * .82;
-  spectrum += vec3(.88, .20, .48) * magenta * .30;
-  spectrum = mix(spectrum, spectrum + vec3(.08, .92, .34) * center * .78, oasisMix);
-  return spectrum * flow;
+  float core = exp(-abs(signedDistance) * 42.0);
+  float halo = exp(-abs(signedDistance) * 9.0);
+  float flow = .84 + .16 * sin(phase + along * 11.0);
+  vec3 light = mix(vec3(.92, .76, .43), vec3(.35, .78, .65), oasisMix);
+  return (light * core * 1.30 + light * halo * .17) * flow;
 }
 
 vec3 bodyContribution(vec2 p, vec4 body, vec4 state, vec3 lamp, float waveBreak) {
@@ -651,100 +605,18 @@ vec3 bodyContribution(vec2 p, vec4 body, vec4 state, vec3 lamp, float waveBreak)
   return result;
 }
 
+// Surface disturbance only. The animal itself comes from the skinned-mesh prepass.
 vec3 marineContribution(vec2 p, vec4 body, vec4 state, float motionTime) {
-  float visibility = state.y;
-  if (visibility <= .0001) return vec3(0.0);
+  if (state.y <= .0001) return vec3(0.0);
   vec2 direction = normalize(body.zw + vec2(.0001));
-  vec2 acrossAxis = vec2(-direction.y, direction.x);
   vec2 delta = p - body.xy;
   float along = dot(delta, direction);
-  float across = dot(delta, acrossAxis);
-  float whale = 1.0 - step(.49, abs(state.x - 2.0));
-  float shark = 1.0 - step(.49, abs(state.x - 3.0));
-  float dolphin = 1.0 - max(whale, shark);
-  float halfLength = mix(.72, 1.72, whale);
-  halfLength = mix(halfLength, .92, shark) * max(.35, state.z);
-  float halfWidth = mix(.20, .43, whale);
-  halfWidth = mix(halfWidth, .24, shark) * max(.35, state.z);
-  float radial = length(vec2(along / max(.001, halfLength), across / max(.001, halfWidth)));
-  float creatureBody = 1.0 - smoothstep(.68, 1.08, radial);
-  float tailAlong = along + halfLength * .86;
-  float flukeWidth = halfWidth * mix(1.14, 1.48, whale);
-  float leftFluke = length(vec2((tailAlong + across * .24) / max(.06, halfLength * .22), (across - flukeWidth * .62) / max(.03, halfWidth * .68)));
-  float rightFluke = length(vec2((tailAlong - across * .24) / max(.06, halfLength * .22), (across + flukeWidth * .62) / max(.03, halfWidth * .68)));
-  float flukes = 1.0 - smoothstep(.58, 1.05, min(leftFluke, rightFluke));
-  float marineCreature = max(creatureBody, flukes * .72);
-
-  // Sharks need a readable head-to-tail profile under the water. A single
-  // ellipse reads like a submarine, so build a pointed snout, broad torso,
-  // narrow caudal peduncle, tail lobes, and small pectoral fins separately.
-  float sharkAxis = along / max(.001, halfLength);
-  float sharkRearTaper = smoothstep(-1.04, -.30, sharkAxis);
-  float sharkFrontTaper = 1.0 - smoothstep(.26, 1.08, sharkAxis);
-  float sharkLongitudinal = smoothstep(-1.08, -.94, sharkAxis) * (1.0 - smoothstep(.98, 1.10, sharkAxis));
-  float sharkMidBulge = 1.0 + .12 * (1.0 - smoothstep(.0, .72, abs(sharkAxis - .04)));
-  float sharkWidthProfile = max(.10, min(sharkRearTaper, sharkFrontTaper)) * sharkMidBulge;
-  float sharkBodyDistance = abs(across) / max(.012, halfWidth * sharkWidthProfile);
-  float sharkBody = sharkLongitudinal * (1.0 - smoothstep(.72, 1.04, sharkBodyDistance));
-
-  float sharkTailGate = 1.0 - smoothstep(-.58, -.16, sharkAxis);
-  float sharkTailWave = sin(motionTime * 2.55 + dot(body.xy, vec2(.73, 1.17))) * halfWidth * .18 * sharkTailGate;
-  float sharkTailAcross = across - sharkTailWave;
-  float sharkPeduncleDistance = length(vec2(
-    (along + halfLength * .82) / max(.05, halfLength * .34),
-    sharkTailAcross / max(.025, halfWidth * .24)
-  ));
-  float sharkPeduncle = 1.0 - smoothstep(.62, 1.04, sharkPeduncleDistance);
-  float sharkTailAlong = along + halfLength * 1.07;
-  float sharkLeftTail = length(vec2(
-    (sharkTailAlong + sharkTailAcross * .34) / max(.05, halfLength * .19),
-    (sharkTailAcross - halfWidth * .64) / max(.025, halfWidth * .56)
-  ));
-  float sharkRightTail = length(vec2(
-    (sharkTailAlong - sharkTailAcross * .34) / max(.05, halfLength * .19),
-    (sharkTailAcross + halfWidth * .64) / max(.025, halfWidth * .56)
-  ));
-  float sharkTail = 1.0 - smoothstep(.54, 1.04, min(sharkLeftTail, sharkRightTail));
-
-  float sharkAcrossRatio = abs(across) / max(.02, halfWidth);
-  float sharkFinProgress = clamp((sharkAcrossRatio - .72) / 1.10, 0.0, 1.0);
-  float sharkFinCenter = halfLength * mix(.10, -.34, sharkFinProgress);
-  float sharkFinHalfLength = halfLength * mix(.22, .035, sharkFinProgress);
-  float sharkFinAcrossGate = smoothstep(.68, .82, sharkAcrossRatio)
-    * (1.0 - smoothstep(1.62, 1.84, sharkAcrossRatio));
-  float sharkPectorals = sharkFinAcrossGate
-    * (1.0 - smoothstep(sharkFinHalfLength * .58, sharkFinHalfLength, abs(along - sharkFinCenter)));
-  float sharkCreature = max(max(sharkBody, sharkPeduncle), max(sharkTail * .90, sharkPectorals * .82));
-  float creature = mix(marineCreature, sharkCreature, shark);
-  float marineEdge = smoothstep(.48, .88, radial) * (1.0 - smoothstep(.88, 1.10, radial));
-  float sharkEdge = smoothstep(.08, .64, sharkCreature) * (1.0 - smoothstep(.66, .94, sharkCreature));
-  float edge = mix(marineEdge, sharkEdge, shark);
-  vec3 depthColor = mix(vec3(.060, .145, .205), uWaterDeep * .78, .30);
-  float depthWeight = mix(.96, 1.30, whale);
-  depthWeight = mix(depthWeight, .82, shark);
-  vec3 result = -depthColor * creature * visibility * depthWeight;
-  result += vec3(.010, .034, .052) * creature * visibility * shark;
-  float spine = exp(-abs(across) * 10.0 / max(.35, state.z)) * (1.0 - smoothstep(.62, 1.0, abs(along) / max(.01, halfLength)));
-  result -= vec3(.025, .070, .105) * spine * visibility * (dolphin * .38 + whale * .62 + shark * .44);
-  float sharkDorsalRidge = exp(-abs(across) * 22.0 / max(.35, state.z))
-    * smoothstep(-.38, -.02, sharkAxis)
-    * (1.0 - smoothstep(.28, .56, sharkAxis));
-  result -= vec3(.018, .052, .078) * sharkDorsalRidge * visibility * shark;
-  vec3 moonEdge = mix(uMoonColor, vec3(.22, .62, .78), .38);
-  vec3 sharkEdgeColor = mix(vec3(.075, .30, .40), moonEdge, .48);
-  result += sharkEdgeColor * sharkDorsalRidge * visibility * shark * (.035 + uMoonStrength * .055);
-  result += sharkEdgeColor * sharkEdge * visibility * shark * (.16 + uMoonStrength * .28);
-  float moonRim = edge * smoothstep(-.72, .48, across / max(.02, halfWidth));
-  result += moonEdge * moonRim * visibility * shark * uMoonStrength * .34;
-  float behind = step(along, -.06) * (1.0 - smoothstep(.08, halfLength * 3.9, -along));
-  float wakeArms = exp(-abs(abs(across) - (-along * .16 + halfWidth * .24)) * 16.0 / max(.45, state.z));
-  float wakeBreak = smoothstep(.28, .82, valueNoise(p * 8.2 + motionTime * .06) + temporalCellNoise(floor(p * 17.0), motionTime * .32) * .30);
-  vec3 wakeColor = mix(vec3(.46, .70, .74), uWaterHighlight, .62);
-  float wakeStrength = mix(.10, .14, whale);
-  wakeStrength = mix(wakeStrength, .17, shark);
-  result += wakeColor * wakeArms * behind * state.w * visibility * wakeBreak * wakeStrength;
-  result += moonEdge * wakeArms * behind * state.w * visibility * shark * uMoonStrength * .055;
-  return result;
+  float across = dot(delta, vec2(-direction.y, direction.x));
+  float lengthScale = max(.45, state.z);
+  float behind = step(along, -.16) * (1.0 - smoothstep(.3, lengthScale * 3.4, -along));
+  float arms = exp(-abs(abs(across) - (-along * .15 + .16 * lengthScale)) * 21.0 / lengthScale);
+  float broken = smoothstep(.38, .84, valueNoise(p * 8.2 + motionTime * .06));
+  return mix(vec3(.34, .54, .52), uWaterHighlight, .5) * arms * behind * state.w * state.y * broken * .08;
 }
 
 vec3 splashContribution(vec2 p, vec4 splash) {
@@ -763,48 +635,48 @@ void main(void) {
   vec2 slope = sharedWaveSlope(p, time);
   vec3 viewDir = normalize(uCameraWorld - vWorldPosition);
   vec2 capillary = vec2(
-    cos(p.x * 12.8 + p.y * 4.1 + time * 1.43) + cos(p.x * 23.0 - p.y * 8.2 - time * 2.16) * .42,
-    cos(p.y * 14.4 - p.x * 3.8 + time * 1.71) + cos(p.y * 26.0 + p.x * 7.1 + time * 2.42) * .38
+    cos(p.x * 12.8 + p.y * 4.1 + time * 1.43) + cos(p.x * 23.0 - p.y * 8.2 - time * 2.16) * .18,
+    cos(p.y * 14.4 - p.x * 3.8 + time * 1.71) + cos(p.y * 26.0 + p.x * 7.1 + time * 2.42) * .16
   );
-  vec3 waterNormal = normalize(vWorldNormal + vec3(-capillary.x, 0.0, -capillary.y) * .021);
-  float slopeEnergy = clamp(length(slope) * 2.25 + length(capillary) * .035, 0.0, 1.0);
+  vec3 waterNormal = normalize(vWorldNormal + vec3(-capillary.x, 0.0, -capillary.y) * .009);
+  float slopeEnergy = clamp(length(slope) * 1.55 + length(capillary) * .012, 0.0, 1.0);
   float noV = max(0.0, dot(waterNormal, viewDir));
   float fresnel = .025 + .975 * pow(1.0 - noV, 5.0);
   float depthBand = smoothstep(-8.5, 6.0, p.y);
   float daylightClarity = smoothstep(.28, 1.45, uSunStrength) * (1.0 - uTransition);
   float illumination = clamp(uSunStrength * .42 + uMoonStrength * .28 + .34, .38, 1.18);
-  vec3 sea = mix(uWaterDeep, uWaterMid, clamp(.34 + depthBand * .16 + height * 1.24 + slopeEnergy * .12, 0.0, 1.0));
+  vec3 sea = mix(uWaterDeep, uWaterMid, clamp(.28 + depthBand * .18 + height * .58 + slopeEnergy * .08, 0.0, 1.0));
   float cloudShadow = .91 + valueNoise(p * .085 + vec2(time * .009, -time * .006)) * .09;
   sea *= cloudShadow * illumination;
-  sea *= mix(vec3(1.0), vec3(.88, 1.025, 1.13), daylightClarity * .48);
+  sea *= mix(vec3(1.0), vec3(.94, 1.015, 1.015), daylightClarity * .25);
   float clearDepth = valueNoise(p * .19 + vec2(time * .012, -time * .009));
-  sea += mix(vec3(.002, .035, .078), vec3(.012, .105, .190), clearDepth)
-    * daylightClarity * (.40 + noV * .42);
+  sea += mix(vec3(.002, .010, .012), vec3(.009, .034, .037), clearDepth)
+    * daylightClarity * (.28 + noV * .24);
   sea += uAmbientColor * fresnel * (.075 + illumination * .045);
-  sea += uWaterHighlight * max(0.0, height) * (.20 + slopeEnergy * .22);
+  sea += uWaterHighlight * max(0.0, height) * (.10 + slopeEnergy * .13);
 
-  float sunSpec = ggxSpecular(waterNormal, viewDir, normalize(uSunDirection), .16) * uSunStrength;
-  float moonSpec = ggxSpecular(waterNormal, viewDir, normalize(uMoonDirection), .22) * uMoonStrength;
+  float sunSpec = ggxSpecular(waterNormal, viewDir, normalize(uSunDirection), oceanSunRoughness) * uSunStrength;
+  float moonSpec = ggxSpecular(waterNormal, viewDir, normalize(uMoonDirection), oceanMoonRoughness) * uMoonStrength;
   float glintPattern = temporalCellNoise(floor(p * 10.0), time * .48);
-  float glintBreak = smoothstep(.22, .78, slopeEnergy * .58 + glintPattern * .62);
+  float glintBreak = smoothstep(.43, .86, slopeEnergy * .42 + glintPattern * .58);
   sunSpec = min(sunSpec, 2.6) * (.22 + glintBreak * .78);
   moonSpec = min(moonSpec, 2.2) * (.20 + glintBreak * .80);
   float sunRoad = reflectionRoad(p, uSunDirection.xz, clamp(uSunDirection.y, 0.0, 1.0), 3.7);
   float moonRoad = reflectionRoad(p, uMoonDirection.xz, clamp(uMoonDirection.y, 0.0, 1.0) * .48, 9.4);
-  sea += uSunColor * uSunReflectionStrength * (sunSpec * .022 + sunRoad * glintBreak * (.052 + slopeEnergy * .125));
-  sea += uMoonColor * uMoonReflectionStrength * (moonSpec * .026 + moonRoad * glintBreak * (.072 + slopeEnergy * .168));
+  sea += uSunColor * uSunReflectionStrength * (sunSpec * .018 + sunRoad * glintBreak * (.041 + slopeEnergy * .075));
+  sea += uMoonColor * uMoonReflectionStrength * (moonSpec * .021 + moonRoad * glintBreak * (.058 + slopeEnergy * .11));
 
   float crest = smoothstep(.065, .145, height + slopeEnergy * .052);
   float crestNoise = valueNoise(p * vec2(5.4, 17.0) + vec2(time * .021, -time * .046)) * .72;
   crestNoise += temporalCellNoise(floor(p * 20.0), time * .34) * .28;
   crestNoise = smoothstep(.70, .92, crestNoise);
-  sea += mix(vec3(.76, .88, .82), uWaterHighlight, .44) * crest * crestNoise * (.075 + fresnel * .11);
+  sea += mix(vec3(.76, .88, .82), uWaterHighlight, .44) * crest * crestNoise * (.035 + fresnel * .07);
 
   float t0; float t1; float t2; float t3;
-  float sd0 = signedSegmentDistance(p, uRoute0, uRoute1, t0);
-  float sd1 = signedSegmentDistance(p, uRoute1, uRoute2, t1);
-  float sd2 = signedSegmentDistance(p, uRoute2, uRoute3, t2);
-  float sd3 = signedSegmentDistance(p, uRoute3, uRoute4, t3);
+  float sd0 = routeCurveDistance(p, 2.0 * uRoute0 - uRoute1, uRoute0, uRoute1, uRoute2, t0);
+  float sd1 = routeCurveDistance(p, uRoute0, uRoute1, uRoute2, uRoute3, t1);
+  float sd2 = routeCurveDistance(p, uRoute1, uRoute2, uRoute3, uRoute4, t2);
+  float sd3 = routeCurveDistance(p, uRoute2, uRoute3, uRoute4, 2.0 * uRoute4 - uRoute3, t3);
   float d0 = abs(sd0);
   float d1 = abs(sd1);
   float d2 = abs(sd2);
@@ -814,7 +686,7 @@ void main(void) {
   float reveal1 = step(.245, routeProgress) * (1.0 - smoothstep((routeProgress - .25) * 4.0 - .02, (routeProgress - .25) * 4.0 + .08, t1));
   float reveal2 = step(.495, routeProgress) * (1.0 - smoothstep((routeProgress - .50) * 4.0 - .02, (routeProgress - .50) * 4.0 + .08, t2));
   float routeBreak = smoothstep(.20, .73, slopeEnergy * .57 + height * 1.85 + valueNoise(floor(p * 15.0) * .17) * .64);
-  float routeVisibility = .30 + routeBreak * .70;
+  float routeVisibility = .72 + routeBreak * .28;
   float routeBase = exp(-min(min(d0, d1), min(d2, d3)) * 4.6) * (.020 + routeVisibility * .052);
   sea += mix(vec3(.025, .22, .24), uWaterHighlight * .22, .32) * routeBase * uRouteSpectrumStrength;
   vec3 spectrum = spectrumWake(sd0, t0, time * .39, 0.0) * reveal0;
@@ -822,9 +694,9 @@ void main(void) {
   spectrum += spectrumWake(sd2, t2, time * .35 + 3.1, 0.0) * reveal2;
   float gateReveal = smoothstep(4.55, 5.20, uIntro);
   float futureReveal = mix(gateReveal, 1.0, step(3.5, uSelected));
-  spectrum += spectrumWake(sd3, t3, time * .33 + 4.6, 1.0) * futureReveal;
-  sea += spectrum * routeVisibility * uRouteSpectrumStrength * .240;
-  float currentWake = exp(-d2 * 12.0) * reveal2 * pow(max(0.0, sin(time * 3.0 - t2 * 26.0)), 9.0);
+  spectrum += spectrumWake(sd3, t3, time * .33 + 4.6, 1.0) * futureReveal * .40;
+  sea += spectrum * routeVisibility * uRouteSpectrumStrength * .36;
+  float currentWake = exp(-d2 * 12.0) * reveal2 * pow(max(0.0, sin(time * 1.1 - t2 * 16.0)), 9.0);
   sea += vec3(.94, .92, .79) * currentWake * routeVisibility * uRouteSpectrumStrength * .28;
 
   sea += bodyContribution(p, uBody0, uBodyState0, vec3(.88, .48, .20), height * 3.0 + slopeEnergy);
@@ -839,6 +711,14 @@ void main(void) {
   sea += marineContribution(p, uMarine3, uMarineState3, time);
   sea += marineContribution(p, uMarine4, uMarineState4, time);
   sea += marineContribution(p, uMarine5, uMarineState5, time);
+  if (uMarineTextureEnabled > .5) {
+    vec2 marineUV = gl_FragCoord.xy / uResolution;
+    vec2 refraction = slope * .0018 + capillary * .00025;
+    vec4 animal = texture2D(uMarineTexture, clamp(marineUV + refraction, .001, .999));
+    // Wavelength-dependent absorption preserves anatomy without a flat painted silhouette.
+    vec3 transmitted = animal.rgb * vec3(.24, .61, .64) + sea * .22;
+    sea = mix(sea, transmitted, animal.a * .64);
+  }
   sea += splashContribution(p, uSplash0);
   sea += splashContribution(p, uSplash1);
   sea += splashContribution(p, uSplash2);
@@ -887,7 +767,7 @@ void main(void) {
 
   float farMist = smoothstep(1.0, -8.2, p.y);
   sea = mix(sea, uFogColor, farMist * (.055 + uTransition * .06));
-  vec3 horizonNight = mix(vec3(.007, .032, .070), vec3(.012, .078, .128), farMist);
+  vec3 horizonNight = mix(vec3(.012, .043, .061), vec3(.025, .085, .108), farMist);
   sea = mix(sea, horizonNight, uTransition * .76);
   sea = max(sea * 1.04 + vec3(.002, .004, .004), vec3(0.0));
   gl_FragColor = vec4(sea, 1.0);
@@ -924,7 +804,7 @@ float bayer4(vec2 pixel) {
 
 void main(void) {
   vec3 color = texture2D(uColorBuffer, vUv0).rgb;
-  float ordered = (bayer4(floor(gl_FragCoord.xy)) / 16.0 - .5) / max(16.0, uColorLevels);
+  float ordered = (bayer4(floor(gl_FragCoord.xy)) / 16.0 - .5) * .32 / max(16.0, uColorLevels);
   color = floor(max(color + ordered, vec3(0.0)) * uColorLevels) / uColorLevels;
   vec2 centered = (vUv0 - .5) * vec2(uPostResolution.x / max(1.0, uPostResolution.y), 1.0);
   float vignette = 1.0 - smoothstep(.52, 1.03, length(centered)) * .13;
@@ -973,14 +853,14 @@ void main(void) {
   float edge = 1.0 - smoothstep(.30, .50, abs(vUv0.x - .5));
   float longitudinal = smoothstep(.02, .12, vUv0.y) * (1.0 - smoothstep(.82, 1.0, vUv0.y));
   float grain = .58 + beamTemporalNoise(floor(vWorldPosition.xz * 18.0), uBeamTime * .46) * .42;
-  float alpha = edge * longitudinal * grain * uBeamStrength * .070;
+  float alpha = edge * longitudinal * grain * uBeamStrength * .025;
   gl_FragColor = vec4(uBeamColor * alpha * 1.85, alpha);
 }`;
 
 class VoyagePixelPostEffect extends pc.PostEffect {
   private readonly shader: pc.Shader;
   private readonly resolution = new Float32Array([960, 540]);
-  private levels = 36;
+  private levels = 56;
 
   constructor(device: pc.GraphicsDevice) {
     super(device);
@@ -994,7 +874,7 @@ class VoyagePixelPostEffect extends pc.PostEffect {
   }
 
   setQuality(tier: QualityTier): void {
-    this.levels = tier === "high" ? 36 : tier === "balanced" ? 32 : 28;
+    this.levels = tier === "high" ? 56 : tier === "balanced" ? 48 : 40;
   }
 
   render(inputTarget: pc.RenderTarget, outputTarget: pc.RenderTarget | null, rect: pc.Vec4): void {
@@ -1226,6 +1106,9 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
 
   private camera: pc.Entity | null = null;
   private reflectionCamera: pc.Entity | null = null;
+  private marineCamera: pc.Entity | null = null;
+  private marineLayer: pc.Layer | null = null;
+  private marineTarget: pc.RenderTarget | null = null;
   private reflectionLayer: pc.Layer | null = null;
   private reflectionTarget: pc.RenderTarget | null = null;
   private reflectionTexture: pc.Texture | null = null;
@@ -1331,7 +1214,11 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       reducedMotion: this.options.reducedMotion,
       qualityTier: this.qualityTier,
       worldLayers: [pc.LAYERID_WORLD],
-      reflectionLayers: this.modelLayerIds(),
+      marineLayers: [...this.modelLayerIds(), this.marineLayer!.id],
+      onAssetsChanged: () => {
+        if (this.ready) this.updateFrame(0);
+        this.app.renderNextFrame = true;
+      },
       sampleWaterHeight: (x, z, time) => this.sampleWave(x, z, time).height
     });
     this.createOceanPlane();
@@ -1372,6 +1259,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.running = false;
     this.renderAccumulator = 0;
     if (this.reflectionCamera?.camera) this.reflectionCamera.camera.enabled = false;
+    if (this.marineCamera?.camera) this.marineCamera.camera.enabled = false;
     const sunLight = this.sunLight?.light;
     if (sunLight?.castShadows) sunLight.shadowUpdateMode = pc.SHADOWUPDATE_NONE;
     this.reflectionNeedsUpdate = true;
@@ -1411,6 +1299,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.positionSceneElements();
     this.oceanMaterial?.setParameter("uResolution", new Float32Array([this.canvas.width, this.canvas.height]));
     this.setupReflectionTarget();
+    this.setupMarineTarget();
     this.reflectionNeedsUpdate = true;
     this.shadowNeedsUpdate = true;
     if (this.ready) {
@@ -1495,8 +1384,10 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.wildlife?.destroy();
     this.wildlife = null;
     this.destroyReflectionTarget();
+    this.destroyMarineTarget();
     this.blankReflectionTexture?.destroy();
     if (this.reflectionLayer) this.app.scene.layers.remove(this.reflectionLayer);
+    if (this.marineLayer) this.app.scene.layers.remove(this.marineLayer);
     this.app.destroy();
   }
 
@@ -1508,6 +1399,20 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     this.app.scene.ambientLight = this.environmentState.ambientColor.clone();
     this.app.scene.exposure = this.environmentState.exposure + (lowResolutionLighting ? .06 : 0);
     this.app.scene.skybox = null;
+
+    const marineLayer = new pc.Layer({ name: "Voyage submerged wildlife" });
+    this.app.scene.layers.pushOpaque(marineLayer);
+    this.marineLayer = marineLayer;
+    const marineCamera = new pc.Entity("luminous-wake-underwater-camera");
+    marineCamera.addComponent("camera", {
+      projection: pc.PROJECTION_PERSPECTIVE, fov: 31, nearClip: .1, farClip: 60,
+      clearColor: new pc.Color(0, 0, 0, 0), clearColorBuffer: true, clearDepthBuffer: true,
+      toneMapping: pc.TONEMAP_LINEAR, gammaCorrection: pc.GAMMA_NONE,
+      priority: -2, layers: [marineLayer.id]
+    });
+    marineCamera.camera!.enabled = false;
+    this.app.root.addChild(marineCamera);
+    this.marineCamera = marineCamera;
 
     const reflectionLayer = new pc.Layer({ name: "Voyage planar silhouettes" });
     this.app.scene.layers.pushOpaque(reflectionLayer);
@@ -1558,7 +1463,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       castShadows: shadowEnabled,
       shadowResolution: this.qualityTier === "high" ? 1024 : 512,
       shadowType: pc.SHADOW_PCF3,
-      layers: [pc.LAYERID_WORLD, reflectionLayer.id]
+      layers: [pc.LAYERID_WORLD, reflectionLayer.id, marineLayer.id]
     });
     key.setLocalEulerAngles(90 - this.environmentState.sunElevation, this.environmentState.sunAzimuth + 90, -8);
     this.app.root.addChild(key);
@@ -1570,7 +1475,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       color: this.environmentState.moonColor.clone(),
       intensity: this.environmentState.moonStrength,
       castShadows: false,
-      layers: [pc.LAYERID_WORLD, reflectionLayer.id]
+      layers: [pc.LAYERID_WORLD, reflectionLayer.id, marineLayer.id]
     });
     moonFill.setLocalEulerAngles(90 - this.environmentState.moonElevation, this.environmentState.moonAzimuth + 90, 0);
     this.app.root.addChild(moonFill);
@@ -1583,7 +1488,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       intensity: 0,
       range: 5.4,
       castShadows: false,
-      layers: [pc.LAYERID_WORLD, reflectionLayer.id]
+      layers: [pc.LAYERID_WORLD, reflectionLayer.id, marineLayer.id]
     });
     this.app.root.addChild(harborLight);
     this.harborLight = harborLight;
@@ -1595,7 +1500,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       intensity: .92,
       range: 4.6,
       castShadows: false,
-      layers: [pc.LAYERID_WORLD, reflectionLayer.id]
+      layers: [pc.LAYERID_WORLD, reflectionLayer.id, marineLayer.id]
     });
     this.app.root.addChild(gateLight);
     this.gateLight = gateLight;
@@ -1609,7 +1514,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       innerConeAngle: 9,
       outerConeAngle: 20,
       castShadows: false,
-      layers: [pc.LAYERID_WORLD, reflectionLayer.id]
+      layers: [pc.LAYERID_WORLD, reflectionLayer.id, marineLayer.id]
     });
     this.app.root.addChild(lighthouseLight);
     this.lighthouseLight = lighthouseLight;
@@ -1667,6 +1572,8 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     blank.unlock();
     this.blankReflectionTexture = blank;
     material.setParameter("uReflectionTexture", blank);
+    material.setParameter("uMarineTexture", blank);
+    material.setParameter("uMarineTextureEnabled", 0);
     for (let index = 0; index < 5; index++) material.setParameter(`uRoute${index}`, this.routeUniforms[index]);
     for (let index = 0; index < BODY_ORDER.length; index++) {
       material.setParameter(`uBody${index}`, this.bodyUniforms[index].body);
@@ -1715,7 +1622,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     }
     const renderTime = this.options.reducedMotion ? STATIC_REDUCED_TIME : this.sceneElapsed;
     const introTime = this.options.reducedMotion ? INTRO_DURATION : this.introElapsed;
-    const shouldRender = this.shouldRenderFrame(dt, introTime);
+    const shouldRender = this.shouldRenderFrame(dt, introTime) || this.app.renderNextFrame;
     const phase = phaseForTime(introTime);
     this.updateEnvironment(renderTime);
     this.updateCamera(introTime);
@@ -1772,6 +1679,10 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
   }
 
   private scheduleRenderPassUpdates(dt: number, introTime: number, willRender: boolean): void {
+    // No extra pass when the ocean is empty or the page is inactive.
+    const marineVisible = Boolean(this.marineTarget && this.wildlife?.marineVisible);
+    if (this.marineCamera?.camera) this.marineCamera.camera.enabled = willRender && marineVisible;
+    this.oceanMaterial?.setParameter("uMarineTextureEnabled", marineVisible ? 1 : 0);
     if (!willRender) {
       if (this.reflectionCamera?.camera) this.reflectionCamera.camera.enabled = false;
       const sunLight = this.sunLight?.light;
@@ -1819,6 +1730,11 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
   private updateEnvironment(sceneTime: number): void {
     const state = sampleEnvironment(sceneTime, this.environmentState);
     const transition = this.transitionProgress;
+    if(transition>0){
+      const mixColor=(color:pc.Color,night:readonly number[])=>color.set(lerp(color.r,night[0],transition),lerp(color.g,night[1],transition),lerp(color.b,night[2],transition));
+      mixColor(state.moonColor,NIGHT.moon);mixColor(state.waterDeep,NIGHT.deep);mixColor(state.waterMid,NIGHT.mid);mixColor(state.waterHighlight,NIGHT.highlight);mixColor(state.fogColor,NIGHT.fog);
+    }
+
     const sunStrength = state.sunStrength * (1 - transition * .94);
     const moonStrength = lerp(state.moonStrength, .82, transition);
     const nightBalance = clamp01(moonStrength / Math.max(.25, sunStrength + moonStrength));
@@ -1859,9 +1775,9 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
     writeColorUniform(this.waterDeepUniform, state.waterDeep);
     writeColorUniform(this.waterMidUniform, state.waterMid);
     writeColorUniform(this.waterHighlightUniform, state.waterHighlight);
-    this.lighthouseColorUniform[0] = lerp(1.0, .68, nightBalance);
-    this.lighthouseColorUniform[1] = lerp(.86, .82, nightBalance);
-    this.lighthouseColorUniform[2] = lerp(.62, 1.0, nightBalance);
+    this.lighthouseColorUniform[0] = lerp(1.0, .957, nightBalance);
+    this.lighthouseColorUniform[1] = lerp(.86, .910, nightBalance);
+    this.lighthouseColorUniform[2] = lerp(.62, .729, nightBalance);
 
     if (this.oceanMaterial) {
       this.oceanMaterial.setParameter("uEnvironmentCycle", state.cycleElapsed);
@@ -1887,22 +1803,29 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
   private updateCamera(introTime: number): void {
     if (!this.camera || !this.reflectionCamera) return;
     const layout = this.portrait ? PORTRAIT_LAYOUT : DESKTOP_LAYOUT;
-    const baseTargetX = this.portrait ? 0 : -1.4;
-    const baseTargetZ = this.portrait ? 1.62 : 0;
+    const baseTargetX = this.portrait ? 0 : -1.65;
+    const baseTargetZ = this.portrait ? 1.40 : 0;
     const survey = smoothstep(1.2, 2.3, introTime) * (1 - smoothstep(2.7, 4.1, introTime));
     const selectedAnchor = layout[this.selectedNode];
-    const focusStrength = introTime >= INTRO_DURATION ? .065 : 0;
+    const focusStrength = introTime >= INTRO_DURATION ? .035 : 0;
     this.cameraTarget.set(
       baseTargetX + survey * .55 + selectedAnchor[0] * focusStrength,
       0,
       baseTargetZ - survey * .38 + selectedAnchor[2] * focusStrength
     );
-    const cameraHeight = this.portrait ? 18 : 17;
-    const cameraForward = this.portrait ? 5.1 : 4.8;
-    const lateralOffset = this.portrait ? 0 : 1.4;
+    const cameraHeight = this.portrait ? 18 : 15.3;
+    const cameraForward = this.portrait ? 9.5 : 10.2;
+    const lateralOffset = this.portrait ? 0 : .45;
     this.mainCameraPosition.set(this.cameraTarget.x + lateralOffset, cameraHeight, this.cameraTarget.z + cameraForward);
     this.camera.setPosition(this.mainCameraPosition);
     this.camera.lookAt(this.cameraTarget);
+    if (this.marineCamera?.camera) {
+      this.marineCamera.setPosition(this.mainCameraPosition);
+      this.marineCamera.lookAt(this.cameraTarget);
+      this.marineCamera.camera.fov = this.camera.camera!.fov;
+      this.marineCamera.camera.aspectRatioMode = pc.ASPECT_MANUAL;
+      this.marineCamera.camera.aspectRatio = this.camera.camera!.aspectRatio;
+    }
     const horizontalDistance = Math.hypot(lateralOffset, cameraForward);
     this.cameraPitch = Math.atan2(cameraHeight, horizontalDistance) * RAD_TO_DEG;
 
@@ -2001,7 +1924,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       ? 1
       : .93 + Math.sin(sceneTime * .71) * .045 + Math.sin(sceneTime * 1.93 + .8) * .025;
     this.oasisGhostStrength = ghostEnvelope * ghostPulse;
-    const localLightBalance = .28 + (1 - daylight) * .92;
+    const localLightBalance = .48 + (1 - daylight) * .82;
     if (this.harborLight?.light) {
       this.harborLight.light.intensity = localLightBalance * 1.22 * clamp01((introTime - 3.35) / 1.15);
     }
@@ -2016,7 +1939,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       this.gateLight.setPosition(position.x, position.y + 1.5, position.z);
       if (this.gateLight.light) {
         const selectedBoost = this.selectedNode === "world" ? 1.24 : 1;
-        this.gateLight.light.intensity = (.20 + this.oasisGhostStrength * 4.25) * selectedBoost;
+        this.gateLight.light.intensity = (.20 + this.oasisGhostStrength * 2.15) * selectedBoost;
         this.gateLight.light.range = 3.8 + this.oasisGhostStrength * 3.2;
       }
     }
@@ -2034,7 +1957,7 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
             lerp(.085, 1.0, materialGlow),
             lerp(.035, .28, materialGlow)
           );
-          material.emissiveIntensity = lerp(.24, 3.65, materialGlow);
+          material.emissiveIntensity = lerp(.12, 1.15, materialGlow);
           material.update();
         });
         this.lastGateMaterialGlow = materialGlow;
@@ -2367,13 +2290,13 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
         const source = meshInstance.material as pc.StandardMaterial;
         const material = source.clone();
         material.name = `${source.name || name}.floating-archipelago`;
-        if (brightenTexture) material.diffuse = new pc.Color(1.14, 1.11, 1.04);
+        if (brightenTexture) material.diffuse = new pc.Color(.94, .91, .83);
         if (brightenTexture && node?.id === "world") material.emissiveMap = material.diffuseMap;
         material.emissive = new pc.Color(0, 0, 0);
         material.emissiveIntensity = 0;
         material.useMetalness = true;
-        material.metalness = Math.max(material.metalness, kind === "harbor" || kind === "gate" ? .28 : .08);
-        material.gloss = Math.max(material.gloss, kind === "reef" ? .24 : .38);
+        material.metalness = kind === "harbor" || kind === "gate" ? .16 : .045;
+        material.gloss = kind === "reef" ? .34 : .25;
         material.update();
         meshInstance.material = material;
         meshInstance.castShadow = shadowEnabled;
@@ -2551,7 +2474,11 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
 
   private positionSceneElements(): void {
     const layout = this.portrait ? PORTRAIT_LAYOUT : DESKTOP_LAYOUT;
-    this.floatingBodies.forEach((body, id) => body.anchor.set(...layout[id]));
+    this.floatingBodies.forEach((body, id) => {
+      body.anchor.set(...layout[id]);
+      const scale = this.portrait ? .82 : 1;
+      body.root.setLocalScale(scale, scale, scale);
+    });
     for (let index = 0; index < 5; index++) {
       const id = (["docdiff", "directl", "neural", "eva01", "world"] as VoyageNodeId[])[index];
       this.routeUniforms[index][0] = layout[id][0];
@@ -2582,6 +2509,34 @@ export class VoyageSceneRenderer implements TransitionAwareSceneRenderer {
       this.projectedNodePositions[node.id][0] = cssX;
       this.projectedNodePositions[node.id][1] = cssY;
     });
+  }
+
+  private setupMarineTarget(): void {
+    if (!this.marineCamera?.camera || !this.oceanMaterial) return;
+    const width = this.canvas.width;
+    const height = this.canvas.height;
+    if (this.marineTarget?.width === width && this.marineTarget.height === height) return;
+    this.destroyMarineTarget();
+    const texture = new pc.Texture(this.app.graphicsDevice, {
+      name: "Voyage submerged anatomy", width, height, format: pc.PIXELFORMAT_RGBA8,
+      mipmaps: false, minFilter: pc.FILTER_LINEAR, magFilter: pc.FILTER_LINEAR,
+      addressU: pc.ADDRESS_CLAMP_TO_EDGE, addressV: pc.ADDRESS_CLAMP_TO_EDGE
+    });
+    this.marineTarget = new pc.RenderTarget({ name: "Voyage wildlife refraction", colorBuffer: texture, depth: true, samples: 1 });
+    this.marineCamera.camera.renderTarget = this.marineTarget;
+    this.oceanMaterial.setParameter("uMarineTexture", texture);
+  }
+
+  private destroyMarineTarget(): void {
+    if (this.marineCamera?.camera) {
+      this.marineCamera.camera.enabled = false;
+      this.marineCamera.camera.renderTarget = null;
+    }
+    this.marineTarget?.destroyTextureBuffers();
+    this.marineTarget?.destroy();
+    this.marineTarget = null;
+    this.oceanMaterial?.setParameter("uMarineTexture", this.blankReflectionTexture);
+    this.oceanMaterial?.setParameter("uMarineTextureEnabled", 0);
   }
 
   private setupReflectionTarget(): void {

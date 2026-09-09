@@ -1,5 +1,7 @@
 import type { AppState } from "../app/state";
 import type { NewsItem } from "../content/site";
+import type { RoomSignal } from "../terminal/TerminalFilesystem";
+import type { TerminalScene } from "../terminal/TerminalScene";
 
 function escapeHtml(value: string): string {
   return value
@@ -86,6 +88,50 @@ export class TerminalController {
   private focusPaused = false;
   private readonly lineCount: number;
   private readonly capacity: number;
+  private focusDialog: HTMLDialogElement | undefined;
+  private placeholder: HTMLDivElement | undefined;
+  private expandTrigger: HTMLElement | undefined;
+  private previousOverflow = "";
+  private scene?: TerminalScene;
+  private destroyed = false;
+  private dock?:HTMLElement;
+  private dockTrigger?:HTMLElement;
+  private roomSignal:(signal:RoomSignal)=>void = ()=>undefined;
+  private visibility:(open:boolean)=>void = ()=>undefined;
+
+  attachDock(dock:HTMLElement, roomSignal:(signal:RoomSignal)=>void, visibility:(open:boolean)=>void):void {
+    this.dock=dock;this.roomSignal=roomSignal;this.visibility=visibility;
+    this.dockTrigger=dock.querySelector<HTMLElement>("[data-profile-terminal]")!;
+    dock.querySelector("[data-terminal-visual]")!.append(this.root);
+    this.root.hidden=false;
+    this.root.querySelector<HTMLCanvasElement>("canvas")!.tabIndex=-1;
+    this.dockTrigger.addEventListener("click",this.onDockClick);
+    this.dockTrigger.removeAttribute("disabled");
+    this.scene?.setDocked(true);
+  }
+  private onDockClick=():void=>{if(this.dockTrigger)this.toggleExpanded(this.dockTrigger);};
+
+  async mount3D(): Promise<void> {
+    try {
+      const { TerminalScene } = await import("../terminal/TerminalScene");
+      if (this.destroyed) return;
+      const canvas=this.root.querySelector<HTMLCanvasElement>("[data-terminal-canvas]")!;
+      this.scene=new TerminalScene(canvas,this.news,this.state.reducedMotion,{
+        hold:()=>{this.manualPaused=!this.manualPaused;this.updatePauseState();},
+        expand:()=>this.toggleExpanded(this.root.querySelector<HTMLElement>("[data-terminal-expand]")!),
+        view:()=>undefined,
+        room:signal=>this.roomSignal(signal)
+      },text=>{const feedback=this.root.querySelector("[data-terminal-feedback]");if(feedback)feedback.textContent=text?"> "+text:"CLICK KEYS · F1 GUIDE";});
+      await this.scene.init();
+      this.scene.setDocked(!this.focusDialog?.open);
+      this.updateInterface();
+    } catch(error) {
+      console.error("Terminal WebGL unavailable; text archive remains readable",error);
+      this.scene?.destroy();this.scene=undefined;
+      this.root.dataset.renderer="unavailable";
+      const archive=this.root.querySelector<HTMLDetailsElement>(".terminal-readable");if(archive)archive.open=true;
+    }
+  }
 
   constructor(
     private readonly root: HTMLElement,
@@ -96,7 +142,7 @@ export class TerminalController {
       .map((item, sourceIndex) => ({ item, sourceIndex }))
       .sort((a, b) => b.item.date.localeCompare(a.item.date) || a.sourceIndex - b.sourceIndex)
       .map(({ item }) => item);
-    this.capacity = window.matchMedia("(max-width: 760px)").matches ? 6 : 9;
+    this.capacity = 9;
     this.lineCount = Math.min(this.capacity, this.news.length);
     this.visible = this.news.slice(0, this.lineCount);
     this.nextIndex = 0;
@@ -108,22 +154,39 @@ export class TerminalController {
     this.root.addEventListener("mouseleave", this.resumeFromHover);
     this.root.addEventListener("focusin", this.pauseFromFocus);
     this.root.addEventListener("focusout", this.resumeFromFocus);
-    this.root.addEventListener("click", this.onTouchToggle);
     this.root.querySelector<HTMLElement>("[data-terminal-toggle]")?.addEventListener("click", this.onManualToggle);
+    this.root.querySelectorAll<HTMLElement>("[data-terminal-expand]").forEach((button) => button.addEventListener("click", this.onExpand));
+    this.focusDialog = document.createElement("dialog");
+    this.focusDialog.className = "terminal-focus";
+    this.focusDialog.id = "yzy-terminal-dialog";
+    this.focusDialog.setAttribute("aria-label", "YZY computer at the middle research desk");
+    this.focusDialog.addEventListener("close", this.onCloseFocus);
+    this.focusDialog.addEventListener("cancel", this.onCancelFocus);
+    this.focusDialog.addEventListener("click", this.onBackdropClick);
+    document.body.append(this.focusDialog);
     document.addEventListener("visibilitychange", this.onVisibilityChange);
     this.updateInterface();
     if (!this.state.reducedMotion) this.schedule();
   }
 
   destroy(): void {
+    this.destroyed = true;
+    this.dockTrigger?.removeEventListener("click",this.onDockClick);
+    if (this.focusDialog?.open) this.closeFocus();
+    this.scene?.destroy();
+    this.onCloseFocus();
+    this.focusDialog?.removeEventListener("close", this.onCloseFocus);
+    this.focusDialog?.removeEventListener("cancel", this.onCancelFocus);
+    this.focusDialog?.removeEventListener("click", this.onBackdropClick);
+    this.focusDialog?.remove();
     window.clearTimeout(this.timer);
     window.clearTimeout(this.statusTimer);
     this.root.removeEventListener("mouseenter", this.pauseFromHover);
     this.root.removeEventListener("mouseleave", this.resumeFromHover);
     this.root.removeEventListener("focusin", this.pauseFromFocus);
     this.root.removeEventListener("focusout", this.resumeFromFocus);
-    this.root.removeEventListener("click", this.onTouchToggle);
     this.root.querySelector<HTMLElement>("[data-terminal-toggle]")?.removeEventListener("click", this.onManualToggle);
+    this.root.querySelectorAll<HTMLElement>("[data-terminal-expand]").forEach((button) => button.removeEventListener("click", this.onExpand));
     document.removeEventListener("visibilitychange", this.onVisibilityChange);
   }
 
@@ -138,13 +201,13 @@ export class TerminalController {
   };
 
   private pauseFromFocus = (event: FocusEvent): void => {
-    if ((event.target as HTMLElement).closest("[data-terminal-toggle]")) return;
+    if ((event.target as HTMLElement).closest("button")) return;
     this.focusPaused = true;
     this.updatePauseState();
   };
 
   private resumeFromFocus = (event: FocusEvent): void => {
-    if (event.relatedTarget instanceof Node && this.root.contains(event.relatedTarget)) return;
+    if (event.relatedTarget instanceof HTMLElement && this.root.contains(event.relatedTarget) && !event.relatedTarget.closest("button")) return;
     this.focusPaused = false;
     this.updatePauseState();
   };
@@ -155,11 +218,75 @@ export class TerminalController {
     this.updatePauseState();
   };
 
-  private onTouchToggle = (event: MouseEvent): void => {
-    if (!window.matchMedia("(hover: none)").matches) return;
-    if ((event.target as HTMLElement).closest("a,button")) return;
-    this.manualPaused = !this.manualPaused;
+  private onExpand = (event: MouseEvent): void => {
+    event.stopPropagation();
+    this.toggleExpanded(event.currentTarget as HTMLElement);
+  };
+
+  private toggleExpanded(trigger: HTMLElement): void {
+    if (!this.focusDialog) return;
+    if (this.focusDialog.open) {
+      this.closeFocus();
+      return;
+    }
+    this.expandTrigger = trigger;
+    // A DOM move must not replay the page's delayed entrance animation.
+    this.root.classList.remove("profile-reveal");
+    this.placeholder = document.createElement("div");
+    this.placeholder.className = "terminal-focus-placeholder";
+    this.placeholder.style.height = `${this.root.getBoundingClientRect().height}px`;
+    this.root.before(this.placeholder);
+    this.focusDialog.append(this.root);
+    this.root.dataset.expanded = "true";
+    this.root.dataset.view="expanded";
+    this.root.querySelector<HTMLCanvasElement>("canvas")!.tabIndex=0;
+    this.dockTrigger?.setAttribute("aria-expanded","true");
+    this.dock?.setAttribute("data-visited","true");
+    this.visibility(true);
+    this.previousOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    this.root.querySelectorAll("[data-terminal-expand]").forEach((button) => button.setAttribute("aria-label", "Close terminal reading view"));
+    const label = this.root.querySelector("[data-terminal-expand-label]");
+    if (label) label.textContent = "CLOSE ×";
+    this.focusDialog.showModal();
+    this.scene?.setDocked(false);
+    this.root.querySelector<HTMLElement>("[data-terminal-canvas]")?.focus({ preventScroll: true });
+  }
+
+  private onCloseFocus = (): void => {
+    if (!this.placeholder || this.focusDialog?.open) return;
+    this.placeholder.replaceWith(this.root);
+    this.root.dataset.view="docked";
+    this.root.querySelector<HTMLCanvasElement>("canvas")!.tabIndex=-1;
+    this.scene?.setDocked(true);
+    this.dockTrigger?.setAttribute("aria-expanded","false");
+    this.visibility(false);
+    this.placeholder = undefined;
+    delete this.root.dataset.expanded;
+    document.documentElement.style.overflow = this.previousOverflow;
+    this.root.querySelectorAll("[data-terminal-expand]").forEach((button) => button.setAttribute("aria-label", "Enlarge research terminal"));
+    const label = this.root.querySelector("[data-terminal-expand-label]");
+    if (label) label.textContent = "READ ↗";
+    this.focusPaused = false;
+    this.hoverPaused = false;
     this.updatePauseState();
+    this.expandTrigger?.focus({ preventScroll: true });
+  };
+
+  private closeFocus = (): void => {
+    this.focusDialog?.close();
+    this.onCloseFocus();
+  };
+
+  private onCancelFocus = (event: Event): void => {
+    event.preventDefault();
+    this.closeFocus();
+  };
+
+  private onBackdropClick = (event: MouseEvent): void => {
+    if (event.target !== this.focusDialog) return;
+    const bounds = this.focusDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) this.closeFocus();
   };
 
   private onVisibilityChange = (): void => {
@@ -197,14 +324,18 @@ export class TerminalController {
     const bufferNode = this.root.querySelector<HTMLElement>("[data-terminal-buffer]");
     const toggle = this.root.querySelector<HTMLButtonElement>("[data-terminal-toggle]");
     if (stateNode) stateNode.textContent = stateLabel;
+    this.scene?.setStatus(stateLabel);
     if (footerNode) footerNode.textContent = paused
       ? `follow mode · held by ${source || "manual"}`
       : ingesting ? "record signal refreshed" : "follow mode · watching timeline";
     if (bufferNode) bufferNode.textContent = `BUFFER ${String(this.visible.length).padStart(2, "0")}/${String(this.capacity).padStart(2, "0")}`;
     if (toggle) {
       toggle.setAttribute("aria-pressed", String(this.manualPaused));
-      toggle.setAttribute("aria-label", paused ? "Resume live research log" : "Pause live research log");
+      toggle.setAttribute("aria-label", this.manualPaused ? "Resume live research log" : "Pause live research log");
     }
+    const controlLabel = this.root.querySelector("[data-terminal-control-label]");
+    if (controlLabel) controlLabel.textContent = this.manualPaused ? "FOLLOW" : "HOLD";
+
   }
 
   private schedule(): void {
@@ -233,6 +364,7 @@ export class TerminalController {
       : undefined;
     if (!incoming) return;
     this.root.dataset.refreshSequence = String(Number(this.root.dataset.refreshSequence || "0") + 1);
+    this.scene?.refresh(this.visible.indexOf(item));
     this.root.classList.add("is-ingesting");
     this.root.classList.toggle("is-loop-boundary", this.nextIndex === 0);
     incoming.classList.add("is-ingesting");

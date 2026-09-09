@@ -25,50 +25,7 @@ const DEFAULTS = {
   only: "all"
 };
 
-const CARD_SPECS = {
-  profile: {
-    id: "profile-card",
-    file: "profile-card.gif",
-    selector: ".profile-dossier",
-    layoutWidth: 800,
-    layoutHeight: 340,
-    captureScale: 3,
-    width: 1920,
-    height: 816,
-    resample: "lanczos",
-    frames: 192,
-    duration: 8,
-    keyframes: [0, 12, 36, 61, 84, 108, 168, 180, 191]
-  },
-  room: {
-    id: "sprite-room",
-    file: "sprite-room.gif",
-    selector: "[data-profile-gif-room]",
-    layoutWidth: 720,
-    layoutHeight: 350,
-    captureScale: 1,
-    width: 720,
-    height: 350,
-    resample: null,
-    frames: 1_440,
-    duration: 60,
-    keyframes: [0, 240, 480, 720, 960, 1_200, 1_320, 1_416, 1_439]
-  },
-  news: {
-    id: "news-terminal",
-    file: "news-terminal.gif",
-    selector: ".terminal-shell",
-    layoutWidth: 720,
-    layoutHeight: 350,
-    captureScale: 3,
-    width: 1920,
-    height: 934,
-    resample: "lanczos",
-    frames: 240,
-    duration: 10,
-    keyframes: [0, 1, 29, 58, 116, 174, 202, 216, 239]
-  }
-};
+import { CARD_SPECS } from "./specs.mjs";
 
 function parseArgs(argv) {
   const options = { ...DEFAULTS };
@@ -190,13 +147,7 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
       randomState = (Math.imul(randomState, 1664525) + 1013904223) >>> 0;
       return randomState / 0x100000000;
     };
-    let idleCall = 0;
-    window.requestIdleCallback = (callback) => {
-      idleCall += 1;
-      if (idleCall === 1) return 2_000_000_001;
-      return window.setTimeout(() => callback({ didTimeout: false, timeRemaining: () => 50 }), 0);
-    };
-    window.cancelIdleCallback = (handle) => window.clearTimeout(handle);
+
   });
   const page = await context.newPage();
   const errors = [];
@@ -206,38 +157,19 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
   page.on("pageerror", (error) => errors.push(`page: ${error.message}`));
   page.on("requestfailed", (request) => {
     const url = request.url();
+    if(request.resourceType()==="media" && request.failure()?.errorText==="net::ERR_ABORTED")return;
     if (!/\/assets\/(gallery|voyage|horizon)\//.test(url)) errors.push(`request: ${url} (${request.failure()?.errorText || "failed"})`);
   });
-  await page.route(/\/assets\/(gallery|voyage|horizon)\//, (route) => route.abort("blockedbyclient"));
   await page.route("https://api.visitorbadge.io/api/combined?*", (route) => route.fulfill({
     status: 200,
     contentType: "image/svg+xml",
     body: visitorSvg(visitor)
   }));
-  await page.goto(`${options.baseUrl}/?profile-gif-export=1`, { waitUntil: "networkidle", timeout: 60_000 });
+  await page.goto(`${options.baseUrl}/?profile-gif-export=1`, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForFunction(() => document.fonts.status === "loaded", null, { timeout: 30_000 });
-  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 90_000 });
-  await page.waitForFunction(() => {
-    const state = window.__profileAdventureDebug?.getState();
-    return state && Object.values(state.assets.actors).every((value) => value === "ready")
-      && state.assets.furniture === "ready"
-      && state.assets.door === "ready"
-      && state.assets.lamps === "ready"
-      && state.assets.posters === "ready";
-  }, null, { timeout: 90_000 });
   await page.evaluate(() => {
     document.documentElement.dataset.profileGifExport = "main";
     window.__profileAdventureDebug?.pause();
-    const terminal = document.querySelector(".terminal-shell");
-    terminal?.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    if (terminal instanceof HTMLElement) {
-      terminal.dataset.paused = "false";
-      terminal.dataset.pauseSource = "";
-      const state = terminal.querySelector("[data-terminal-state]");
-      const footer = terminal.querySelector("[data-terminal-footer]");
-      if (state) state.textContent = "FOLLOW";
-      if (footer) footer.textContent = "follow mode · watching deterministic timeline";
-    }
     document.getAnimations({ subtree: true }).forEach((animation) => {
       animation.pause();
       animation.currentTime = 0;
@@ -249,9 +181,11 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
     html[data-profile-gif-export="main"] .scene:not(#profile),
     html[data-profile-gif-export="main"] .chapter-nav,
     html[data-profile-gif-export="main"] .scene-nav { visibility:hidden !important; }
-    html[data-profile-gif-export="main"] .gallery-stage { visibility:hidden !important; }
+    html[data-profile-gif-export="main"] .gallery-stage,
+    html[data-profile-gif-export="main"] .future-slot { display:none !important; }
     html[data-profile-gif-export="main"] .profile-console { overflow:visible !important; }
     html[data-profile-gif-export="main"] .profile-top {
+      transform:none !important;
       position:relative !important;
       z-index:20 !important;
       display:grid !important;
@@ -263,7 +197,11 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
       background:radial-gradient(ellipse at 20% 12%,rgba(237,196,119,.105),transparent 16rem),linear-gradient(180deg,rgba(10,17,12,.99),rgba(3,8,6,.995));
     }
     html[data-profile-gif-export="main"] .profile-summary { display:none !important; }
-    html[data-profile-gif-export="main"] .profile-dossier {
+    html[data-profile-gif-export="main"] .profile-card-viewport { overflow:visible !important; }
+    html[data-profile-gif-export="main"] #profile .profile-dossier {
+      padding:12px !important;
+      grid-template-rows:auto 1fr 57px 30px 26px !important;
+      gap:6px !important;
       grid-column:1 !important;
       width:100% !important;
       min-width:0 !important;
@@ -302,7 +240,7 @@ async function prepareRoomPage(browser, options) {
   page.on("console", (message) => { if (message.type() === "error") errors.push(`console: ${message.text()}`); });
   page.on("pageerror", (error) => errors.push(`page: ${error.message}`));
   page.on("requestfailed", (request) => errors.push(`request: ${request.url()} (${request.failure()?.errorText || "failed"})`));
-  await page.goto(`${options.baseUrl}/tools/profile-gif-export/room-harness.html`, { waitUntil: "networkidle", timeout: 60_000 });
+  await page.goto(`${options.baseUrl}/tools/profile-gif-export/room-harness.html`, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForFunction(() => window.__profileRoomGifHarness?.ready, null, { timeout: 90_000 });
   const automaton = await page.evaluate(() => window.__profileRoomGifHarness?.validate());
   return { context, page, errors, automaton };
@@ -488,51 +426,33 @@ async function captureRoomFrames(page, framesDir, spec) {
 }
 
 async function captureNewsFrames(page, framesDir, spec) {
-  const expectedOrder = ["thoth-010", "eva01", "eccv-2026", "siggraph-2026", "iccv-2025", "directl-2024", "docdiff-2023"];
-  const observedOrder = await page.locator(".terminal-line").evaluateAll((lines) => lines.map((line) => line.getAttribute("data-news-id")));
-  if (JSON.stringify(observedOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Terminal news order drifted: ${observedOrder.join(", ")}.`);
-  const eventLefts = await page.locator(".terminal-event").evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().left));
-  const alignmentError = Math.max(...eventLefts) - Math.min(...eventLefts);
-  if (alignmentError >= 1) throw new Error(`Accepted/Released event columns differ by ${alignmentError.toFixed(3)}px.`);
-  const highlightCounts = Object.fromEntries(expectedOrder.map((id) => [id, 0]));
-  let previousIndex = -1;
-  let boundaryFrames = 0;
-
-  for (let frame = 0; frame < spec.frames - 1; frame += 1) {
-    const seconds = frame / 24;
-    const index = seconds > 0 && seconds < 8.4 ? Math.min(6, Math.floor(seconds / 1.2)) : -1;
-    const boundary = seconds >= 8.4 && seconds < 9.2;
-    if (index >= 0 && index !== previousIndex) highlightCounts[expectedOrder[index]] += 1;
-    previousIndex = index;
-    if (boundary) boundaryFrames += 1;
-    await page.evaluate(({ index, boundary, localTime }) => {
-      const shell = document.querySelector(".terminal-shell");
-      shell?.classList.toggle("is-ingesting", index >= 0);
-      shell?.classList.toggle("is-loop-boundary", boundary);
-      shell?.querySelectorAll(".terminal-line").forEach((line, lineIndex) => line.classList.toggle("is-ingesting", lineIndex === index));
-      const state = shell?.querySelector("[data-terminal-state]");
-      const footer = shell?.querySelector("[data-terminal-footer]");
-      if (state) state.textContent = index >= 0 ? "INGEST" : "FOLLOW";
-      if (footer) footer.textContent = boundary
-        ? "end of news · closing deterministic loop"
-        : index >= 0 ? "record signal refreshed" : "follow mode · watching deterministic timeline";
-      document.getAnimations({ subtree: true }).forEach((animation) => {
-        const target = animation.effect?.target;
-        const element = target instanceof Element ? target : target?.parentElement || null;
-        animation.pause();
-        try {
-          animation.currentTime = element?.closest(".terminal-shell")
-            ? Math.max(0, localTime) * 1_000
-            : 0;
-        } catch {}
-      });
-    }, { index, boundary, localTime: index >= 0 ? seconds - index * 1.2 : boundary ? seconds - 8.4 : 0 });
-    await screenshotElement(page, spec.selector, framePath(framesDir, frame), spec);
-    if (frame && frame % 48 === 0) process.stdout.write(`[news-terminal] ${frame}/${spec.frames}\n`);
+  await page.locator('[data-profile-terminal]').click();
+  await page.waitForFunction(() => window.__terminal3D?.getState().ready);
+  await page.addStyleTag({content: `
+    .terminal-focus {max-width:none!important;max-height:none!important;width:1920px!important;height:1080px!important;padding:0!important;border:0!important;overflow:hidden!important;}
+    .terminal-desk-label,.terminal-machine-status,.terminal-readable {display:none!important;}
+    .terminal-shell,.terminal-workstation {width:1920px!important;height:1080px!important;max-height:none!important;padding:0!important;border:0!important;}
+    .terminal-canvas {width:1920px!important;height:1080px!important;max-height:none!important;}
+  `});
+  await page.locator('.terminal-canvas').focus();
+  await page.waitForTimeout(1000);
+  await page.evaluate(async () => {
+    const { createTerminalTimeline } = await import('/tools/profile-gif-export/terminal-timeline.mjs');
+    window.__terminalTimeline = createTerminalTimeline(window.__terminal3D.capture);
+  });
+  const states=[];
+  for(let frame=0;frame<spec.frames;frame++) {
+    const {state,png}=await page.evaluate(frame=>{
+      const state=window.__terminalTimeline(frame);
+      return {state,png:document.querySelector('.terminal-canvas').toDataURL('image/png')};
+    },frame);
+    if(spec.keyframes.includes(frame)) states.push({frame,...state});
+    await writeFile(framePath(framesDir,frame),Buffer.from(png.split(",")[1],"base64"));
+    if(frame && frame%48===0)process.stdout.write(`[news-terminal] ${frame}/${spec.frames}\n`);
   }
-  await copyFile(framePath(framesDir, 0), framePath(framesDir, spec.frames - 1));
-  if (Object.values(highlightCounts).some((count) => count !== 1)) throw new Error(`Terminal highlight counts invalid: ${JSON.stringify(highlightCounts)}.`);
-  return { expectedOrder, observedOrder, highlightCounts, boundaryFrames, eventColumnAlignmentError: alignmentError };
+  if(!states.some(s=>s.mode==='output' && s.output.some(t=>t.includes('/home/'))))throw new Error('pwd output missing');
+  if(!states.some(s=>s.cwd.endsWith('/research')))throw new Error('Research directory was not entered');
+  return {renderer:'web3d',timeline:'pwd-ls-cd-research',states,newsIds:await page.evaluate(()=>window.__terminal3D.capture.newsIds)};
 }
 
 async function makeContactSheet(framesDir, diagnosticsDir, spec) {
@@ -677,6 +597,14 @@ async function exportCard(key, browser, mainPage, options, directories, visitor)
   let context = null;
   let errors = mainPage.errors;
   let semantic;
+  if (key === "news") {
+    context=await browser.newContext({viewport:{width:1920,height:1080},deviceScaleFactor:1});
+    page=await context.newPage();
+    errors=[];page.on("pageerror",e=>errors.push(e.message));
+    await page.route("https://api.visitorbadge.io/**",r=>r.fulfill({body:visitorSvg(visitor),contentType:"image/svg+xml"}));
+    await page.goto(`${options.baseUrl}/?profile-gif-export=1#profile`,{waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>window.__profileAdventureDebug?.getState().ready);
+  }
   if (key === "room") {
     const roomPage = await prepareRoomPage(browser, options);
     page = roomPage.page;
@@ -734,7 +662,7 @@ async function main() {
   const visitor = await fetchVisitorSnapshot();
   process.stdout.write(`Visitor snapshot: ${visitor.today} / ${visitor.total} (${visitor.source})\n`);
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, args:process.platform === "darwin" ? ["--use-angle=metal"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
   const mainPage = await prepareMainPage(browser, options, visitor, directories.diagnostics);
   const requested = options.only === "all" ? ["profile", "news"] : [options.only];
   const cards = [];
@@ -743,7 +671,7 @@ async function main() {
   } finally {
     await mainPage.context.close();
     await browser.close();
-    await rm(directories.working, { recursive: true, force: true });
+    if(cards.length===requested.length)await rm(directories.working, { recursive: true, force: true });
   }
 
   const manifest = {

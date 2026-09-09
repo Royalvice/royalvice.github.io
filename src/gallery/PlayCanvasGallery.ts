@@ -1,5 +1,6 @@
 import * as pc from "playcanvas";
 import type { GalleryProject } from "../data/gallery";
+import { ResponsiveCabinet } from "./ResponsiveCabinet";
 
 declare global {
   interface Window {
@@ -115,8 +116,8 @@ const CABINET_LIGHTMAP_URL = `/assets/gallery/materials/cabinet_lightmap_v6.png?
 const DEFAULT_WOOD_CANDIDATE = "walnut_cabinet_v6";
 const GENERATED_TROPHY_V2_VERSION = "20260722-perf-v2";
 const GENERATED_TROPHY_V3_VERSION = "20260722-perf-v3-lod";
-const BACKGROUND_TROPHY_WARMUP_DELAY_MS = 12_000;
-const BACKGROUND_TROPHY_IDLE_TIMEOUT_MS = 4_000;
+const BACKGROUND_TROPHY_WARMUP_DELAY_MS = 250;
+const BACKGROUND_TROPHY_IDLE_TIMEOUT_MS = 750;
 // A lower-poly v3 is an acceleration path, never a visual dependency. Each
 // slot keeps its authored v2 model as an in-order network/runtime fallback.
 const GENERATED_TROPHY_SOURCES: ReadonlyArray<ReadonlyArray<GeneratedTrophyAsset>> = [
@@ -144,15 +145,13 @@ const GENERATED_TROPHY_SOURCES: ReadonlyArray<ReadonlyArray<GeneratedTrophyAsset
   ]
 ];
 const CABINET_VERSION = "v6";
-const CABINET_WIDTH = 5.55;
-const CABINET_HEIGHT = 4.78;
 const CABINET_FRONT_Z = 0.67;
 const DESKTOP_CAMERA_Z = 7.35;
 
 const TROPHY_FLOOR_Y = -0.905;
 const TROPHY_FRONT_Z = 0.34;
 const TROPHY_RIGHT_X = 0.56;
-const TROPHY_SCALES = [0.71, 0.74, 0.71, 0.70] as const;
+const TROPHY_SCALES = [0.96, 1.00, 0.96, 0.95] as const;
 const TROPHY_SPOTLIGHT_INTENSITIES = [30, 48, 32, 60] as const;
 const HERO_MEDIA_BRIGHTNESS: Record<string, number> = {
   ssat: 0.88,
@@ -162,9 +161,6 @@ const HERO_MEDIA_BRIGHTNESS: Record<string, number> = {
 };
 const HERO_IMAGE_EMISSIVE = 0.14;
 const HERO_VIDEO_EMISSIVE = 0.16;
-const MOBILE_CAMERA_Z = 4.45;
-const DESKTOP_OVERSCAN = 0.948;
-const MOBILE_OVERSCAN = 1.03;
 const tierColors: Record<GalleryProject["trophyTier"], pc.Color> = {
   "legendary-holo": new pc.Color(0.96, 0.82, 1.0),
   gold: new pc.Color(1.0, 0.72, 0.26),
@@ -407,6 +403,7 @@ export class PlayCanvasGallery {
   private camera: pc.Entity | null = null;
   private cameraFrame?: pc.CameraFrame;
   private cabinetRoot: pc.Entity | null = null;
+  private responsiveCabinet: ResponsiveCabinet | null = null;
   private slots: GallerySlotRuntime[] = [];
   private resizeObserver?: ResizeObserver;
   private isMobile = false;
@@ -464,6 +461,7 @@ export class PlayCanvasGallery {
   }
 
   async init(): Promise<void> {
+    this.profileCompanionReady = this.root.dataset.profileCompanionReady === "true";
     this.root.addEventListener("gallery:companion-ready", this.onProfileCompanionReady);
     this.configureApp();
     this.createCamera();
@@ -753,13 +751,14 @@ export class PlayCanvasGallery {
       });
     }
 
+    this.responsiveCabinet = new ResponsiveCabinet(cabinet);
     this.createStaticCabinetBatch(cabinet);
   }
 
   /**
    * The authored cabinet deliberately keeps every rail, groove and frame as a
    * separate mesh so it remains editable in DCC tools. At runtime those
-   * pieces never move. Static batching preserves their exact materials,
+   * pieces move only when the viewport changes. Static batching preserves their materials,
    * lighting, shadows and lightmaps, while replacing hundreds of CPU draw
    * submissions with material-sized batches. Interactive glass, plaques,
    * diffuser brightness and trophies intentionally stay outside the batch.
@@ -1934,6 +1933,7 @@ export class PlayCanvasGallery {
       return {
         cabinetVersion: CABINET_VERSION,
         cabinetLoaded: !!this.cabinetRoot,
+        viewport: this.getViewportState(),
         anchorsFound: this.anchorsFound,
         envAtlas: this.envAtlasReady,
         lightmapReady: this.lightmapReady,
@@ -2101,36 +2101,77 @@ export class PlayCanvasGallery {
 
   private resize(): void {
     const rect = this.root.getBoundingClientRect();
-    const width = Math.max(320, Math.round(rect.width));
-    const height = Math.max(300, Math.round(rect.height));
+    if (rect.width <= 0 || rect.height <= 0) return;
+    const width = Math.max(1, Math.round(rect.width));
+    const height = Math.max(1, Math.round(rect.height));
     this.isMobile = window.innerWidth < 760 || width < 460;
     const scale = Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.05 : 1.25);
     this.app.graphicsDevice.maxPixelRatio = scale;
     this.app.resizeCanvas(width, height);
-    this.applyResponsiveLayout(width / height);
+    const canvas = this.app.graphicsDevice.canvas as HTMLCanvasElement;
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    this.applyResponsiveLayout(rect.width / rect.height);
+    this.app.renderNextFrame = true;
   }
 
   private applyResponsiveLayout(aspect: number): void {
-    if (!this.camera?.camera) return;
+    if (!this.camera?.camera || !this.responsiveCabinet) return;
     const shell = this.root.querySelector<HTMLElement>(".playcanvas-gallery");
     shell?.classList.toggle("is-mobile-gallery", this.isMobile);
 
-    const target = new pc.Vec3(0, 0.02, 0);
-    const targetWidth = CABINET_WIDTH;
-    const targetHeight = CABINET_HEIGHT;
-    const cameraZ = this.isMobile ? MOBILE_CAMERA_Z : DESKTOP_CAMERA_Z;
-    const overscan = this.isMobile ? MOBILE_OVERSCAN : DESKTOP_OVERSCAN;
-    const halfHeightFromWidth = targetWidth / Math.max(aspect, 0.2) * 0.5;
-    const halfHeight = Math.max(targetHeight * 0.5, halfHeightFromWidth) * overscan;
-    const visibleWidth = halfHeight * 2 * Math.max(aspect, 0.2);
-    const visibleHeight = halfHeight * 2;
-    const insetX = Math.max(0, (1 - targetWidth / visibleWidth) * 50);
-    const insetY = Math.max(0, (1 - targetHeight / visibleHeight) * 50);
-    shell?.style.setProperty("--gallery-cabinet-inset-x", `${insetX.toFixed(3)}%`);
-    shell?.style.setProperty("--gallery-cabinet-inset-y", `${insetY.toFixed(3)}%`);
-    const distanceToFront = cameraZ - CABINET_FRONT_Z;
+    if (this.responsiveCabinet.resize(aspect)) {
+      const addedHeight = this.responsiveCabinet.size.bayHeight - 2.01;
+      for (const slot of this.slots) {
+        const target = slot.trophyAnchor.getPosition().clone();
+        target.y += (TROPHY_SCALES[slot.index] ?? TROPHY_SCALES[0]) * 0.46;
+        for (const light of [slot.topLight, slot.trophySpotlight]) {
+          light.lookAt(target);
+          light.rotateLocal(90, 0, 0);
+        }
+        if (slot.topLight.light) slot.topLight.light.range = 4.12 + addedHeight;
+        if (slot.trophySpotlight.light) slot.trophySpotlight.light.range = 2.75 + addedHeight;
+      }
+      if (this.staticCabinetBatchGroupId !== null) this.app.batcher.generate([this.staticCabinetBatchGroupId]);
+    }
+    const margin = 1.02;
+    const { width, height } = this.responsiveCabinet.size;
+    const halfHeight = Math.max(height, width / aspect) * margin / 2;
+    shell?.style.setProperty("--gallery-cabinet-inset-x", `${(1 - width / (halfHeight * 2 * aspect)) * 50}%`);
+    shell?.style.setProperty("--gallery-cabinet-inset-y", `${(1 - height / (halfHeight * 2)) * 50}%`);
+    const distanceToFront = DESKTOP_CAMERA_Z - CABINET_FRONT_Z;
+    this.camera.camera.aspectRatioMode = pc.ASPECT_MANUAL;
+    this.camera.camera.aspectRatio = aspect;
     this.camera.camera.fov = pc.math.RAD_TO_DEG * 2 * Math.atan(halfHeight / distanceToFront);
-    this.camera.setPosition(target.x, target.y + (this.isMobile ? 0.02 : 0.08), cameraZ);
-    this.camera.lookAt(target.x, target.y, target.z);
+    this.camera.setPosition(0, 0, DESKTOP_CAMERA_Z);
+    this.camera.lookAt(0, 0, 0);
+  }
+
+  private getViewportState() {
+    if (!this.responsiveCabinet || !this.camera?.camera) return null;
+    const size = this.responsiveCabinet.size;
+    const project = (point: pc.Vec3) => {
+      const screen = this.camera!.camera!.worldToScreen(point);
+      return [screen.x, screen.y];
+    };
+    return {
+      ...size,
+      geometry: this.responsiveCabinet.geometry,
+      aspect: this.camera.camera.aspectRatio,
+      rootScale: this.cabinetRoot?.getLocalScale().toArray(),
+      bays: this.slots.map((slot) => {
+        const center = slot.root.getPosition();
+        const bottomLeft = project(new pc.Vec3(center.x - size.bayWidth / 2, center.y - size.bayHeight / 2, CABINET_FRONT_Z));
+        const topRight = project(new pc.Vec3(center.x + size.bayWidth / 2, center.y + size.bayHeight / 2, CABINET_FRONT_Z));
+        const origin = project(center);
+        const x = project(center.clone().add(new pc.Vec3(1, 0, 0)));
+        const y = project(center.clone().add(new pc.Vec3(0, 1, 0)));
+        return {
+          position: center.toArray(), scale: slot.root.getLocalScale().toArray(),
+          bounds: [bottomLeft[0], topRight[1], topRight[0] - bottomLeft[0], bottomLeft[1] - topRight[1]],
+          unitPixels: [x[0] - origin[0], origin[1] - y[1]]
+        };
+      })
+    };
   }
 }
