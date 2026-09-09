@@ -7,6 +7,7 @@ test('the export drives real commands, visits every news item and resets the 3D 
  await page.goto('/?profile-gif-export=1#profile');
  await page.locator('[data-profile-terminal]').click({timeout:90000});
  await page.waitForFunction(()=>window.__terminal3D?.capture);
+ expect(await page.evaluate(()=>typeof window.__galleryDebug)).toBe('undefined');
  const result=await page.evaluate(async()=>{
   const {createTerminalTimeline}=await import('/tools/profile-gif-export/terminal-timeline.mjs');
   const capture=window.__terminal3D.capture,step=createTerminalTimeline(capture);

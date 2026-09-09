@@ -991,6 +991,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
   const horizonCanvas = document.querySelector<HTMLCanvasElement>("[data-horizon-scene]");
   let horizonInitialization: Promise<void> | null = null;
   const ensureHorizonRenderer = (): void => {
+    if(new URLSearchParams(location.search).get('profile-gif-export')==='1')return;
     if (!horizonCanvas || horizonInitialization) return;
     horizonInitialization = import("../horizon/HorizonSceneRenderer").then(async ({ HorizonSceneRenderer }) => {
       const renderer = new HorizonSceneRenderer(horizonCanvas, {
@@ -1014,6 +1015,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
   };
 
   let gallery: PlayCanvasGallery | null = null;
+  const profileGifCapture=new URLSearchParams(location.search).get('profile-gif-export')==='1';
   let profileAdventure: ProfileAdventureDirector | null = null;
   let pacLabArcade: PacLabArcade | null = null;
   let pacLabInitialization: Promise<PacLabArcade> | null = null;
@@ -1036,7 +1038,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
     });
     return pacLabInitialization;
   };
-  if (galleryRoot) {
+  if (galleryRoot && !profileGifCapture) {
     // Navigation and pause/resume lifecycles stay independent, but the first
     // PlayCanvas shader compilation is serialized. PlayCanvas shares shader
     // include/cache state across applications; compiling the cabinet and
@@ -1117,7 +1119,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
         });
         await cabinWindow.init();
         const cabinetTrigger=adventureRoot.querySelector<HTMLButtonElement>('[data-profile-ultra]');
-        if(cabinetTrigger){const {UltraCabinet}=await import('../profile/UltraCabinet');ultraCabinet=new UltraCabinet(cabinetTrigger,c=>director.setCabinetFrame(c),open=>{cabinOpen=open;if(open){director.pause();gallery?.pause();}else if(state.activeSection==='profile'&&state.documentVisible){director.resume();gallery?.resume();}});await ultraCabinet.init();}
+        if(cabinetTrigger&&!profileGifCapture){const {UltraCabinet}=await import('../profile/UltraCabinet');ultraCabinet=new UltraCabinet(cabinetTrigger,c=>director.setCabinetFrame(c),open=>{cabinOpen=open;if(open){director.pause();gallery?.pause();}else if(state.activeSection==='profile'&&state.documentVisible){director.resume();gallery?.resume();}});await ultraCabinet.init();}
       }).catch(error=>console.warn('Cabin window unavailable',error));
       adventureRoot.classList.add("is-ready");
       if (state.activeSection === "profile" && state.documentVisible && !state.reducedMotion) director.resume();
@@ -1137,6 +1139,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
 
   let voyageInitialization: Promise<void> | null = null;
   const ensureVoyageRenderer = (): void => {
+    if(profileGifCapture)return;
     if (voyageInitialization) return;
     const canvas = document.querySelector<HTMLCanvasElement>("[data-voyage-scene]");
     if (!canvas) return;
