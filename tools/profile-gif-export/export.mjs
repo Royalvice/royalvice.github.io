@@ -165,7 +165,7 @@ async function prepareMainPage(browser, options, visitor, diagnostics) {
     contentType: "image/svg+xml",
     body: visitorSvg(visitor)
   }));
-  await page.goto(`${options.baseUrl}/?profile-gif-export=1`, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.goto(`${options.baseUrl}/tools/profile-gif-export/profile-harness.html`, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForFunction(() => document.fonts.status === "loaded", null, { timeout: 30_000 });
   await page.evaluate(() => {
     document.documentElement.dataset.profileGifExport = "main";

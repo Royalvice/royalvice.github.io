@@ -440,7 +440,7 @@ function initializeDrawers(): void {
   });
 }
 
-function initializeSiggraphMachine(reducedMotion: boolean): () => void {
+export function initializeSiggraphMachine(reducedMotion: boolean): () => void {
   const machine = document.querySelector<HTMLElement>("[data-siggraph-machine]");
   const reel = machine?.querySelector<HTMLElement>(".siggraph-reel");
   const track = machine?.querySelector<HTMLElement>("[data-siggraph-track]");

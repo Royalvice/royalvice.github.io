@@ -20,6 +20,10 @@ The publication command creates two looping GIFs: `profile-card.gif` at
 left avatar/identity summary is intentionally excluded), and
 `news-terminal.gif` at `1920x1080` (20 seconds, actual Web3D computer). It also writes a schema-v2 `manifest.json`,
 source and encoded contact sheets, and selected diagnostic PNG keyframes.
+The profile-harness entry imports production markup, content and the SIGGRAPH
+controller, without booting unrelated scene renderers. Terminal capture hides
+the occluded profile before recording.
+
 The research card is supersampled before Lanczos normalization; the computer
 is rendered directly at 1920x1080. Both use 24fps. The shared specification is
 `specs.mjs`. `terminal-timeline.mjs` drives real keyboard commands with a fixed

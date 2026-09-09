@@ -34,3 +34,16 @@ test('normal homepage does not enable GIF capture controls',async({page})=>{
  await page.waitForFunction(()=>window.__terminal3D?.getState().ready);
  expect(await page.evaluate(()=>window.__terminal3D.capture)).toBeUndefined();
 });
+
+test('the research card export reuses live content without starting WebGL scenes',async({page})=>{
+ await page.addInitScript(()=>{
+  window.__webglCalls=0;const original=HTMLCanvasElement.prototype.getContext;
+  HTMLCanvasElement.prototype.getContext=function(type,...args){if(/webgl/i.test(type))window.__webglCalls++;return original.call(this,type,...args)};
+ });
+ await page.goto('/tools/profile-gif-export/profile-harness.html');
+ await expect(page.locator('.research-summary')).toHaveText('Building Agents That Make 3A Games');
+ await expect(page.locator('.skill-stack')).toContainText('Multimodal LLMs');
+ await expect(page.locator('canvas')).toHaveCount(0);
+ expect(await page.evaluate(()=>window.__webglCalls)).toBe(0);
+ await expect.poll(()=>page.evaluate(()=>[...document.fonts].some(f=>f.family.replace(/["']/g,'')==='Satisfy'&&f.status==='loaded'))).toBe(true);
+});
