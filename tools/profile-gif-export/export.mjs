@@ -429,6 +429,7 @@ async function captureNewsFrames(page, framesDir, spec) {
   await page.locator('[data-profile-terminal]').click();
   await page.waitForFunction(() => window.__terminal3D?.getState().ready);
   await page.addStyleTag({content: `
+    #profile {display:none!important;}
     .terminal-focus {max-width:none!important;max-height:none!important;width:1920px!important;height:1080px!important;padding:0!important;border:0!important;overflow:hidden!important;}
     .terminal-desk-label,.terminal-machine-status,.terminal-readable {display:none!important;}
     .terminal-shell,.terminal-workstation {width:1920px!important;height:1080px!important;max-height:none!important;padding:0!important;border:0!important;}
