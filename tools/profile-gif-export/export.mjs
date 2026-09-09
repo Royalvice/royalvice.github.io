@@ -663,12 +663,18 @@ async function main() {
   const visitor = await fetchVisitorSnapshot();
   process.stdout.write(`Visitor snapshot: ${visitor.today} / ${visitor.total} (${visitor.source})\n`);
 
-  const browser = await chromium.launch({ headless: true, args:process.platform === "darwin" ? ["--use-angle=metal"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
+  const browser = await chromium.launch({ headless: true, args:["--disable-gpu"] });
   const mainPage = await prepareMainPage(browser, options, visitor, directories.diagnostics);
   const requested = options.only === "all" ? ["profile", "news"] : [options.only];
   const cards = [];
   try {
-    for (const key of requested) cards.push(await exportCard(key, browser, mainPage, options, directories, visitor));
+    for (const key of requested) {
+      if(key==='news') {
+        const computerBrowser=await chromium.launch({headless:true,args:process.platform==='darwin'?['--use-angle=metal']:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+        try{cards.push(await exportCard(key,computerBrowser,mainPage,options,directories,visitor));}
+        finally{await computerBrowser.close();}
+      } else cards.push(await exportCard(key,browser,mainPage,options,directories,visitor));
+    }
   } finally {
     await mainPage.context.close();
     await browser.close();

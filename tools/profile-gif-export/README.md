@@ -22,7 +22,9 @@ left avatar/identity summary is intentionally excluded), and
 source and encoded contact sheets, and selected diagnostic PNG keyframes.
 The profile-harness entry imports production markup, content and the SIGGRAPH
 controller, without booting unrelated scene renderers. Terminal capture hides
-the occluded profile before recording.
+the occluded profile before recording. The card uses Chromium raster composition;
+the computer gets a separate WebGL browser, so software GPU emulation is never
+applied to the 2D card.
 
 The research card is supersampled before Lanczos normalization; the computer
 is rendered directly at 1920x1080. Both use 24fps. The shared specification is
