@@ -146,7 +146,7 @@ export class ArcadeCabinet {
     // Render portrait boards in a portrait framebuffer. The CRT adds the
     // side margins once; a 4:3 source would already contain its own margins.
     frame.style.width=game.vertical?'360px':'640px';
-    frame.src=`/arcade/runner.html?game=${encodeURIComponent(game.id)}`;this.frame=frame;document.body.append(frame);
+    frame.src=`/arcade/runner.html?game=${encodeURIComponent(game.id)}`;this.frame=frame;this.canvas.parentElement!.append(frame);
     this.timeout=window.setTimeout(()=>this.fail('启动时间过长，请检查游戏文件与 BIOS 的版本后重试。'),90000);this.render();
   }
   private message=(event:MessageEvent)=>{

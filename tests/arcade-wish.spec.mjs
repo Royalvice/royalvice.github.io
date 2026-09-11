@@ -35,8 +35,12 @@ test('native cheat options and unlimited credit pulses reach the real Metal Slug
   test.setTimeout(process.env.ARCADE_SOFTWARE_RENDERING?300000:150000);const availability=await(await request.get('/arcade/availability.json')).json();test.skip(!availability.games?.mslug?.available,'Hosted Metal Slug cartridge required');
   await page.addInitScript(k=>localStorage.setItem(k,JSON.stringify({clicks:6,earned:true,inserted:true})),key);
   await readyRoom(page);await open(page);await page.locator('[data-arcade-load]').click();
-  try { await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>200,null,{timeout:180000}); }
+  try { await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>5,null,{timeout:180000}); }
   catch(error){console.log('Native arcade state:',await page.evaluate(()=>window.__arcadeCabinetDebug.getState()));throw error;}
+  // Check a live core, not a fixed amount of emulation time on a CPU renderer.
+  const firstFrame=await page.evaluate(()=>window.__arcadeCabinetDebug.getState().emulator.frame);
+  const frameRect=await page.locator('.arcade-runtime').boundingBox();
+  expect(frameRect.x+frameRect.width).toBeGreaterThan(0);expect(frameRect.x).toBeLessThan((await page.viewportSize()).width);
   await page.locator('[data-arcade-cheats] summary').click();
   const cheat=page.locator('[data-arcade-cheat-list] select').first();await expect(cheat).toBeVisible();await cheat.selectOption({index:1});
   expect((await page.evaluate(()=>window.__arcadeCabinetDebug.getState().emulator)).cheats.length).toBe(1);
@@ -45,7 +49,8 @@ test('native cheat options and unlimited credit pulses reach the real Metal Slug
   for(let i=0;i<12;i++){await page.keyboard.press('5');await page.waitForTimeout(120);}
   await expect(page.locator('[data-arcade-wallet]')).toHaveText('∞');
   await page.keyboard.press('Enter');await page.waitForTimeout(2500);
-  const state=await page.evaluate(()=>window.__arcadeCabinetDebug.getState());expect(state.playing).toBeTruthy();
+  await expect.poll(()=>page.evaluate(()=>window.__arcadeCabinetDebug.getState().emulator.frame),{timeout:30000}).toBeGreaterThan(firstFrame);
+  const state=await page.evaluate(()=>window.__arcadeCabinetDebug.getState());expect(state.playing).toBeTruthy();expect(state.emulator.error).toBeNull();
   // Joystick ball stays below the projected glass, including its own radius.
   expect(state.renderer.joystick.y).toBeGreaterThan(state.renderer.screenBounds[1].y+25);
   await page.screenshot({path:'/tmp/yzy-arcade-final-desktop.png'});
