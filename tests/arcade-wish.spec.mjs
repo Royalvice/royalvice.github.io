@@ -35,7 +35,8 @@ test('native cheat options and unlimited credit pulses reach the real Metal Slug
   test.setTimeout(process.env.ARCADE_SOFTWARE_RENDERING?300000:150000);const availability=await(await request.get('/arcade/availability.json')).json();test.skip(!availability.games?.mslug?.available,'Hosted Metal Slug cartridge required');
   await page.addInitScript(k=>localStorage.setItem(k,JSON.stringify({clicks:6,earned:true,inserted:true})),key);
   await readyRoom(page);await open(page);await page.locator('[data-arcade-load]').click();
-  await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>200,null,{timeout:180000});
+  try { await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>200,null,{timeout:180000}); }
+  catch(error){console.log('Native arcade state:',await page.evaluate(()=>window.__arcadeCabinetDebug.getState()));throw error;}
   await page.locator('[data-arcade-cheats] summary').click();
   const cheat=page.locator('[data-arcade-cheat-list] select').first();await expect(cheat).toBeVisible();await cheat.selectOption({index:1});
   expect((await page.evaluate(()=>window.__arcadeCabinetDebug.getState().emulator)).cheats.length).toBe(1);

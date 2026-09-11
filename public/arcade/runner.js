@@ -1,5 +1,10 @@
 /* Same-origin rendering worker. The cabinet owns every input and every coin. */
 (async () => {
+  // This same-origin canvas is offscreen because the cabinet samples it as a
+  // texture. Schedule its frames on the visible host: Chromium otherwise
+  // throttles an out-of-viewport iframe even while its game is on the CRT.
+  window.requestAnimationFrame = parent.requestAnimationFrame.bind(parent);
+  window.cancelAnimationFrame = parent.cancelAnimationFrame.bind(parent);
   const report = (type, detail = '') => parent.postMessage({ source: 'yzy-arcade', type, detail }, location.origin);
   const id = new URL(location.href).searchParams.get('game');
   const catalog = await (await fetch('catalog.json')).json();
