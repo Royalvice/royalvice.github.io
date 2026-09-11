@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout homepage
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -36,10 +38,18 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
 
       - name: Build homepage
         run: npm run build
+
+      - name: Verify arcade game inventory
+        run: npm run verify:arcade
+
+      - name: Test arcade cabinet
+        run: |
+          npm run test:arcade
+          npx playwright test tests/siggraph-counter.spec.mjs
 
       - name: Start export server
         run: |

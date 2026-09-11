@@ -1,0 +1,121 @@
+[
+  {
+    "id": "neogeo",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/mslug3",
+    "bytes": 1950045,
+    "sha256": "36a47cf50a585cafc812e19ef7646ad1556a5de90440d9dcb06f373926cd68ea",
+    "downloaded": "2026-09-09T06:18:19.038Z"
+  },
+  {
+    "id": "pgm",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/kov",
+    "bytes": 2190114,
+    "sha256": "b26918d5b844b60490a748e3afe21313db2de285c188e58bdfc72add865b9049",
+    "downloaded": "2026-09-09T06:18:32.030Z"
+  },
+  {
+    "id": "mslug",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/mslug",
+    "bytes": 13165412,
+    "sha256": "3ebe7ca4166f956a65ae98d86f9172f8b5d4462efa13723a5ea72fcf59adcbf8",
+    "downloaded": "2026-09-09T06:18:45.349Z"
+  },
+  {
+    "id": "mslug2",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/mslug2",
+    "bytes": 17473893,
+    "sha256": "1a82d65e88050fdc75dbcea180e48802d54c67a4748558fc4bd51c0103d56e4a",
+    "downloaded": "2026-09-09T06:18:59.224Z"
+  },
+  {
+    "id": "mslugx",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/mslugx",
+    "bytes": 28493658,
+    "sha256": "9678a794d64e6a519284d2fa95fc855064ca2c843634bfb529c0883b2e30d381",
+    "downloaded": "2026-09-09T06:19:14.357Z"
+  },
+  {
+    "id": "mslug3",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/mslug3",
+    "bytes": 80456848,
+    "sha256": "d5b60499ca842fad4a46f8e4600cfef1850abeaf6068937c527830415333d35d",
+    "downloaded": "2026-09-09T06:19:37.526Z"
+  },
+  {
+    "id": "kof97",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/kof97",
+    "bytes": 28745740,
+    "sha256": "804f892924d4650545d3ea2d19fb85670094dc46db882fecaf3e03009e2c4b9f",
+    "downloaded": "2026-09-09T06:19:58.856Z"
+  },
+  {
+    "id": "kof98",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/kof98",
+    "bytes": 40445835,
+    "sha256": "41d85684c3ef82a5e5369c7bcb9bff631c97b1e98637336fcdefed4cb6bc5c23",
+    "downloaded": "2026-09-09T06:20:20.601Z"
+  },
+  {
+    "id": "kof2002",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/kof2002",
+    "bytes": 82483673,
+    "sha256": "870204ac21027c010de7a70da00da2202bb710a16f7c01b9b11ab680fe5c2c51",
+    "downloaded": "2026-09-09T06:20:53.857Z"
+  },
+  {
+    "id": "sf2ce",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/sf2ce",
+    "bytes": 3584791,
+    "sha256": "934a64cb81871d271a369dc4e1edf535ab0a3af7c60c59be2a366fd1eacbef7c",
+    "downloaded": "2026-09-09T06:21:06.925Z"
+  },
+  {
+    "id": "sfiii3",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/sfiii3",
+    "bytes": 70592155,
+    "sha256": "8b9a0002654f289e37f58c3e26bb4111fde105e75a0834c80fa2e660f4b116d8",
+    "downloaded": "2026-09-09T06:21:37.620Z"
+  },
+  {
+    "id": "dino",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/dino",
+    "bytes": 4116096,
+    "sha256": "f281737ccb848bdc942ef094f6a5a96aabe4659ba901759dbc1ac6ecebc17a39",
+    "downloaded": "2026-09-09T06:21:51.981Z"
+  },
+  {
+    "id": "wof",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/wof",
+    "bytes": 3943624,
+    "sha256": "6a31cec4efd9123fd3261bedb1662c8f5b106ba47f8256347c372c350ac07887",
+    "downloaded": "2026-09-09T06:22:05.616Z"
+  },
+  {
+    "id": "kov",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/kov",
+    "bytes": 21034602,
+    "sha256": "6443c4d38ad9dd166876707ecf17ba0b0d4d6518113ca761ae39302754adf412",
+    "downloaded": "2026-09-09T06:22:22.982Z"
+  },
+  {
+    "id": "knights",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/knights",
+    "bytes": 2355202,
+    "sha256": "41e54d65889d9bdf0181b10c73582ba2ca97cf502d5ddb32688f3b39bf0baa13",
+    "downloaded": "2026-09-09T06:22:36.661Z"
+  },
+  {
+    "id": "orlegend",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/orlegend",
+    "bytes": 17288583,
+    "sha256": "4b6aac496aed8a2c414ca41a7b03a6c8697e2d3a159ba51199b7b4163b2b24fa",
+    "downloaded": "2026-09-09T06:22:54.434Z"
+  },
+  {
+    "id": "raiden2",
+    "source": "https://www.planetemu.net/rom/finalburn-neo-arcade-games/raiden2",
+    "bytes": 10654466,
+    "sha256": "c68d4fcf6f2c959cca0fe97dffc25d6c246f148c29390fddf5854b38c19ece16",
+    "downloaded": "2026-09-09T06:23:10.103Z"
+  }
+]

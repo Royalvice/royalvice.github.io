@@ -11,7 +11,12 @@
     "verify:profile-gifs": "node tools/profile-gif-export/verify.mjs",
     "assets:horizon": "node tools/bake-horizon-assets.mjs",
     "test:e2e": "playwright test tests/arcade.spec.mjs",
-    "test:visual": "playwright test tests/visual.spec.mjs"
+    "test:visual": "playwright test tests/visual.spec.mjs",
+    "prepare:arcade": "node tools/arcade/prepare.mjs",
+    "predev": "npm run prepare:arcade",
+    "prebuild": "npm run prepare:arcade",
+    "verify:arcade": "node tools/arcade/verify.mjs --require-all",
+    "test:arcade": "node --test tests/arcade-assets.test.mjs && playwright test tests/arcade-cabinet.spec.mjs tests/arcade-wish.spec.mjs"
   },
   "dependencies": {
     "playcanvas": "^2.12.2",

@@ -1,4 +1,5 @@
 import manifest from '../../public/assets/profile/dungeon-v8/furniture/manifest.json';
+import television from '../../public/assets/profile/arcade-tv/manifest.json';
 
 export interface GroundedFurniture {
   size:number[];
@@ -12,6 +13,7 @@ const asset=(name:keyof typeof manifest,feet:number[][]):GroundedFurniture=>({
 });
 /** Contacts are measured on the opaque feet / pot base, not the alpha bounding box. */
 export const ROOM_FURNITURE:Record<string,GroundedFurniture>={
+  tv:{size:television.size,pivot:television.pivot,feet:[[.14,television.pivot[1]],[.85,television.pivot[1]]],url:'/assets/profile/arcade-tv/television.png'},
   primaryDesk:asset('desk',[[.045,1],[.67,1],[.967,1],[.12,.67]]),
   sofa:asset('sofa',[[.065,1],[.935,1]]),
   secondaryDesk:asset('sideboard',[[.06,1],[.94,1]]),

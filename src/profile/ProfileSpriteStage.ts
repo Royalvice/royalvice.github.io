@@ -69,7 +69,7 @@ export class ProfileSpriteStage {
   private referenceHeight = 320;
   private listeners: Array<() => void> = [];
   private furniture = emptyImage();
-  private cabinFurniture:Record<string,LoadedImage>={primaryDesk:emptyImage(),secondaryDesk:emptyImage(),sofa:emptyImage(),waterCooler:emptyImage(),flowers:emptyImage(),coffeeTable:emptyImage()};
+  private cabinFurniture:Record<string,LoadedImage>={tv:emptyImage(),primaryDesk:emptyImage(),secondaryDesk:emptyImage(),sofa:emptyImage(),waterCooler:emptyImage(),flowers:emptyImage(),coffeeTable:emptyImage()};
   private door = emptyImage();
   private doorLabelKey = "";
   private lamps = emptyImage();
@@ -125,19 +125,19 @@ export class ProfileSpriteStage {
           ${PROFILE_ACTOR_IDS.map((id) => `<button type="button" data-profile-actor="${id}" aria-label="Control ${PROFILE_ACTORS[id].label}"><span>${PROFILE_ACTORS[id].label}</span></button>`).join("")}
         </div>
         <button class="profile-door-control" type="button" data-profile-door aria-label="Toggle the Anywhere Door inside the sprite room"><span>DOOR</span></button>
-        <button class="profile-tv-control" type="button" data-profile-tv aria-label="Open the playable Pac-Lab maze arcade inside the television" aria-controls="paclab-dialog" aria-expanded="false"><span>PLAY</span></button>
+        <button class="profile-tv-control" type="button" data-profile-tv aria-label="Open the YZY arcade cabinet and its 15 classic games" aria-controls="arcade-cabinet-dialog" aria-expanded="false"><span class="terminal-glove" aria-hidden="true"><svg viewBox="0 0 24 28" shape-rendering="crispEdges"><path fill="#161b17" d="M8 0h6v9h6v3h4v11h-3v5H7v-5H4v-4H1v-7h5v2h2z"/><path fill="#f4ead0" d="M10 2h2v13h2v-4h4v3h4v7h-3v5H9v-5H6v-4H3v-3h2v2h5z"/><path fill="#b7b399" d="M14 15h2v6h-2zm4 0h2v6h-2zM9 23h10v3H9z"/></svg></span><span class="arcade-dock-hint">play for fun</span></button>
         <div class="profile-terminal-dock" data-terminal-dock>
           <div class="profile-terminal-visual" data-terminal-visual></div>
           <button type="button" class="profile-terminal-trigger" data-profile-terminal disabled aria-label="Use the YZY computer on the research desk" aria-haspopup="dialog" aria-controls="yzy-terminal-dialog" aria-expanded="false">
             <span class="terminal-glove" aria-hidden="true"><svg viewBox="0 0 24 28" shape-rendering="crispEdges"><path fill="#161b17" d="M8 0h6v9h6v3h4v11h-3v5H7v-5H4v-4H1v-7h5v2h2z"/><path fill="#f4ead0" d="M10 2h2v13h2v-4h4v3h4v7h-3v5H9v-5H6v-4H3v-3h2v2h5z"/><path fill="#b7b399" d="M14 15h2v6h-2zm4 0h2v6h-2zM9 23h10v3H9z"/></svg></span>
-            <span class="terminal-dock-hint">YZY <b>USE COMPUTER</b></span>
+            <span class="terminal-dock-hint">what's new</span>
           </button>
         </div>
         <button class="profile-adventure-replay" type="button" data-profile-reset data-profile-replay><i aria-hidden="true">↻</i> RESET ROOM</button>
-        <p class="profile-adventure-caption"><span data-room-status>ROOM ONLINE</span><b>PAC-LAB TV / 05</b></p>
+        <p class="profile-adventure-caption"><span data-room-status>ROOM ONLINE</span><b>YZY ARCADE / 15</b></p>
         <ul class="profile-room-inventory sr-only" aria-label="Objects in the living research dungeon">
           <li>Hanging chandelier</li><li>Blackboard and blackboard eraser</li><li>Research workstation and music cabinet</li>
-          <li>Teal sofa</li><li>Water cooler</li><li>Television playing a silent maze chase</li><li>Game console</li>
+          <li>Teal sofa</li><li>Water cooler</li><li>Television showing the YZY arcade attract screen</li><li>Game console</li>
           <li>Six fuel lamps</li><li>Two framed pixel posters</li><li>Anywhere Door</li>
           <li>Wooden music box playing Returning Home by Parijat</li>
         </ul>
@@ -469,6 +469,7 @@ export class ProfileSpriteStage {
     if(id==='tv')this.drawTvScreen(ctx,r);
     const generated=this.cabinFurniture[id];
     if(generated?.image)ctx.drawImage(generated.image,r.left,r.top,r.width,r.height);
+    else if(id==='tv')this.drawFurnitureFallback(ctx,'tvCabinet',r);
     else if(prop.sprite)this.drawFurniture(ctx,prop.sprite,r.anchorX,r.anchorY,r.width,r.height);
     if(id==='primaryDesk'){
 
@@ -479,7 +480,7 @@ export class ProfileSpriteStage {
       if(this.terminalFrame?.width&&this.terminalFrame.height){const w=r.width*.40,h=w*.88;ctx.drawImage(this.terminalFrame,r.anchorX+r.width*.12-w/2,r.top+r.height*.24-h,w,h);}
     }
     if(id==='secondaryDesk'){this.drawMusicBox(ctx);if(this.kimetsu.image)ctx.drawImage(this.kimetsu.image,r.left+r.width*.60,r.top+r.height*.24-22,31,22);}
-    if(id==='tv'){const a=PROFILE_ROOM_SPRITE_META.tvCabinet.childAnchors!.ps5;this.drawFurniture(ctx,'ps5',r.left+r.width*a[0],r.top+r.height*a[1],14,21);}
+    if(id==='tv'&&!generated?.image){const a=PROFILE_ROOM_SPRITE_META.tvCabinet.childAnchors!.ps5;this.drawFurniture(ctx,'ps5',r.left+r.width*a[0],r.top+r.height*a[1],14,21);}
     if(id==='sofa'&&!this.cabinFurniture.sofa.ready){
       const x=r.left+r.width*.15,y=r.top+r.height*.56;
       // Tanjiro's woven cushion, next to Nezuko's travel-box collectible.
@@ -1087,10 +1088,12 @@ export class ProfileSpriteStage {
     if (tvButton) {
       const tv = this.propRect("tv");
       const screen = PROFILE_ROOM_SPRITE_META.tvCabinet.screenRect as [number, number, number, number];
-      tvButton.style.left = `${(tv.left+tv.width*screen[0]) / this.width * 100}%`;
-      tvButton.style.top = `${(tv.top+tv.height*screen[1]) / this.height * 100}%`;
-      tvButton.style.width = `${tv.width*screen[2] / this.width * 100}%`;
-      tvButton.style.height = `${tv.height*screen[3] / this.height * 100}%`;
+      // The button covers the cabinet; its pseudo-element marks the aperture.
+      // Applying the aperture twice shifted the hover frame into the CRT corner.
+      tvButton.style.left = `${tv.left / this.width * 100}%`;
+      tvButton.style.top = `${tv.top / this.height * 100}%`;
+      tvButton.style.width = `${tv.width / this.width * 100}%`;
+      tvButton.style.height = `${tv.height / this.height * 100}%`;
       tvButton.style.setProperty("--profile-tv-screen-left", `${screen[0] * 100}%`);
       tvButton.style.setProperty("--profile-tv-screen-top", `${screen[1] * 100}%`);
       tvButton.style.setProperty("--profile-tv-screen-width", `${screen[2] * 100}%`);

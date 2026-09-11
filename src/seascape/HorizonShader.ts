@@ -320,6 +320,30 @@ vec3 quantize(vec3 color,vec2 cell,float time) {
  return floor(max(color,vec3(0.))*160.+.5)/160.;
 }
 
+#ifdef HORIZON_CLOUD_MUSIC
+uniform sampler2D u_wish_glyphs;
+uniform float u_wish_age;
+vec3 wishFireworks(vec2 uv){
+  float age=u_wish_age;
+  if(age<0.||age>8.||u_cabin>.5)return vec3(0.);
+  // Tiny gold embers converge into type, hold, then fall into the night.
+  vec2 p=(uv-vec2(.10,.68))/vec2(.66,.13);
+  float fall=max(0.,age-5.);
+  p.y+=fall*fall*.027;
+  p.x+=sin(p.y*35.+age*2.)*max(0.,age-5.)*.003;
+  if(p.x<0.||p.x>1.||p.y<0.||p.y>1.)return vec3(0.);
+  vec2 q=vec2(p.x,1.-p.y);
+  float mask=texture(u_wish_glyphs,q).a;
+  float ember=fract(sin(dot(floor(q*vec2(256.,48.)),vec2(12.9898,78.233)))*43758.5453);
+  float reveal=smoothstep(0.,1.2,age);
+  float fade=1.-smoothstep(5.5,8.,age);
+  float spark=.80+.20*sin(age*5.+ember*6.28);
+  float halo=0.;
+  for(int i=-1;i<=1;i++)for(int j=-1;j<=1;j++)halo+=texture(u_wish_glyphs,q+vec2(float(i),float(j))/vec2(256.,48.)).a/9.;
+  return (vec3(1.,.85,.46)*mask*spark*1.65+vec3(1.,.51,.17)*halo*.3)*smoothstep(ember*.8,ember*.8+.22,reveal)*fade;
+}
+#endif
+
 void main() {
   vec2 cell = floor(v_uv * u_resolution); vec2 uv = (cell + .5) / u_resolution;
  if(u_cabin>.5){vec2 p=(uv-.5)*vec2(2.4,1.);float r=u_ship_motion.x;p=mat2(cos(r),-sin(r),sin(r),cos(r))*p;uv=cabinProjection(p/vec2(2.4,1.)+.5)+u_look*vec2(.12,.08)+vec2(0.,u_ship_motion.y);} float aspect = u_resolution.x / max(u_resolution.y, 1.0); if(u_cabin>.5)aspect=1.6; float horizon = .48; float cloud = 0.0; vec3 color;
@@ -337,6 +361,9 @@ void main() {
   }
   color = mix(color, vec3(.034, .068, .086), exp(-abs(uv.y - horizon) * 78.0) * .12 * smoothstep(.28, .9, u_entry));
   color *= 1.0 - smoothstep(.42, .94, length((uv - .5) * vec2(aspect, 1.0))) * .075;
+#ifdef HORIZON_CLOUD_MUSIC
+  color+=wishFireworks(uv);
+#endif
   outColor = vec4(quantize(max(color, 0.0), cell, u_time), 1.0);
 }`;
 export const horizonMusicFragmentSource = horizonFragmentSource.replace('#version 300 es', '#version 300 es\n#define HORIZON_CLOUD_MUSIC');

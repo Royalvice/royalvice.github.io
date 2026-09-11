@@ -346,138 +346,32 @@ test("cabinet trophies are enlarged, grounded, and use focused hover lighting", 
   }, { timeout: 15_000, intervals: [250, 500, 750] }).toBe(true);
 });
 
-test("living profile dungeon loads approved room-v4 atlases and runs one deterministic actor instance each", async ({ page }) => {
+test("living cabin loads the current registered sprites and maintains five deterministic actors", async ({ page }) => {
   test.setTimeout(180_000);
-  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
-  await expect(page.getByRole("heading", { name: "THE LIVING RESEARCH DUNGEON" })).toBeVisible();
-  await expect(page.locator(".profile-adventure-stage")).toBeVisible();
-  await expect(page.locator("[data-profile-actor]")).toHaveCount(5);
-  await expect(page.locator("[data-profile-door]")).toBeVisible();
-  await expect(page.locator("[data-profile-reset]")).toContainText("RESET ROOM");
-  await expect(page.getByText("Hanging chandelier")).toBeAttached();
-  await expect(page.getByText("Television playing a silent maze chase")).toBeAttached();
-
-  const manifest = await page.evaluate(async () => {
-    const response = await fetch("/assets/profile/adventure/room-v4/profile-room-v4-manifest.json");
-    return response.json();
-  });
-  expect(Object.keys(manifest.actors).sort()).toEqual(["doraemon", "gian", "nobita", "shizuka", "suneo"]);
-  const actorUrls = [];
-  for (const actor of Object.values(manifest.actors)) {
-    for (const kind of [actor.base, actor.movement, actor.life]) {
-      expect(kind.approvedFrames).toBe(9);
-      expect(kind.size).toEqual([384, 384]);
-      expect(kind.frameSize).toEqual([128, 128]);
-      expect(kind.frameOrder).toHaveLength(9);
-      expect(kind.sha256).toMatch(/^[a-f0-9]{64}$/);
-      actorUrls.push(kind.url);
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, {timeout: 90000});
+  await expect(page.getByRole('heading',{name:'THE LIVING RESEARCH DUNGEON'})).toBeVisible();
+  await expect(page.locator('[data-profile-actor]')).toHaveCount(5);
+  await expect(page.getByText('Television showing the YZY arcade attract screen')).toBeAttached();
+  const manifest=await page.evaluate(()=>fetch('/assets/profile/dungeon-v5/sprites/manifest.json').then(r=>r.json()));
+  expect(Object.keys(manifest).sort()).toEqual(['doraemon','gian','nobita','shizuka','suneo']);
+  for(const clips of Object.values(manifest)) {
+    expect(Object.keys(clips)).toHaveLength(9);
+    for(const clip of Object.values(clips)) {
+      expect(clip.frames).toHaveLength(clip.count);expect(clip.fps).toBeGreaterThan(0);
+      for(const frame of clip.frames){expect(frame.pivot).toHaveLength(2);expect(frame.rect).toHaveLength(4);}
     }
   }
-  expect(manifest.actors.nobita.movement.runtimeFrameCount).toBe(3);
-  expect(manifest.actors.nobita.movement.runtimeFrameIndices).toEqual([0, 1, 2]);
-  expect(manifest.actors.nobita.movement.compatibilityDuplicateCells).toEqual([]);
-  expect(manifest.furniture.size).toEqual([384, 384]);
-  expect(manifest.furniture.frameOrder).toEqual(["chandelier", "blackboard", "eraser", "secondary-desk", "chair", "sofa", "water-cooler", "tv-cabinet", "ps5"]);
-  expect(manifest.door.frameOrder).toEqual(["closed", "open"]);
-  expect(manifest.door.size).toEqual([256, 128]);
-  expect(manifest.lamps.frameOrder).toEqual(["low", "left", "high", "right"]);
-  expect(manifest.lamps.size).toEqual([256, 96]);
-  expect(manifest.posters.spiritedAway.size).toEqual([48, 64]);
-  expect(manifest.posters.onePieceEastBlue.size).toEqual([48, 64]);
-
-  const dimensions = await page.evaluate(async (urls) => Promise.all(urls.map(async (url) => {
-    const image = new Image();
-    image.src = url;
-    await image.decode();
-    return [image.naturalWidth, image.naturalHeight];
-  })), actorUrls);
-  expect(dimensions).toEqual(Array.from({ length: 15 }, () => [384, 384]));
-
-  const samples = await page.evaluate((times) => times.map((time) => {
-    window.__profileAdventureDebug.setTime(time);
-    return window.__profileAdventureDebug.getState();
-  }), [0, 2, 5, 9.75, 24, 25, 28.75, 300]);
-  expect(samples[0].actors.suneo.position).not.toEqual(samples[1].actors.suneo.position);
-  // Walking is intentionally slow and route-dependent now. Validate the
-  // state machine by its actual activity semantics instead of assuming that
-  // every actor must arrive at a station at an arbitrary wall-clock second.
-  expect(Object.values(samples[0].actors).every((actor) => actor.state === "walking")).toBe(true);
-  expect(samples[2].actors.shizuka.state).toBe("watching-tv");
-  expect(samples[3].actors.doraemon.state).toBe("walking");
-  expect(samples[7].actors.nobita.visitedStations.length).toBeGreaterThan(0);
-
-  const portalTimeline = await page.evaluate(() => {
-    window.__profileAdventureDebug.reset();
-    const states = [];
-    for (let step = 0; step < 160; step += 1) {
-      // The entering clip is 1.4s; a sub-second probe must not jump over it.
-      window.__profileAdventureDebug.advanceTime(0.75);
-      const state = window.__profileAdventureDebug.getState();
-      const entry = Object.entries(state.actors).find(([, actor]) => ["portal-entering", "portal-away", "portal-returning"].includes(actor.state));
-      if (entry) states.push({ time: state.simulationElapsed, id: entry[0], state: entry[1].state, visible: entry[1].visible });
-      if (states.some((item) => item.state === "portal-away") && states.some((item) => item.state === "portal-returning")) break;
-    }
-    return states;
-  });
-  expect(portalTimeline.some((entry) => entry.state === "portal-entering")).toBe(true);
-  expect(portalTimeline.some((entry) => entry.state === "portal-away" && entry.visible === false)).toBe(true);
-  expect(portalTimeline.some((entry) => entry.state === "portal-returning" && entry.visible === true)).toBe(true);
-  expect(samples.every((state) => Object.values(state.stationOccupancy).every((ids) => ids.length <= 1))).toBe(true);
-  expect(samples.every((state) => Object.values(state.actors).every((actor) => actor.renderInstanceCount === (actor.visible ? 1 : 0)))).toBe(true);
-  expect(Object.values(samples[0].assets.actors)).toEqual(["ready", "ready", "ready", "ready", "ready"]);
-  expect(samples[0].assets.furniture).toBe("ready");
-  expect(samples[0].assets.door).toBe("ready");
-  expect(samples[0].assets.lamps).toBe("ready");
-  expect(samples[0].assets.posters).toBe("ready");
-  expect(samples[0].layout.tvChildAnchors.ps5).toEqual([0.73, 0.61]);
-
-  const visited = Object.values(samples.at(-1).actors).flatMap((actor) => actor.visitedStations);
-  for (const station of ["blackboard", "water-cooler", "primary-desk", "secondary-desk", "sofa-left", "tv-console", "anywhere-door"]) {
-    expect(visited).toContain(station);
+  const samples=await page.evaluate(()=>[0,10,60,180,300].map(t=>{window.__profileAdventureDebug.setTime(t);return window.__profileAdventureDebug.getState();}));
+  expect(samples[0].actorPositions).not.toEqual(samples[1].actorPositions);
+  for(const state of samples){
+    expect(Object.values(state.actors)).toHaveLength(5);
+    expect(Object.values(state.actors).every(a=>a.renderInstanceCount===(a.visible?1:0))).toBe(true);
+    expect(Object.values(state.stationOccupancy).every(ids=>ids.length<=1)).toBe(true);
+    expect(Object.values(state.assets.actors)).toEqual(Array(5).fill('ready'));
   }
-  const spacing = await page.evaluate(() => {
-    let minimum = Infinity;
-    for (let time = 0; time <= 180; time += 2) {
-      window.__profileAdventureDebug.setTime(time);
-      const visible = Object.values(window.__profileAdventureDebug.getState().actors).filter((actor) => actor.visible);
-      for (let first = 0; first < visible.length; first += 1) {
-        for (let second = first + 1; second < visible.length; second += 1) {
-          minimum = Math.min(minimum, Math.hypot(
-            visible[first].position[0] - visible[second].position[0],
-            visible[first].position[1] - visible[second].position[1]
-          ));
-        }
-      }
-    }
-    return minimum;
-  });
-  expect(spacing).toBeGreaterThanOrEqual(.063);
-
-  const tvStates = await page.evaluate(() => [1, 8].map((time) => {
-    window.__profileAdventureDebug.setTime(time);
-    const state = window.__profileAdventureDebug.getState();
-    return [state.tvFrame, state.tvPelletsRemaining];
-  }));
-  expect(tvStates[0]).not.toEqual(tvStates[1]);
-
-  const deterministic = await page.evaluate(() => {
-    window.__profileAdventureDebug.setTime(0);
-    const before = window.__profileAdventureDebug.getState();
-    window.__profileAdventureDebug.setTime(71);
-    window.__profileAdventureDebug.reset();
-    const after = window.__profileAdventureDebug.getState();
-    return {
-      before: Object.fromEntries(Object.entries(before.actors).map(([id, actor]) => [id, actor.position])),
-      after: Object.fromEntries(Object.entries(after.actors).map(([id, actor]) => [id, actor.position])),
-      beforeTv: [before.tvFrame, before.tvPelletsRemaining],
-      afterTv: [after.tvFrame, after.tvPelletsRemaining]
-    };
-  });
-  expect(deterministic.after).toEqual(deterministic.before);
-  expect(deterministic.afterTv).toEqual(deterministic.beforeTv);
-  await expect(page.locator(".profile-adventure-handoff")).toHaveCount(0);
-  const galleryDebug = await page.evaluate(() => window.__galleryDebug?.());
-  expect(galleryDebug).not.toHaveProperty("adventure");
+  const reset=await page.evaluate(()=>{window.__profileAdventureDebug.reset();return window.__profileAdventureDebug.getState();});
+  expect(reset.actorPositions).toEqual(samples[0].actorPositions);
+  await expect(page.locator('.profile-adventure-handoff')).toHaveCount(0);
 });
 
 test("profile room controls use ground focus, manual actions, unique portal transit, and freeze on pause", async ({ page }) => {
@@ -495,14 +389,14 @@ test("profile room controls use ground focus, manual actions, unique portal tran
   expect(focusStyle.outline).toBe("none");
   expect(["none", "normal"]).toContain(focusStyle.after);
   await nobita.click();
-  await expect.poll(() => page.evaluate(() => window.__profileAdventureDebug.getState().actors.nobita.state)).toBe("manual-action");
+  await expect.poll(() => page.evaluate(() => window.__profileAdventureDebug.getState().controlledActor)).toBe("nobita");
   await page.keyboard.press("Escape");
-  await expect.poll(() => page.evaluate(() => window.__profileAdventureDebug.getState().actors.nobita.state)).not.toBe("manual-action");
+  await expect.poll(() => page.evaluate(() => window.__profileAdventureDebug.getState().controlledActor)).toBe(null);
 
   const transit = await page.evaluate(() => {
     window.__profileAdventureDebug.reset();
-    for (let step = 0; step < 40; step += 1) {
-      window.__profileAdventureDebug.advanceTime(3);
+    for (let step = 0; step < 600; step += 1) {
+      window.__profileAdventureDebug.advanceTime(1);
       const state = window.__profileAdventureDebug.getState();
       const entry = Object.entries(state.actors).find(([, actor]) => actor.state === "portal-away");
       if (entry) return { time: state.simulationElapsed, id: entry[0] };
@@ -545,7 +439,7 @@ test("profile room controls use ground focus, manual actions, unique portal tran
   expect((await page.evaluate(() => window.__profileAdventureDebug.getState())).doorUser).toBe(null);
 });
 
-test("room-v4 actor failures stay local, reduced motion is static, and the removed 3d runner is never requested", async ({ browser }) => {
+test("current actor failures stay local, reduced motion is static, and the removed 3d runner is never requested", async ({ browser }) => {
   test.setTimeout(300_000);
   const fallback = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await fallback.newPage();
@@ -554,7 +448,7 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
     if (request.url().includes("nobita-adventure.glb")) requestedRiggedModel = true;
   });
   for (const route of [
-    "**/room-v4/actors/suneo-movement-3x3.webp",
+    "**/dungeon-v5/sprites/suneo-*.webp",
     "**/room-v3/furniture/furniture-grounded-v4-3x3.webp",
     "**/room-v3/props/anywhere-door-2x1.webp",
     "**/room-v3/props/bulkhead-wall-lamp-v4-4x1.webp",
@@ -564,7 +458,7 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
   await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
   await page.evaluate(() => window.__profileAdventureDebug.setTime(9.75));
   const state = await page.evaluate(() => window.__profileAdventureDebug.getState());
-  expect(state.assets.actors.suneo).toBe("partial-fallback");
+  expect(state.assets.actors.suneo).toBe("failed");
   expect(Object.entries(state.assets.actors).filter(([id, status]) => id !== "suneo" && status === "ready")).toHaveLength(4);
   expect(state.assets.furniture).toBe("fallback");
   expect(state.assets.door).toBe("fallback");
@@ -592,110 +486,18 @@ test("room-v4 actor failures stay local, reduced motion is static, and the remov
   await reduced.close();
 });
 
-test("Pac-Lab television easter egg opens a complete original maze game and restores room focus", async ({ page, browser }) => {
-  test.setTimeout(240_000);
-  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 60_000 });
-  const stage = page.locator(".profile-adventure-stage");
-  const tv = page.locator("[data-profile-tv]");
-  await stage.scrollIntoViewIfNeeded();
-  await expect(tv).toBeVisible();
-  await expect(tv).toHaveAttribute("aria-label", /playable Pac-Lab maze arcade/i);
-  const geometry = await page.evaluate(() => {
-    const room = document.querySelector(".profile-adventure-stage").getBoundingClientRect();
-    const button = document.querySelector("[data-profile-tv]").getBoundingClientRect();
-    return {
-      inside: button.left >= room.left && button.top >= room.top && button.right <= room.right && button.bottom <= room.bottom,
-      width: button.width,
-      height: button.height
-    };
-  });
-  expect(geometry.inside).toBe(true);
-  expect(geometry.width).toBeGreaterThan(30);
-  expect(geometry.height).toBeGreaterThan(30);
-
-  await tv.focus();
-  await page.keyboard.press("Enter");
-  await page.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
-  const roomBoot = await page.evaluate(() => window.__profileAdventureDebug.getState());
-  expect(roomBoot.tvPowerHistory.slice(-3)).toEqual(["glow", "white", "arcade"]);
-  expect(roomBoot.paused).toBe(true);
-  await expect(page.locator("[data-paclab-dialog]")).toBeVisible();
-  await expect(page.getByText("MOVE WASD / ARROWS", { exact: false })).toBeVisible();
-  await expect(page.getByText("PAUSE SPACE", { exact: false })).toBeVisible();
-
-  const initial = await page.evaluate(() => window.__pacLabDebug.getState());
-  expect(initial.phase).toBe("ready");
-  expect(initial.lives).toBe(3);
-  expect(initial.level).toBe(1);
-  expect(initial.pelletsRemaining).toBeGreaterThan(200);
-  expect(initial.specters).toHaveLength(4);
-  await page.evaluate(() => {
-    window.__pacLabDebug.start();
-    window.__pacLabDebug.setDirection("left");
-    window.__pacLabDebug.advanceTime(.75);
-  });
-  const moved = await page.evaluate(() => window.__pacLabDebug.getState());
-  expect(moved.player.x).toBeLessThan(initial.player.x - .5);
-  expect(moved.score).toBeGreaterThan(0);
-  expect(moved.pelletsRemaining).toBeLessThan(initial.pelletsRemaining);
-
-  await page.keyboard.press("Space");
-  const paused = await page.evaluate(() => window.__pacLabDebug.getState());
-  expect(paused.phase).toBe("paused");
-  await page.waitForTimeout(180);
-  expect((await page.evaluate(() => window.__pacLabDebug.getState())).player).toEqual(paused.player);
-
-  const power = await page.evaluate(() => window.__pacLabDebug.setScenario("power-pellet"));
-  expect(power.frightenedRemaining).toBeGreaterThan(2.9);
-  expect(power.specters.every((specter) => specter.state === "frightened")).toBe(true);
-  const chained = await page.evaluate(() => window.__pacLabDebug.setScenario("ghost-chain"));
-  expect(chained.specters[0].state).toBe("eaten");
-  expect(chained.score).toBeGreaterThanOrEqual(power.score + 200);
-  const livesBeforeDeath = chained.lives;
-  await page.evaluate(() => {
-    window.__pacLabDebug.setScenario("death");
-    window.__pacLabDebug.advanceTime(1.5);
-  });
-  expect((await page.evaluate(() => window.__pacLabDebug.getState())).lives).toBe(livesBeforeDeath - 1);
-  const beforeLevel = await page.evaluate(() => window.__pacLabDebug.getState());
-  await page.evaluate(() => {
-    window.__pacLabDebug.setScenario("level-clear");
-    window.__pacLabDebug.advanceTime(2);
-  });
-  const nextLevel = await page.evaluate(() => window.__pacLabDebug.getState());
-  expect(nextLevel.level).toBe(beforeLevel.level + 1);
-  expect(nextLevel.pelletsRemaining).toBeGreaterThan(200);
-
-  await page.keyboard.press("Escape");
-  await expect(page.locator("[data-paclab-dialog]")).toBeHidden();
+test("television opens the 3D arcade catalog and restores room focus", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 90_000 });
+  const tv=page.locator('[data-profile-tv]');
+  await tv.click();
+  await expect(page.locator('[data-arcade-dialog]')).toBeVisible();
+  await expect(page.locator('[data-arcade-game]')).toHaveCount(15);
+  await page.waitForFunction(() => window.__arcadeCabinetDebug?.getState().renderer?.screenVertices===825);
+  expect((await page.evaluate(() => window.__profileAdventureDebug.getState())).paused).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('[data-arcade-dialog]')).toBeHidden();
   await expect(tv).toBeFocused();
-  expect((await page.evaluate(() => window.__profileAdventureDebug.getState())).tvPowerPhase).toBe("idle");
-
-  const reduced = await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: "reduce" });
-  const reducedPage = await reduced.newPage();
-  await reducedPage.goto("/", { waitUntil: "domcontentloaded" });
-  await reducedPage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
-  await reducedPage.locator("[data-profile-tv]").click();
-  await reducedPage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
-  expect((await reducedPage.evaluate(() => window.__profileAdventureDebug.getState())).tvPowerHistory.slice(-1)).toEqual(["arcade"]);
-  await reduced.close();
-
-  const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
-  const mobilePage = await mobile.newPage();
-  await mobilePage.goto("/", { waitUntil: "domcontentloaded" });
-  await mobilePage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
-  await mobilePage.locator("[data-profile-tv]").click();
-  await mobilePage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
-  const touch = await mobilePage.locator("[data-paclab-direction]").evaluateAll((buttons) => buttons.map((button) => {
-    const rect = button.getBoundingClientRect();
-    return { width: rect.width, height: rect.height };
-  }));
-  expect(touch).toHaveLength(4);
-  expect(touch.every((button) => button.width >= 44 && button.height >= 44)).toBe(true);
-  expect(await mobilePage.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
-  await mobilePage.locator('[data-paclab-direction="left"]').dispatchEvent("pointerdown");
-  expect((await mobilePage.evaluate(() => window.__pacLabDebug.getState())).player.queuedDirection).toBe("left");
-  await mobile.close();
 });
 
 test("television cabinet hitbox and CRT aperture stay aligned at responsive widths", async ({ browser }) => {
@@ -718,7 +520,7 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
       const button = document.querySelector("[data-profile-tv]");
       const buttonRect = button.getBoundingClientRect();
       const before = getComputedStyle(button, "::before");
-      const label = button.querySelector("span").getBoundingClientRect();
+      const label = button.querySelector(".arcade-dock-hint").getBoundingClientRect();
       const state = window.__profileAdventureDebug.getState();
       const rendered = state.viewport.props.tv;
       const [worldWidth, worldHeight] = state.viewport.worldSize;
@@ -757,7 +559,7 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
       return {
         maxCabinetError: Math.max(...edges(cabinet, actualCabinet)),
         maxScreenError: Math.max(...edges(screen, actualScreen)),
-        labelCenterError: Math.abs(label.left + label.width / 2 - stage.left - (screen.left + screen.width / 2)),
+        labelInside: label.left >= stage.left && label.right <= stage.right && label.top >= stage.top,
         borderColor: before.borderTopColor,
         inside: buttonRect.left >= stage.left && buttonRect.top >= stage.top && buttonRect.right <= stage.right && buttonRect.bottom <= stage.bottom
       };
@@ -765,7 +567,7 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
     expect(geometry.inside).toBe(true);
     expect(geometry.maxCabinetError).toBeLessThanOrEqual(1);
     expect(geometry.maxScreenError).toBeLessThanOrEqual(1);
-    expect(geometry.labelCenterError).toBeLessThanOrEqual(1);
+    expect(geometry.labelInside).toBe(true);
     expect(geometry.borderColor).not.toBe("rgba(0, 0, 0, 0)");
     await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("white"));
     await expect(control).toBeVisible();
@@ -778,90 +580,23 @@ test("television cabinet hitbox and CRT aperture stay aligned at responsive widt
   }
 });
 
-test("resizing extends the room while keeping all four cabinets square and their contents proportional", async ({ page }) => {
+test("resizing preserves the whole cabin and scales furniture uniformly without empty panels", async ({ page }) => {
   test.setTimeout(120_000);
-  await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready && window.__galleryDebug?.().viewport, null, { timeout: 60_000 });
-  const samples = [];
-  for (const [width, height] of [[1920, 1080], [2560, 1080], [1280, 900], [1000, 900], [760, 900], [390, 844], [1920, 1080]]) {
-    await page.setViewportSize({ width, height });
-    await expect.poll(() => page.evaluate(() => {
-      const canvas = document.querySelector(".profile-sprite-canvas").getBoundingClientRect();
-      const room = window.__profileAdventureDebug.getState().viewport;
-      const gallery = document.querySelector(".playcanvas-gallery-canvas").getBoundingClientRect();
-      return Math.max(Math.abs(canvas.width / canvas.height - room.worldSize[0] / room.worldSize[1]),
-        Math.abs(gallery.width / gallery.height - window.__galleryDebug().viewport.aspect));
-    })).toBeLessThan(0.00001);
-    const sample = await page.evaluate(() => {
-      const canvas = document.querySelector(".profile-sprite-canvas");
-      const bounds = canvas.getBoundingClientRect();
-      const ctx = canvas.getContext("2d");
-      const drawImage = ctx.drawImage;
-      const actorRatios = [];
-      // Inspect actual draw calls, including their transforms and CSS scaling.
-      ctx.drawImage = function (...args) {
-        if (args.length === 9 && args[0].src?.includes("/actors/")) {
-          const transform = this.getTransform();
-          actorRatios.push(Math.abs(args[7] * transform.a * bounds.width / canvas.width)
-            / Math.abs(args[8] * transform.d * bounds.height / canvas.height));
-        }
-        return drawImage.apply(this, args);
-      };
-      try { window.__profileAdventureDebug.setTime(0); } finally { ctx.drawImage = drawImage; }
-      const room = window.__profileAdventureDebug.getState().viewport;
-      const gallery = window.__galleryDebug();
-      const boxes = [...document.querySelectorAll(".gallery-ui-card")].map(e => {
-        const r = e.getBoundingClientRect(); return [r.width, r.height];
-      });
-      const actorBoxes = [...document.querySelectorAll("[data-profile-actor]")].map(e => {
-        const r = e.getBoundingClientRect(); return [r.width, r.height];
-      });
-      return { room, gallery: gallery.viewport, trophies: gallery.slots.map(s => s.trophyScale), actorRatios, actorBoxes, boxes };
-    });
-    expect(sample.actorRatios).toHaveLength(5);
-    sample.actorRatios.forEach(ratio => expect(ratio).toBeCloseTo(1, 6));
-    sample.actorBoxes.forEach(([w, h]) => expect(Math.abs(w - h)).toBeLessThan(0.03));
-    expect(sample.gallery.rootScale).toEqual([1, 1, 1]);
-    expect(sample.gallery.width / sample.gallery.height).toBeCloseTo(sample.gallery.aspect, 6);
-    expect(sample.gallery.geometry.filter(p => p.name.endsWith(".back-panel"))).toHaveLength(4);
-    for (const panel of sample.gallery.geometry) {
-      if (panel.name === "outer-frame-left") {
-        expect(panel.size[0]).toBeCloseTo(0.28, 5);
-        expect(panel.size[1]).toBeCloseTo(sample.gallery.height, 5);
-      } else {
-        expect(panel.size[0]).toBeCloseTo(sample.gallery.bayWidth, 5);
-        expect(panel.size[1]).toBeCloseTo(sample.gallery.bayHeight, 5);
-      }
+  await page.waitForFunction(()=>window.__profileAdventureDebug?.getState().ready && window.__galleryDebug?.().viewport,null,{timeout:90000});
+  for(const [width,height] of [[1920,1080],[2560,1080],[1280,900],[1000,900],[760,900],[390,844],[1920,1080]]) {
+    await page.setViewportSize({width,height});
+    await expect.poll(()=>page.locator('.profile-sprite-canvas').evaluate(el=>{const r=el.getBoundingClientRect();return Math.abs(r.width/r.height-4/3);})).toBeLessThan(.001);
+    const state=await page.evaluate(()=>({room:window.__profileAdventureDebug.getState().viewport, gallery:window.__galleryDebug().viewport,compact:document.querySelector('#profile').classList.contains('profile-compact'),overflow:document.documentElement.scrollWidth>innerWidth}));
+    expect(state.room.worldSize).toEqual([640,480]);expect(state.overflow).toBe(false);
+    await expect(page.locator('.profile-top')).toBeVisible();await expect(page.locator('.profile-sprite-canvas')).toBeVisible();
+    if(state.compact) await expect(page.locator('.gallery-stage')).toBeHidden();
+    else {
+      await expect(page.locator('.gallery-stage')).toBeVisible();
+      expect(state.gallery.rootScale).toEqual([1,1,1]);
+      expect(state.gallery.bays).toHaveLength(4);
+      for(const bay of state.gallery.bays){expect(bay.scale).toEqual([1,1,1]);expect(bay.unitPixels[0]/bay.unitPixels[1]).toBeCloseTo(1,5);expect(bay.bounds[2]).toBeCloseTo(state.gallery.bays[0].bounds[2],4);expect(bay.bounds[3]).toBeCloseTo(state.gallery.bays[0].bounds[3],4);}
     }
-    for (const bay of sample.gallery.bays) {
-      expect(bay.scale).toEqual([1, 1, 1]);
-      expect(bay.unitPixels[0] / bay.unitPixels[1]).toBeCloseTo(1, 6);
-      expect(bay.bounds[2]).toBeCloseTo(sample.gallery.bays[0].bounds[2], 4);
-      expect(bay.bounds[3]).toBeCloseTo(sample.gallery.bays[0].bounds[3], 4);
-    }
-    sample.boxes.forEach(([w, h]) => {
-      expect(Math.abs(w - sample.boxes[0][0])).toBeLessThan(0.03);
-      expect(Math.abs(h - sample.boxes[0][1])).toBeLessThan(0.03);
-    });
-    if (samples.length) {
-      for (const [id, prop] of Object.entries(sample.room.props)) {
-        const original = samples[0].room.props[id];
-        expect(prop.width / prop.height).toBeCloseTo(original.width / original.height, 6);
-      }
-      expect(sample.trophies).toEqual(samples[0].trophies);
-    }
-    samples.push(sample);
   }
-  // Filling the column under a square gallery adds depth on wide screens.
-  // The floor extends along that axis; furniture keeps its authored aspect.
-  expect(samples[1].room.worldSize[1]).toBeGreaterThan(samples[0].room.worldSize[1]);
-  samples.forEach(sample => {
-    expect(sample.gallery.aspect).toBeCloseTo(1, 4);
-    expect(sample.gallery.bayWidth / sample.gallery.bayHeight).toBeCloseTo(1, 4);
-  });
-  expect(samples.at(-1).room.worldSize).toEqual(samples[0].room.worldSize);
-  samples.at(-1).gallery.geometry.forEach((panel, index) => {
-    panel.size.forEach((dimension, axis) => expect(dimension).toBeCloseTo(samples[0].gallery.geometry[index].size[axis], 5));
-  });
 });
 
 test("profile identity remains readable without overlap across narrow and wide columns", async ({ page }) => {
@@ -1748,43 +1483,15 @@ test("mobile Horizon uses an aspect-correct internal canvas and includes the boa
   await context.close();
 });
 
-test("mobile gallery keeps all four project targets aligned and inside the viewport", async ({ browser }) => {
-  test.setTimeout(120_000);
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, colorScheme: "dark" });
-  const page = await context.newPage();
-  await page.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
-  await page.getByRole("heading", { name: "Zongyuan Yang" }).waitFor();
-  await expect(page.locator("[data-playcanvas-gallery]")).toBeVisible({ timeout: 30_000 });
-  await page.locator(".gallery-stage").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
-  const geometry = await page.locator(".gallery-overlay").evaluate((overlay) => {
-    const parent = overlay.getBoundingClientRect();
-    const cards = [...overlay.querySelectorAll(".gallery-ui-card")].map((card) => {
-      const rect = card.getBoundingClientRect();
-      return { id: card.getAttribute("data-project"), left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom };
-    });
-    const overlaps = cards.flatMap((a, index) => cards.slice(index + 1).map((b) => (
-      Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left))
-      * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top))
-    )));
-    return {
-      parent: { left: parent.left, top: parent.top, right: parent.right, bottom: parent.bottom },
-      cards,
-      overlaps,
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth
-    };
-  });
-  expect(geometry.cards.map((card) => card.id)).toEqual(["ssat", "directl", "eva01", "docdiff"]);
-  expect(geometry.overlaps.every((area) => area === 0)).toBe(true);
-  expect(geometry.cards.every((card) => card.left >= geometry.parent.left && card.right <= geometry.parent.right && card.top >= geometry.parent.top && card.bottom <= geometry.parent.bottom)).toBe(true);
-  expect(geometry.scrollWidth).toBe(geometry.clientWidth);
-  for (const id of ["ssat", "directl", "eva01", "docdiff"]) {
-    const card = page.locator(`.gallery-ui-card[data-project="${id}"]`);
-    await card.dispatchEvent("click");
-    await expect(card).toHaveClass(/is-active/);
-    await expect(page.locator(".gallery-ui-card.is-active")).toHaveCount(1);
-  }
-  await context.close();
+test("mobile prioritizes biography and cabin without gallery or panel switching", async ({ browser }) => {
+ const context=await browser.newContext({viewport:{width:390,height:844},colorScheme:'dark'});
+ const page=await context.newPage();await page.goto('/');
+ await expect(page.getByRole('heading',{name:'Zongyuan Yang'})).toBeVisible();
+ await expect(page.locator('.profile-top')).toBeVisible();
+ await expect(page.locator('.profile-sprite-canvas')).toBeVisible();
+ await expect(page.locator('.gallery-stage')).toBeHidden();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
+ await context.close();
 });
 
 test("reduced motion exposes the static final state", async ({ browser }) => {

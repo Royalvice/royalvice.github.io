@@ -1,3 +1,5 @@
+import { arcadeReward } from '../arcade/ArcadeReward';
+import { pixelText } from '../terminal/pixelFont';
 import { horizonMusicFragmentSource as fragmentSource } from "../seascape/HorizonShader";
 import type { CloudMusicSurface } from '../music/CloudMusicSurface';
 import type { QualityTier } from "../content/site";
@@ -78,6 +80,10 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
   private readonly gl: WebGL2RenderingContext;
   private readonly program: WebGLProgram;
   private readonly locations = new Map<string, WebGLUniformLocation | null>();
+  private wishTexture: WebGLTexture | null = null;
+  private wishStart=-100;
+  private wishTimer=0;
+  private wishNotice:HTMLElement|null=null;
   private musicTexture: WebGLTexture | null = null;
   private musicRevision = 0;
   private sceneFramebuffer: WebGLFramebuffer;
@@ -130,6 +136,16 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    ['u_wish_glyphs','u_wish_age'].forEach(name=>this.locations.set(name,gl.getUniformLocation(program,name)));
+    this.wishTexture=gl.createTexture();gl.activeTexture(gl.TEXTURE5);gl.bindTexture(gl.TEXTURE_2D,this.wishTexture);
+    const mask=document.createElement('canvas');mask.width=256;mask.height=48;
+    const ctx=mask.getContext('2d')!;
+    pixelText(ctx,'wish you a good day',20,5,'#ffffff',2);
+    pixelText(ctx,'ONE WISH / ONE COIN',74,33,'#ffffff',1);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,mask);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.uniform1i(this.location('u_wish_glyphs'),5);
     const position = gl.getAttribLocation(program, "a_position"); gl.enableVertexAttribArray(position); gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
     gl.uniform1i(gl.getUniformLocation(program, "u_noise"), 0); gl.uniform1i(gl.getUniformLocation(program, "u_boat"), 1); gl.uniform1i(gl.getUniformLocation(program, "u_ufo"), 2); gl.uniform1i(gl.getUniformLocation(program,"u_lighthouse"),3);
     const sceneFramebuffer = gl.createFramebuffer(), sceneColor = gl.createRenderbuffer();
@@ -153,7 +169,7 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
     this.ready = true; this.transitionProgress = this.options.reducedMotion ? 1 : this.transitionProgress;  this.renderFrame();
     await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     this.canvas.dataset.sceneReady = "true"; this.host?.classList.add("is-scene-ready"); this.options.onReady?.(); if (this.options.view !== "cabin") window.__horizonDebug = this.debugHook;
-    if (!this.options.reducedMotion) { this.bindCanvasInteraction(); void this.loadUfoAtlas(); }
+    this.bindCanvasInteraction(); if (!this.options.reducedMotion) void this.loadUfoAtlas();
   }
 
   start(): void { this.resume(); }
@@ -199,7 +215,7 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
   launchFirework(viewportX: number, viewportY: number): void { if (!this.ready || this.options.reducedMotion) return; const rect = this.canvas.getBoundingClientRect(); const x = clamp01((viewportX - rect.left) / Math.max(rect.width, 1)); const y = clamp01(1 - (viewportY - rect.top) / Math.max(rect.height, 1)); this.launchCinematicFirework(x, y); }
   triggerUfoCycle(): void { if (this.options.reducedMotion || !this.ufoAtlasReady) return; this.elapsed = SAILING_SECONDS; this.boatProgressOverride = null; this.cyclePhaseOverride = null; this.renderFrame(); }
   setBoatProgress(progress: number): void { this.boatProgressOverride = clamp01(progress); this.renderFrame(); }
-  destroy(): void { this.pause(); this.resizeObserver?.disconnect(); this.unbindCanvasInteraction(); this.canvas.removeEventListener('webglcontextlost', this.contextLost); if (window.__horizonDebug === this.debugHook) delete window.__horizonDebug; this.host?.classList.remove("is-scene-ready"); if (this.options.music) { this.options.music.setReady(false); this.options.music.onInvalidate = null; } this.gl.deleteTexture(this.musicTexture); this.gl.deleteFramebuffer(this.sceneFramebuffer); this.gl.deleteRenderbuffer(this.sceneColor); this.gl.deleteProgram(this.program); }
+  destroy(): void { this.pause(); clearTimeout(this.wishTimer);this.wishNotice?.remove();this.gl.deleteTexture(this.wishTexture); this.resizeObserver?.disconnect(); this.unbindCanvasInteraction(); this.canvas.removeEventListener('webglcontextlost', this.contextLost); if (window.__horizonDebug === this.debugHook) delete window.__horizonDebug; this.host?.classList.remove("is-scene-ready"); if (this.options.music) { this.options.music.setReady(false); this.options.music.onInvalidate = null; } this.gl.deleteTexture(this.musicTexture); this.gl.deleteFramebuffer(this.sceneFramebuffer); this.gl.deleteRenderbuffer(this.sceneColor); this.gl.deleteProgram(this.program); }
   private contextLost = () => {
     this.pause(); this.ready = false; this.atlasReady = false;
     this.options.music?.setReady(false);
@@ -277,6 +293,7 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
     gl.uniform2f(this.location("u_resolution"), this.sceneWidth, this.sceneHeight); gl.uniform1f(this.location("u_time"), this.elapsed); gl.uniform1f(this.location("u_entry"), this.options.reducedMotion ? 1 : this.transitionProgress);
     gl.uniform2f(this.location("u_boat_position"), cycle.position[0], cycle.position[1]); gl.uniform1f(this.location("u_boat_visible"), cycle.visible); gl.uniform1f(this.location("u_boat_lift"), cycle.lift); gl.uniform1f(this.location("u_boat_wake"), cycle.wake); gl.uniform1f(this.location("u_boat_reflection"), cycle.reflection); gl.uniform1f(this.location("u_boat_pitch"), cycle.pitch); gl.uniform1f(this.location("u_splash_strength"), cycle.splash); gl.uniform1f(this.location("u_reduced_motion"), this.options.reducedMotion ? 1 : 0);
     gl.uniform2f(this.location("u_ufo_position"), cycle.ufo[0], cycle.ufo[1]); gl.uniform1f(this.location("u_ufo_visible"), this.ufoAtlasReady ? cycle.ufoVisible : 0); gl.uniform1f(this.location("u_beam_strength"), this.ufoAtlasReady ? cycle.beam : 0); gl.uniform1f(this.location("u_moon_ripple"), cycle.moonRipple);
+    gl.uniform1f(this.location('u_wish_age'), this.options.view==='cabin'?-100:(this.options.reducedMotion&&performance.now()/1000-this.wishStart<8?3:performance.now()/1000-this.wishStart));
     this.uploadMusic(); this.uploadMeteors(); this.uploadFireworks();
     gl.disable(gl.SCISSOR_TEST);
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.sceneFramebuffer);
@@ -340,7 +357,14 @@ export class HorizonSceneRenderer implements TransitionAwareSceneRenderer {
   private bindCanvasInteraction(): void { this.canvas.addEventListener("pointerdown", this.onPointerDown, { passive: true }); this.canvas.addEventListener("pointerup", this.onPointerUp, { passive: true }); this.canvas.addEventListener("pointercancel", this.onPointerCancel, { passive: true }); }
   private unbindCanvasInteraction(): void { this.canvas.removeEventListener("pointerdown", this.onPointerDown); this.canvas.removeEventListener("pointerup", this.onPointerUp); this.canvas.removeEventListener("pointercancel", this.onPointerCancel); }
   private onPointerDown = (event: PointerEvent): void => { if (!event.isPrimary || event.button !== 0) return; this.pointerDown = { id: event.pointerId, x: event.clientX, y: event.clientY, time: event.timeStamp }; };
-  private onPointerUp = (event: PointerEvent): void => { const down = this.pointerDown; this.pointerDown = null; if (!down || !event.isPrimary || event.button !== 0 || event.pointerId !== down.id || event.timeStamp - down.time > 650 || Math.hypot(event.clientX - down.x, event.clientY - down.y) > 9) return; this.launchFirework(event.clientX, event.clientY); };
+  private onPointerUp = (event: PointerEvent): void => { const down = this.pointerDown; this.pointerDown = null; if (!down || !event.isPrimary || event.button !== 0 || event.pointerId !== down.id || event.timeStamp - down.time > 650 || Math.hypot(event.clientX - down.x, event.clientY - down.y) > 9) return; this.launchFirework(event.clientX, event.clientY); if(this.options.view!=="cabin"&&arcadeReward.firework())this.celebrateWish(); };
+  private celebrateWish():void {
+    this.wishStart=performance.now()/1000;
+    const notice=document.createElement('p');notice.className='horizon-wish-notice';notice.setAttribute('role','status');
+    notice.innerHTML='<span class="wish-earned-coin" aria-hidden="true">✦</span><span>获得一枚金币 · 回房间投入街机</span>';this.host?.append(notice);this.wishNotice=notice;
+    this.renderFrame();
+    this.wishTimer=window.setTimeout(()=>{notice.remove();this.wishNotice=null;this.renderFrame();},8000);
+  }
   private onPointerCancel = (): void => { this.pointerDown = null; };
   private debugState(): HorizonDebugState {
     const cycle = this.getCycleState(); const activeFireworkGroups = this.fireworkGroups.filter((group) => group.fadeOutStart === null); const activeEvents = activeFireworkGroups.flatMap((group) => group.events);

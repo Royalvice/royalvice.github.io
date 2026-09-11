@@ -1,0 +1,94 @@
+{
+  "files": [
+    {
+      "game": "dino",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/dino.ini",
+      "sha256": "e7d1148fd429787ad333c077f07f3c20a5a80e01cfaba8263ae890c2e98fa8b2",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "knights",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/knights.ini",
+      "sha256": "47d983cec05b60c473a9d392ecec7d6d0a30f4c3dbe73ef0e1def8ce3a22c754",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "kof2002",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/kof2002.ini",
+      "sha256": "cfde1277ea53c79515d5f58e4dced716b75024e6602d6a07ee835a882db3d7fd",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "kof97",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/kof97.ini",
+      "sha256": "eb3a1ace02fec574bb896434bc64701b05e88f8e91f1e217695605bf683e660a",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "kof98",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/kof98.ini",
+      "sha256": "d8059c14aef6c080d9dd82d6eed1220a62493d8ee7c84a638a74def8be0bb293",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "kov",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/kov.ini",
+      "sha256": "e5a72e76d995b8680ee9aedff7afd7642d6b2f581b63baa861fffec6c6d2fd2c",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "mslug",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/mslug.ini",
+      "sha256": "6a4d958d746b7b8e073f44962c9c980f9db45d01dfb083d5841c9f94e38b9f1d",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "mslug2",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/mslug2.ini",
+      "sha256": "9956818108be21bd459971ddbef5a94052fe02454d1ab5ac7bea26afc24dacac",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "mslug3",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/mslug3.ini",
+      "sha256": "de58dfb9318fdb3d2e926490346b745170415f4fd0fbe3bb795f00def7063304",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "mslugx",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/mslugx.ini",
+      "sha256": "8e8bfdcb61ca2c33900ac81eef593378e502c6142eccb312288d8901664d3a50",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "orlegend",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/orlegend.ini",
+      "sha256": "bdf4bfa5edc15ff777b35b0078227afc6681827cfe9dcdf478a3d4fde833c8ae",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "raiden2",
+      "url": "https://github.com/spruceUI/Miyoo-A30-StockCard/blob/89d0094fd5109daa96bf15a912eb1d07c4db480e/Emu/Shoot/.retroarch/system/fbneo/cheats/raiden2.ini",
+      "sha256": "acc8433f90b1e37c8c7c65b4cba4cef864fbd9756759947fa542f1c95b76605c",
+      "note": "P1 infinite lives only; original native FBNeo format"
+    },
+    {
+      "game": "sf2ce",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/sf2ce.ini",
+      "sha256": "1c789cb95c49659e5e9780db5d183cec2a2888678886672e6a839c70d36ae4a4",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "sfiii3",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/sfiii3.ini",
+      "sha256": "65fef2c89808e6bea43d525939590fe944a1226e3d53dfb9631ba5b2f59b2ae2",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    },
+    {
+      "game": "wof",
+      "url": "https://github.com/finalburnneo/FBNeo-cheats/blob/15d16b0450edd5be232198811bc990b332c79da2/cheats/wof.ini",
+      "sha256": "a18877d7c38e218ae1cc303fded49e9366a105f1ce9ecfff62ccde85798153aa",
+      "note": "Unmodified native FBNeo definition; default disabled"
+    }
+  ]
+}

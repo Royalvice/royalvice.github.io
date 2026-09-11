@@ -26,7 +26,7 @@ export class CabinControls {
  }
  select(id:ProfileActorId|null){this.sim.control(id);this.clear();this.sync();this.changed();}
  clear(){this.keys.clear();this.stick=null;this.run=false;this.sim.clearInput();const s=this.bar.querySelector<HTMLElement>('.cabin-stick');s?.style.setProperty('--stick-x','0px');s?.style.setProperty('--stick-y','0px');}
- private editable(t:EventTarget|null){return t instanceof HTMLElement&&Boolean(t.closest('input,textarea,select,[contenteditable="true"],.terminal-shell,.paclab-dialog'));}
+ private editable(t:EventTarget|null){return t instanceof HTMLElement&&Boolean(t.closest('input,textarea,select,[contenteditable="true"],.terminal-shell,.arcade-cabinet-dialog'));}
  private visible(){const r=this.root.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight&&document.documentElement.dataset.activeSection!=='horizon';}
  private active(){return Boolean(this.sim.getState().controlledActor)&&!document.hidden&&!document.querySelector('dialog[open]')&&this.visible();}
  private input(){if(!this.active()){this.sim.clearInput();return;}const x=this.stick?.x??(Number(this.keys.has('d')||this.keys.has('arrowright'))-Number(this.keys.has('a')||this.keys.has('arrowleft'))),y=this.stick?.y??(Number(this.keys.has('s')||this.keys.has('arrowdown'))-Number(this.keys.has('w')||this.keys.has('arrowup')));this.sim.setInput(x,y,this.run||this.keys.has('shift'));}

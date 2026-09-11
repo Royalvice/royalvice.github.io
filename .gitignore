@@ -17,3 +17,10 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Reproducible, integrity-checked EmulatorJS build output.
+public/arcade/runtime/
+public/arcade/availability.json
+
+# Local arcade source cache and review output; published cartridges live in public/arcade.
+.local/arcade/

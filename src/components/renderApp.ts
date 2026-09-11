@@ -9,7 +9,7 @@ import type { LinkItem, Project, ProjectId, SectionId, SiteContent, VoyageNode }
 import type { SceneRenderer, TransitionAwareSceneRenderer } from "../scenes/SceneRenderer";
 import type { PlayCanvasGallery } from "../gallery/PlayCanvasGallery";
 import type { ProfileAdventureDirector } from "../profile/ProfileAdventureDirector";
-import type { PacLabArcade } from "../profile/PacLabArcade";
+import type { ArcadeCabinet } from "../arcade/ArcadeCabinet";
 import { TerminalController } from "./TerminalController";
 import { renderTerminal } from "./renderTerminal";
 
@@ -543,7 +543,9 @@ export function initializeSiggraphMachine(reducedMotion: boolean): () => void {
     timers.add(timer);
   };
 
-  const cellHeight = (): number => reel.getBoundingClientRect().height;
+  // Transforms use local CSS pixels: the viewport may scale the entire profile.
+  // Measure a digit's layout height, not the scaled/bordered viewing window.
+  const cellHeight = (): number => (track.firstElementChild as HTMLElement).offsetHeight;
 
   const setPosition = (index: number): void => {
     track.style.transform = `translate3d(0, ${-index * cellHeight()}px, 0)`;
@@ -625,15 +627,16 @@ export function initializeSiggraphMachine(reducedMotion: boolean): () => void {
     );
     const settle = (): void => {
       if (!machine.classList.contains("is-resolving")) return;
-      track.style.transform = `translate3d(0, ${finalY}px, 0)`;
       reelAnimation?.cancel();
+      const settledY = -SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT * cellHeight();
+      track.style.transform = `translate3d(0, ${settledY}px, 0)`;
       reelAnimation = track.animate(
         [
-          { transform: `translate3d(0, ${finalY - 3}px, 0)` },
-          { transform: `translate3d(0, ${finalY + 2}px, 0)`, offset: .55 },
-          { transform: `translate3d(0, ${finalY}px, 0)` }
+          { transform: `translate3d(0, ${settledY - 3}px, 0)` },
+          { transform: `translate3d(0, ${settledY + 2}px, 0)`, offset: .55 },
+          { transform: `translate3d(0, ${settledY}px, 0)` }
         ],
-        { duration: 180, easing: "ease-out", fill: "forwards" }
+        { duration: 180, easing: "ease-out" }
       );
       machine.dataset.result = String(SIGGRAPH_FIRST_AUTHOR_PAPER_COUNT);
       machine.classList.remove("is-resolving", "is-pulling");
@@ -1017,26 +1020,29 @@ export async function initializeApplication({ content, state, onSectionChange }:
   let gallery: PlayCanvasGallery | null = null;
   const profileGifCapture=new URLSearchParams(location.search).get('profile-gif-export')==='1';
   let profileAdventure: ProfileAdventureDirector | null = null;
-  let pacLabArcade: PacLabArcade | null = null;
-  let pacLabInitialization: Promise<PacLabArcade> | null = null;
+  let arcadeCabinet: ArcadeCabinet | null = null;
+  let arcadeInitialization: Promise<ArcadeCabinet> | null = null;
   let galleryInitialization: Promise<void> = Promise.resolve();
   const adventureRoot = document.querySelector<HTMLElement>("[data-future-slot]");
   const galleryRoot = document.getElementById("hero-exhibits");
-  const ensurePacLabArcade = (): Promise<PacLabArcade> => {
-    if (pacLabArcade) return Promise.resolve(pacLabArcade);
-    if (pacLabInitialization) return pacLabInitialization;
-    pacLabInitialization = import("../profile/PacLabArcade").then(({ PacLabArcade }) => {
-      const instance = new PacLabArcade({
+  const ensureArcadeCabinet = (): Promise<ArcadeCabinet> => {
+    if (arcadeCabinet) return Promise.resolve(arcadeCabinet);
+    if (arcadeInitialization) return arcadeInitialization;
+    arcadeInitialization = galleryInitialization.then(() => import("../arcade/ArcadeCabinet")).then(({ ArcadeCabinet }) => {
+      const instance = new ArcadeCabinet({
         reducedMotion: state.reducedMotion,
+        onOpen: () => { cabinOpen = true; profileAdventure?.pause(); gallery?.pause(); },
         onClose: () => {
+          cabinOpen = false;
+          if (state.activeSection === "profile" && state.documentVisible) gallery?.resume();
           profileAdventure?.resetTvPower();
           if (state.activeSection === "profile" && state.documentVisible && !state.reducedMotion) profileAdventure?.resume();
         }
       });
-      pacLabArcade = instance;
+      arcadeCabinet = instance;
       return instance;
     });
-    return pacLabInitialization;
+    return arcadeInitialization;
   };
   if (galleryRoot && !profileGifCapture) {
     // Navigation and pause/resume lifecycles stay independent, but the first
@@ -1086,13 +1092,13 @@ export async function initializeApplication({ content, state, onSectionChange }:
       const director = new ProfileAdventureDirector(adventureRoot, {
         reducedMotion: state.reducedMotion,
         onTvInteraction: () => {
-          void ensurePacLabArcade().then((arcade) => {
+          void ensureArcadeCabinet().then((arcade) => {
             arcade.open(adventureRoot.querySelector<HTMLElement>("[data-profile-tv]"));
           }).catch((error) => {
             director.resetTvPower();
             const status = adventureRoot.querySelector<HTMLElement>("[data-room-status]");
             if (status) status.textContent = "ARCADE OFFLINE";
-            console.warn("Pac-Lab arcade fallback active", error);
+            console.warn("Arcade cabinet unavailable", error);
           });
         }
       });
@@ -1383,7 +1389,7 @@ export async function initializeApplication({ content, state, onSectionChange }:
     }
     window.clearTimeout(horizonPrewarmTimer);
     gallery?.destroy();
-    pacLabArcade?.destroy();
+    arcadeCabinet?.destroy();
     profileAdventure?.destroy();
     cancelAnimationFrame(transitionRaf);
     window.clearTimeout(navigationTimer);

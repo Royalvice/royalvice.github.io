@@ -79,3 +79,15 @@ a.terminal-line:hover,a.terminal-line:focus-visible { outline:1px solid #b1a5648
  .terminal-dock-hint { font-size:5px; }
  .terminal-glove { width:18px; }
 }
+
+/* Small, persistent invitations share the room’s pixel typography. */
+.profile-terminal-trigger .terminal-dock-hint,.arcade-dock-hint{font:8px/1.35 var(--pixel);letter-spacing:0;color:#efda9b;text-shadow:1px 2px #08100e;border:0;background:transparent;box-shadow:none;padding:2px;}
+[data-visited="true"] .terminal-glove,[data-visited="true"] .terminal-dock-hint{opacity:1;}
+.profile-tv-control .terminal-glove{right:2%;bottom:47%;width:clamp(16px,1.5vw,24px);opacity:1;}
+.profile-tv-control .arcade-dock-hint{position:absolute;top:9%;left:50%;transform:translate(-50%,-100%);white-space:nowrap;opacity:1;}
+.profile-terminal-trigger .terminal-dock-hint{top:-2px;}
+.profile-tv-control .terminal-glove{left:auto;top:auto;padding:0;border:0;background:none;box-shadow:none;transform:rotate(-30deg);}
+.profile-tv-control .arcade-dock-hint{padding:2px;border:0;background:none;box-shadow:none;font:8px/1.35 var(--pixel);letter-spacing:0;text-shadow:1px 2px #08100e;}
+/* Place each whisper beside its glove, clear of the screen and wall labels. */
+.cabin-v5 .profile-terminal-trigger .terminal-dock-hint{top:35%;left:100%;transform:translate(-10%,-150%);font-size:8px;}
+.profile-tv-control .arcade-dock-hint,.profile-tv-control:hover .arcade-dock-hint,.profile-tv-control:focus-visible .arcade-dock-hint{top:42%;left:90%;transform:translate(-25%,-100%);}

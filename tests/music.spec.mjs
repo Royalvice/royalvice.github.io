@@ -21,7 +21,9 @@ test('one real audio track continues between the music box and cloud, with share
  await page.locator('[data-nav-section=horizon]').click();
  await expect(page.locator('[data-music-cloud]')).toHaveAttribute('data-playing','true');
  await page.waitForFunction(()=>window.__horizonDebug?.().ready);
- await expect.poll(()=>page.locator('#horizon').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(3);
+ // The last section can end before its top reaches zero: browsers clamp the
+ // requested scroll position to the document's maximum scroll extent.
+ await expect.poll(()=>page.locator('#horizon').evaluate(el=>Math.abs(scrollY-Math.min(el.offsetTop,document.documentElement.scrollHeight-innerHeight)))).toBeLessThan(3);
  expect((await state(page)).time).toBeGreaterThanOrEqual(before.time);
  const beforeFireworks=await page.evaluate(()=>window.__horizonDebug().fireworkCount);
  const range=await page.locator('[data-music-seek]').boundingBox();

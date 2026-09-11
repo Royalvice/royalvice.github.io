@@ -1,0 +1,22 @@
+{
+  "source": "src/arcade/ArcadeCabinetScene.ts",
+  "camera": {
+    "pitch": 45,
+    "yaw": 0
+  },
+  "size": [
+    512,
+    512
+  ],
+  "pivot": [
+    0.5,
+    0.8723358726501464
+  ],
+  "screenRect": [
+    0.22499999999999998,
+    0.3392436510324478,
+    0.55,
+    0.291681547164917
+  ],
+  "sha256": "cda930eb61ef693c3fd884d4694850f115ecdf02eb72e2879fdf438dbece217a"
+}

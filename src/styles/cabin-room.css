@@ -9,7 +9,7 @@
 .cabin-v5 .profile-adventure-heading small{display:none;}
 .cabin-v5 .profile-adventure-replay{top:2.2%;right:2%;bottom:auto;font-size:6px;padding:7px;}
 .cabin-v5 .profile-adventure-caption{bottom:2%;font-size:5px;}
-.cabin-v5 .terminal-dock-hint{font-size:5px;opacity:0;transition:opacity .2s;}
+.cabin-v5 .terminal-dock-hint{font-size:7px;opacity:1;transition:opacity .2s;}
 .cabin-v5 .profile-terminal-trigger:hover .terminal-dock-hint,.cabin-v5 .profile-terminal-trigger:focus-visible .terminal-dock-hint{opacity:1;}
 .cabin-v5 .terminal-glove{width:18px;}
 .cabin-v5 .profile-actor-controls button{transform:translateX(-50%);}
@@ -62,6 +62,7 @@
 #profile .profile-intro{font-size:18px}
 #profile .profile-summary h1{font-size:22px}
 #profile .research-route{gap:5px}
+#profile .social-dock{height:32px;min-height:0}
 #profile .social-dock a{width:30px;height:30px}
 #profile .avatar-spotlight{height:120px}
 #profile .avatar-spotlight img{width:100%;height:calc(100% - 10px);object-fit:contain}

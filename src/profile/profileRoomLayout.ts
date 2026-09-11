@@ -1,4 +1,5 @@
 import { ROOM_FURNITURE } from "./roomFurniture";
+import television from '../../public/assets/profile/arcade-tv/manifest.json';
 export type ProfileRoomStationId =
   | "blackboard"
   | "water-cooler"
@@ -84,10 +85,10 @@ export const PROFILE_ROOM_SPRITE_META: Record<ProfileRoomSpriteKey, ProfileRoomS
     contactPoints: [[0.34, 0.95], [0.66, 0.95]]
   },
   tvCabinet: {
-    sourceRect: [128, 256, 128, 128], pivot: [0.5, 0.95], mount: "floor",
-    contactPoints: [[0.12, 0.95], [0.88, 0.95]],
-    // Relative to the destination rectangle. The v4 packer preserves this exact aperture.
-    screenRect: [0.304688, 0.335938, 0.375, 0.25],
+    sourceRect: [128, 256, 128, 128], pivot: television.pivot as [number,number], mount: "floor",
+    contactPoints: ROOM_FURNITURE.tv.feet as [number,number][],
+    // Projected from the same CRT mesh as the enlarged PlayCanvas scene.
+    screenRect: television.screenRect as [number,number,number,number],
     // The console sits on the cabinet's north-east surface, not on the floor
     // beside the cabinet.  These coordinates are relative to the TV sprite
     // destination rectangle and are shared by the Canvas renderer and review

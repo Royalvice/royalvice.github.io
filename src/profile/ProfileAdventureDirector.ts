@@ -43,7 +43,7 @@ export type ProfileRoomDebugState = {
   doorUser: ProfileActorId | null;
   portalStrength: number;
   tvFrame: number;
-  tvPelletsRemaining: number;
+  tvProgram: string;
   tvPowerPhase: ProfileTvPowerPhase;
   tvPowerHistory: ProfileTvPowerPhase[];
   navigation: {
@@ -367,7 +367,7 @@ export class ProfileAdventureDirector {
       doorUser: simulation.doorUser,
       portalStrength: simulation.doorStrength,
       tvFrame: tv.frame,
-      tvPelletsRemaining: tv.pelletsRemaining,
+      tvProgram: "YZY ARCADE / 15",
       tvPowerPhase: this.tvPowerPhase,
       tvPowerHistory: [...this.tvPowerHistory],
       navigation: {

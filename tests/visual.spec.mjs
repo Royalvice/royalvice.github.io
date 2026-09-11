@@ -318,7 +318,7 @@ test("capture living room TV frames, keyboard ground focus, reduced motion, and 
   await fallback.close();
 });
 
-test("capture Pac-Lab television boot, desktop and mobile cabinets, swapped Voyage, and Evidence lightbox", async ({ browser }) => {
+test("capture YZY arcade television boot, desktop and mobile cabinets, swapped Voyage, and Evidence lightbox", async ({ browser }) => {
   test.setTimeout(300_000);
   await mkdir(out, { recursive: true });
   const desktop = await browser.newContext({ viewport: { width: 1440, height: 1000 }, colorScheme: "dark", reducedMotion: "no-preference" });
@@ -327,17 +327,15 @@ test("capture Pac-Lab television boot, desktop and mobile cabinets, swapped Voya
   await page.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
   await page.locator(".profile-adventure-stage").scrollIntoViewIfNeeded();
   await page.locator("[data-profile-tv]").hover();
-  await captureViewport(page, "paclab-tv-hover-aligned.png");
+  await captureViewport(page, "yzy-arcade-tv-hover-aligned.png");
   await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("white"));
-  await captureViewport(page, "paclab-tv-white-boot.png");
+  await captureViewport(page, "yzy-arcade-tv-white-boot.png");
   await page.evaluate(() => window.__profileAdventureDebug.setTvPowerPhase("idle"));
   await page.locator("[data-profile-tv]").click();
-  await page.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
-  await captureViewport(page, "paclab-arcade-desktop.png");
-  await page.keyboard.press("Enter");
-  await page.keyboard.press("ArrowLeft");
-  await page.waitForTimeout(700);
-  await captureViewport(page, "paclab-arcade-playing.png");
+  await page.waitForFunction(() => window.__arcadeCabinetDebug?.getState().open, null, { timeout: 10_000 });
+  await captureViewport(page, "yzy-arcade-arcade-desktop.png");
+  await page.locator('[data-arcade-game="kof98"]').click();
+  await captureViewport(page, "yzy-arcade-selected-card.png");
   await page.keyboard.press("Escape");
 
   const voyageTop = await page.locator("#voyage").evaluate((element) => element.offsetTop);
@@ -380,8 +378,8 @@ test("capture Pac-Lab television boot, desktop and mobile cabinets, swapped Voya
   await mobilePage.goto("http://127.0.0.1:4173", { waitUntil: "domcontentloaded" });
   await mobilePage.waitForFunction(() => window.__profileAdventureDebug?.getState().ready, null, { timeout: 120_000 });
   await mobilePage.locator("[data-profile-tv]").click();
-  await mobilePage.waitForFunction(() => window.__pacLabDebug?.getState().open, null, { timeout: 10_000 });
-  await captureViewport(mobilePage, "paclab-arcade-mobile-390x844.png");
+  await mobilePage.waitForFunction(() => window.__arcadeCabinetDebug?.getState().open, null, { timeout: 10_000 });
+  await captureViewport(mobilePage, "yzy-arcade-arcade-mobile-390x844.png");
   expect(await mobilePage.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
   await mobile.close();
 
