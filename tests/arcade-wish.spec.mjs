@@ -7,10 +7,11 @@ async function readyRoom(page){
 }
 async function open(page){await page.locator('[data-profile-tv]').click();await page.waitForFunction(()=>window.__arcadeCabinetDebug?.getState().renderer?.active);}
 test('six real sky clicks earn one persistent keepsake; insertion is one-time',async({page})=>{
-  test.setTimeout(150000);await readyRoom(page);await open(page);
+  test.setTimeout(process.env.ARCADE_SOFTWARE_RENDERING?300000:150000);await readyRoom(page);await open(page);
   await expect(page.locator('[data-arcade-wallet]')).toHaveText('0');
   await page.locator('[data-arcade-insert]').click();await expect(page.locator('[data-arcade-status]')).toHaveText('还没有金币，到处点点吧');
   await page.keyboard.press('Escape');
+  if(process.env.ARCADE_SOFTWARE_RENDERING)await page.setViewportSize({width:720,height:720});
   await page.goto('/#horizon');
   await page.waitForFunction(()=>window.__horizonDebug?.().ready,null,{timeout:90000});
   const sky=page.locator('[data-horizon-scene]');await sky.scrollIntoViewIfNeeded();
@@ -31,10 +32,10 @@ test('six real sky clicks earn one persistent keepsake; insertion is one-time',a
   await page.reload();await page.waitForFunction(()=>window.__profileAdventureDebug?.getState().ready);await open(page);await expect(page.locator('[data-arcade-wallet]')).toHaveText('∞');
 });
 test('native cheat options and unlimited credit pulses reach the real Metal Slug core',async({page,request})=>{
-  test.setTimeout(150000);const availability=await(await request.get('/arcade/availability.json')).json();test.skip(!availability.games?.mslug?.available,'Private local ROM required');
+  test.setTimeout(process.env.ARCADE_SOFTWARE_RENDERING?300000:150000);const availability=await(await request.get('/arcade/availability.json')).json();test.skip(!availability.games?.mslug?.available,'Hosted Metal Slug cartridge required');
   await page.addInitScript(k=>localStorage.setItem(k,JSON.stringify({clicks:6,earned:true,inserted:true})),key);
   await readyRoom(page);await open(page);await page.locator('[data-arcade-load]').click();
-  await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>200,null,{timeout:90000});
+  await page.waitForFunction(()=>window.__arcadeCabinetDebug.getState().emulator?.frame>200,null,{timeout:180000});
   await page.locator('[data-arcade-cheats] summary').click();
   const cheat=page.locator('[data-arcade-cheat-list] select').first();await expect(cheat).toBeVisible();await cheat.selectOption({index:1});
   expect((await page.evaluate(()=>window.__arcadeCabinetDebug.getState().emulator)).cheats.length).toBe(1);

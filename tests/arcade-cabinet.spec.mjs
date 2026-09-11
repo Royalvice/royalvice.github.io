@@ -66,6 +66,7 @@ test('phone keeps cabinet and touch controls inside viewport',async({browser})=>
   await context.close();
 });
 test('a missing Neo Geo BIOS is an error, never a playable board or spent token',async({page,request})=>{
+  test.setTimeout(150000);
   const inventory=await (await request.get('/arcade/availability.json')).json();
   test.skip(!inventory.games?.mslug?.available,'Requires the hosted Metal Slug cartridge.');
   const emptyZip=Buffer.alloc(22);emptyZip.writeUInt32LE(0x06054b50);

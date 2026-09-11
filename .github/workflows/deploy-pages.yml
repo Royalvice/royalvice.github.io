@@ -47,9 +47,19 @@ jobs:
         run: npm run verify:arcade
 
       - name: Test arcade cabinet
+        env:
+          ARCADE_SOFTWARE_RENDERING: "1"
         run: |
           npm run test:arcade
           npx playwright test tests/siggraph-counter.spec.mjs
+
+      - name: Preserve failed browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcade-browser-diagnostics-${{ github.sha }}
+          path: /tmp/royalvice-playwright-results
+          retention-days: 7
 
       - name: Start export server
         run: |
